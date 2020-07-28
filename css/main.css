@@ -281,6 +281,11 @@ ADV BLOCK
     box-shadow: 0px 5px 30px 0px rgba(31, 35, 37, 0.4);
 }
 
+.Brand {
+    border-radius: 4px;
+    margin-right: 15px;
+}
+
 /*...................
 FOOTER
 ...................*/
