@@ -168,6 +168,7 @@ MAIN
     color: rgb(137, 137, 137);
     line-height: 1.6;
     text-align: center;
+    margin-bottom: 40px;
 }
 
 .button-outline {
@@ -342,8 +343,114 @@ ADV BLOCK
 BLOG ^
 ...................*/
 
+.blog {
+    margin-bottom: 25px;
+}
 
+.blog__title {
+    font-family: 'Lora', serif; 
+    font-size: 18px;
+    color: rgb(34, 34, 34);
+    line-height: 1.667;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
 
+.blog__description {
+    font-family: 'Mulish', sans-serif; 
+    font-size: 15px;
+    color: rgb(137, 137, 137);
+    line-height: 1.667;
+    margin-bottom: 5px;
+}
+
+.blog__read-more {
+    font-family: 'Lora', serif; 
+    font-size: 15px;
+    color: rgb(34, 34, 34);
+    line-height: 1.2;
+    text-decoration: none;
+    font-weight: 600;
+    position: relative;
+    
+}
+
+.blog__read-more:after {
+    content: "";
+    display: block;
+    width: 11px;
+    height: 11px;
+    position: absolute;
+    right: -15px;
+    top: 5px;
+    background-image: url(../img/icons/arrowright.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 11px 11px;
+ }
+
+.blog__read-more:hover {
+    color: #f3388f; 
+    text-decoration: none;  
+    
+}
+/*...................
+subscribe
+...................*/
+.subscribe {
+    display: flex;
+    justify-content: center;
+}
+.subscribe__input {
+    color: #000;
+    font-size: 15px;
+    line-height: 1;
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 3px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #f3388f;
+    height: 38px;
+    width: 248px;
+    margin-right: 10px;
+}
+.subscribe__input:hover, .subscribe__input:focus {
+    outline: none;
+    border-color: #861f4f;
+}
+.subscribe__button {
+    font-family: 'Mulish', sans-serif;
+    background-color: #f3388f;
+    color: #ffffff;
+    font-size: 15px;
+    line-height: 1;
+    width: 110px;
+    height: 40px;
+    display: block;
+    border-radius: 3px;
+    box-shadow: 0px 5px 30px 0px rgba(31, 35, 37, 0.3);
+    text-decoration: none;  
+    transition: all 0.15s ease-in;
+    margin-bottom: 12px;
+    border: none;
+    cursor: pointer;     
+}
+.subscribe__button:hover {
+    color: #ffffff;
+    background-color: #bd3675;
+    text-decoration: none;  
+    box-shadow: 0px 5px 30px 0px rgba(31, 35, 37, 0.4);
+    outline: none; 
+
+}
+.subscribe__button:focus {
+    background-color: #861f4f;
+    text-decoration: none;  
+    box-shadow: 0px 5px 30px 0px rgba(31, 35, 37, 0.1);
+    outline: none; 
+}
 /*...................
 FOOTER
 ...................*/
@@ -397,4 +504,11 @@ FOOTER
  .footer__copyright {
     font-size: 12px;
     color: #525252;
+ }
+
+ .mt-60 {
+     margin-top: 60px;
+ }
+ .mb-100 {
+     margin-bottom: 100px;
  }
