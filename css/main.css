@@ -5,6 +5,7 @@
 
 body{
     font-family: 'Mulish', sans-serif;
+    background-color: #fcecfa;
 }
 
 /*...................
@@ -31,6 +32,8 @@ NAV
     color: #4b4650;
     text-decoration: none;
     margin-right: 30px;
+    min-width: 500px;
+    height: 30px;
 }
 
 .navigation__link:active, .navigation__link:hover, .navigation__link:focus {
@@ -74,6 +77,62 @@ HEADER
     align-items: center;
 }
 
+.header-phone .header-phonei-item {
+    margin: 6px 0;
+    line-height: 26px;
+    font-size: 16px;
+    padding-left: 34px;
+    display: inline-block;
+    position: relative;
+    color: #4c2214;
+    text-decoration: none;
+    font-weight: 600;
+}
+.header-phonei-item:hover{
+    color: #f3388f;
+}
+.header-phone .header-phonei-item:before {
+    content: "";
+    background: url(../img/bg/mts.png) no-repeat;
+    background-size: cover;
+    width: 19px;
+    height: 18px;
+    position: absolute;
+    left: 11px;
+    top: 4px;
+}
+.clearfix {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.header-social h6 {
+    font-size: 16px;
+    display: inline-block;
+    margin-right: 6px;
+    color: #4c2214;    
+    line-height: 1.1;
+    margin-top: 11px;
+    margin-left: 20px;
+    font-weight: 300;
+}
+
+ .header-social a {
+    font-size: 19px;
+    margin-bottom: 20px;
+    color: rgb(17, 12, 12);
+    text-decoration: none;     
+    margin-right: 20px;
+ }
+ .header-social a:last-child {
+    margin-right: 80px;
+    }
+
+.header-social a:hover {
+    color: #f3388f;
+    text-decoration: none;
+ }
+
 .header .container {    
     position: relative;
     height: 100%;
@@ -88,7 +147,7 @@ HEADER
     height: 100%;
     left: 55%;
     top: 0;
-    background-color: #ffffff;
+    background-color: #fcecfa;
     background-image: url(../img/bg/happy-girl.jpg);
     background-repeat: no-repeat;
     background-position: left top;
@@ -206,12 +265,15 @@ CARD
     font-weight: 600;   
     text-align: center;
     margin-bottom: 50px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    box-shadow: 0px 5px 30px 0px rgba(31, 35, 37, 0.15);
 }
 
 .card__image {  
     position: relative;
     margin-bottom: 10px;
-    box-shadow: 0px 5px 30px 0px rgba(31, 35, 37, 0.2);
     overflow: hidden;
 }
 .card__image img {
@@ -394,6 +456,34 @@ BLOG ^
     text-decoration: none;  
     
 }
+/*...................
+contact
+...................*/
+h2 { font-size: 30px; }
+.contact {
+    text-align: center;
+    padding-bottom: 50px;
+}
+.page-header {
+    padding-bottom: 9px;
+    margin: 40px 0 20px;
+    border-bottom: 1px solid #eee;
+    
+}
+.page-header p {
+    line-height: 1;
+    font-size: 14px;
+}
+
+.under-footer-address-text {
+    margin: 0 0 12px;
+    font-size: 16px;
+    line-height: 20px;
+    padding-bottom: 5px;
+}
+
+
+
 /*...................
 subscribe
 ...................*/
