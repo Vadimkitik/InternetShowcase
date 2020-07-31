@@ -510,10 +510,15 @@ h2 { font-size: 30px; }
 
 .under-footer-address-text {
     margin: 0 0 12px;
-    font-size: 16px;
+    font-size: 18px;
     line-height: 20px;
     padding-bottom: 5px;
 }
+.under-footer-address-item {
+    border: solid 1px #000;    
+    padding: 20px 10px 10px;
+}
+
 
 
 
