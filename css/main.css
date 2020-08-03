@@ -21,7 +21,10 @@ NAV
     font-weight: 800;
     text-transform: uppercase;
 }
-
+.nav-social {
+    background: #f6f3ef;    
+    border-bottom: solid 2px #fff;
+}
 .navigation {
     text-align: right;
     font-size: 15px;
@@ -80,6 +83,7 @@ HEADER
 }
 
 .header-phone .header-phonei-item {
+    font-family: 'Lora', serif;
     margin: 6px 0;
     line-height: 26px;
     font-size: 16px;
@@ -88,7 +92,7 @@ HEADER
     position: relative;
     color: #4c2214;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 500;
 }
 .header-phonei-item:hover{
     color: #f3388f;
@@ -106,9 +110,9 @@ HEADER
 .clearfix {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 10px;
+    margin-bottom: 3px;
 }
-.header-social h6 {
+.header-social h6 {    
     font-size: 16px;
     display: inline-block;
     margin-right: 6px;
@@ -116,7 +120,7 @@ HEADER
     line-height: 1.1;
     margin-top: 11px;
     margin-left: 20px;
-    font-weight: 300;
+    font-weight: 500;
 }
 
  .header-social a {
