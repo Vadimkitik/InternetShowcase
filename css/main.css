@@ -39,15 +39,15 @@ NAV-MENU
     padding-top: 5px;
     font-weight: 600;
 }
-.nav-menu > ul li {
+.nav-menu > ul > li {
     border-right: 1px solid #c7c8ca;
     position: relative;
 }
-.nav-menu > ul li:first-child {
+.nav-menu > ul > li:first-child {
     border-left: 1px solid #c7c8ca;
 }
 
-.nav-menu > ul li:last-child {
+.nav-menu > ul > li:last-child {
     border-right: 1px solid #c7c8ca;
 }
 .nav-menu > ul li a {
@@ -68,24 +68,25 @@ NAV-MENU
 SUB-NAV-MENU
 ...................*/
 .nav-menu li ul {    
-    right: -60.5px;
+    right: -63px;
     position: absolute;
     min-width: 150px;
     display: none;
     z-index: 4;
+    
 }
 .nav-menu li:hover > ul {
     display: block;
 }
 .nav-menu li > ul li {
-    border: 1px solid #c7c8ca;
+    background-color: rgba(246,243,239,0.5);
 }
 .nav-menu li > ul li a{
     text-transform: none;
 }
 .nav-menu li > ul li ul {
     position: absolute;
-    right: -144px;
+    right: -142px;
     top: -1px;
 }
 /*...................
