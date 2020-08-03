@@ -25,25 +25,72 @@ NAV
     background: #f6f3ef;    
     border-bottom: solid 2px #fff;
 }
-.navigation {
-    text-align: right;
+/*...................
+NAV-MENU
+...................*/
+.nav-menu ul,.nav-menu ol {   
+    list-style: none;
+}
+.nav-menu > ul {
+    display: flex;
+    justify-content: center;
     font-size: 15px;
     padding-top: 5px;
     font-weight: 600;
 }
-
-.navigation__link {
-    color: #4b4650;
-    text-decoration: none;
-    margin-right: 30px;
-    min-width: 500px;
-    height: 30px;
+.nav-menu > ul li {
+    border-right: 1px solid #c7c8ca;
+    position: relative;
+}
+.nav-menu > ul li:first-child {
+    border-left: 1px solid #c7c8ca;
 }
 
-.navigation__link:active, .navigation__link:hover, .navigation__link:focus {
+.nav-menu > ul li:last-child {
+    border-right: 1px solid #c7c8ca;
+}
+.nav-menu > ul li a {
+    display: block;
+    padding: 3px 25px 7px 25px;
+    color: #4b4650;
+    text-decoration: none;
+    height: 30px;
+    position: relative;
+    text-transform: uppercase;
+    transition: all 0.1s ease-in;
+}
+.nav-menu li a:active, .nav-menu li a:hover, .nav-menu li a:focus {
     color: #f3388f;
     text-decoration: none;
 }
+/*...................
+SUB-NAV-MENU
+...................*/
+.nav-menu li ul {    
+    right: -61px;
+    position: absolute;
+    min-width: 150px;
+    display: none;
+}
+.nav-menu li:hover > ul {
+    display: block;
+}
+.nav-menu li > ul li {
+    border: 1px solid #c7c8ca;
+}
+.nav-menu li > ul li a{
+    text-transform: none;
+}
+.nav-menu li > ul li ul {
+    position: absolute;
+    right: -145px;
+    top: 0;
+}
+/*...................
+//NAV-MENU
+...................*/
+
+
 
 .cart {
     padding-top: 5px;
@@ -83,7 +130,6 @@ HEADER
 }
 
 .header-phone .header-phonei-item {
-    font-family: 'Lora', serif;
     margin: 6px 0;
     line-height: 26px;
     font-size: 16px;
@@ -112,7 +158,8 @@ HEADER
     justify-content: space-between;
     margin-bottom: 3px;
 }
-.header-social h6 {    
+.header-social h6 { 
+    font-family: 'Lora', serif;   
     font-size: 16px;
     display: inline-block;
     margin-right: 6px;
@@ -502,6 +549,21 @@ h2 { font-size: 30px; }
 .contact-address-item {
     margin-right: 30px;
 }
+.contact-address-item__map {
+    background: rgba(255, 255, 255, 0.842);
+    border-radius: 5px;
+}
+.contact-address-item__info {
+    font-family: 'Lora', serif;
+    text-align: left;
+    color: #807f7fc5;
+    font-size: 14px;
+    padding: 5px 5px ;
+    margin-top: -6px;
+    background: rgba(255, 255, 255, 0.842);
+    border-radius: 5px;
+}
+
 .page-header {
     padding-bottom: 9px;
     margin: 40px 0 20px;
@@ -522,20 +584,6 @@ h2 { font-size: 30px; }
 .under-footer-address-item {
     border: solid 1px #000;    
     padding: 20px 10px 10px;
-}
-.contact-address-item__map {
-    background: rgba(255, 255, 255, 0.842);
-    border-radius: 5px;
-}
-.contact-address-item__info {
-    font-family: 'Lora', serif;
-    text-align: left;
-    color: #807f7fc5;
-    font-size: 14px;
-    padding: 5px 5px ;
-    margin-top: -6px;
-    background: rgba(255, 255, 255, 0.842);
-    border-radius: 5px;
 }
 
 
