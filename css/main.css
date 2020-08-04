@@ -61,22 +61,29 @@ SUB-NAV-MENU
 #sub-menu>li span {
     padding: 0;
 }
+
 #sub-menu>li span a {
     color: #401f12;
     font-weight: 500;
-    padding: 12px 15px 12px;
+    padding: 5px 15px 12px;
     display: inline-block;
     text-decoration: none;
     font-size: 14px;
+    transition: all 0.15s ease-in;
+}
+#sub-menu>li >span >a {
+    font-weight: 500;
+    font-size: 17px;
     text-transform: uppercase;
 }
 #sub-menu>li>ul {
     display: none;
-    padding-bottom: 23px;
+    padding-bottom: 15px;
+    padding-left: 5px;
     position: absolute;
     left: 0;
     top: 38px;
-    background-color: rgba(246,243,239,.9);
+    background-color: rgba(246,243,239,0.5);
     z-index: 5;
     width: 100%;
     right: 0;
@@ -108,13 +115,9 @@ SUB-NAV-MENU
 #sub-menu .main-menu-go-back {
     display: none;
 }
-.nav-menu li > ul li {
-    background-color: rgba(246,243,239,0.5);
-}
 
 #sub-menu>li:hover > ul {
     display: flex;
-    justify-content: space-around;
 }
 
 /*...................
