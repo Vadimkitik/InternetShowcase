@@ -29,13 +29,14 @@ NAV
 /*...................
 NAV-MENU
 ...................*/
+
 .nav {
     padding-left: 0;
     margin-bottom: 0;
     list-style: none;
 }
+
 .navbar {
-    font-family: 'Lora', serif;
     min-height: 36px;
     position: relative;
     border-radius: 4px;
@@ -46,11 +47,13 @@ NAV-MENU
     display: block;
 }
 
+
 /*...................
 SUB-NAV-MENU
 ...................*/
 #sub-menu {
     text-align: left;
+    border-top: 1px solid #6b6b6b;
     position: relative;
 }
 
@@ -58,6 +61,12 @@ SUB-NAV-MENU
     display: inline-block;
     position: static;
 }
+
+#sub-menu>li:hover > ul {
+    display: flex;
+    justify-content: space-around;
+}
+
 #sub-menu>li span {
     padding: 0;
 }
@@ -67,7 +76,7 @@ SUB-NAV-MENU
     padding: 12px 15px 12px;
     display: inline-block;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 12px;
     text-transform: uppercase;
 }
 #sub-menu>li>ul {
@@ -88,17 +97,14 @@ SUB-NAV-MENU
     padding: 0;
     display: block;
 }
+
 #sub-menu>li>ul>li>span>a {
     padding-top: 17px;
     color: #c81b42;
-    font-size: 16px;
+    font-size: 14px;
     text-transform: none;
     font-weight: 300;
     padding-bottom: 0;
-}
-#sub-menu>li span a:active, #sub-menu>li span a:hover, #sub-menu>li span a:focus {
-    color: #f3388f;
-    text-decoration: none;
 }
 
 #sub-menu>li>ul>li>ul {
@@ -108,21 +114,15 @@ SUB-NAV-MENU
 #sub-menu .main-menu-go-back {
     display: none;
 }
-.nav-menu li > ul li {
-    background-color: rgba(246,243,239,0.5);
-}
-
-#sub-menu>li:hover > ul {
-    display: flex;
-    justify-content: space-around;
-}
 
 /*...................
 //NAV-MENU
 ...................*/
 
 
-
+/*...................
+//NAV-MENU
+...................*/
 .cart {
     padding-top: 5px;
     position: relative;
