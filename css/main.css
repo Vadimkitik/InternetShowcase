@@ -373,29 +373,81 @@ CARD
 /*...................
 PRODUCT DESCRIPTION
 ...................*/
-.product-cont {}
+.product-cont {
+    border-bottom: 1px solid #c3c3c3;
+    margin-bottom: 6px;
+}
 
-.product__image {}
+.product__image {
+    float: left;
+    width: 460px;
+    box-sizing: border-box;
+    padding: 16px 16px 20px;
+    background: #fff;
+    border: 1px solid #c3c3c3;
+    margin: 22px;
+    position: relative;
+}
 
 
-.product__info-block {}
+.product__info-block {
+    width: 400px;
+    height: 568px;
+    padding-top: 10px;
+    float: left;
+    margin-left: 24px;
+    font-size: 16px;
+    margin-bottom: 22px;
+}
 
-.product__info-block-main {}
+.product__info-block h1 {
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 28px;
+    margin: 12px 0 16px;
+}
 
-.product__info-composition {}
+.product__info-price {
+    margin-bottom: 18px
+}
 
+.product__info-price > .button-outline {
+    margin: 0;
+    text-transform: none;
+    font-weight: 500;
+    font-size: 15px;
+    padding-top: 10px;
+}
 
-.product__info-price {}
+.product-info-price{
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 16px;
+    font-weight: 400;
+    padding: 18px 0 22px;
+    border-top: 1px solid #c3c3c3;
+    border-bottom: 1px solid #c3c3c3;
+}
 
-.product-info-price{}
+.product-info-price__title {
+    color: #010000;
+}
 
-.product-info-price__title {}
+.product-info-price__val {
+    font-size: 26px;
+    color: #020000;
+}
 
-.product-info-price__val {}
+.product-info-price__val-old {
+    font-size: 20px;
+    text-decoration: line-through;
+}
 
-.product-info-price__val-old {}
-
-.product-description {}
+.product-description {
+    padding-top: 50px;
+    font-size: 14px;
+    color: #000;
+}
 /*...................
 ADV BLOCK
 ...................*/
