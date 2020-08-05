@@ -18,6 +18,7 @@ SOCIAL
     text-transform: uppercase;
 }
 .social {
+    font-family: 'Lora', serif;
     padding-top: 5px;
     background: #f6f3ef;    
     border-bottom: solid 2px #fff;
