@@ -68,13 +68,12 @@ SUB-NAV-MENU
     transition: all 0.15s ease-in;
 }
 #sub-menu>li >span >a {
+    padding: 5px 10px 12px;
     font-weight: 500;
     font-size: 17px;
     text-transform: uppercase;
 }
-#sub-menu>li >span >a:last-child {
-    padding-right: 0px;
-}
+
 #sub-menu>li>ul {
     display: none;
     padding-bottom: 15px;
