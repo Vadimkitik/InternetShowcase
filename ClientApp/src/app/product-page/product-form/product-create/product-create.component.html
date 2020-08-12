@@ -1,0 +1,8 @@
+﻿<div>
+    <h2>Добавление нового чека</h2>
+    <product-form [(product)]="product"></product-form>
+    <div class="form-group">
+        <button mat-raised-button color="primary" (click)="save()">Сохранить</button>
+        <button  mat-raised-button color="warn" [routerLink]="['/system', 'products']">Отмена</button>
+    </div>
+</div>

@@ -1,3 +1,0 @@
-# InternetShowcase
-
-template creation
