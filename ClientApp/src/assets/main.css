@@ -700,3 +700,93 @@ FOOTER
  .mb-100 {
      margin-bottom: 100px;
  }
+
+ /*...................
+@MEDIA
+...................*/
+
+@media (max-width: 995px) {
+    .header .container .row {
+        padding-top: 10px;
+    }
+    .header-social h6 {
+        font-family: 'Lora', serif;
+        font-size: 14px;
+    }
+    .header-phone .header-phonei-item {
+        margin: 6px 0;
+        line-height: 26px;
+        font-size: 13px;
+    }
+    .logo {
+        font-size: 16px;
+    }
+    
+    #sub-menu>li >span >a {
+        padding: 5px 10px 12px;
+        font-size: 12px;
+    }
+    #sub-menu>li>ul>li>span>a {
+        font-size: 15px;
+    }
+    .clearfix {
+        margin-bottom: 0px;
+    }
+    .h1-line {
+        font-size: 40px;
+    }
+    .card__title {
+        font-size: 16px;
+    }
+    img {
+        max-width: 100%;
+    }
+    .product__image {
+        float: left;
+        width: 200px;
+    }
+    
+    .product__info-block {
+        width: 420px;
+        height: 290px;
+        font-size: 13px;
+    }
+    .product__info-block h1 {
+        font-size: 22px;
+    }
+    .product-info-price__val-old {
+        font-size: 16px;
+    }
+    .product-info-price__val {
+        font-size: 20px;
+    }
+    .product-description {
+        padding-top: 22px;
+        font-size: 13px;
+    }
+    .product-info-price {
+        margin-right: 0px;
+        font-weight: 400;
+        padding: 0px 0 0px;
+        border-bottom: 0px;
+    }
+    .card__button {
+        font-size: 13px;
+        padding-top: 7px;
+        width: 90px;
+        height: 28px;
+    }
+    
+}
+
+@media (max-width: 768px) {
+  
+}
+
+@media (max-width: 480px) {
+    
+}
+
+@media (max-width: 320px) {
+    
+}
