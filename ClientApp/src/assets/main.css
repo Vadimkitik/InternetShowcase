@@ -776,7 +776,23 @@ FOOTER
         width: 90px;
         height: 28px;
     }
-    
+    .page-header p {
+        line-height: 1;
+        font-size: 13px;
+    }
+    .contact-address-item {
+        margin-right: 20px;
+    }
+    .under-footer-address-text {
+        margin: 0 0 12px;
+        font-size: 15px;
+        line-height: 20px;
+        padding-bottom: 5px;
+    }
+    .contact-address-item__map iframe {
+        width: 450px;
+    }
+
 }
 
 @media (max-width: 768px) {
