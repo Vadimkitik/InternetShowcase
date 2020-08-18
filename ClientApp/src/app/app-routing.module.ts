@@ -9,7 +9,7 @@ import { ProductViewComponent } from './product-page/product-view/product-view.c
 const appRoutes: Routes = [
     { path: '', component: ProductListComponent },
     { path: 'shop', component: ShopComponent },
-    { path: 'product/view', component: ProductViewComponent }
+    { path: 'product/view/:id', component: ProductViewComponent }
    // { path: '**', component: NotFoundComponent }
 ];
 

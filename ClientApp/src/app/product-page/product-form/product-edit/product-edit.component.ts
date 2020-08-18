@@ -14,13 +14,18 @@ export class ProductEditComponent implements OnInit {
     product: Product;    // изменяемый объект
     loaded: boolean = false;
 
-    constructor(private dataService: ProductService, private router: Router, activeRoute: ActivatedRoute) {
+    constructor(
+        private productService: ProductService,
+        private router: Router, 
+        activeRoute: ActivatedRoute
+        ) 
+    {
         this.id = Number.parseInt(activeRoute.snapshot.params["id"]);
     }
 
     ngOnInit() {
         if (this.id)
-            this.dataService.getProduct(this.id)
+            this.productService.getProduct(this.id)
                 .subscribe((data: Product) => {
                     this.product = data;
                     if (this.product != null) this.loaded = true;
@@ -28,6 +33,6 @@ export class ProductEditComponent implements OnInit {
     }
 
     save() {
-        this.dataService.updateProduct(this.product).subscribe(data => this.router.navigateByUrl("/system/products"));
+        this.productService.updateProduct(this.product).subscribe(data => this.router.navigateByUrl("/system/products"));
     }
 }

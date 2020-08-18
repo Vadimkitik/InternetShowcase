@@ -11,7 +11,7 @@
                     <div class="card__image">
                         <img src="assets/img/products/red_roses_lite.jpg" alt="">
                         <div class="card__hover">
-                            <a [routerLink]="'product/view'" class="card__button">Подробнее</a>
+                            <a [routerLink]="['product/view', product.id]" class="card__button">Подробнее</a>
                         </div>
                     </div>
                     <div class="card__title">{{ product.name}}</div>
