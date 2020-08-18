@@ -1,14 +1,15 @@
 ﻿using InternetShowcase.Data.Models;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace InternetShowcase.Data
 {
-    public class ShowcaseDbContext : IdentityDbContext
+    public class ShowcaseDbContext : DbContext
     {
         public ShowcaseDbContext(DbContextOptions<ShowcaseDbContext> options)
             : base (options)
-        {          
+        {
+            //Database.EnsureDeleted();
+            //Database.EnsureCreated();
         }
         public DbSet<Product> Products { get; set; }
     }

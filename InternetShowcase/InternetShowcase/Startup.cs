@@ -15,12 +15,15 @@ namespace InternetShowcase
             Configuration = configuration;
         }
 
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
 
         public IConfiguration Configuration { get; }
 
        
         public void ConfigureServices(IServiceCollection services)
         {
+
             services
                 .AddDbContext<ShowcaseDbContext>(options => options
                    .UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
@@ -29,6 +32,16 @@ namespace InternetShowcase
          //       .AddEntityFrameworkStores<DbContext>();
             
             services.AddControllers();
+            services.AddCors(options =>
+            {
+                options.AddPolicy(MyAllowSpecificOrigins, builder =>
+                {
+                    builder.WithOrigins("http://localhost:4200")
+                           .AllowAnyHeader()
+                           .AllowAnyMethod()
+                           .AllowCredentials();
+                });
+            });
         }
 
        
@@ -40,10 +53,7 @@ namespace InternetShowcase
             }
             
             app.UseRouting();
-
-
-            app.UseAuthentication();
-            app.UseAuthorization();
+            app.UseCors(MyAllowSpecificOrigins);
 
             app.UseEndpoints(endpoints =>
             {
