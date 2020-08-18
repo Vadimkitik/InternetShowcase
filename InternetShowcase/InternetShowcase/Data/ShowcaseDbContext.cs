@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using InternetShowcase.Data.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace InternetShowcase.Data
@@ -7,8 +8,8 @@ namespace InternetShowcase.Data
     {
         public ShowcaseDbContext(DbContextOptions<ShowcaseDbContext> options)
             : base (options)
-        {
-
+        {          
         }
+        public DbSet<Product> Products { get; set; }
     }
 }
