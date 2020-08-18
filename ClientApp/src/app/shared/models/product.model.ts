@@ -4,5 +4,6 @@
         public name?: string,
         public type?: string,
         public price?: number,
-        public count?: number) { }
+        public oldPrice?: number,
+        public imageUrl?: string) { }
 }
