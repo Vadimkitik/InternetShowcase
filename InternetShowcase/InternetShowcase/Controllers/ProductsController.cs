@@ -21,14 +21,15 @@ namespace InternetShowcase.Controllers
 
             if (!data.Products.Any())
             {
+                string[] types = new string[] {"цветы", "шары", "удобрение", "букеты", "горшки"};
                 var rnd = new Random();
-                for (int i = 1; i <= 15; i++)
+                for (int i = 1; i <= 40; i++)
                 {
                     data.Products.Add(
                         new Product 
                         { 
                             Name = "Цветок №" + i,
-                            Type = "цветы",
+                            Type = types[rnd.Next(0, 5)],
                             Price = rnd.Next(3, 15),
                             OldPrice = rnd.Next(15, 35),
                             Description = "Что то про этот цветок",
@@ -43,6 +44,18 @@ namespace InternetShowcase.Controllers
         public async Task<ActionResult<IEnumerable<Product>>> Get()
         {
             return await data.Products.ToListAsync();
+        }
+
+        [HttpGet("{type}")]
+        public async Task<ActionResult<IEnumerable<Product>>> Get(string type)
+        {
+            Product productsOfType = await data.Products.Where( p => p.Type == type);
+
+            if (productsOfType != null)
+            {
+                return productsOfType;
+            }
+            return NotFound();
         }
 
         [HttpGet("{id}")]

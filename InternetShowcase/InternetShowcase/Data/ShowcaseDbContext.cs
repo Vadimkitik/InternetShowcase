@@ -8,8 +8,8 @@ namespace InternetShowcase.Data
         public ShowcaseDbContext(DbContextOptions<ShowcaseDbContext> options)
             : base (options)
         {
-            //Database.EnsureDeleted();
-            //Database.EnsureCreated();
+            // Database.EnsureDeleted();
+            // Database.EnsureCreated();
         }
         public DbSet<Product> Products { get; set; }
     }
