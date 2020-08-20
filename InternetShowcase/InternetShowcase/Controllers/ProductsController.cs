@@ -33,7 +33,7 @@ namespace InternetShowcase.Controllers
                             Price = rnd.Next(3, 15),
                             OldPrice = rnd.Next(15, 35),
                             Description = "Что то про этот цветок",
-                            ImageUrl = "assest/img/products-" + i
+                            ImageUrl = $"assets/img/products/product-{rnd.Next(1,4)}.jpg";
                         });
                 }
                 data.SaveChanges();
@@ -49,7 +49,7 @@ namespace InternetShowcase.Controllers
         [HttpGet("{type}")]
         public async Task<ActionResult<IEnumerable<Product>>> Get(string type)
         {
-            Product productsOfType = await data.Products.Where( p => p.Type == type);
+            Product productsOfType = await data.Products.( p => p.Type == type);
 
             if (productsOfType != null)
             {
