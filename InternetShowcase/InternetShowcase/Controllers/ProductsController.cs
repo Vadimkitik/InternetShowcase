@@ -33,7 +33,7 @@ namespace InternetShowcase.Controllers
                             Price = rnd.Next(3, 15),
                             OldPrice = rnd.Next(15, 35),
                             Description = "Что то про этот цветок",
-                            ImageUrl = $"assets/img/products/product-{rnd.Next(1,4)}.jpg";
+                            ImageUrl = $"assets/img/products/product-{rnd.Next(1,5)}.jpg"
                         });
                 }
                 data.SaveChanges();
@@ -46,17 +46,17 @@ namespace InternetShowcase.Controllers
             return await data.Products.ToListAsync();
         }
 
-        [HttpGet("{type}")]
-        public async Task<ActionResult<IEnumerable<Product>>> Get(string type)
-        {
-            Product productsOfType = await data.Products.( p => p.Type == type);
+        // [HttpGet("{type}")]
+        // public async Task<ActionResult<IEnumerable<Product>>> Get(string type)
+        // {
+        //     Product productsOfType = await data.Products.( p => p.Type == type);
 
-            if (productsOfType != null)
-            {
-                return productsOfType;
-            }
-            return NotFound();
-        }
+        //     if (productsOfType != null)
+        //     {
+        //         return productsOfType;
+        //     }
+        //     return NotFound();
+        // }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Product>> Get(int id)
