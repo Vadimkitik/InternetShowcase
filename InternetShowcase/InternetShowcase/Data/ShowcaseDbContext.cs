@@ -12,5 +12,6 @@ namespace InternetShowcase.Data
             // Database.EnsureCreated();
         }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Category> Categorys { get; set; }
     }
 }

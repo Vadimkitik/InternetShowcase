@@ -21,7 +21,14 @@ namespace InternetShowcase.Controllers
 
             if (!data.Products.Any())
             {
-                string[] types = new string[] {"цветы", "шары", "удобрение", "букеты", "горшки"};
+                data.Categorys.AddRange(
+                    new Category { CategoryName = "цветы" },
+                    new Category { CategoryName = "шары" },
+                    new Category { CategoryName = "удобрение" },
+                    new Category { CategoryName = "букеты" },
+                    new Category { CategoryName = "горшки" }
+                );
+                
                 var rnd = new Random();
                 for (int i = 1; i <= 40; i++)
                 {
@@ -29,7 +36,7 @@ namespace InternetShowcase.Controllers
                         new Product 
                         { 
                             Name = "Цветок №" + i,
-                            Type = types[rnd.Next(0, 5)],
+                            categoryID = rnd.Next(0, 5),
                             Price = rnd.Next(3, 15),
                             OldPrice = rnd.Next(15, 35),
                             Description = "Что то про этот цветок",
@@ -46,18 +53,6 @@ namespace InternetShowcase.Controllers
             return await data.Products.ToListAsync();
         }
 
-        // [HttpGet("{type}")]
-        // public async Task<ActionResult<IEnumerable<Product>>> Get(string type)
-        // {
-        //     Product productsOfType = await data.Products.( p => p.Type == type);
-
-        //     if (productsOfType != null)
-        //     {
-        //         return productsOfType;
-        //     }
-        //     return NotFound();
-        // }
-
         [HttpGet("{id}")]
         public async Task<ActionResult<Product>> Get(int id)
         {
@@ -69,7 +64,7 @@ namespace InternetShowcase.Controllers
             }
             return NotFound();
         }
-
+     
         [HttpPost]
         public async Task<ActionResult> Post(Product product)
         {

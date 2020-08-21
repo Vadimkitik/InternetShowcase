@@ -381,16 +381,17 @@ PRODUCT DESCRIPTION
 
 .product__image {
     float: left;
-    width: 460px;
+    width: 38%;
     box-sizing: border-box;
-    padding: 16px 16px 20px;
-    background: #fff;
+    /* padding: 16px 16px 20px;
+    background: #fff; */
     border: 1px solid #c3c3c3;
     margin: 22px;
     position: relative;
 }
-
-
+.product__image img{
+    width: 100%;
+}
 .product__info-block {
     width: 400px;
     height: 568px;

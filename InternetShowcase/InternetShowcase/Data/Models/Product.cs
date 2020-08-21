@@ -6,10 +6,8 @@ namespace InternetShowcase.Data.Models
     {
         public int Id { get; set; }
         [Required]
-        public string Name { get; set; }
+        public string Name { get; set; }  
         [Required]
-        public string Type { get; set; }
-
         public string Description { get; set; }
         [Required]
         public double Price { get; set; }
@@ -17,5 +15,9 @@ namespace InternetShowcase.Data.Models
         public double? OldPrice { get; set; }
         [Required]
         public string ImageUrl { get; set; }
+        [Required]
+        public int categoryID { get; set; }
+
+        public virtual Category Category { get; set; }
     }
 }
