@@ -4,17 +4,21 @@ namespace InternetShowcase.Data.Models
 {
     public class Product
     {
-        public int Id { get; set; }
+        public int id { get; set; }
         [Required]
-        public string Name { get; set; }  
+        public string name { get; set; }  
         [Required]
-        public string Description { get; set; }
+        public string description { get; set; }
         [Required]
-        public double Price { get; set; }
+        public double price { get; set; }
 
-        public double? OldPrice { get; set; }
+        public double? oldPrice { get; set; }
         [Required]
-        public string ImageUrl { get; set; }
+        public string imageUrl { get; set; }
+
+        public bool isFavourite { get; set; }
+
+        public bool available { get; set; }
         [Required]
         public int categoryID { get; set; }
 

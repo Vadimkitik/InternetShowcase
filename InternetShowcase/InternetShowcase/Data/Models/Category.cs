@@ -5,10 +5,10 @@ namespace InternetShowcase.Data.Models
 {
     public class Category
     {
-        public int Id { get; set; }
+        public int id { get; set; }
         [Required]
-        public string CategoryName { get; set; }
+        public string categoryName { get; set; }
 
-        public List<Product> Products { get; set; }
+        public List<Product> products { get; set; }
     }
 }
