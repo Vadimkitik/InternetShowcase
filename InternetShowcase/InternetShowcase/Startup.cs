@@ -1,4 +1,7 @@
 using InternetShowcase.Data;
+using InternetShowcase.Data.interfaces;
+using InternetShowcase.Data.mocks;
+using InternetShowcase.Data.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -23,13 +26,11 @@ namespace InternetShowcase
        
         public void ConfigureServices(IServiceCollection services)
         {
-
-            services
-                .AddDbContext<ShowcaseDbContext>(options => options
+            services.AddTransient<IAllProducts, ProductReposytory>();
+            services.AddTransient<IProductsCategory, CategoryRepository>();
+            services.AddDbContext<ShowcaseDbContent>(options => options
                    .UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-         //   services
-         //      .AddIdentity<IdentityUser, IdentityRole>()
-         //       .AddEntityFrameworkStores<DbContext>();
+      
             
             services.AddControllers();
             services.AddCors(options =>
@@ -59,6 +60,13 @@ namespace InternetShowcase
             {
                 endpoints.MapControllers();
             });
+
+            using(var scope = app.ApplicationServices.CreateScope())
+            {
+                ShowcaseDbContent content = scope.ServiceProvider.GetRequiredService<ShowcaseDbContent>();
+                DBObjects.initial(content);
+            }
+            
         }
     }
 }

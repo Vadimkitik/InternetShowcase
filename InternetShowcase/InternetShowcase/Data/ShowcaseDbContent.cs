@@ -3,14 +3,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace InternetShowcase.Data
 {
-    public class ShowcaseDbContext : DbContext
+    public class ShowcaseDbContent : DbContext
     {
-        public ShowcaseDbContext(DbContextOptions<ShowcaseDbContext> options)
+        public ShowcaseDbContent(DbContextOptions<ShowcaseDbContent> options)
             : base (options)
         {
             //Database.EnsureCreated();
         }
         public DbSet<Product> Products { get; set; }
-        public DbSet<Category> Categorys { get; set; }
+        public DbSet<Category> Categories { get; set; }
     }
 }

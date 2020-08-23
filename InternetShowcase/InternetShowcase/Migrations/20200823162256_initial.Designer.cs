@@ -9,9 +9,9 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace InternetShowcase.Migrations
 {
-    [DbContext(typeof(ShowcaseDbContext))]
-    [Migration("20200822112158_CreateCategoryTable")]
-    partial class CreateCategoryTable
+    [DbContext(typeof(ShowcaseDbContent))]
+    [Migration("20200823162256_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -34,7 +34,7 @@ namespace InternetShowcase.Migrations
 
                     b.HasKey("id");
 
-                    b.ToTable("Categorys");
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("InternetShowcase.Data.Models.Product", b =>
