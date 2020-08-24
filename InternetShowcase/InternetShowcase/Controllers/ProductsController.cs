@@ -4,8 +4,6 @@ using InternetShowcase.Data.interfaces;
 using InternetShowcase.Data.Models;
 using InternetShowcase.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,47 +15,47 @@ namespace InternetShowcase.Controllers
     public class ProductsController : Controller
     {
         private readonly IAllProducts _allProducts;
-        private readonly IProductsCategory _allCategories;
         private readonly ShowcaseDbContent data;
         private readonly IMapper _mapper;
 
         public ProductsController(ShowcaseDbContent content, IAllProducts iAllProducts, IProductsCategory iProductsCat, IMapper mapper)
         {
-            _allCategories = iProductsCat;
             _allProducts = iAllProducts;
             _mapper = mapper;
             data = content;
         }
 
         [HttpGet]
-        public IEnumerable<ProductView> Get()
+        public ActionResult<IEnumerable<ProductView>> Get()
         {
             var products = _allProducts.Products.ToList();
             return _mapper.Map<List<Product>, List<ProductView>>(products);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Product>> Get(int id)
+        public ActionResult<ProductView> Get(int id)
         {
-            Product product = await data.Products.FirstOrDefaultAsync(p => p.id == id);
-
-            if (product != null)
-            {
-                return product;
-            }
-            return NotFound();
+            return _mapper.Map<Product, ProductView>(_allProducts.GetById(id));
         }
      
         [HttpPost]
-        public async Task<ActionResult> Post(Product product)
+        public ActionResult<ProductView> Post(Product model)
         {
-            if (ModelState.IsValid)
-            {
-                data.Products.Add(product);
-                await data.SaveChangesAsync();
-                return Ok(product);
-            }
-            return BadRequest(ModelState);
+            return _mapper.Map<Product, ProductView>(_allProducts.Create(model));
         }
+        [HttpDelete("{id}")]
+        public bool Post(int id)
+        {
+            return _allProducts.Delete(id);
+        }
+
+        [HttpPut]
+        public bool Edit(Product product)
+        {
+            return _allProducts.Update(product);
+        }
+
+
+
     }
 }
