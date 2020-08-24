@@ -1,9 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace InternetShowcase.Data.Models
 {
     public class Product
     {
+        [Key]
         public int id { get; set; }
         [Required]
         public string name { get; set; }  
@@ -21,7 +23,7 @@ namespace InternetShowcase.Data.Models
         public bool available { get; set; }
         [Required]
         public int categoryID { get; set; }
-
-        public virtual Category Category { get; set; }
+        [ForeignKey("categoryID")]
+        public  Category Category { get; set; }
     }
 }

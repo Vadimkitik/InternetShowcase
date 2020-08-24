@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace InternetShowcase.ViewModels
 {
@@ -11,5 +8,10 @@ namespace InternetShowcase.ViewModels
         
         public string categoryName { get; set; }
 
+        public ICollection<ProductView> Products { get; set; }
+        public CategoryView()
+        {
+            Products = new List<ProductView>();
+        }
     }
 }

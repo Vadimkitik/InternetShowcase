@@ -25,6 +25,6 @@ namespace InternetShowcase.ViewModels
         public bool available { get; set; }
        
         public int categoryID { get; set; }
-
+        public Category Category { get; set; }
     }
 }
