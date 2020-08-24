@@ -19,6 +19,7 @@ namespace InternetShowcase.Data.Repository
 
         public IEnumerable<Product> Products => dbContent.Products.Include(c => c.Category);
 
+
         public IEnumerable<Product> getFavProducts => dbContent.Products.Where(p => p.isFavourite == true).Include(c => c.Category);
 
         public Product getObjproduct(int productId) => dbContent.Products.FirstOrDefault(p => p.id == productId);

@@ -1,7 +1,8 @@
+using AutoMapper;
 using InternetShowcase.Data;
 using InternetShowcase.Data.interfaces;
-using InternetShowcase.Data.mocks;
 using InternetShowcase.Data.Repository;
+using InternetShowcase.ViewModels.MappingProfile;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -26,12 +27,13 @@ namespace InternetShowcase
        
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper(typeof(MappingProfile));
             services.AddTransient<IAllProducts, ProductReposytory>();
             services.AddTransient<IProductsCategory, CategoryRepository>();
             services.AddDbContext<ShowcaseDbContent>(options => options
                    .UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-      
             
+  
             services.AddControllers();
             services.AddCors(options =>
             {
