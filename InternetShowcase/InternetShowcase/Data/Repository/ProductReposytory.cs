@@ -1,33 +1,31 @@
 ﻿using InternetShowcase.Data.interfaces;
 using InternetShowcase.Data.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace InternetShowcase.Data.Repository
 {
     public class ProductReposytory : IAllProducts
     {
-        private readonly ShowcaseDbContent dbContent;
+        private readonly ShowcaseDbContent _context;
 
-        public ProductReposytory(ShowcaseDbContent content)
+        public ProductReposytory(ShowcaseDbContent context)
         {
-            dbContent = content;
+            _context = context;
         }
 
-        public IEnumerable<Product> Products => dbContent.Products.Include(c => c.Category);
+        public IEnumerable<Product> Products => _context.Products.Include(c => c.Category);
 
         public Product GetById(int id)
         {
-            return dbContent.Products.Single(p => p.id == id);
+            return _context.Products.Single(p => p.id == id);
 
         }
         public Product Create(Product product)
-        {         
-            dbContent.Products.Add(product);
-            dbContent.SaveChanges();
+        {
+            _context.Products.Add(product);
+            _context.SaveChanges();
             return product;
         }
 
@@ -35,8 +33,8 @@ namespace InternetShowcase.Data.Repository
         {
             if (product != null)
             {
-                dbContent.Products.Update(product);
-                dbContent.SaveChanges();
+                _context.Products.Update(product);
+                _context.SaveChanges();
                 return true;
             }
             return false;
@@ -44,20 +42,20 @@ namespace InternetShowcase.Data.Repository
 
         public bool Delete(int id)
         {
-            var product = dbContent.Products.FirstOrDefault(p => p.id == id);
+            var product = _context.Products.FirstOrDefault(p => p.id == id);
             if (product != null)
             {
-                dbContent.Products.Remove(product);
-                dbContent.SaveChanges();
+                _context.Products.Remove(product);
+                _context.SaveChanges();
                 return true;
             }
             return false;
         }
 
 
-        public IEnumerable<Product> getFavProducts => dbContent.Products.Where(p => p.isFavourite == true).Include(c => c.Category);
+        public IEnumerable<Product> getFavProducts => _context.Products.Where(p => p.isFavourite == true).Include(c => c.Category);
 
-        public Product getObjproduct(int productId) => dbContent.Products.FirstOrDefault(p => p.id == productId);
+        public Product getObjproduct(int productId) => _context.Products.FirstOrDefault(p => p.id == productId);
     }
 
 }

@@ -1,23 +1,19 @@
 ﻿using InternetShowcase.Data.Models;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace InternetShowcase.Data
 {
     public class DBObjects
     {
-        public static void initial(ShowcaseDbContent content)
+        public static void initial(ShowcaseDbContent context)
         {     
-            if (!content.Categories.Any())
-                content.Categories.AddRange(Categories.Select(c => c.Value));
+            if (!context.Categories.Any())
+                context.Categories.AddRange(Categories.Select(c => c.Value));
 
-            if (!content.Products.Any())
+            if (!context.Products.Any())
             {
-                content.AddRange(
+                context.AddRange(
                     new Product
                     {
                         name = "Цветок №1",
@@ -64,7 +60,7 @@ namespace InternetShowcase.Data
                       }
                     );
             }
-            content.SaveChanges();
+            context.SaveChanges();
         }
 
         private static Dictionary<string, Category> category;

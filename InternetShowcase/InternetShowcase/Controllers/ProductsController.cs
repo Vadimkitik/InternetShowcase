@@ -1,12 +1,10 @@
 ﻿using AutoMapper;
-using InternetShowcase.Data;
 using InternetShowcase.Data.interfaces;
 using InternetShowcase.Data.Models;
 using InternetShowcase.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace InternetShowcase.Controllers
 {
@@ -15,14 +13,12 @@ namespace InternetShowcase.Controllers
     public class ProductsController : Controller
     {
         private readonly IAllProducts _allProducts;
-        private readonly ShowcaseDbContent data;
         private readonly IMapper _mapper;
 
-        public ProductsController(ShowcaseDbContent content, IAllProducts iAllProducts, IProductsCategory iProductsCat, IMapper mapper)
+        public ProductsController(IAllProducts iAllProducts, IMapper mapper)
         {
             _allProducts = iAllProducts;
             _mapper = mapper;
-            data = content;
         }
 
         [HttpGet]

@@ -29,7 +29,7 @@ namespace InternetShowcase
         {
             services.AddAutoMapper(typeof(MappingProfile));
             services.AddTransient<IAllProducts, ProductReposytory>();
-            services.AddTransient<IProductsCategory, CategoryRepository>();
+            services.AddTransient<ICategories, CategoryRepository>();
             services.AddDbContext<ShowcaseDbContent>(options => options
                    .UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 

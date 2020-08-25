@@ -1,5 +1,4 @@
 using InternetShowcase.Data.Models;
-using Microsoft.EntityFrameworkCore.Update.Internal;
 using System.Collections.Generic;
 
 namespace InternetShowcase.Data.interfaces
