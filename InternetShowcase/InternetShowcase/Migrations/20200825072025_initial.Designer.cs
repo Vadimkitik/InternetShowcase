@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InternetShowcase.Migrations
 {
     [DbContext(typeof(ShowcaseDbContent))]
-    [Migration("20200823162256_initial")]
+    [Migration("20200825072025_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -81,7 +81,7 @@ namespace InternetShowcase.Migrations
             modelBuilder.Entity("InternetShowcase.Data.Models.Product", b =>
                 {
                     b.HasOne("InternetShowcase.Data.Models.Category", "Category")
-                        .WithMany("products")
+                        .WithMany("Products")
                         .HasForeignKey("categoryID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

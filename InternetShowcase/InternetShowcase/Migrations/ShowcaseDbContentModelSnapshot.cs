@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InternetShowcase.Migrations
 {
     [DbContext(typeof(ShowcaseDbContent))]
-    partial class ShowcaseDbContextModelSnapshot : ModelSnapshot
+    partial class ShowcaseDbContentModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -79,7 +79,7 @@ namespace InternetShowcase.Migrations
             modelBuilder.Entity("InternetShowcase.Data.Models.Product", b =>
                 {
                     b.HasOne("InternetShowcase.Data.Models.Category", "Category")
-                        .WithMany("products")
+                        .WithMany("Products")
                         .HasForeignKey("categoryID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
