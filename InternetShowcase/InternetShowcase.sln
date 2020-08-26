@@ -3,7 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30104.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternetShowcase", "InternetShowcase\InternetShowcase.csproj", "{F86D4FC5-6CDE-495F-9EF9-E407B70AE4E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InternetShowcase", "InternetShowcase\InternetShowcase.csproj", "{F86D4FC5-6CDE-495F-9EF9-E407B70AE4E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternetShowcase.Tests", "InternetShowcase.Tests\InternetShowcase.Tests.csproj", "{6ADE2F5F-F4BC-44D7-B80F-1BEFF52E0A92}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F86D4FC5-6CDE-495F-9EF9-E407B70AE4E6} = {F86D4FC5-6CDE-495F-9EF9-E407B70AE4E6}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +20,10 @@ Global
 		{F86D4FC5-6CDE-495F-9EF9-E407B70AE4E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F86D4FC5-6CDE-495F-9EF9-E407B70AE4E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F86D4FC5-6CDE-495F-9EF9-E407B70AE4E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6ADE2F5F-F4BC-44D7-B80F-1BEFF52E0A92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6ADE2F5F-F4BC-44D7-B80F-1BEFF52E0A92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6ADE2F5F-F4BC-44D7-B80F-1BEFF52E0A92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6ADE2F5F-F4BC-44D7-B80F-1BEFF52E0A92}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
