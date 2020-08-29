@@ -6,6 +6,8 @@ import { UsersService } from './services/users.service';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/auth-guard.service';
 import { TokenStorageService } from './services/token-storage.service';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
     imports: [ ReactiveFormsModule, FormsModule ],
@@ -17,5 +19,9 @@ import { TokenStorageService } from './services/token-storage.service';
         AuthGuard,
         TokenStorageService
     ],
+    declarations: [
+        HeaderComponent,
+        FooterComponent
+    ]
 })
 export class SharedModule {}

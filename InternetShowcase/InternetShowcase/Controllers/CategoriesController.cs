@@ -29,10 +29,10 @@ namespace InternetShowcase.Controllers
         }
 
        
-        [HttpGet("{id}")]
-        public ActionResult<CategoryView> GetCategory(string category)
+        [HttpGet("{categoryName}")]
+        public ActionResult<CategoryView> GetCategory(string categoryName)
         {
-            return _mapper.Map<Category, CategoryView>(_categories.GetById(category));
+            return _mapper.Map<Category, CategoryView>(_categories.GetByType(categoryName));
         }
 
        

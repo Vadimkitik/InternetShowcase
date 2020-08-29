@@ -14,8 +14,6 @@ import { ProductListComponent } from './product-page/product-list/product-list.c
 import { ProductCreateComponent } from './product-page/product-form/product-create/product-create.component';
 import { ProductEditComponent } from './product-page/product-form/product-edit/product-edit.component';
 import { ProductFormComponent } from './product-page/product-form/product-form.component';
-import { HeaderComponent } from './shared/components/header/header.component';
-import { FooterComponent } from './shared/components/footer/footer.component';
 import { ShopComponent } from './shop/shop.component';;
 import { ProductViewComponent } from './product-page/product-view/product-view.component';
 
@@ -47,12 +45,8 @@ export function tokenGetter(){
             ProductFormComponent,
             ProductCreateComponent,
             ProductEditComponent,
-            HeaderComponent,
-            FooterComponent
-,
-            ShopComponent
-,
-            ProductViewComponent        ],
+            ShopComponent,
+            ProductViewComponent],
     
     bootstrap: [AppComponent]
 })

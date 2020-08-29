@@ -5,7 +5,7 @@ namespace InternetShowcase.Data.interfaces {
     public interface ICategories
     {
         IEnumerable<Category> GetCategories();
-        Category GetById(string category);
+        Category GetByType(string category);
         Category Create(Category category);
         bool Update(int id, Category category);
         bool Delete(int id);

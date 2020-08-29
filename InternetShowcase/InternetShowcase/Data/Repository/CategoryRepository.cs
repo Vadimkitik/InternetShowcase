@@ -21,14 +21,11 @@ namespace InternetShowcase.Data.Repository
             return _context.Categories.OrderBy(c => c.id);
         }
 
-        public Category GetById(string category)
+        public Category GetByType(string category)
         {
-            Category _category = null;
-            if (_context.Categories.Any(i => i.categoryName == category))
-            {
-                foreach (Category u in _context.Categories.Include(p => p.Products)) ;
-                _category = _context.Categories.Single(s => s.categoryName == category);
-            }
+            foreach (Category u in _context.Categories.Include(p => p.Products)) ;
+            Category _category = _context.Categories.SingleOrDefault(s => s.categoryName == category);
+          
             return _category;
         }
 
