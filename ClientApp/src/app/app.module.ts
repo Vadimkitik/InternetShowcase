@@ -16,6 +16,8 @@ import { ProductEditComponent } from './product-page/product-form/product-edit/p
 import { ProductFormComponent } from './product-page/product-form/product-form.component';
 import { ShopComponent } from './shop/shop.component';;
 import { ProductViewComponent } from './product-page/product-view/product-view.component';
+import { HeaderComponent } from './shared/components/header/header.component';
+import { FooterComponent } from './shared/components/footer/footer.component';
 
 export function tokenGetter(){
     return localStorage.getItem("jwt");
@@ -46,7 +48,10 @@ export function tokenGetter(){
             ProductCreateComponent,
             ProductEditComponent,
             ShopComponent,
-            ProductViewComponent],
+            ProductViewComponent,
+            HeaderComponent,
+            FooterComponent
+        ],
     
     bootstrap: [AppComponent]
 })

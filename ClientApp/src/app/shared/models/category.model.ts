@@ -4,7 +4,6 @@ export class Category {
     constructor(
         public id?: number,
         public categoryName?: string,
-        public description?: number,
-        public Products?: Product[]
+        public products?: Product[]
         ){ }
 }

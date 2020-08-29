@@ -10,7 +10,7 @@ export class Product {
         public imageUrl?: string,
         public isFavourite?: boolean,
         public available?: boolean,
-        public categoryID?: number,
+        public categoryId?: number,
         public Category?: Category
         ) { }
 }

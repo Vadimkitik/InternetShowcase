@@ -1,7 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
 import { Product } from 'src/app/shared/models/product.model';
 import { ProductService } from 'src/app/shared/services/product.service';
-import { ActivatedRoute } from '@angular/router';
+import { Category } from 'src/app/shared/models/category.model';
 
 @Component({
   selector: 'product-view',
@@ -11,6 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ProductViewComponent implements OnInit {
 
   id: number;
+  Category: Category[];
   product: Product;
   loaded: boolean = false;
 
@@ -22,11 +25,13 @@ export class ProductViewComponent implements OnInit {
   }
 
   ngOnInit() {
+    
     if (this.id != null){
       this.productService.getProduct(this.id)
           .subscribe((data: Product) => {
             this.product = data;
             if(this.product != null) this.loaded = true;
+            console.log();
           });
     }
   }
