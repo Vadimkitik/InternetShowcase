@@ -12,27 +12,22 @@ import { ActivatedRoute, Params } from '@angular/router';
 })
 export class ProductListComponent implements OnInit { 
  
-    category: Category;
     products: Product[];
     categoryType: string;
 
     constructor(
         private categoryService: CategoryService,
-        private route: ActivatedRoute) {
-           
-         }   
+        private route: ActivatedRoute) { }   
     
     ngOnInit() {
        this.route.params.subscribe((params: Params) => {
             this.categoryType = this.route.snapshot.params['categoryName'];
-            this.products = this.route.snapshot.params['category.products'];
-            
+
             this.categoryService.getCategoryByType(this.categoryType).subscribe((category: Category) => {
-                this.category = category;
                 this.products = category.products;
                 });
         });
 
-        
+      
      }    
 }

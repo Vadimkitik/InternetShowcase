@@ -27,7 +27,10 @@
                 <div class="navbar">
                     <nav>
                         <ul class="nav" id="sub-menu">
-                            <li><span><a [routerLink]="['products/', category.categoryName]" *ngFor="let category of categories">{{ category.categoryName}}</a></span>
+                            <li><span><a 
+                                [routerLink]="['products/', category.categoryName]"
+                                 *ngFor="let category of categories"                                 
+                                 >{{ category.categoryName}}</a></span>
                                 <!-- <ul class="nav">
                                     <li><span><a [routerLink]="'/'" class="">Живые</a></span>
                                         <ul class="nav">

@@ -12,6 +12,8 @@ import { Product } from '../../models/product.model';
 export class HeaderComponent implements OnInit {
 
   categories: Category[];
+  products: Product[];
+
   constructor(
     private categoryService: CategoryService,
     private router: Router,
