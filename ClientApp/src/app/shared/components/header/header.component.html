@@ -27,7 +27,7 @@
                 <div class="navbar">
                     <nav>
                         <ul class="nav" id="sub-menu">
-                            <li><span><a [routerLink]="'/'" class="">Цветы</a></span>
+                            <li><span><a [routerLink]="['products/', category.categoryName]" *ngFor="let category of categories">{{ category.categoryName}}</a></span>
                                 <!-- <ul class="nav">
                                     <li><span><a [routerLink]="'/'" class="">Живые</a></span>
                                         <ul class="nav">
@@ -39,12 +39,12 @@
                                     <li><span><a [routerLink]="'/'" class="">Искусственные</a></span></li>
                                 </ul> -->
                             </li>
-                            <li><span><a [routerLink]="'/'" class="">Букеты</a></span></li>
-                            <li><span><a [routerLink]="'/'" class="">Шары</a></span></li>
-                            <li><span><a [routerLink]="'/'" class="">Горшки</a></span></li>
-                            <li><span><a [routerLink]="'/'" class="">Удобрение</a></span></li>
-                            <li><span><a [routerLink]="'/'" class="">Акции</a></span></li>
-                            <li><span><a [routerLink]="'/shop'" class="">Магазин</a></span></li>
+                            <!-- <li><span><a [routerLink]="'products/букеты'">Букеты</a></span></li>
+                            <li><span><a [routerLink]="'products/шары'">Шары</a></span></li>
+                            <li><span><a [routerLink]="'products/горшки'">Горшки</a></span></li>
+                            <li><span><a [routerLink]="'products/удобрение'">Удобрение</a></span></li> -->
+                            <li><span><a [routerLink]="'/'">Акции</a></span></li>
+                            <li><span><a [routerLink]="'/shop'">Магазин</a></span></li>
                         </ul>
                     </nav>
                 </div>

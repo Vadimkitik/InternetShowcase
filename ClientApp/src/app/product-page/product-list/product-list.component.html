@@ -1,4 +1,4 @@
-﻿<h1 class="h1-line"><span>Цветы</span></h1>
+﻿<h1 class="h1-line"><span>{{categoryType}}</span></h1>
 <div class="section">
     <div class="container">
 
@@ -11,7 +11,7 @@
                     <div class="card__image">
                         <img src={{product.imageUrl}} alt="">
                         <div class="card__hover">
-                            <a [routerLink]="['product/view', product.id]" class="card__button">Подробнее</a>
+                            <a [routerLink]="['/products', categoryType, product.id]" class="card__button">Подробнее</a>
                         </div>
                     </div>
                     <div class="card__title">{{ product.name}}</div>

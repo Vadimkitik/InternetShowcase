@@ -15,7 +15,7 @@ export class CategoryService {
     getCategories() {
         return this.http.get(this.url);
     }
-    getCategoriesByType(type: string) {
+    getCategoryByType(type: string) {
         return this.http.get(this.url + '/' + type);
     }
 

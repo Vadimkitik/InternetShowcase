@@ -7,9 +7,10 @@ import { ProductViewComponent } from './product-page/product-view/product-view.c
 
 
 const appRoutes: Routes = [
-    { path: '', component: ProductListComponent },
-    { path: 'shop', component: ShopComponent },
-    { path: 'product/view/:id', component: ProductViewComponent }
+    { path: 'products/:categoryName',  component: ProductListComponent },
+    { path: 'products/:categoryName/:id', component: ProductViewComponent },
+    { path: 'shop', component: ShopComponent }
+    
    // { path: '**', component: NotFoundComponent }
 ];
 
