@@ -33,6 +33,6 @@ export class ProductEditComponent implements OnInit {
     }
 
     save() {
-        this.productService.updateProduct(this.product).subscribe(data => this.router.navigateByUrl("/system/products"));
+        this.productService.updateProduct(this.product).subscribe(() => this.router.navigateByUrl("/products"));
     }
 }

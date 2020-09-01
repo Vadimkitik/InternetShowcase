@@ -14,7 +14,7 @@ export class ProductCreateComponent {
     constructor(private productService: ProductService, private router: Router) { }
 
     save() {
-        this.productService.createProduct(this.product).subscribe(data =>
-             this.router.navigateByUrl("/system/products"));
+        this.productService.createProduct(this.product).subscribe(() =>
+             this.router.navigateByUrl("/"));
      }
 }

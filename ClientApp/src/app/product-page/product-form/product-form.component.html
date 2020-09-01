@@ -4,11 +4,6 @@
         <input matInput placeholder="Розы, тюльпаны, божий одуванчик..." type="text" [(ngModel)]="product.name" />
     </mat-form-field>
 
-    <!-- <mat-form-field class="product-full-width">
-        <mat-label>Модель</mat-label>
-        <input matInput placeholder="Тип товара" type="text" [(ngModel)]="product.type" />
-    </mat-form-field> -->
-
     <mat-form-field class="product-full-width">
         <mat-label>Цена</mat-label>
         <input matInput placeholder="5$" type="number" [(ngModel)]="product.price" />
@@ -18,9 +13,27 @@
         <mat-label>Старая ценаБ если нужна</mat-label>
         <input matInput placeholder="4" type="number" [(ngModel)]="product.oldPrice" />
     </mat-form-field>
+
     <mat-form-field class="product-full-width">
         <mat-label>Фото</mat-label>
-        <input matInput placeholder="4" type="number" [(ngModel)]="product.imageUrl" />
+        <input matInput placeholder="product-1" type="text" [(ngModel)]="product.imageUrl" />
+    </mat-form-field>
+
+    <mat-radio-group aria-label="Является ли он топом" [(ngModel)]="product.isFavourite">
+        <mat-radio-button value="true" color="primary">Да</mat-radio-button>
+        <mat-radio-button value="false">Нет</mat-radio-button>
+    </mat-radio-group>
+
+    <mat-radio-group aria-label="Есть ли в наличии" [(ngModel)]="product.available">
+        <mat-radio-button value="true" color="primary">Да</mat-radio-button>
+        <mat-radio-button value="false">Нет</mat-radio-button>
+    </mat-radio-group>
+
+    <mat-form-field class="product-full-width">
+        <mat-select [(ngModel)]="product.categoryId">
+            <mat-label>Категория товара</mat-label>
+            <mat-option value="category.id" *ngFor="let category of categories">
+                {{ category.categoryName }}</mat-option>
+        </mat-select>
     </mat-form-field>
 </div>
-  
