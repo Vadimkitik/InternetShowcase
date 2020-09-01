@@ -35,9 +35,9 @@ namespace InternetShowcase.Controllers
         }
      
         [HttpPost]
-        public ActionResult<ProductView> Post(Product model)
+        public ActionResult<ProductView> Post(Product product)
         {
-            return _mapper.Map<Product, ProductView>(_allProducts.Create(model));
+            return _mapper.Map<Product, ProductView>(_allProducts.Create(product));
         }
         [HttpDelete("{id}")]
         public bool Post(int id)

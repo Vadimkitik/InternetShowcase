@@ -5,12 +5,17 @@
     </mat-form-field>
 
     <mat-form-field class="product-full-width">
+            <mat-label>Описание товара</mat-label>
+            <input matInput placeholder="Че то про товар" type="text" [(ngModel)]="product.description" />
+        </mat-form-field>
+
+    <mat-form-field class="product-full-width">
         <mat-label>Цена</mat-label>
         <input matInput placeholder="5$" type="number" [(ngModel)]="product.price" />
     </mat-form-field>
 
     <mat-form-field class="product-full-width">
-        <mat-label>Старая ценаБ если нужна</mat-label>
+        <mat-label>Старая цена, если нужна</mat-label>
         <input matInput placeholder="4" type="number" [(ngModel)]="product.oldPrice" />
     </mat-form-field>
 
@@ -19,12 +24,14 @@
         <input matInput placeholder="product-1" type="text" [(ngModel)]="product.imageUrl" />
     </mat-form-field>
 
-    <mat-radio-group aria-label="Является ли он топом" [(ngModel)]="product.isFavourite">
+    <mat-radio-group class="product-full-width" aria-label="Является ли он топом" [(ngModel)]="product.isFavourite">
         <mat-radio-button value="true" color="primary">Да</mat-radio-button>
         <mat-radio-button value="false">Нет</mat-radio-button>
     </mat-radio-group>
 
-    <mat-radio-group aria-label="Есть ли в наличии" [(ngModel)]="product.available">
+
+    <mat-radio-group class="product-full-width" aria-label="Есть ли в наличии" [(ngModel)]="product.available">
+            <label>Есть ли в наличии </label>
         <mat-radio-button value="true" color="primary">Да</mat-radio-button>
         <mat-radio-button value="false">Нет</mat-radio-button>
     </mat-radio-group>
@@ -32,7 +39,7 @@
     <mat-form-field class="product-full-width">
         <mat-select [(ngModel)]="product.categoryId">
             <mat-label>Категория товара</mat-label>
-            <mat-option value="category.id" *ngFor="let category of categories">
+            <mat-option value="{{category.id}}" *ngFor="let category of categories">
                 {{ category.categoryName }}</mat-option>
         </mat-select>
     </mat-form-field>

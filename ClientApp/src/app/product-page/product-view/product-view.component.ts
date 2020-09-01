@@ -31,7 +31,6 @@ export class ProductViewComponent implements OnInit {
           .subscribe((data: Product) => {
             this.product = data;
             if(this.product != null) this.loaded = true;
-            console.log();
           });
     }
   }
