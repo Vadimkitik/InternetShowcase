@@ -2,7 +2,7 @@
 
 -----Logo
 
-
+-----UploadFile to assets in createProduct https://www.youtube.com/watch?v=YkvqLNcJz3Y
 
 -----Поиск на сайте интернет-магазина должен оществляться по различным атрибутам товаров, по их наименованию, по ключевым словам, по производителям.
 
