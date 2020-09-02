@@ -38,9 +38,9 @@
         <mat-radio-button value="false">Нет</mat-radio-button>
     </mat-radio-group>
 
-    <mat-form-field class="product-full-width">
+    <mat-form-field class="product-full-width">        
+        <mat-label>Категория товара</mat-label>
         <mat-select [(ngModel)]="product.categoryId">
-            <mat-label>Категория товара</mat-label>
             <mat-option value="{{category.id}}" *ngFor="let category of categories">
                 {{ category.categoryName }}</mat-option>
         </mat-select>

@@ -19,6 +19,7 @@
                         <span *ngIf="product.oldPrice">${{ product.oldPrice}}</span>
                         ${{ product.price}}
                     </div>
+                    <button mat-raised-button color="warn" (click)="delete(product.id)">Удалить</button>
                 </div>
             </div>
             <!--//col-md-3-->

@@ -11,7 +11,9 @@ import { Product } from '../../../shared/models/product.model';
 export class ProductCreateComponent {
 
     product: Product = new Product();    // добавляемый объект
-    constructor(private productService: ProductService, private router: Router) { }
+    constructor(
+        private productService: ProductService,
+         private router: Router) { }
 
     save() {
         this.product.imageUrl = "assets/img/products/" + this.product.imageUrl;

@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { ProductService } from './services/product.service';
 import { UsersService } from './services/users.service';
@@ -9,6 +10,10 @@ import { CategoryService } from './services/category.service';
 import { NotFoundComponent } from './components/not-found/not-found.component'
 
 @NgModule({
+    imports: [
+        ReactiveFormsModule,
+        FormsModule
+    ],
     providers: [
         ProductService, 
         UsersService,
@@ -17,6 +22,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component'
         TokenStorageService,
         CategoryService
     ],
-    declarations: [NotFoundComponent]
+    declarations: [NotFoundComponent],
+    exports: [ReactiveFormsModule, FormsModule]
 })
 export class SharedModule {}

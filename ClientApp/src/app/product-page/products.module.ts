@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
 
 import { ProductListComponent } from './product-list/product-list.component';
@@ -9,6 +8,7 @@ import { ProductEditComponent } from './product-form/product-edit/product-edit.c
 import { ProductFormComponent } from './product-form/product-form.component';
 import { ProductViewComponent } from './product-view/product-view.component';
 import { ProductsRoutingModule } from './products-routing.module';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -22,10 +22,8 @@ import { ProductsRoutingModule } from './products-routing.module';
     imports: [
         CommonModule,
         ProductsRoutingModule,
-        ReactiveFormsModule,
-        FormsModule,
-        MaterialModule
-    ],
-    exports: [ ReactiveFormsModule, FormsModule]
+        MaterialModule,
+        SharedModule
+    ]
 })
 export class ProductsModule {}
