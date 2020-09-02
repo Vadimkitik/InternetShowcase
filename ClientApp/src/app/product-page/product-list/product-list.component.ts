@@ -14,6 +14,7 @@ export class ProductListComponent implements OnInit {
  
     products: Product[];
     categoryType: string;
+    loaded: boolean = false;
 
     constructor(
         private categoryService: CategoryService,

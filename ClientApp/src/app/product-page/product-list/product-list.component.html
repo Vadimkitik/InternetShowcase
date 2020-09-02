@@ -16,7 +16,7 @@
                     </div>
                     <div class="card__title">{{ product.name}}</div>
                     <div class="card__price">
-                        <span>${{ product.oldPrice}}</span>
+                        <span *ngIf="product.oldPrice">${{ product.oldPrice}}</span>
                         ${{ product.price}}
                     </div>
                 </div>

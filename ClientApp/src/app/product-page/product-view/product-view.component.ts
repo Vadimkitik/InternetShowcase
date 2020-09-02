@@ -30,7 +30,7 @@ export class ProductViewComponent implements OnInit {
       this.productService.getProduct(this.id)
           .subscribe((data: Product) => {
             this.product = data;
-            if(this.product != null) this.loaded = true;
+            if(this.product.oldPrice != null) this.loaded = true;
           });
     }
   }

@@ -3,6 +3,6 @@
     <product-form [(product)]="product"></product-form>
     <div class="form-group">
         <button mat-raised-button color="primary" (click)="save()">Сохранить</button>
+        <button [routerLink]="['/', 'products']" mat-raised-button color="warn">Назад</button>
     </div>
 </div>
-<button [routerLink]="['/', 'products']" mat-raised-button color="warn">Назад</button>

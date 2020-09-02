@@ -14,8 +14,12 @@ export class ProductCreateComponent {
     constructor(private productService: ProductService, private router: Router) { }
 
     save() {
-        console.log(this.product);
+        
+        console.log(this.product.imageUrl);
         this.productService.createProduct(this.product).subscribe(() =>
              this.router.navigateByUrl("/"));
      }
 }
+
+
+// assets/img/products/product-1.jpg

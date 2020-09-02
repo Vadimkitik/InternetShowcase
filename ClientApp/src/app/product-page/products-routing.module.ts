@@ -9,8 +9,8 @@ import { ProductViewComponent } from './product-view/product-view.component';
 const productsRoutes: Routes = [
     { path: 'products/:categoryName',  component: ProductListComponent },
     { path: 'products/:categoryName/:id', component: ProductViewComponent },
-    { path: 'create', component:  ProductCreateComponent },
-    { path: 'edit/:id', component:  ProductEditComponent }
+    { path: 'product/create', component:  ProductCreateComponent },
+    { path: 'product/edit/:id', component:  ProductEditComponent }
 ];
 
 @NgModule({

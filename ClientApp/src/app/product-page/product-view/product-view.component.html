@@ -13,7 +13,7 @@
                             <p class="product-info-price">
                                 <span class="product-info-price__title">Цена:</span>
                                 <span class="product-info-price__val">
-                                    <span class="product-info-price__val-old">{{ product.oldPrice}}<small> руб. </small></span>
+                                    <span class="product-info-price__val-old" *ngIf="loaded">{{ product.oldPrice}}<small> руб. </small></span>
                                     <span>{{ product.price }}</span> руб.
                                 </span>
                             </p>
