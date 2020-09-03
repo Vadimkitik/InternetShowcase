@@ -5,10 +5,14 @@ using InternetShowcase.Data.Repository;
 using InternetShowcase.ViewModels.MappingProfile;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
+using System.IO;
 
 namespace InternetShowcase
 {
@@ -38,6 +42,12 @@ namespace InternetShowcase
                      options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
             );
 
+            services.Configure<FormOptions>(o =>
+            {
+                o.ValueLengthLimit = int.MaxValue;
+                o.MultipartBodyLengthLimit = int.MaxValue;
+                o.MemoryBufferThreshold = int.MaxValue;
+            });
             services.AddCors(options =>
             {
                 options.AddPolicy(MyAllowSpecificOrigins, builder =>
@@ -60,6 +70,11 @@ namespace InternetShowcase
             
             app.UseRouting();
             app.UseCors(MyAllowSpecificOrigins);
+            app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Resources")),
+                RequestPath = new PathString("/Resources")
+            });
 
             app.UseEndpoints(endpoints =>
             {

@@ -17,9 +17,9 @@ namespace InternetShowcase.Data.Models
         public double? oldPrice { get; set; }
         [Required]
         public string imageUrl { get; set; }
-
+        [Required]
         public bool isFavourite { get; set; }
-
+        [Required]
         public bool available { get; set; }
         [Required]
         public int categoryID { get; set; }
