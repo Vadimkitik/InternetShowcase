@@ -20,18 +20,17 @@
 <header class="header">
     <div class="container">
         <div class="row">
-            <div class="col-md-3">
+            <!-- <div class="col-md-3">
                 <div class="logo">Alleutina Shop</div>
-            </div>
-            <div class="col-md-9">
+            </div> -->
+            <div class="col-md col-sm col-xl">
                 <!--NAVIGATION-->
                 <div class="navbar">
                     <nav>
                         <ul class="nav" id="sub-menu">
-                            <li><span><a 
-                                [routerLink]="['products/', category.categoryName]"
-                                 *ngFor="let category of categories"                                 
-                                 >{{ category.categoryName}}</a></span>
+                            <li><span><a [routerLink]="'/main'">Главная</a></span></li>
+                            <li><span><a [routerLink]="['products/', category.categoryName]"
+                                        *ngFor="let category of categories">{{ category.categoryName}}</a></span>
                                 <!-- <ul class="nav">
                                     <li><span><a [routerLink]="'/'" class="">Живые</a></span>
                                         <ul class="nav">
@@ -47,7 +46,6 @@
                             <li><span><a [routerLink]="'products/шары'">Шары</a></span></li>
                             <li><span><a [routerLink]="'products/горшки'">Горшки</a></span></li>
                             <li><span><a [routerLink]="'products/удобрение'">Удобрение</a></span></li> -->
-                            <li><span><a [routerLink]="'/'">Акции</a></span></li>
                             <li><span><a [routerLink]="'/shop'">Магазин</a></span></li>
                         </ul>
                     </nav>
