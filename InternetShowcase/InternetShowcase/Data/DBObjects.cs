@@ -76,7 +76,9 @@ namespace InternetShowcase.Data
                         new Category { categoryName = "шары" },
                         new Category { categoryName = "удобрение" },
                         new Category { categoryName = "букеты" },
-                        new Category { categoryName = "горшки" }
+                        new Category { categoryName = "горшки" },
+                        new Category { categoryName = "Изделия из дерева" }
+
                     };
 
                     category = new Dictionary<string, Category>();

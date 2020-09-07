@@ -34,10 +34,12 @@ namespace InternetShowcase
             services.AddAutoMapper(typeof(MappingProfile));
             services.AddTransient<IAllProducts, ProductReposytory>();
             services.AddTransient<ICategories, CategoryRepository>();
-            services.AddDbContext<ShowcaseDbContent>(options => options
-                   .UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-           
+            string connectionString = "server=localhost;UserId=root;Password=1z2x3cQQ;database=ShowCase;CharSet=utf8;Persist Security Info=True";
+            services.AddDbContext<ShowcaseDbContent>(options => options
+                   .UseMySql(connectionString));
+            
+
             services.AddControllers().AddNewtonsoftJson(options =>
                      options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
             );
