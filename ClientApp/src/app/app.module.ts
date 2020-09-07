@@ -12,6 +12,7 @@ import { ShopComponent } from './shop/shop.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { ProductsModule } from './product-page/products.module';
+import { MainPageComponent } from './main-page/main-page.component';
 
 export function tokenGetter(){
     return localStorage.getItem("jwt");
@@ -40,6 +41,8 @@ export function tokenGetter(){
             ShopComponent,
             HeaderComponent,
             FooterComponent
+,
+            MainPageComponent
         ],
     
     bootstrap: [AppComponent]
