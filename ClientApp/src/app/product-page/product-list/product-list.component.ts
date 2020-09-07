@@ -4,7 +4,7 @@
 import { Product } from '../../shared/models/product.model';
 import { CategoryService } from '../../shared/services/category.service';
 import { Category } from 'src/app/shared/models/category.model';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ProductService } from 'src/app/shared/services/product.service';
 
 @Component({
@@ -21,7 +21,9 @@ export class ProductListComponent implements OnInit {
     constructor(
         private categoryService: CategoryService,
         private productService: ProductService,
-        private route: ActivatedRoute) { }   
+        private route: ActivatedRoute,
+        private router: Router
+        ) { }   
     
     ngOnInit() {
         this.load();
@@ -33,7 +35,12 @@ export class ProductListComponent implements OnInit {
             this.categoryType = this.route.snapshot.params['categoryName'];
 
             this.categoryService.getCategoryByType(this.categoryType).subscribe((category: Category) => {
-                this.products = category.products;
+                if(category === null){
+                    this.router.navigate(['/not-found']);
+                }
+                else {
+                    this.products = category.products;
+                }                
                 });
         });
      }
