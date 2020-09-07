@@ -1,1 +1,35 @@
-<p>main-page works!</p>
+<h1 class="h1-line"><span>Все для души в Alleutina Shop Гродно</span></h1>
+<div class="section">
+    <div class="container">
+
+        <!--ROW-->
+        <div class="row">
+
+            <!--col-md-3-->
+            <div class="col-md-3" *ngFor="let product of products">
+                <div class="card">
+                    <div class="card__image">
+                        <img src={{product.imageUrl}} alt="">
+                        <div class="card__hover">
+                            <a [routerLink]="['/products', categoryType, product.id]" class="card__button">Подробнее</a>
+                        </div>
+                    </div>
+                    <div class="card__title">{{ product.name}}</div>
+                    <div class="card__price">
+                        <span *ngIf="product.oldPrice">${{ product.oldPrice}}</span>
+                        ${{ product.price}}
+                    </div>
+                    <button mat-raised-button color="warn" (click)="delete(product.id)">Удалить</button>
+                </div>
+            </div>
+            <!--//col-md-3-->
+            
+
+        </div>
+        <!--ROW-->
+
+        <!-- <a [routerLink]="'/'" class="button-outline">brows all items</a> -->
+
+
+    </div>
+</div>

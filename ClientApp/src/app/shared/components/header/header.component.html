@@ -4,7 +4,7 @@
         <div class="row clearfix">
             <div class="header-phone">
                 <div class="header-phone-cont">
-                    <a class="header-phonei-item mts" href="tel:+375 29 609 24 61">+375(29)-609-24-61</a>
+                    <a class="header-phonei-item mts" href="tel:+375 29 893 72 41">+375(29)-893-72-41</a>
                     <a mat-raised-button [routerLink]="'/product/create'">Добавить товар</a>
                 </div>
             </div>
@@ -28,9 +28,10 @@
                 <div class="navbar">
                     <nav>
                         <ul class="nav" id="sub-menu">
-                            <li><span><a [routerLink]="'/main'">Главная</a></span></li>
+                            <li><span><a [routerLink]="'/'">Главная</a></span></li>
                             <li><span><a [routerLink]="['products/', category.categoryName]"
-                                        *ngFor="let category of categories">{{ category.categoryName}}</a></span>
+                                        *ngFor="let category of categories"
+                                        >{{ category.categoryName}}</a></span>
                                 <!-- <ul class="nav">
                                     <li><span><a [routerLink]="'/'" class="">Живые</a></span>
                                         <ul class="nav">

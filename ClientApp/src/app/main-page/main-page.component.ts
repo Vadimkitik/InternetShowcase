@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Product } from '../shared/models/product.model';
 
 @Component({
   selector: 'main-page',
@@ -6,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main-page.component.css']
 })
 export class MainPageComponent implements OnInit {
-
+ 
+  @Input() products: Product[];
   constructor() { }
 
   ngOnInit(): void {
