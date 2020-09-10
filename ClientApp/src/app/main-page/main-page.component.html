@@ -3,104 +3,64 @@
 <div class="container section">
     <!--BLOG POST-->
     <div class="row">
-        <div class="col-md-6 blog">
+        <div class="blog col-md-4">
             <div class="row">
-                <div class="col-md-4">
-                    <img src="assets/img/posts/post-1.jpg" alt="">
+                <div class="blog__title">
+                    <a [routerLink]="['products/', 'букеты']"><img src="assets/img/mainPage/buketi-lite.jpg" alt=""></a>
+                    <a [routerLink]="['products/', 'букеты']" class="blog__read-more">Букеты</a>
                 </div>
-                <div class="col-md-8">
-                    <div class="blog__title">Цветы</div>
-                    <div class="blog__description">Qwer dwa lalalalaaal tarea jfijpoes pijfe ahfeoah ffeaeiop fea,
-                        dwddwad
-                        d wadawdwadwadwadawdawf frs s rs rs r
-                    </div>
-                    <a [routerLink]="['products/', 'цветы']" class="blog__read-more">Подробнее</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 blog">
-            <div class="row">
-                <div class="col-md-4">
-                    <img src="assets/img/posts/post-1.jpg" alt="">
-                </div>
-                <div class="col-md-8">
-                    <div class="blog__title">Шары</div>
-                    <div class="blog__description">Qwer dwa lalalalaaal tarea jfijpoes pijfe ahfeoah ffeaeiop fea,
-                        dwddwad
-                        d wadawdwadwadwadawdawf frs s rs rs r
-                    </div>
-                    <a [routerLink]="['products/', 'шары']" class="blog__read-more">Подробнее</a>
 
+            </div>
+        </div>
+        <div class="blog col-md-4">
+            <div class="row">
+                <div class="blog__title">
+                    <a [routerLink]="['products/', 'цветы']"><img src="assets/img/mainPage/buketi-lite.jpg" alt=""></a>
+                    <a [routerLink]="['products/', 'цветы']" class="blog__read-more">Цветы</a>
                 </div>
             </div>
         </div>
-        <div class="col-md-6 blog">
+        <div class="blog col-md-4">
             <div class="row">
-                <div class="col-md-4">
-                    <img src="assets/img/posts/post-2.jpg" alt="">
-                </div>
-                <div class="col-md-8">
-                    <div class="blog__title">Удобрение</div>
-                    <div class="blog__description">Qwer dwa lalalalaaal tarea jfijpoes pijfe ahfeoah ffeaeiop fea,
-                        dwddwad
-                        d wadawdwadwadwadawdawf frs s rs rs r
-                    </div>
-                    <a [routerLink]="['products/', 'удобрение']" class="blog__read-more">Подробнее</a>
-
+                <div class="blog__title">
+                    <a [routerLink]="['products/', 'шары']"><img src="assets/img/mainPage/buketi-lite.jpg" alt=""></a>
+                    <a [routerLink]="['products/', 'шары']" class="blog__read-more">Шары</a>
                 </div>
             </div>
         </div>
-        <div class="col-md-6 blog">
+        <div class="blog col-md-4">
             <div class="row">
-                <div class="col-md-4">
-                    <img src="assets/img/posts/post-3.jpg" alt="">
-                </div>
-                <div class="col-md-8">
-                    <div class="blog__title">Букеты</div>
-                    <div class="blog__description">Qwer dwa lalalalaaal tarea jfijpoes pijfe ahfeoah ffeaeiop fea,
-                        dwddwad
-                        d wadawdwadwadwadawdawf frs s rs rs r
-                    </div>
-                    <a [routerLink]="['products/', 'букеты']" class="blog__read-more">Подробнее</a>
-
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 blog">
-            <div class="row">
-                <div class="col-md-4">
-                    <img src="assets/img/posts/post-4.jpg" alt="">
-                </div>
-                <div class="col-md-8">
-                    <div class="blog__title">Горшки</div>
-                    <div class="blog__description">Qwer dwa lalalalaaal tarea jfijpoes pijfe ahfeoah ffeaeiop fea,
-                        dwddwad
-                        d wadawdwadwadwadawdawf frs s rs rs r
-                    </div>
-                    <a [routerLink]="['products/', 'горшки']" class="blog__read-more">Подробнее</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 blog">
-            <div class="row">
-                <div class="col-md-4">
-                    <img src="assets/img/posts/post-4.jpg" alt="">
-                </div>
-                <div class="col-md-8">
-                    <div class="blog__title">Изделия из дерева ручной работы</div>
-                    <div class="blog__description">Qwer dwa lalalalaaal tarea jfijpoes pijfe ahfeoah ffeaeiop fea,
-                        dwddwad
-                        d wadawdwadwadwadawdawf frs s rs rs r
-                    </div>
-                    <a [routerLink]="['products/', 'изделия из дерева']" class="blog__read-more">Подробнее</a>
+                <div class="blog__title">
+                    <a [routerLink]="['products/', 'удобрение']"><img src="assets/img/mainPage/buketi-lite.jpg"
+                            alt=""></a>
+                    <a [routerLink]="['products/', 'удобрение']" class="blog__read-more">Удобрение</a>
                 </div>
             </div>
         </div>
 
-        
+        <div class="blog col-md-4">
+            <div class="row">
+                <div class="blog__title">
+                    <a [routerLink]="['products/', 'горшки']"><img src="assets/img/mainPage/buketi-lite.jpg" alt=""></a>
+                    <a [routerLink]="['products/', 'горшки']" class="blog__read-more">Горшки</a>
+                </div>
+            </div>
+        </div>
+        <div class="blog col-md-4">
+            <div class="row">
+                <div class="blog__title">
+                    <a [routerLink]="['products/', 'изделия из дерева']"><img src="assets/img/mainPage/buketi-lite.jpg"
+                            alt=""></a>
+                    <a [routerLink]="['products/', 'изделия из дерева']" class="blog__read-more ">Изделия из
+                        дерева ручной работы</a>
+                </div>
+            </div>
+        </div>
+
+
 
         <div class="row justify-content-center">
-                <div class="title">Join 100,000 members already collaboratign</div>
+            <div class="title">Join 100,000 members already collaboratign</div>
             <div class="col-md-6">
                 <div class="description">sameone infosameone infosameone
                     infosameone infosameone infosameone infosameone infosameone infosameone

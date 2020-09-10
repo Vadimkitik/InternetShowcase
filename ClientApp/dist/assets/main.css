@@ -145,7 +145,7 @@ HEADER
 .header-phonei-item:hover{
     color: #f3388f;
 }
-.header-phone .header-phonei-item:before {
+.header-phone .header-phonei-item.mts:before {
     content: "";
     background: url(./img/bg/mts.png) no-repeat;
     background-size: cover;
@@ -155,6 +155,7 @@ HEADER
     left: 11px;
     top: 4px;
 }
+
 .clearfix {
     display: flex;
     justify-content: space-between;
@@ -705,7 +706,9 @@ FOOTER
  /*...................
 @MEDIA
 ...................*/
-
+@media (max-width: 1210px) {
+  
+}
 @media (max-width: 995px) {
     .header .container .row {
         padding-top: 10px;
@@ -734,7 +737,7 @@ FOOTER
         margin-bottom: 0px;
     }
     .h1-line {
-        font-size: 40px;
+        font-size: 28px;
     }
     .card__title {
         font-size: 16px;
