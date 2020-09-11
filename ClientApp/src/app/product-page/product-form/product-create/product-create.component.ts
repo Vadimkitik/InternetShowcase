@@ -16,8 +16,7 @@ export class ProductCreateComponent {
          private router: Router) { }
 
     save() {
-        this.product.imageUrl = "assets/img/products/" + this.product.imageUrl;
-        console.log(this.product.imageUrl);
+        console.log(this.product);
         this.productService.createProduct(this.product).subscribe(() =>
              this.router.navigateByUrl("/"));
      }

@@ -29,7 +29,10 @@ export class ProductListComponent implements OnInit {
         this.load();
      }   
      
-     
+     createImgPath = (serverPath: string) => {
+         return `https://localhost:5001/${serverPath}`;
+     }
+
      load(){
         this.route.params.subscribe((params: Params) => {
             this.categoryType = this.route.snapshot.params['categoryName'];

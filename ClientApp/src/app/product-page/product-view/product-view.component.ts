@@ -25,7 +25,6 @@ export class ProductViewComponent implements OnInit {
   }
 
   ngOnInit() {
-    
     if (this.id != null){
       this.productService.getProduct(this.id)
           .subscribe((data: Product) => {
@@ -33,6 +32,9 @@ export class ProductViewComponent implements OnInit {
             if(this.product.oldPrice != null) this.loaded = true;
           });
     }
+  }
+  createImgPath = (serverPath: string) => {
+    return `https://localhost:5001/${serverPath}`;
   }
 
 }

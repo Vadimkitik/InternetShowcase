@@ -9,7 +9,7 @@
             <div class="col-md-3" *ngFor="let product of products">
                 <div class="card">
                     <div class="card__image">
-                        <img src={{product.imageUrl}} alt="">
+                        <img [src]="createImgPath(product.imageUrl)" alt="">
                         <div class="card__hover">
                             <a [routerLink]="['/products', categoryType, product.id]" class="card__button">Подробнее</a>
                         </div>
