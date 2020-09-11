@@ -44,6 +44,7 @@ export class ProductListComponent implements OnInit {
                     this.router.navigate(['/not-found']);
                 }
                 else {
+                    this.loaded = true;
                     this.products = category.products;
                 }                
             }, error => this.errorMsg = error);
