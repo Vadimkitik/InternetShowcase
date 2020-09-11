@@ -20,7 +20,7 @@ namespace InternetShowcase.Data
                         price = 44,
                         oldPrice = 22,
                         description = "Что то про этот цветок",
-                        imageUrl = $"assets/img/products/product-1.jpg",
+                        imageUrl = $"Resources/images/product-1.jpg",
                         available = true,
                         isFavourite = true,
                         Category = Categories["цветы"]
@@ -31,7 +31,7 @@ namespace InternetShowcase.Data
                         price = 33,
                         oldPrice = 11,
                         description = "Что то про этот цветок",
-                        imageUrl = $"assets/img/products/product-2.jpg",
+                        imageUrl = $"Resources/images/product-2.jpg",
                         available = true,
                         isFavourite = true,
                         Category = Categories["цветы"]
@@ -42,7 +42,7 @@ namespace InternetShowcase.Data
                          price = 32,
                          oldPrice = 13,
                          description = "Что то про этот цветок",
-                         imageUrl = $"assets/img/products/product-3.jpg",
+                         imageUrl = $"Resources/images/product-3.jpg",
                          available = true,
                          isFavourite = true,
                          Category = Categories["букеты"]
@@ -53,10 +53,21 @@ namespace InternetShowcase.Data
                           price = 32,
                           oldPrice = 13,
                           description = "Что то про этот цветок",
-                          imageUrl = $"assets/img/products/product-4.jpg",
+                          imageUrl = $"Resources/images/product-4.jpg",
                           available = true,
                           isFavourite = true,
                           Category = Categories["горшки"]
+                      },
+                      new Product
+                      {
+                          name = "Grunt №1",
+                          price = 40,
+                          oldPrice = 55,
+                          description = "SUper GRUNT!! YA EST' GRUT, GRUUUNT!",
+                          imageUrl = $"Resources/images/grunt-4.jpg",
+                          available = true,
+                          isFavourite = true,
+                          Category = Categories["удобрение"]
                       }
                     );
             }
@@ -77,7 +88,7 @@ namespace InternetShowcase.Data
                         new Category { categoryName = "удобрение" },
                         new Category { categoryName = "букеты" },
                         new Category { categoryName = "горшки" },
-                        new Category { categoryName = "Изделия из дерева" }
+                        new Category { categoryName = "изделия из дерева" }
 
                     };
 
