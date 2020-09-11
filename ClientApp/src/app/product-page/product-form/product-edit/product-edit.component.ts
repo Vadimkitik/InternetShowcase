@@ -13,6 +13,7 @@ export class ProductEditComponent implements OnInit {
     id: number;
     product: Product;    // изменяемый объект
     loaded: boolean = false;
+    public errorMsg;
 
     constructor(
         private productService: ProductService,
@@ -29,10 +30,12 @@ export class ProductEditComponent implements OnInit {
                 .subscribe((data: Product) => {
                     this.product = data;
                     if (this.product != null) this.loaded = true;
-                });
+                }, error => this.errorMsg = error);
     }
 
     save() {
-        this.productService.updateProduct(this.product).subscribe(() => this.router.navigateByUrl("/products"));
+        this.productService.updateProduct(this.product).subscribe(() => { 
+            this.router.navigateByUrl("/products")
+        }, error => this.errorMsg = error);
     }
 }

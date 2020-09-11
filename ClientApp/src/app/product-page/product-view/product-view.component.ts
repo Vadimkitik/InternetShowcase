@@ -16,6 +16,7 @@ export class ProductViewComponent implements OnInit {
   Category: Category[];
   product: Product;
   loaded: boolean = false;
+  public errorMsg;
 
   constructor(
     public productService: ProductService,
@@ -30,7 +31,7 @@ export class ProductViewComponent implements OnInit {
           .subscribe((data: Product) => {
             this.product = data;
             if(this.product.oldPrice != null) this.loaded = true;
-          });
+          }, error => this.errorMsg = error);
     }
   }
   createImgPath = (serverPath: string) => {

@@ -10,6 +10,7 @@ import { Product } from '../../../shared/models/product.model';
 })
 export class ProductCreateComponent {
 
+    public errorMsg;
     product: Product = new Product();    // добавляемый объект
     constructor(
         private productService: ProductService,
@@ -17,8 +18,9 @@ export class ProductCreateComponent {
 
     save() {
         console.log(this.product);
-        this.productService.createProduct(this.product).subscribe(() =>
-             this.router.navigateByUrl("/"));
+        this.productService.createProduct(this.product).subscribe(() => {
+             this.router.navigateByUrl("/")
+            }, error => this.errorMsg = error);
      }
 }
 

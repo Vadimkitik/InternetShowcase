@@ -17,6 +17,7 @@ export class ProductListComponent implements OnInit {
     categoryType: string;
     loaded: boolean = false;
     isAuth: boolean = false;
+    public errorMsg;
 
     constructor(
         private categoryService: CategoryService,
@@ -37,14 +38,15 @@ export class ProductListComponent implements OnInit {
         this.route.params.subscribe((params: Params) => {
             this.categoryType = this.route.snapshot.params['categoryName'];
 
-            this.categoryService.getCategoryByType(this.categoryType).subscribe((category: Category) => {
+            this.categoryService.getCategoryByType(this.categoryType).subscribe((category: Category) => 
+            {
                 if(category === null){
                     this.router.navigate(['/not-found']);
                 }
                 else {
                     this.products = category.products;
                 }                
-                });
+            }, error => this.errorMsg = error);
         });
      }
      delete(id: number) {

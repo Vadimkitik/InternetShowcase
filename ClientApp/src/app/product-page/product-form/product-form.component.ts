@@ -15,18 +15,18 @@ export class ProductFormComponent {
     @Input() response: { dbPath: '' };
     categories: Category[];
     @Input() product: Product;
+    public errorMsg;
 
     constructor(private catService: CategoryService) { }
 
     ngOnInit() {
         this.catService.getCategories().subscribe((categories: Category[]) => {
             this.categories = categories;
-        });
+        }, error => this.errorMsg = error);
     }
 
     uploadFinished = (event) => {
         this.response = event; 
         this.product.imageUrl = this.response.dbPath;
-        console.log('PForm -> ' + this.response.dbPath);
     }
 }

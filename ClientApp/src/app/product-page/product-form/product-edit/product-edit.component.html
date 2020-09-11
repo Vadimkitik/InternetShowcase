@@ -1,5 +1,6 @@
 ﻿<div *ngIf="loaded">
         <h1 class="h1-line"><span>Изменение товара</span></h1>
+        <h1>{{errorMsg}}</h1>
     <product-form [(product)]="product"></product-form>
     <div class="form-group">
         <button mat-raised-button color="primary" (click)="save()">Сохранить</button>
