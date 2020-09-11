@@ -184,10 +184,11 @@ HEADER
     margin-right: 45px;
     }
 
-.header-social a:hover {
+.header-social a:hover, .header-social>a>h6:hover {
     color: #f3388f;
     text-decoration: none;
  }
+ 
 
 .header .container {    
     position: relative;
