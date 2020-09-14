@@ -25,7 +25,7 @@ namespace InternetShowcase.Controllers
         public IActionResult Login([FromBody]LoginModel checkUser)
         {
             User user = db.Users.FirstOrDefault(u => u.Email == checkUser.Email && u.Password == checkUser.Password);
-            if (user == null || string.Equals(user.Role, "Admin"))
+            if (user == null)
             {
                 return BadRequest("Invalid client request");
             }

@@ -71,7 +71,7 @@ namespace InternetShowcase.Data
                           price = 40,
                           oldPrice = 55,
                           description = "SUper GRUNT!! YA EST' GRUT, GRUUUNT!",
-                          imageUrl = $"Resources/images/grunt-4.jpg",
+                          imageUrl = $"Resources/images/grunt-1.jpg",
                           available = true,
                           isFavourite = true,
                           Category = Categories["удобрение"]
