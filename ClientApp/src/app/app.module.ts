@@ -13,6 +13,7 @@ import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { ProductsModule } from './product-page/products.module';
 import { MainPageComponent } from './main-page/main-page.component';
+import { AdminPanelModule } from './adminPanel/adminPanel.module'
 
 export function tokenGetter(){
     return localStorage.getItem("jwt");
@@ -24,6 +25,7 @@ export function tokenGetter(){
         BrowserAnimationsModule,
         SharedModule,
         ProductsModule,
+        AdminPanelModule,
         HttpClientModule,
         AppRoutingModule,
         MaterialModule,
@@ -40,8 +42,7 @@ export function tokenGetter(){
             AppComponent,
             ShopComponent,
             HeaderComponent,
-            FooterComponent
-,
+            FooterComponent,
             MainPageComponent
         ],
     

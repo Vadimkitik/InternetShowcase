@@ -1,11 +1,7 @@
-
------UploadFile to assets in createProduct https://www.youtube.com/watch?v=YkvqLNcJz3Y
-
-
--------https://code-maze.com/upload-files-dot-net-core-angular/  https://www.youtube.com/watch?v=v67NunIp5w8
-
 -----Logo
 
+-------EMAIL CONTACT
 
+------ ADMIN PANEL 
 
-
+-------SEO
