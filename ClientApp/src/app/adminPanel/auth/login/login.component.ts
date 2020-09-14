@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit {
         this.message.text = '';
         console.log('Loggin successful');  
 
-       this.router.navigate(['/system/bill']);                
+       this.router.navigate(['/admin-panel']);                
       }, error => {
         this.showMessage({
           text:'Введен не правильный логин или пароль',

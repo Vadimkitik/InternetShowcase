@@ -8,12 +8,14 @@ import { SharedModule } from '../shared/shared.module';
 import { LoginComponent } from './auth/login/login.component';
 import { RegistrationComponent } from './auth/registration/registration.component';
 import { AuthComponent } from './auth/auth.component';
+import { PanelComponent } from './panel/panel.component';
 
 @NgModule({
     declarations: [
         LoginComponent,
         RegistrationComponent,
-        AuthComponent
+        AuthComponent,
+        PanelComponent
     ],
     imports: [
         CommonModule,
