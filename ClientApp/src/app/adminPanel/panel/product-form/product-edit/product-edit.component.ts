@@ -1,8 +1,8 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { ProductService } from '../../../shared/services/product.service';
-import { Product } from '../../../shared/models/product.model';
+import { ProductService } from '../../../../shared/services/product.service';
+import { Product } from '../../../../shared/models/product.model';
 
 @Component({
     templateUrl: './product-edit.component.html',
@@ -35,7 +35,7 @@ export class ProductEditComponent implements OnInit {
 
     save() {
         this.productService.updateProduct(this.product).subscribe(() => { 
-            this.router.navigateByUrl("/products")
+            this.router.navigateByUrl("/admin-panel")
         }, error => this.errorMsg = error);
     }
 }

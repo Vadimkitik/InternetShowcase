@@ -1,8 +1,8 @@
 ﻿import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ProductService } from '../../../shared/services/product.service';
-import { Product } from '../../../shared/models/product.model';
+import { ProductService } from '../../../../shared/services/product.service';
+import { Product } from '../../../../shared/models/product.model';
 
 @Component({
     templateUrl: './product-create.component.html',
@@ -19,7 +19,7 @@ export class ProductCreateComponent {
     save() {
         console.log(this.product);
         this.productService.createProduct(this.product).subscribe(() => {
-             this.router.navigateByUrl("/")
+             this.router.navigateByUrl("/admin-panel")
             }, error => this.errorMsg = error);
      }
 }

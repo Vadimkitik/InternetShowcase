@@ -9,13 +9,21 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegistrationComponent } from './auth/registration/registration.component';
 import { AuthComponent } from './auth/auth.component';
 import { PanelComponent } from './panel/panel.component';
+import { UploadComponent } from './panel/product-form/upload/upload.component';
+import { ProductCreateComponent } from './panel/product-form/product-create/product-create.component';
+import { ProductEditComponent } from './panel/product-form/product-edit/product-edit.component';
+import { ProductFormComponent } from './panel/product-form/product-form.component';
 
 @NgModule({
     declarations: [
         LoginComponent,
         RegistrationComponent,
         AuthComponent,
-        PanelComponent
+        PanelComponent,
+        ProductFormComponent,
+        ProductCreateComponent,
+        ProductEditComponent,
+        UploadComponent
     ],
     imports: [
         CommonModule,

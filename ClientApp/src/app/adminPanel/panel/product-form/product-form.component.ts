@@ -1,9 +1,8 @@
 ﻿import { Component, Input } from '@angular/core';
 
-import { Product } from '../../shared/models/product.model';
-import { Category } from '../../shared/models/category.model';
+import { Product } from '../../../shared/models/product.model';
+import { Category } from '../../../shared/models/category.model';
 import { CategoryService } from 'src/app/shared/services/category.service';
-import { HttpEventType } from '@angular/common/http';
 
 @Component({
     selector: "product-form",
