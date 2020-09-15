@@ -50,8 +50,4 @@ export class ProductListComponent implements OnInit {
             }, error => this.errorMsg = error);
         });
      }
-     delete(id: number) {
-        this.productService.deleteProduct(id).subscribe(data =>{});
-        this.load();
-    }
 }

@@ -15,7 +15,7 @@ const adminRoutes: Routes = [
     { path: 'auth', component: AuthComponent, children: [
         { path: 'login', component: LoginComponent },
         { path: 'registration', component: RegistrationComponent}
-    ] }
+    ]}
 ];
 
 @NgModule({
