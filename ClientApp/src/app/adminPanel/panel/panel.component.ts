@@ -39,9 +39,4 @@ export class PanelComponent implements OnInit {
     this.productService.deleteProduct(id).subscribe(data => { });
     this.load();
   }
-
-  createImgPath = (serverPath: string) => {
-    return `https://localhost:5001/${serverPath}`;
-  }
-
 }

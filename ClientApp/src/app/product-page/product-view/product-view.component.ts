@@ -34,8 +34,4 @@ export class ProductViewComponent implements OnInit {
           }, error => this.errorMsg = error);
     }
   }
-  createImgPath = (serverPath: string) => {
-    return `https://localhost:5001/${serverPath}`;
-  }
-
 }

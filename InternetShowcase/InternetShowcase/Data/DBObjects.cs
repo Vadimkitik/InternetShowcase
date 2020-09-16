@@ -28,7 +28,7 @@ namespace InternetShowcase.Data
                         price = 44,
                         oldPrice = 22,
                         description = "Что то про этот цветок",
-                        imageUrl = $"Resources/images/product-1.jpg",
+                        imageUrl = "https://localhost:5001/Resources/images/product-1.jpg",
                         available = true,
                         isFavourite = true,
                         Category = Categories["цветы"]
@@ -40,7 +40,7 @@ namespace InternetShowcase.Data
                         price = 33,
                         oldPrice = 11,
                         description = "Что то про этот цветок",
-                        imageUrl = $"Resources/images/product-2.jpg",
+                        imageUrl = "https://localhost:5001/Resources/images/product-2.jpg",
                         available = true,
                         isFavourite = true,
                         Category = Categories["цветы"]
@@ -52,7 +52,7 @@ namespace InternetShowcase.Data
                          price = 32,
                          oldPrice = 13,
                          description = "Что то про этот цветок",
-                         imageUrl = $"Resources/images/product-3.jpg",
+                         imageUrl = "https://localhost:5001/Resources/images/product-3.jpg",
                          available = true,
                          isFavourite = true,
                          Category = Categories["букеты"]
@@ -64,7 +64,7 @@ namespace InternetShowcase.Data
                           price = 32,
                           oldPrice = 13,
                           description = "Что то про этот цветок",
-                          imageUrl = $"Resources/images/product-4.jpg",
+                          imageUrl = "https://localhost:5001/Resources/images/product-4.jpg",
                           available = true,
                           isFavourite = true,
                           Category = Categories["горшки"]
@@ -76,7 +76,7 @@ namespace InternetShowcase.Data
                           price = 40,
                           oldPrice = 55,
                           description = "SUper GRUNT!! YA EST' GRUT, GRUUUNT!",
-                          imageUrl = $"Resources/images/grunt-1.jpg",
+                          imageUrl = "https://localhost:5001/Resources/images/grunt-1.jpg",
                           available = true,
                           isFavourite = true,
                           Category = Categories["удобрение"]

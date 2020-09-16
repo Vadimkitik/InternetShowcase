@@ -28,7 +28,7 @@ namespace InternetShowcase.Controllers
                     {
                         file.CopyTo(stream);
                     }
-
+                    dbPath = Path.Combine("https://localhost:5001", dbPath);
                     return Ok(new { dbPath });
                 }
                 else
