@@ -23,7 +23,12 @@ namespace InternetShowcase.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
-            return await _context.Users.ToListAsync();
+            var users = await _context.Users.ToListAsync();
+            if (users == null)
+            {
+                return BadRequest();
+            }
+            return users;
         }
 
         // GET: api/Users/5

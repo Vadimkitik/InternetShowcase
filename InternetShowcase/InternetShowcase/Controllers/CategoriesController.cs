@@ -25,6 +25,10 @@ namespace InternetShowcase.Controllers
         public ActionResult<IEnumerable<CategoryView>> GetCategories()
         {
             var categories = _categories.GetCategories().ToList();
+            if(categories == null)
+            {
+                return BadRequest();
+            }
             return _mapper.Map<List<Category>, List<CategoryView>>(categories);
         }
 
@@ -32,29 +36,35 @@ namespace InternetShowcase.Controllers
         [HttpGet("{categoryLine}")]
         public ActionResult<CategoryView> GetCategory(string categoryLine)
         {
-            return _mapper.Map<Category, CategoryView>(_categories.GetByType(categoryLine));
+            var category = _mapper.Map<Category, CategoryView>(_categories.GetByType(categoryLine));
+            if (category != null)
+            {
+                return category;
+            }
+            return NotFound();
+        }
+        
+        [HttpPost]
+        public ActionResult<CategoryView> PostCategory(Category model)
+        {
+            if (ModelState.IsValid)
+            {
+                _mapper.Map<Category, CategoryView>(_categories.Create(model));
+                return Ok(model);
+            }
+            return BadRequest(ModelState);
         }
 
-       
         [HttpPut("{id}")]
         public bool PutCategory(int id, Category category)
         {
             return _categories.Update(id, category);
         }
 
-        
-        [HttpPost]
-        public ActionResult<CategoryView> PostCategory(Category model)
-        {
-            return _mapper.Map<Category, CategoryView>(_categories.Create(model));
-        }
-       
         [HttpDelete("{id}")]
         public bool DeleteCategory(int id)
         {
             return _categories.Delete(id);
-        }
-
-      
+        }      
     }
 }

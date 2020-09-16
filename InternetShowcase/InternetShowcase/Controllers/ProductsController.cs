@@ -26,7 +26,12 @@ namespace InternetShowcase.Controllers
         public ActionResult<IEnumerable<ProductView>> Get()
         {
             var products = _allProducts.Products.ToList();
-            return _mapper.Map<List<Product>, List<ProductView>>(products);
+            var productsView = _mapper.Map<List<Product>, List<ProductView>>(products);
+            if (productsView == null)
+            {
+                return BadRequest();
+            }
+            return productsView;
         }
 
         [HttpGet("{productLine}")]
@@ -43,8 +48,14 @@ namespace InternetShowcase.Controllers
         [HttpPost]
         public ActionResult<ProductView> Post(Product product)
         {
-            return _mapper.Map<Product, ProductView>(_allProducts.Create(product));
+            if (ModelState.IsValid)
+            {
+                _mapper.Map<Product, ProductView>(_allProducts.Create(product));
+                return Ok(product);
+            }
+            return BadRequest(ModelState);
         }
+
         [HttpDelete("{id}")]
         public bool Post(int id)
         {
