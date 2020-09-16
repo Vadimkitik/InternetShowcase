@@ -3,6 +3,7 @@ using InternetShowcase.Data.interfaces;
 using InternetShowcase.Data.Models;
 using InternetShowcase.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -28,10 +29,15 @@ namespace InternetShowcase.Controllers
             return _mapper.Map<List<Product>, List<ProductView>>(products);
         }
 
-        [HttpGet("{id}")]
-        public ActionResult<ProductView> Get(int id)
+        [HttpGet("{productLine}")]
+        public ActionResult<ProductView> Get(string productLine)
         {
-            return _mapper.Map<Product, ProductView>(_allProducts.GetById(id));
+            var product = _mapper.Map<Product, ProductView>(_allProducts.GetByLine(productLine));
+            if (product != null)
+            {
+                return product;
+            }
+            return NotFound();
         }
      
         [HttpPost]

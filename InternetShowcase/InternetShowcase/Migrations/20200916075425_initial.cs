@@ -13,6 +13,7 @@ namespace InternetShowcase.Migrations
                 {
                     id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    categoryLine = table.Column<string>(nullable: false),
                     categoryName = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
@@ -42,6 +43,7 @@ namespace InternetShowcase.Migrations
                 {
                     id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    productLine = table.Column<string>(nullable: false),
                     name = table.Column<string>(nullable: false),
                     description = table.Column<string>(nullable: false),
                     price = table.Column<double>(nullable: false),

@@ -6,7 +6,7 @@ namespace InternetShowcase.Data.interfaces
    public interface IAllProducts
     {
         IEnumerable<Product> Products { get; }
-        Product GetById(int id);
+        Product GetByLine(string productLine);
         Product Create(Product product);
         bool Update(Product product);
         bool Delete(int id);

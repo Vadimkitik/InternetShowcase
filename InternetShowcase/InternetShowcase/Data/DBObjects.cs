@@ -10,7 +10,7 @@ namespace InternetShowcase.Data
         {
             if (!context.Users.Any())
             {
-                User user = new User { Email = "alleutina@gmail.com", Password = "123321QQ", Name = "Alla", Role = "Admin" };
+                User user = new User { Email = "alleutina", Password = "123321QQ", Name = "Alla", Role = "Admin" };
                 context.Users.Add(user);
                 context.SaveChanges();
             }
@@ -24,6 +24,7 @@ namespace InternetShowcase.Data
                     new Product
                     {
                         name = "Цветок №1",
+                        productLine = "cvetok_1",
                         price = 44,
                         oldPrice = 22,
                         description = "Что то про этот цветок",
@@ -35,6 +36,7 @@ namespace InternetShowcase.Data
                     new Product
                     {
                         name = "Цветок №2",
+                        productLine = "cvetok_2",
                         price = 33,
                         oldPrice = 11,
                         description = "Что то про этот цветок",
@@ -46,6 +48,7 @@ namespace InternetShowcase.Data
                      new Product
                      {
                          name = "Цветок №3",
+                         productLine = "cvetok_3",
                          price = 32,
                          oldPrice = 13,
                          description = "Что то про этот цветок",
@@ -57,6 +60,7 @@ namespace InternetShowcase.Data
                       new Product
                       {
                           name = "Цветок №4",
+                          productLine = "cvetok_4",
                           price = 32,
                           oldPrice = 13,
                           description = "Что то про этот цветок",
@@ -68,6 +72,7 @@ namespace InternetShowcase.Data
                       new Product
                       {
                           name = "Grunt №1",
+                          productLine = "grunt_1",
                           price = 40,
                           oldPrice = 55,
                           description = "SUper GRUNT!! YA EST' GRUT, GRUUUNT!",
@@ -90,12 +95,12 @@ namespace InternetShowcase.Data
                 {
                     var list = new Category[]
                     {
-                        new Category { categoryName = "цветы" },
-                        new Category { categoryName = "шары" },
-                        new Category { categoryName = "удобрение" },
-                        new Category { categoryName = "букеты" },
-                        new Category { categoryName = "горшки" },
-                        new Category { categoryName = "изделия из дерева" }
+                        new Category { categoryLine = "cveti", categoryName = "цветы" },
+                        new Category { categoryLine = "shari", categoryName = "шары" },
+                        new Category { categoryLine = "udobrenie", categoryName = "удобрение" },
+                        new Category { categoryLine = "buketi", categoryName = "букеты" },
+                        new Category { categoryLine = "gorshki", categoryName = "горшки" },
+                        new Category { categoryLine = "izdelia_iz_dereva", categoryName = "изделия из дерева" }
 
                     };
 

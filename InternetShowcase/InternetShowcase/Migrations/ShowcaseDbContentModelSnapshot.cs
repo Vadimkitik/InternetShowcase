@@ -23,6 +23,10 @@ namespace InternetShowcase.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<string>("categoryLine")
+                        .IsRequired()
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
                     b.Property<string>("categoryName")
                         .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
@@ -64,6 +68,10 @@ namespace InternetShowcase.Migrations
 
                     b.Property<double>("price")
                         .HasColumnType("double");
+
+                    b.Property<string>("productLine")
+                        .IsRequired()
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("id");
 

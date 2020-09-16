@@ -8,6 +8,8 @@ namespace InternetShowcase.Data.Models
         [Key]
         public int id { get; set; }
         [Required]
+        public string productLine { get; set; }
+        [Required]
         public string name { get; set; }  
         [Required]
         public string description { get; set; }

@@ -21,10 +21,10 @@ namespace InternetShowcase.Data.Repository
             return _context.Categories.OrderBy(c => c.id);
         }
 
-        public Category GetByType(string category)
+        public Category GetByType(string categoryLine)
         {
             foreach (Category u in _context.Categories.Include(p => p.Products)) ;
-            Category _category = _context.Categories.SingleOrDefault(s => s.categoryName == category);
+            Category _category = _context.Categories.SingleOrDefault(s => s.categoryLine == categoryLine);
           
             return _category;
         }

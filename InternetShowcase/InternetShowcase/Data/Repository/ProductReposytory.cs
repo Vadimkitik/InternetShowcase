@@ -17,9 +17,9 @@ namespace InternetShowcase.Data.Repository
 
         public IEnumerable<Product> Products => _context.Products.Include(c => c.Category);
 
-        public Product GetById(int id)
+        public Product GetByLine(string productLine)
         {
-            return _context.Products.Single(p => p.id == id);
+            return _context.Products.Single(p => p.productLine == productLine);
 
         }
         public Product Create(Product product)

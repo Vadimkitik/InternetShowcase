@@ -9,7 +9,8 @@ namespace InternetShowcase.ViewModels
     public class ProductView
     {
         public int id { get; set; }
-        
+        public string productLine { get; set; }
+
         public string name { get; set; }
        
         public string description { get; set; }
