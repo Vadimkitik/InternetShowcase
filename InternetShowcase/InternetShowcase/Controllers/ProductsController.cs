@@ -3,7 +3,6 @@ using InternetShowcase.Data.interfaces;
 using InternetShowcase.Data.Models;
 using InternetShowcase.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections.Generic;
 using System.Linq;
 

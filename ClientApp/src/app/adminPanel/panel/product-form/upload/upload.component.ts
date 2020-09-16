@@ -10,6 +10,7 @@ import { UploadService } from 'src/app/shared/services/upload.service';
 })
 export class UploadComponent implements OnInit {
 
+  formData = new FormData();
   message: string;
   progress: number;
   @Output() public onUploadFinished = new EventEmitter();
@@ -24,10 +25,12 @@ export class UploadComponent implements OnInit {
       return;
 
     let fileToUpload = <File>files[0];
-    const formData = new FormData();
-    formData.append('file', fileToUpload, fileToUpload.name);
+    
+    this.formData.append('file', fileToUpload, fileToUpload.name);
 
-    this.uploadService.UploadFile(formData).subscribe(event => {
+    console.log(this.formData);
+
+    this.uploadService.UploadFile(this.formData).subscribe(event => {
         if(event.type === HttpEventType.UploadProgress) {
             this.progress = Math.round(100 * event.loaded / event.total);
         }
@@ -35,7 +38,7 @@ export class UploadComponent implements OnInit {
             this.message = 'Upload file success!';
             this.onUploadFinished.emit(event.body);
         }
-    });
+    }, error => this.message = error);
 }
 
 }

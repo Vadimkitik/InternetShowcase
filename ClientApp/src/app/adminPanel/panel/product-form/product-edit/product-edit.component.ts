@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { ProductService } from '../../../../shared/services/product.service';
 import { Product } from '../../../../shared/models/product.model';
+import { UploadService } from 'src/app/shared/services/upload.service';
 
 @Component({
     templateUrl: './product-edit.component.html',
@@ -18,6 +19,7 @@ export class ProductEditComponent implements OnInit {
     constructor(
         private productService: ProductService,
         private router: Router, 
+        private uploadService: UploadService,
         activeRoute: ActivatedRoute
         ) 
     {
@@ -37,5 +39,8 @@ export class ProductEditComponent implements OnInit {
         this.productService.updateProduct(this.product).subscribe(() => { 
             this.router.navigateByUrl("/admin-panel")
         }, error => this.errorMsg = error);
+    }
+    deleteFile() {
+        this.uploadService.DeleteFile(this.product.imageUrl)
     }
 }
