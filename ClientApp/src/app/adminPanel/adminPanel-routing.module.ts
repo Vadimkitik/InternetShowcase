@@ -11,7 +11,7 @@ import { ProductEditComponent } from './panel/product-form/product-edit/product-
 const adminRoutes: Routes = [
     { path: 'admin-panel', component: PanelComponent },    
     { path: 'admin-panel/create', component:  ProductCreateComponent },
-    { path: 'admin-panel/edit/:id', component:  ProductEditComponent },
+    { path: 'admin-panel/edit/:productLine', component:  ProductEditComponent },
     { path: 'auth', component: AuthComponent, children: [
         { path: 'login', component: LoginComponent },
         { path: 'registration', component: RegistrationComponent}

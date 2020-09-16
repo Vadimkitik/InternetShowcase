@@ -11,7 +11,7 @@
                         <div class="card__image">
                             <img [src]="createImgPath(product.imageUrl)" alt="">
                             <div class="card__hover">
-                                <a [routerLink]="['/products', categoryType, product.id]"
+                                <a [routerLink]="['/product', product.productLine]"
                                     class="card__button">Подробнее</a>
                             </div>
                         </div>

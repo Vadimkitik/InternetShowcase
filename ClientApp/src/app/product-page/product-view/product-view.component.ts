@@ -12,7 +12,7 @@ import { Category } from 'src/app/shared/models/category.model';
 })
 export class ProductViewComponent implements OnInit {
 
-  id: number;
+  productLine: string;
   Category: Category[];
   product: Product;
   loaded: boolean = false;
@@ -22,12 +22,12 @@ export class ProductViewComponent implements OnInit {
     public productService: ProductService,
     activeRoute: ActivatedRoute
   ) { 
-    this.id = Number.parseInt(activeRoute.snapshot.params["id"]);
+    this.productLine = activeRoute.snapshot.params["productLine"];
   }
 
   ngOnInit() {
-    if (this.id != null){
-      this.productService.getProduct(this.id)
+    if (this.productLine != null){
+      this.productService.getProduct(this.productLine)
           .subscribe((data: Product) => {
             this.product = data;
             if(this.product.oldPrice != null) this.loaded = true;

@@ -1,5 +1,9 @@
 ﻿<div class="product-form">
     <mat-form-field class="product-full-width">
+        <mat-label>Path name</mat-label>
+        <input matInput placeholder="rozi,tulpani, bojiy_oduvanchik..." type="text" [(ngModel)]="product.productLine" />
+    </mat-form-field>
+    <mat-form-field class="product-full-width">
         <mat-label>Название</mat-label>
         <input matInput placeholder="Розы, тюльпаны, божий одуванчик..." type="text" [(ngModel)]="product.name" />
     </mat-form-field>

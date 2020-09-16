@@ -10,7 +10,7 @@ import { Product } from '../../../../shared/models/product.model';
 })
 export class ProductEditComponent implements OnInit {
 
-    id: number;
+    productLine: string;
     product: Product;    // изменяемый объект
     loaded: boolean = false;
     public errorMsg;
@@ -21,12 +21,12 @@ export class ProductEditComponent implements OnInit {
         activeRoute: ActivatedRoute
         ) 
     {
-        this.id = Number.parseInt(activeRoute.snapshot.params["id"]);
+        this.productLine = activeRoute.snapshot.params["productLine"];
     }
 
     ngOnInit() {
-        if (this.id)
-            this.productService.getProduct(this.id)
+        if (this.productLine)
+            this.productService.getProduct(this.productLine)
                 .subscribe((data: Product) => {
                     this.product = data;
                     if (this.product != null) this.loaded = true;

@@ -19,7 +19,7 @@ import { ProductService } from 'src/app/shared/services/product.service';
 export class PanelComponent implements OnInit {
 
   dataSource;
-  columnsToDisplay = ['name', 'price', 'oldPrice', 'isFavourite', 'available', 'category', 'button'];
+  columnsToDisplay = [ 'name', 'productLine', 'price', 'oldPrice', 'isFavourite', 'available', 'category', 'button'];
   expandedElement: Product | null;
   errorMsg: string;
 

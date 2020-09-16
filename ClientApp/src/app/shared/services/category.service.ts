@@ -19,13 +19,13 @@ export class CategoryService {
         return this.http.get(this.url).pipe(
             catchError(this.handleError));
     }
-    getCategoryByType(type: string) {
-        return this.http.get(this.url + '/' + type).pipe(
+    getCategoryByLine(categoryLine: string) {
+        return this.http.get(this.url + '/' + categoryLine).pipe(
             catchError(this.handleError));
     }
 
-    geCategory(id: number) {
-        return this.http.get(this.url + '/' + id).pipe(
+    getCategory(categoryLine: string) {
+        return this.http.get(this.url + '/' + categoryLine).pipe(
             catchError(this.handleError));
     }
 

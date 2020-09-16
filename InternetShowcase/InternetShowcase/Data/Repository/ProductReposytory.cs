@@ -19,7 +19,7 @@ namespace InternetShowcase.Data.Repository
 
         public Product GetByLine(string productLine)
         {
-            return _context.Products.Single(p => p.productLine == productLine);
+            return _context.Products.SingleOrDefault(p => p.productLine == productLine);
 
         }
         public Product Create(Product product)

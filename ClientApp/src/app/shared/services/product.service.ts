@@ -19,8 +19,8 @@ export class ProductService {
             catchError(this.handleError));
     }
   
-    getProduct(id: number) {
-        return this.http.get(`${this.url}/${id}`).pipe(
+    getProduct(productLine: string) {
+        return this.http.get(`${this.url}/${productLine}`).pipe(
             catchError(this.handleError));
     }
 
