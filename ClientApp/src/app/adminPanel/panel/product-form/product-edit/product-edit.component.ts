@@ -14,7 +14,8 @@ export class ProductEditComponent implements OnInit {
     productLine: string;
     product: Product;    // изменяемый объект
     loaded: boolean = false;
-    public errorMsg;
+    errorMsg: string;
+    message: string;
 
     constructor(
         private productService: ProductService,
@@ -41,6 +42,11 @@ export class ProductEditComponent implements OnInit {
         }, error => this.errorMsg = error);
     }
     deleteFile() {
-        this.uploadService.DeleteFile(this.product.imageUrl)
+        var imageName = this.product.imageUrl.split("\\").pop();
+        this.uploadService.DeleteFile(imageName).subscribe(event => {
+            console.log(`File ${imageName} is Deleted!`);
+            this.product.imageUrl = '';
+        }, error => this.errorMsg = error );
+        
     }
 }

@@ -3,6 +3,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 
 import { Product } from 'src/app/shared/models/product.model';
 import { ProductService } from 'src/app/shared/services/product.service';
+import { UploadService } from 'src/app/shared/services/upload.service';
 
 @Component({
   selector: 'panel',
@@ -24,7 +25,8 @@ export class PanelComponent implements OnInit {
   errorMsg: string;
 
   constructor(
-    private productService: ProductService
+    private productService: ProductService,
+    private uploadService: UploadService
   ) { }
 
   ngOnInit() {
@@ -35,8 +37,15 @@ export class PanelComponent implements OnInit {
       this.dataSource = data;
     }, error => this.errorMsg = error);
   }
-  delete(id: number) {
-    this.productService.deleteProduct(id).subscribe(data => { });
-    this.load();
+  delete(id: number, imageUrl: string) {
+    var imageName = imageUrl.split("\\").pop();
+        this.uploadService.DeleteFile(imageName).subscribe(event => {
+            console.log(`File ${imageName} is Deleted!`);
+        }, error => this.errorMsg = error );
+    this.productService.deleteProduct(id).subscribe(data => { 
+      console.log(`Product with id ${id} is Deleted!`);
+      this.load();
+    }, error => this.errorMsg = error);
+    
   }
 }

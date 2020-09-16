@@ -23,7 +23,7 @@
         <td mat-cell *matCellDef="let product">
             <button [routerLink]="['/admin-panel/edit', product.productLine]" mat-raised-button
                 color="accent">Изменить</button>
-            <button (click)="delete(product.id)" mat-raised-button color="warn">Удалить</button>
+            <button (click)="delete(product.id, product.imageUrl)" mat-raised-button color="warn">Удалить</button>
         </td>
     </ng-container>
 

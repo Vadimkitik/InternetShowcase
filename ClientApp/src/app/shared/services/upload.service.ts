@@ -6,18 +6,18 @@ import { catchError } from 'rxjs/operators';
 @Injectable()
 export class UploadService {
 
-    private url = 'http://localhost:5000/api/';
+    private url = 'http://localhost:5000/api/upload';
     //private url = "api/upload";
      
      constructor(private http: HttpClient) {}
  
      UploadFile(formData: FormData) : Observable<any> {
-         return this.http.post(this.url + "upload", formData, { reportProgress: true, observe: 'events'}).pipe(
+         return this.http.post(this.url, formData, { reportProgress: true, observe: 'events'}).pipe(
             catchError(this.handleError));        
      }
-
-     DeleteFile(imageUrl: string) : Observable<any> {
-        return this.http.post(this.url + "delete", imageUrl, { reportProgress: true, observe: 'events'}).pipe(
+    // this.http.delete(this.url + '/' + id)
+     DeleteFile(imageName: string) : Observable<any> {
+        return this.http.delete(this.url + '/' + imageName).pipe(
            catchError(this.handleError));        
     }
 
