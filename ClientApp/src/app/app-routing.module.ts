@@ -8,16 +8,23 @@ import { MainPageComponent } from './main-page/main-page.component';
 
 const appRoutes: Routes = [
     { path: '', component: MainPageComponent },
-    { path: 'shop', component: ShopComponent }
-    //{ path: 'not-found', component: NotFoundComponent },
-   // { path: '**', redirectTo: '/not-found' }
-      
+    { 
+        path: 'admin-panel',
+        loadChildren: () => import('./adminPanel/adminPanel.module').then(m => m.AdminPanelModule)
+    },
+    { 
+         path: 'auth',
+         loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+    },
+    { path: 'shop', component: ShopComponent },
+    { path: 'not-found', component: NotFoundComponent },
+    { path: '**', redirectTo: '/not-found' },
 ];
 
 @NgModule({
     imports: [RouterModule.forRoot(appRoutes)],
     exports: [RouterModule]
 })
-export class AppRoutingModule{
+export class AppRoutingModule {
 
 }

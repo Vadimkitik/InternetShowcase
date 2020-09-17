@@ -10,7 +10,7 @@ namespace InternetShowcase.Data
         {
             if (!context.Users.Any())
             {
-                User user = new User { Email = "alleutina", Password = "123321QQ", Name = "Alla", Role = "Admin" };
+                User user = new User { Email = "alleutina@gmail.com", Password = "123321QQ", Name = "Alla", Role = "Admin" };
                 context.Users.Add(user);
                 context.SaveChanges();
             }
