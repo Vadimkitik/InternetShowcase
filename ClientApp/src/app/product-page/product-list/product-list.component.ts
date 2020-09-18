@@ -14,6 +14,7 @@ export class ProductListComponent implements OnInit {
 
     products: Product[];
     categoryLine: string;
+    categoryName: string;
     loaded: boolean = false;
     isAuth: boolean = false;
     public errorMsg;
@@ -34,6 +35,7 @@ export class ProductListComponent implements OnInit {
 
             this.categoryService.getCategoryByLine(this.categoryLine).subscribe((category: Category) => 
             {
+                this.categoryName = category.categoryName;
                 this.loaded = true;
                 this.products = category.products;
 

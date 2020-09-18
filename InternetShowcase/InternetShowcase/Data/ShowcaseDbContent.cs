@@ -8,7 +8,7 @@ namespace InternetShowcase.Data
         public ShowcaseDbContent(DbContextOptions<ShowcaseDbContent> options)
             : base (options)
         {
-            //Database.EnsureCreated();
+            Database.EnsureCreated();
         }
         public DbSet<User> Users { get; set; }
         public DbSet<Product> Products { get; set; }
