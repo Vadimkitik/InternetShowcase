@@ -1,12 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 
 import { Product } from 'src/app/shared/models/product.model';
 import { ProductService } from 'src/app/shared/services/product.service';
 import { UploadService } from 'src/app/shared/services/upload.service';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'panel',
@@ -26,6 +26,7 @@ export class PanelComponent implements OnInit {
   columnsToDisplay = [ 'name', 'productLine', 'price', 'oldPrice', 'isFavourite', 'available', 'category', 'button'];
   expandedElement: Product | null;
   errorMsg: string;
+  
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -33,7 +34,7 @@ export class PanelComponent implements OnInit {
     private productService: ProductService,
     private uploadService: UploadService
   ) { }
-  
+
   ngOnInit() {
     this.load();
   }

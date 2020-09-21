@@ -1,6 +1,6 @@
------navmenu
+-----navmenu with searching
 
------admin(filter pag sort)
+-----more images in ViewProduct
 
 -----Logo
 
