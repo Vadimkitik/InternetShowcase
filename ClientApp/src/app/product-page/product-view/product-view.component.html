@@ -2,19 +2,19 @@
 <section>
     <div class="container">
         <h1>{{ errorMsg }}</h1>
-        <div class="row" *ngIf="!errorMsg">
+        <div class="row" *ngIf="loaded">
             <div class="col-md-12">
                 <div class="product-cont">
                     <div class="product__image">
                         <img [src]="product.imageUrl" alt="">
                     </div>
                     <div class="product__info-block">
-                        <h1>{{ product.name }}</h1>
+                        <h1>{{ product.name }} </h1>                       
                         <div class="product__info-price">
                             <p class="product-info-price">
                                 <span class="product-info-price__title">Цена:</span>
                                 <span class="product-info-price__val">
-                                    <span class="product-info-price__val-old" *ngIf="loaded">{{ product.oldPrice}}<small> руб. </small></span>
+                                    <span class="product-info-price__val-old" *ngIf="oldPrice">{{ product.oldPrice}}<small> руб. </small></span>
                                     <span>{{ product.price }}</span> руб.
                                 </span>
                             </p>
