@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 
 import { Product } from 'src/app/shared/models/product.model';
 import { ProductService } from 'src/app/shared/services/product.service';
 import { UploadService } from 'src/app/shared/services/upload.service';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'panel',
@@ -19,24 +22,30 @@ import { UploadService } from 'src/app/shared/services/upload.service';
 })
 export class PanelComponent implements OnInit {
 
-  dataSource;
+  dataSource: MatTableDataSource<Product>;
   columnsToDisplay = [ 'name', 'productLine', 'price', 'oldPrice', 'isFavourite', 'available', 'category', 'button'];
   expandedElement: Product | null;
   errorMsg: string;
 
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
   constructor(
     private productService: ProductService,
     private uploadService: UploadService
   ) { }
-
+  
   ngOnInit() {
     this.load();
   }
+
   load() {
-    this.productService.getProducts().subscribe(data => {
-      this.dataSource = data;
+    this.productService.getProducts().subscribe((data: Product[]) => {
+      this.dataSource = new MatTableDataSource(data);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     }, error => this.errorMsg = error);
   }
+
   delete(id: number, imageUrl: string) {
     var imageName = imageUrl.split("\\").pop();
         this.uploadService.DeleteFile(imageName).subscribe(event => {
@@ -45,7 +54,15 @@ export class PanelComponent implements OnInit {
     this.productService.deleteProduct(id).subscribe(data => { 
       console.log(`Product with id ${id} is Deleted!`);
       this.load();
-    }, error => this.errorMsg = error);
-    
+    }, error => this.errorMsg = error);    
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 }

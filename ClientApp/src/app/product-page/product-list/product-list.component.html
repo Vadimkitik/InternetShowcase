@@ -11,8 +11,8 @@
                         <div class="card__image">
                             <img [src]="product.imageUrl" alt="">
                             <div class="card__hover">
-                                <a [routerLink]="['/product', product.productLine]"
-                                    class="card__button">Подробнее</a>
+                                <a [routerLink]="['/product', product.productLine]" class="card__button">Подробнее</a>
+                                <a [routerLink]="['/product', product.productLine]" class="card__button card__button_nal">Уточнить наличие</a>
                             </div>
                         </div>
                         <div class="card__title">{{ product.name}}</div>

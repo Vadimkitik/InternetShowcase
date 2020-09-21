@@ -370,6 +370,10 @@ CARD
     transition: all 0.15s ease-in;
     margin-bottom: 12px;      
 }
+.card__button_nal {
+    padding-top: 12px;
+    width: 153px;
+}
 .card__button:hover {
     color: #ffffff;
     background-color: #bd3675;
@@ -729,6 +733,11 @@ FOOTER
         padding-top: 7px;
         width: 90px;
         height: 28px;
+    }
+    .card__button_nal {
+        width: 117px;
+        font-size: 12px;
+        padding-top: 9px;
     }
     .page-header p {
         line-height: 1;

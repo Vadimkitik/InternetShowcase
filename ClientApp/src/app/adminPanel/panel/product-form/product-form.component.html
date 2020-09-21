@@ -27,7 +27,7 @@
 
     <img src="{{product.imageUrl}}" alt="">
 
-    <mat-radio-group class="product-full-width" aria-label="Является ли он топом" [(ngModel)]="product.isFavourite">
+    <mat-radio-group class="product-full-width" aria-label="Является ли он топом" [(ngModel)]="product.isFavourite" required>
         <mat-label>Является ли он топом: </mat-label>
         <mat-radio-button value="true" color="primary">Да</mat-radio-button>
         <mat-radio-button value="false">Нет</mat-radio-button>
@@ -36,7 +36,7 @@
 
     <mat-radio-group class="product-full-width" aria-label="Есть ли в наличии" [(ngModel)]="product.available">
         <mat-label>Есть ли в наличии: </mat-label>
-        <mat-radio-button value="true" color="primary">Да</mat-radio-button>
+        <mat-radio-button value="true" color="primary"  >Да</mat-radio-button>
         <mat-radio-button value="false">Нет</mat-radio-button>
     </mat-radio-group>
 
@@ -44,7 +44,7 @@
         <mat-label>Категория товара</mat-label>
         <h1>{{errorMsg}}</h1>
         <mat-select [(ngModel)]="product.categoryId">
-            <mat-option value="{{category.id}}" *ngFor="let category of categories">
+            <mat-option value="{{category.id}}" *ngFor="let category of categories" >
                 {{ category.categoryName }}</mat-option>
         </mat-select>
     </mat-form-field>

@@ -1,7 +1,13 @@
-table {
+table, .mat-form-field, mat-paginator {
     width: 90%;
-    margin: 10px 5% 30px 5%;
+    margin: 10px 5% 0px 5%;
   }
+  .mat-form-field {
+    margin: 20px 5% 0px 5%;
+}
+  mat-paginator {
+    margin: 0px 5% 30px 5%;
+}
   .createButton {
     margin-left: 5%;
   }
@@ -13,7 +19,7 @@ table {
   }
   
   tr.example-element-row:not(.example-expanded-row):hover {
-    background: whitesmoke;
+    background: #f5f5f5;
   }
   
   tr.example-element-row:not(.example-expanded-row):active {
