@@ -1,8 +1,8 @@
 -----navmenu with searching
 
------products images in ViewProduct
+-----submenu, subCategories
 
------Logo
+-----products images in ViewProduct
 
 -------EMAIL CONTACT
 
