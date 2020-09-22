@@ -11,12 +11,7 @@ body{
 /*...................
 SOCIAL
 ...................*/
-.logo {
-    font-size: 22px;
-    color: #040404;
-    font-weight: 800;
-    text-transform: uppercase;
-}
+
 .social {
     font-family: 'Lora', serif;
     padding-top: 5px;
@@ -207,6 +202,42 @@ HEADER
     top: 50px;
 }
 
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: absolute;
+    width: 240px;
+    height: 240px;
+    z-index: 1;
+    top: 105px;
+    right: 40%;
+    background-color: #fcecfa;
+    transform: rotate(45deg);
+    opacity: 0.9;
+    transition: all 0.15s ease-in;
+    overflow: hidden;
+    font-family: 'Charm', cursive;
+    font-size: 21px;
+}
+.logo:hover {
+    transform: scale(1.1) rotate(45deg);
+    box-shadow: 5px 5px 20px 0px rgba(31, 35, 37, 0.8);
+    opacity: 0.8;
+}
+.logo_text {
+    transform: rotate(-45deg);
+    font-weight: 600;
+}
+.logo_text a {
+    color: #000;
+    text-decoration: none;
+}
+.logo_text a:hover {
+    color: #f3388f;    
+    text-decoration: none;
+}
 /*...................
 MAIN
 ...................*/
@@ -390,19 +421,16 @@ PRODUCT DESCRIPTION
 }
 
 .product__image {
-    display: inline-block;
     float: left;
     width: 38%;
     box-sizing: border-box;
     border: 1px solid #c3c3c3;
     margin: 22px;
     position: relative;
-    transition: all 0.25s ease;
-    overflow: hidden;
 }
 
 .product__image img{
-    transition: 1s; 
+    transition: all 0.25s ease;
     display: block;
     width: 100%;
     cursor: zoom-in;
@@ -686,12 +714,18 @@ FOOTER
  /*...................
 @MEDIA
 ...................*/
-@media (max-width: 1210px) {
-  
+@media (max-width: 1205px) {
+    .logo {
+        right: 38%;
+    }
 }
 @media (max-width: 995px) {
+    .logo {
+        right: 33%;
+    }
     .header .container .row {
         padding-top: 10px;
+        
     }
     .header-social h6 {
         font-family: 'Lora', serif;
@@ -702,10 +736,6 @@ FOOTER
         line-height: 26px;
         font-size: 13px;
     }
-    .logo {
-        font-size: 16px;
-    }
-    
     #sub-menu>li >span >a {
         padding: 5px 10px 12px;
         font-size: 12px;

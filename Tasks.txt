@@ -1,6 +1,6 @@
 -----navmenu with searching
 
------more images in ViewProduct
+-----products images in ViewProduct
 
 -----Logo
 
