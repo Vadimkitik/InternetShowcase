@@ -1,0 +1,34 @@
+<!--PRODUCT DESCRIPTION -->
+<section>
+    <div class="container">
+        <h1>{{ errorMsg }}</h1>
+        <div class="row" *ngIf="loaded">
+            <div class="col-md-12">
+                <div class="product-cont">
+                    <div class="product__image">
+                        <img [src]="product.imageUrl" class="animateImg" alt="" tabindex="0">
+                    </div>
+                    <div class="product__info-block">
+                        <h1>{{ product.name }} </h1>                       
+                        <div class="product__info-price">
+                            <p class="product-info-price">
+                                <span class="product-info-price__title">Цена:</span>
+                                <span class="product-info-price__val">
+                                    <span class="product-info-price__val-old" *ngIf="oldPrice">{{ product.oldPrice}}<small> руб. </small></span>
+                                    <span>{{ product.price }}</span> руб.
+                                </span>
+                            </p>
+                            <a [routerLink]="'/'" class="button-outline">Уточнить наличие</a>
+                            <div class="product-description">
+                                <div class="column">{{ product.description }} 
+                                </div>
+                                <div class="column">{{ product.categoryId }} 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

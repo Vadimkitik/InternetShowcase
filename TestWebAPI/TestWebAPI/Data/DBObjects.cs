@@ -27,9 +27,9 @@ namespace TestWebAPI.Data
                     var numbImg = rnd.Next(1, 4);
                     var numbPrice = rnd.Next(1, 15);
                     var numbOldPrice = rnd.Next(15, 50);
-                    var numbInCatList = rnd.Next(0, catList.Length);
-                    var numbInSubCatList = rnd.Next(0, subCatList.Length);
-                    var numbInUnderSubCatList = rnd.Next(0, underSubCatList.Length);
+                    var numbInCatList = rnd.Next(1, catList.Length);
+                    var numbInSubCatList = rnd.Next(1, subCatList.Length);
+                    var numbInUnderSubCatList = rnd.Next(1, underSubCatList.Length);
 
                     context.Add(
                     new Product
@@ -54,7 +54,7 @@ namespace TestWebAPI.Data
         }
 
 
-        private static string[] catList;
+        private static string[] catList = { "" };
         private static Dictionary<string, Category> category;
         public static Dictionary<string, Category> Categories
         {
@@ -77,14 +77,14 @@ namespace TestWebAPI.Data
                     foreach (Category el in list)
                     {
                         category.Add(el.categoryName, el);
-                        catList.Append(el.categoryName);
+                        catList = CreateArrString(el.categoryName, catList);
                     }
                 }
                 return category;
             }
         }
 
-        private static string[] subCatList;
+        private static string[] subCatList = { "" };
         private static Dictionary<string, SubCategory> subCategory;
         public static Dictionary<string, SubCategory> SubCategories
         {
@@ -122,7 +122,7 @@ namespace TestWebAPI.Data
                         new SubCategory {
                             subCategoryLine = "grunt",
                             subCategoryName = "Грунт",
-                            Category = Categories["удобрения"]
+                            Category = Categories["Удобрения"]
                         },
                         new SubCategory { 
                             subCategoryLine = "yaschiki",
@@ -140,14 +140,14 @@ namespace TestWebAPI.Data
                     foreach (SubCategory el in list)
                     {
                         subCategory.Add(el.subCategoryName, el);
-                        subCatList.Append(el.subCategoryName);
+                        subCatList = CreateArrString(el.subCategoryName, subCatList);
                     }
                 }
                 return subCategory;
             }
         }
 
-        private static string[] underSubCatList;
+        private static string[] underSubCatList = {""};
         private static Dictionary<string, UnderSubCategory> underSubCategory;
         public static Dictionary<string, UnderSubCategory> UnderSubCategories
         {
@@ -238,12 +238,25 @@ namespace TestWebAPI.Data
                     foreach (UnderSubCategory el in list)
                     {
                         underSubCategory.Add(el.underSubCategoryName, el);
-                        underSubCatList.Append(el.underSubCategoryName);
+                        underSubCatList = CreateArrString(el.underSubCategoryName, underSubCatList);
                     }
                 }
                 return underSubCategory;
             }
         }
 
+        private static string[] CreateArrString(string s, string[] mainArray)
+        {
+            int count = mainArray.Length + 1;
+            string[] secondArray = new string[count];
+
+            for (int i = 0; i < secondArray.Length - 1; i++)
+                secondArray[i] = mainArray[i];
+
+            secondArray[count - 1] = s;
+            mainArray = secondArray;
+
+            return mainArray;
+        }
     }
 }
