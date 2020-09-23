@@ -3,42 +3,42 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { throwError  } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-import { Category } from '../models/category.model';
+import { SubCategory } from '../models/subCategory.model';
 
 @Injectable()
-export class CategoryService {
+export class SubCategoryService {
 
-    private url = "http://localhost:5000/api/categories";
-    //private url = "api/categories";
+    private url = "http://localhost:5000/api/subcategories";
+    //private url = "api/Subcategories";
 
     constructor(private http: HttpClient) {
     }
 
-    getCategories() {
+    getSubCategories() {
         return this.http.get(this.url).pipe(
             catchError(this.handleError));
     }
-    getCategoryByLine(categoryLine: string) {
-        return this.http.get(this.url + '/' + categoryLine).pipe(
+    getSubCategoryByLine(subCategoryLine: string) {
+        return this.http.get(this.url + '/' + subCategoryLine).pipe(
             catchError(this.handleError));
     }
 
-    getCategory(categoryLine: string) {
-        return this.http.get(this.url + '/' + categoryLine).pipe(
+    getSubCategory(subCategoryLine: string) {
+        return this.http.get(this.url + '/' + subCategoryLine).pipe(
             catchError(this.handleError));
     }
 
-    createCategory(category: Category) {
-        return this.http.post(this.url, category).pipe(
+    createSubCategory(subCategory: SubCategory) {
+        return this.http.post(this.url, subCategory).pipe(
             catchError(this.handleError));
     }
 
-    updateCategory(category: Category) {
-        return this.http.put(this.url, category).pipe(
+    updateSubCategory(subCategory: SubCategory) {
+        return this.http.put(this.url, subCategory).pipe(
             catchError(this.handleError));
     }
 
-    deleteCategory(id: number) {
+    deleteSubCategory(id: number) {
         return this.http.delete(this.url + '/' + id).pipe(
             catchError(this.handleError));
     }
