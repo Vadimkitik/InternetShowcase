@@ -8,7 +8,9 @@
                 </div>
             </div>
             <div class="header-social">
-                <a href="https://yandex.by/maps/-/CCQxFLdNtD" target="_blank"><h6>гр. Гродно, посёлок Южный, ул. Рогачевского 25</h6></a>
+                <a href="https://yandex.by/maps/-/CCQxFLdNtD" target="_blank">
+                    <h6>гр. Гродно, посёлок Южный, ул. Рогачевского 25</h6>
+                </a>
                 <h6>Instagram:</h6>
                 <a href="https://www.instagram.com/alleutina_shop/" target="_blank"><i class="fab fa-instagram"></i></a>
             </div>
@@ -28,28 +30,84 @@
                             <li><span><a [routerLink]="'/'">Главная</a></span></li>
                             <li><span><a [routerLink]="['products/', 'cveti']">Цветы</a></span>
                                 <ul class="nav">
-                                    <li><span><a [routerLink]="'/'" class="">Живые</a></span>
+                                    <li><span><a [routerLink]="'/'" class="">Живые цветы</a></span>
                                         <ul class="nav">
                                             <li><span><a [routerLink]="'/'">Розы</a></span></li>
                                             <li><span><a [routerLink]="'/'">Тюльпаны</a></span></li>
                                             <li><span><a [routerLink]="'/'">Хризантемы</a></span></li>
                                         </ul>
                                     </li>
-                                    <li><span><a [routerLink]="'/'" class="">Искусственные</a></span></li>
+                                    <li><span><a [routerLink]="'/'" class="">Искусственные цветы</a></span></li>
                                 </ul>
                             </li>
                             <li><span><a [routerLink]="['products/', 'buketi']">Букеты</a></span></li>
-                            <li><span><a [routerLink]="['products/', 'shari']">Шары</a></span></li>
-                            <li><span><a [routerLink]="['products/', 'gorshki']">Горшки</a></span></li>
-                            <li><span><a [routerLink]="['products/', 'udobrenie']">Удобрение</a></span></li>
-                            <li><span><a [routerLink]="['products/', 'izdelia_iz_dereva']">Изделия из дерева</a></span></li>
+                            <li><span><a [routerLink]="['products/', 'shari']">Шары</a></span>
+                                <ul class="nav">
+                                        <li><span><a [routerLink]="'/'" class="">Горшки для цветов пластиковые</a></span>
+                                            <ul class="nav">
+                                                <li><span><a [routerLink]="'/'">Большие пластиковые горшки для цветов</a></span></li>
+                                                <li><span><a [routerLink]="'/'">Балконные пластиковые горшки для цветов</a></span></li>
+                                                <li><span><a [routerLink]="'/'">Подвесные пластиковые горшки для цветов</a></span></li>
+                                            </ul>
+                                        </li>
+                                        <li><span><a [routerLink]="'/'" class="">Горшки для цветов керамические</a></span>
+                                            <ul class="nav">
+                                                <li><span><a [routerLink]="'/'">Большие керамические горшки для цветов</a></span></li>
+                                                <li><span><a [routerLink]="'/'">Квадратные керамические горшки для цветов</a></span></li>
+                                                <li><span><a [routerLink]="'/'">Круглые керамические горшки для цветов</a></span></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                            </li>
+                            <li><span><a [routerLink]="['products/', 'gorshki']">Горшки</a></span>
+                                <ul class="nav">
+                                    <li><span><a [routerLink]="'/'" class="">Горшки для цветов пластиковые</a></span>
+                                        <ul class="nav">
+                                            <li><span><a [routerLink]="'/'">Большие пластиковые горшки для цветов</a></span></li>
+                                            <li><span><a [routerLink]="'/'">Балконные пластиковые горшки для цветов</a></span></li>
+                                            <li><span><a [routerLink]="'/'">Подвесные пластиковые горшки для цветов</a></span></li>
+                                        </ul>
+                                    </li>
+                                    <li><span><a [routerLink]="'/'" class="">Горшки для цветов керамические</a></span>
+                                        <ul class="nav">
+                                            <li><span><a [routerLink]="'/'">Большие керамические горшки для цветов</a></span></li>
+                                            <li><span><a [routerLink]="'/'">Квадратные керамические горшки для цветов</a></span></li>
+                                            <li><span><a [routerLink]="'/'">Круглые керамические горшки для цветов</a></span></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><span><a [routerLink]="['products/', 'udobrenie']">Удобрения</a></span>
+                                <ul class="nav">
+                                    <li><span><a [routerLink]="'/'" class="">Средства защиты растений</a></span>
+                                        <ul class="nav">
+                                            <li><span><a [routerLink]="'/'">Удобрения для архидей</a></span></li>
+                                            <li><span><a [routerLink]="'/'">Защита от вредителей</a></span></li>
+                                            <li><span><a [routerLink]="'/'">Удобрения для орхидей</a></span></li>
+                                        </ul>
+                                    </li>
+                                    <li><span><a [routerLink]="'/'" class="">Грунт</a></span></li>
+                                </ul>
+                            </li>
+                            <li><span><a [routerLink]="['products/', 'izdelia_iz_dereva']">Изделия из дерева</a></span>
+                                <ul class="nav">
+                                    <li><span><a [routerLink]="'/'" class="">Ящики</a></span>
+                                        <ul class="nav">
+                                            <li><span><a [routerLink]="'/'">Украшение</a></span></li>
+                                            <li><span><a [routerLink]="'/'">Тюльпаны</a></span></li>
+                                            <li><span><a [routerLink]="'/'">Хризантемы</a></span></li>
+                                        </ul>
+                                    </li>
+                                    <li><span><a [routerLink]="'/'" class="">Садовые</a></span></li>
+                                </ul>
+                            </li>
                             <li><span><a [routerLink]="'/shop'">Магазин</a></span></li>
                         </ul>
                     </nav>
                 </div>
             </div>
         </div>
-        <div class="logo" >
+        <div class="logo">
             <div class="logo_text">
                 <a [routerLink]="'/'">
                     <h1>Alleutina Shop</h1>
@@ -57,6 +115,6 @@
                 </a>
             </div>
         </div>
-    </div>    
-    <img src="assets/img/bg/bg-main1.jpg" alt="" class="header_img">        
+    </div>
+    <img src="assets/img/bg/bg-main1.jpg" alt="" class="header_img">
 </header>

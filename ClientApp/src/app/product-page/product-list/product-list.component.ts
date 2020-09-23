@@ -35,10 +35,12 @@ export class ProductListComponent implements OnInit {
 
             this.categoryService.getCategoryByLine(this.categoryLine).subscribe((category: Category) => 
             {
-                this.categoryName = category.categoryName;
-                this.loaded = true;
-                this.products = category.products;
-
+                if(category != null) {
+                    this.categoryName = category.categoryName;
+                    this.loaded = true;
+                    this.products = category.products;
+                }
+                else this.errorMsg = "В этой категории нет товаров.";
             }, error => this.errorMsg = error);
         });
     }
