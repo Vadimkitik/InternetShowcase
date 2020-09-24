@@ -250,11 +250,10 @@ namespace TestWebAPI.Data
             int count;
             string[] secondArray;
 
-            if (mainArray == null){
+            if (mainArray == null)
+            {
                 count = 1;
                 secondArray = new string[count];
-                secondArray[count- 1] = s;
-                mainArray = secondArray;
             }
             else
             {
@@ -263,10 +262,9 @@ namespace TestWebAPI.Data
 
                 for (int i = 0; i < secondArray.Length - 1; i++)
                     secondArray[i] = mainArray[i];
-
-                secondArray[count - 1] = s;
-                mainArray = secondArray;
-            }
+            }            
+            secondArray[count - 1] = s;
+            mainArray = secondArray;
             return mainArray;
         }
     }
