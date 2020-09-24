@@ -27,9 +27,9 @@ namespace TestWebAPI.Data
                     var numbImg = rnd.Next(1, 4);
                     var numbPrice = rnd.Next(1, 15);
                     var numbOldPrice = rnd.Next(15, 50);
-                    var numbInCatList = rnd.Next(1, catList.Length);
-                    var numbInSubCatList = rnd.Next(1, subCatList.Length);
-                    var numbInUnderSubCatList = rnd.Next(1, underSubCatList.Length);
+                    var numbInCatList = rnd.Next(0, catList.Length-1);
+                    var numbInSubCatList = rnd.Next(0, subCatList.Length-1);
+                    var numbInUnderSubCatList = rnd.Next(0, underSubCatList.Length-1);
 
                     context.Add(
                     new Product
@@ -54,7 +54,7 @@ namespace TestWebAPI.Data
         }
 
 
-        private static string[] catList = { "" };
+        private static string[] catList;
         private static Dictionary<string, Category> category;
         public static Dictionary<string, Category> Categories
         {
@@ -84,7 +84,7 @@ namespace TestWebAPI.Data
             }
         }
 
-        private static string[] subCatList = { "" };
+        private static string[] subCatList ;
         private static Dictionary<string, SubCategory> subCategory;
         public static Dictionary<string, SubCategory> SubCategories
         {
@@ -147,7 +147,7 @@ namespace TestWebAPI.Data
             }
         }
 
-        private static string[] underSubCatList = {""};
+        private static string[] underSubCatList;
         private static Dictionary<string, UnderSubCategory> underSubCategory;
         public static Dictionary<string, UnderSubCategory> UnderSubCategories
         {
@@ -247,15 +247,26 @@ namespace TestWebAPI.Data
 
         private static string[] CreateArrString(string s, string[] mainArray)
         {
-            int count = mainArray.Length + 1;
-            string[] secondArray = new string[count];
+            int count;
+            string[] secondArray;
 
-            for (int i = 0; i < secondArray.Length - 1; i++)
-                secondArray[i] = mainArray[i];
+            if (mainArray == null){
+                count = 1;
+                secondArray = new string[count];
+                secondArray[count- 1] = s;
+                mainArray = secondArray;
+            }
+            else
+            {
+                count = mainArray.Length + 1;
+                secondArray = new string[count];
 
-            secondArray[count - 1] = s;
-            mainArray = secondArray;
+                for (int i = 0; i < secondArray.Length - 1; i++)
+                    secondArray[i] = mainArray[i];
 
+                secondArray[count - 1] = s;
+                mainArray = secondArray;
+            }
             return mainArray;
         }
     }
