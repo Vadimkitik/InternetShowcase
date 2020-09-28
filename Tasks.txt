@@ -1,6 +1,6 @@
 -----navmenu with searching
 
------submenu, subCategories
+-----submenu, subCategories (obj, norm products)
 
 -----products images in ViewProduct
 

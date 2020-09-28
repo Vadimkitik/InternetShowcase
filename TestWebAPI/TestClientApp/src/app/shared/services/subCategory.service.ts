@@ -18,10 +18,6 @@ export class SubCategoryService {
         return this.http.get(this.url).pipe(
             catchError(this.handleError));
     }
-    getSubCategoryByLine(subCategoryLine: string) {
-        return this.http.get(this.url + '/' + subCategoryLine).pipe(
-            catchError(this.handleError));
-    }
 
     getSubCategory(subCategoryLine: string) {
         return this.http.get(this.url + '/' + subCategoryLine).pipe(

@@ -27,9 +27,9 @@ namespace TestWebAPI.Data
                     var numbImg = rnd.Next(1, 4);
                     var numbPrice = rnd.Next(1, 15);
                     var numbOldPrice = rnd.Next(15, 50);
-                    var numbInCatList = rnd.Next(0, catList.Length-1);
-                    var numbInSubCatList = rnd.Next(0, subCatList.Length-1);
-                    var numbInUnderSubCatList = rnd.Next(0, underSubCatList.Length-1);
+                    var numbInCatList = rnd.Next(0, catList.Length);
+                    var numbInSubCatList = rnd.Next(0, subCatList.Length);
+                    var numbInUnderSubCatList = rnd.Next(0, underSubCatList.Length);
 
                     context.Add(
                     new Product

@@ -29,10 +29,11 @@ namespace TestWebAPI.Controllers
         }
 
         // GET: api/SubCategories/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<SubCategory>> GetSubCategory(int id)
+        [HttpGet("{subCategoryLine}")]
+        public async Task<ActionResult<SubCategory>> GetSubCategory(string subCategoryLine)
         {
-            var subCategory = await _context.SubCategories.FindAsync(id);
+            foreach (SubCategory u in _context.SubCategories.Include(p => p.Products)) ;
+            SubCategory subCategory = await _context.SubCategories.SingleOrDefaultAsync(s => s.subCategoryLine == subCategoryLine);
 
             if (subCategory == null)
             {

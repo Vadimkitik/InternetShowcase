@@ -25,14 +25,17 @@ namespace TestWebAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Category>>> GetCategories()
         {
+            foreach (Category u in _context.Categories.Include(c => c.SubCategories)) ;
+            foreach (SubCategory u in _context.SubCategories.Include(c => c.UnderSubCategories)) ;
             return await _context.Categories.ToListAsync();
         }
 
         // GET: api/Categories/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Category>> GetCategory(int id)
+        [HttpGet("{categoryLine}")]
+        public async Task<ActionResult<Category>> GetCategory(string categoryLine)
         {
-            var category = await _context.Categories.FindAsync(id);
+            foreach (Category u in _context.Categories.Include(p => p.Products)) ;
+            Category category = await _context.Categories.SingleOrDefaultAsync(s => s.categoryLine == categoryLine);
 
             if (category == null)
             {

@@ -18,10 +18,6 @@ export class CategoryService {
         return this.http.get(this.url).pipe(
             catchError(this.handleError));
     }
-    getCategoryByLine(categoryLine: string) {
-        return this.http.get(this.url + '/' + categoryLine).pipe(
-            catchError(this.handleError));
-    }
 
     getCategory(categoryLine: string) {
         return this.http.get(this.url + '/' + categoryLine).pipe(

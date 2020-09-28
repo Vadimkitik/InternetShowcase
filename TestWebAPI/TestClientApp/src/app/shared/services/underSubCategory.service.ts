@@ -6,7 +6,7 @@ import { catchError } from 'rxjs/operators';
 import { UnderSubCategory } from '../models/underSubCategory.model';
 
 @Injectable()
-export class CategoryService {
+export class UnderSubCategoryService {
 
     private url = "http://localhost:5000/api/undersubcategories";
     //private url = "api/categories";
@@ -16,10 +16,6 @@ export class CategoryService {
 
     getUnderSubCategories() {
         return this.http.get(this.url).pipe(
-            catchError(this.handleError));
-    }
-    getUnderSubCategoryByLine(underSubCategoryLine: string) {
-        return this.http.get(this.url + '/' + underSubCategoryLine).pipe(
             catchError(this.handleError));
     }
 
