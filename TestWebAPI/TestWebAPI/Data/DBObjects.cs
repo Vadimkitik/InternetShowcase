@@ -10,47 +10,22 @@ namespace TestWebAPI.Data
         public static void initial(TestDbContext context)
         {          
 
-            if (!context.Categories.Any())
+            if (!context.Categories.Any()){
                 context.Categories.AddRange(Categories.Select(c => c.Value));
-
-            if (!context.SubCategories.Any())
-                context.SubCategories.AddRange(SubCategories.Select(c => c.Value));
-
-            if (!context.UnderSubCategories.Any())
-                context.UnderSubCategories.AddRange(UnderSubCategories.Select(c => c.Value));
-
-            if (!context.Products.Any())
-            {
-                for (var i = 1; i <= 30; i++)
-                {
-                    var rnd = new Random();
-                    var numbImg = rnd.Next(1, 4);
-                    var numbPrice = rnd.Next(1, 15);
-                    var numbOldPrice = rnd.Next(15, 50);
-                    var numbInCatList = rnd.Next(0, catList.Length);
-                    var numbInSubCatList = rnd.Next(0, subCatList.Length);
-                    var numbInUnderSubCatList = rnd.Next(0, underSubCatList.Length);
-
-                    context.Add(
-                    new Product
-                    {
-                        name = "Цветок №" + i,
-                        productLine = "cvetok_" + i,
-                        price = numbPrice,
-                        oldPrice = numbOldPrice,
-                        description = $"Что то про этот товар",
-                        imageUrl = $"https://localhost:5001/Resources/images/product-{numbImg}.jpg",
-                        available = true,
-                        isFavourite = true,
-                        Category = Categories[catList[numbInCatList]],
-                        SubCategory = SubCategories[subCatList[numbInSubCatList]],
-                        UnderSubCategory = UnderSubCategories[underSubCatList[numbInUnderSubCatList]]
-                    });
-                    context.SaveChanges();
-                }
-               
+                context.SaveChanges();
             }
-            
+                
+
+            if (!context.SubCategories.Any()){
+                context.SubCategories.AddRange(SubCategories.Select(c => c.Value));
+                context.SaveChanges();
+            }
+                
+
+            if (!context.UnderSubCategories.Any()){
+                context.UnderSubCategories.AddRange(UnderSubCategories.Select(c => c.Value));
+                context.SaveChanges();
+            }  
         }
 
 

@@ -13,19 +13,34 @@ export class ProductFormComponent {
 
     @Input() response: { dbPath: '' };
     categories: Category[];
+    numbCat: number;
+    numbSubCat: number;
     @Input() product: Product;
     public errorMsg;
+    loaded: boolean = false;
 
-    constructor(private catService: CategoryService) { }
+    constructor(
+        private catService: CategoryService
+        ) { }
 
     ngOnInit() {
         this.catService.getCategories().subscribe((categories: Category[]) => {
             this.categories = categories;
+            this.loaded = true;
+            console.log(categories);
         }, error => this.errorMsg = error);
     }
 
     uploadFinished = (event) => {
         this.response = event; 
         this.product.imageUrl = this.response.dbPath;
+    }
+    SetCategory(index: number) {
+        this.numbCat = index;
+        console.log(this.numbCat);
+    }
+    SetSubCategory(index: number) {
+        this.numbSubCat = index;
+        console.log(this.numbSubCat);
     }
 }

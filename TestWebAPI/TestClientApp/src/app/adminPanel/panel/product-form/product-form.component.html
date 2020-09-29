@@ -1,4 +1,4 @@
-﻿<div class="product-form">
+﻿<div class="product-form" *ngIf="loaded">
     <mat-form-field class="product-full-width">
         <mat-label>Path name</mat-label>
         <input matInput placeholder="rozi,tulpani, bojiy_oduvanchik..." type="text" [(ngModel)]="product.productLine" />
@@ -34,9 +34,9 @@
     </mat-radio-group>
 
 
-    <mat-radio-group class="product-full-width" aria-label="Есть ли в наличии" [(ngModel)]="product.available">
+    <mat-radio-group class="product-full-width" aria-label="Есть ли в наличии" [(ngModel)]="product.available" >
         <mat-label>Есть ли в наличии: </mat-label>
-        <mat-radio-button value="true" color="primary"  >Да</mat-radio-button>
+        <mat-radio-button value="true" color="primary">Да</mat-radio-button>
         <mat-radio-button value="false">Нет</mat-radio-button>
     </mat-radio-group>
 
@@ -44,8 +44,30 @@
         <mat-label>Категория товара</mat-label>
         <h1>{{errorMsg}}</h1>
         <mat-select [(ngModel)]="product.categoryId">
-            <mat-option value="{{category.id}}" *ngFor="let category of categories" >
-                {{ category.categoryName }}</mat-option>
+            <mat-option 
+            value="{{category.id}}"
+            *ngFor="let category of categories; let i = index"
+            (click)="SetCategory(i)"
+            >
+                {{ category.categoryName }} {{ i }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="product-full-width" *ngIf="product.categoryId" >
+        <mat-label>Подкатегория товара</mat-label>
+        <h1>{{errorMsg}}</h1>
+        <mat-select [(ngModel)]="product.subCategoryId" >
+            <mat-option value="{{subCategory.id}}" *ngFor="let subCategory of categories[numbCat].subCategories; let i = index" (click)="SetSubCategory(i)">
+                {{ subCategory.subCategoryName }} {{ i }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    
+    <mat-form-field class="product-full-width" *ngIf="product.subCategoryId">
+        <mat-label>Подподкатегория товара :)</mat-label>
+        <h1>{{errorMsg}}</h1>
+        <mat-select [(ngModel)]="product.underSubCategoryId">
+            <mat-option value="{{underSubCategory.id}}" *ngFor="let underSubCategory of categories[numbCat].subCategories[numbSubCat].underSubCategories" >
+                {{ underSubCategory.underSubCategoryName }}</mat-option>
         </mat-select>
     </mat-form-field>
 </div>
