@@ -31,9 +31,11 @@ namespace TestWebAPI.Data.Models
         public int categoryID { get; set; }
         [ForeignKey("categoryID")]
         public Category Category { get; set; }
+
         public int? subcategoryID { get; set; }
         [ForeignKey("subcategoryID")]
         public SubCategory SubCategory { get; set; }
+        
         public int? underSubcategoryID { get; set; }
         [ForeignKey("underSubcategoryID")]
         public UnderSubCategory UnderSubCategory { get; set; }

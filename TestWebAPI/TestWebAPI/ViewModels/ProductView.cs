@@ -27,5 +27,9 @@ namespace TestWebAPI.ViewModels
        
         public int categoryID { get; set; }
         public CategoryView Category { get; set; }
+        public int subCategoryID { get; set; }
+        public SubCategoryView SubCategory { get; set; }
+        public int underSubCategoryID { get; set; }
+        public UnderSubCategoryView UnderSubCategory { get; set; }
     }
 }

@@ -91,7 +91,7 @@ namespace TestWebAPI.Data
                             Category = Categories["Горшки"]
                         },
                         new SubCategory { 
-                            subCategoryLine = "gorshki_plastikovie", 
+                            subCategoryLine = "gorshki_keramicheskie", 
                             subCategoryName = "Горшки для цветов керамические",
                             Category = Categories["Горшки"] 
                         },

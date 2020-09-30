@@ -16,9 +16,9 @@ export class Product {
         public categoryId?: number,
         public Category?: Category,
         public subCategoryId?: number,
-        public subCategory?: SubCategory,
-        public underSubCategoryId?: number,
-        public underSubCategory?: UnderSubCategory
+        public SubCategory?: SubCategory,
+        public nderSubCategoryId?: number,
+        public UnderSubCategory?: UnderSubCategory
         ) { }
 }
 
