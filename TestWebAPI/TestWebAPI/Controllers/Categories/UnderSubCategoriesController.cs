@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TestWebAPI.Data;
+using TestWebAPI.Data.interfaces;
 using TestWebAPI.Data.Models;
+using TestWebAPI.ViewModels;
 
 namespace TestWebAPI.Controllers
 {
@@ -14,98 +17,58 @@ namespace TestWebAPI.Controllers
     [ApiController]
     public class UnderSubCategoriesController : ControllerBase
     {
-        private readonly TestDbContext _context;
+        private readonly IRepository<UnderSubCategory> _categories;
+        private readonly IMapper _mapper;
 
-        public UnderSubCategoriesController(TestDbContext context)
+        public UnderSubCategoriesController(IRepository<UnderSubCategory> categories, IMapper mapper)
         {
-            _context = context;
+            _categories = categories;
+            _mapper = mapper;
         }
 
-        // GET: api/UnderSubCategories
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<UnderSubCategory>>> GetUnderSubCategories()
+        public async Task<ActionResult<IEnumerable<UnderSubCategoryView>>> GetCategories()
         {
-            return await _context.UnderSubCategories.ToListAsync();
-        }
-
-        // GET: api/UnderSubCategories/5
-        [HttpGet("{underSubCategoryLine}")]
-        public async Task<ActionResult<UnderSubCategory>> GetUnderSubCategory(string underSubCategoryLine)
-        {
-            foreach (UnderSubCategory u in _context.UnderSubCategories.Include(p => p.Products)) ;
-            UnderSubCategory underSubCategory = await _context.UnderSubCategories.SingleOrDefaultAsync(s => s.underSubCategoryLine == underSubCategoryLine);
-
-            if (underSubCategory == null)
-            {
-                return NotFound();
-            }
-
-            return underSubCategory;
-        }
-
-        // PUT: api/UnderSubCategories/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutUnderSubCategory(int id, UnderSubCategory underSubCategory)
-        {
-            if (id != underSubCategory.id)
+            var categories = await _categories.GetAll();
+            if (categories == null)
             {
                 return BadRequest();
             }
-
-            _context.Entry(underSubCategory).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!UnderSubCategoryExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            return _mapper.Map<List<UnderSubCategory>, List<UnderSubCategoryView>>((List<UnderSubCategory>)categories);
         }
 
-        // POST: api/UnderSubCategories
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        [HttpGet("{categoryLine}")]
+        public async Task<ActionResult<UnderSubCategoryView>> GetCategory(string categoryLine)
+        {
+            var category = await _categories.GetByType(categoryLine);
+            if (category != null)
+            {
+                return _mapper.Map<UnderSubCategory, UnderSubCategoryView>(category);
+            }
+            return NotFound();
+        }
+
         [HttpPost]
-        public async Task<ActionResult<UnderSubCategory>> PostUnderSubCategory(UnderSubCategory underSubCategory)
+        public async Task<ActionResult<UnderSubCategoryView>> PostCategory(UnderSubCategory model)
         {
-            _context.UnderSubCategories.Add(underSubCategory);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetUnderSubCategory", new { id = underSubCategory.id }, underSubCategory);
-        }
-
-        // DELETE: api/UnderSubCategories/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<UnderSubCategory>> DeleteUnderSubCategory(int id)
-        {
-            var underSubCategory = await _context.UnderSubCategories.FindAsync(id);
-            if (underSubCategory == null)
+            if (ModelState.IsValid)
             {
-                return NotFound();
+                _mapper.Map<UnderSubCategory, UnderSubCategoryView>(await _categories.Create(model));
+                return Ok(model);
             }
-
-            _context.UnderSubCategories.Remove(underSubCategory);
-            await _context.SaveChangesAsync();
-
-            return underSubCategory;
+            return BadRequest(ModelState);
         }
 
-        private bool UnderSubCategoryExists(int id)
+        [HttpPut("{id}")]
+        public async Task<bool> PutCategory(int id, UnderSubCategory category)
         {
-            return _context.UnderSubCategories.Any(e => e.id == id);
+            return await _categories.Update(id, category);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<bool> DeleteCategory(int id)
+        {
+            return await _categories.Delete(id);
         }
     }
 }

@@ -5,111 +5,71 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TestWebAPI.Data.interfaces;
+using AutoMapper;
+using TestWebAPI.ViewModels;
 
 namespace TestWebAPI.Controllers
 {
     [Route("api/users")]
     [ApiController]
-    public class UsersController : Controller
+    public class UsersController : ControllerBase
     {
-        private readonly TestDbContext _context;
+        private readonly IRepository<User> _users;
+        private readonly IMapper _mapper;
 
-        public UsersController(TestDbContext context)
+        public UsersController(IRepository<User> users, IMapper mapper)
         {
-            _context = context;
+            _users = users;
+            _mapper = mapper;
         }
 
-        // GET: api/Users
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<UserView>>> GetProducts()
         {
-            var users = await _context.Users.ToListAsync();
+            var users = await _users.GetAll();
+
             if (users == null)
             {
                 return BadRequest();
             }
-            return users;
+            return _mapper.Map<List<User>, List<UserView>>((List<User>)users);
         }
 
         // GET: api/Users/5
         [HttpGet("{email}")]
-        public async Task<ActionResult<User>> GetUserByEmail(string email)
+        public async Task<ActionResult<UserView>> GetUserByEmail(string email)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+            var user = await _users.GetByType(email);
 
             if (user != null)
             {
-                return user;
+                return _mapper.Map<User, UserView>(user);
             }
             return NotFound();
         }
 
-        // PUT: api/Users/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(int id, User user)
-        {
-            if (id != user.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(user).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!UserExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/Users
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
+        public async Task<ActionResult<UserView>> PostCategory(User model)
         {
             if (ModelState.IsValid)
             {
-                _context.Users.Add(user);
-                await _context.SaveChangesAsync();
-                return Ok(user);
+                _mapper.Map<User, UserView>(await _users.Create(model));
+                return Ok(model);
             }
             return BadRequest(ModelState);
         }
 
-        // DELETE: api/Users/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<User>> DeleteUser(int id)
+        [HttpPut("{id}")]
+        public async Task<bool> PutCategory(int id, User user)
         {
-            var user = await _context.Users.FindAsync(id);
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            _context.Users.Remove(user);
-            await _context.SaveChangesAsync();
-
-            return user;
+            return await _users.Update(id, user);
         }
 
-        private bool UserExists(int id)
+        [HttpDelete("{id}")]
+        public async Task<bool> DeleteCategory(int id)
         {
-            return _context.Users.Any(e => e.Id == id);
+            return await _users.Delete(id);
         }
     }
 }

@@ -14,7 +14,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using TestWebAPI.Data;
 using TestWebAPI.Data.interfaces;
+using TestWebAPI.Data.Models;
 using TestWebAPI.Data.Repository;
+using TestWebAPI.Data.Repository.Categories;
 using TestWebAPI.ViewModels.MappingProfile;
 
 namespace TestWebAPI
@@ -33,8 +35,11 @@ namespace TestWebAPI
         {
             services.AddAutoMapper(typeof(MappingProfile));
             services.AddTransient<IAllProducts, ProductReposytory>();
-            services.AddTransient<ICategories, CategoryRepository>();
-            
+            services.AddTransient<IRepository<Category>, CategoryRepository>();
+            services.AddTransient<IRepository<SubCategory>, SubCategoryRepository>();
+            services.AddTransient<IRepository<UnderSubCategory>, UnderSubCategoryRepository>();
+            services.AddTransient<IRepository<User>, UserRepository>();
+
             string connectionString = "server=localhost;UserId=root;Password=1z2x3cQQ;database=TestDbCat;CharSet=utf8;Persist Security Info=True";
             services.AddDbContext<TestDbContext>(options => options
                    .UseMySql(connectionString));

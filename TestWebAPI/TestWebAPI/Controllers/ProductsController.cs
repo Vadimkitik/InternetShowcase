@@ -26,49 +26,49 @@ namespace TestWebAPI.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<ProductView>> Get()
+        public async Task<ActionResult<IEnumerable<ProductView>>> GetProducts()
         {
-            var products = _allProducts.Products.ToList();
-            var productsView = _mapper.Map<List<Product>, List<ProductView>>(products);
-            if (productsView == null)
+            var products = await _allProducts.GetAll();
+            
+            if (products == null)
             {
                 return BadRequest();
             }
-            return productsView;
+            return _mapper.Map<List<Product>, List<ProductView>>((List<Product>)products);
         }
 
         [HttpGet("{productLine}")]
-        public ActionResult<ProductView> Get(string productLine)
+        public async Task<ActionResult<ProductView>> GetProduct(string productLine)
         {
-            var product = _mapper.Map<Product, ProductView>(_allProducts.GetByLine(productLine));
+            var product = await _allProducts.GetByLine(productLine);
             if (product != null)
             {
-                return product;
+                return _mapper.Map<Product, ProductView>(product);
             }
             return NotFound();
         }
      
         [HttpPost]
-        public ActionResult<ProductView> Post(Product product)
+        public async Task<ActionResult<ProductView>> Post(Product product)
         {
             if (ModelState.IsValid)
             {
-                _mapper.Map<Product, ProductView>(_allProducts.Create(product));
+                _mapper.Map<Product, ProductView>(await _allProducts.Create(product));
                 return Ok(product);
             }
             return BadRequest(ModelState);
         }
 
         [HttpDelete("{id}")]
-        public bool Post(int id)
+        public async Task<bool> Post(int id)
         {
-            return _allProducts.Delete(id);
+            return await _allProducts.Delete(id);
         }
 
         [HttpPut]
-        public bool Edit(Product product)
+        public async Task<bool> Edit(Product product)
         {
-            return _allProducts.Update(product);
+            return await _allProducts.Update(product);
         }
     }
 }

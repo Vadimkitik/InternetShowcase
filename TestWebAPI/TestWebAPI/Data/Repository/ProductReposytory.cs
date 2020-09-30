@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-
+using System.Threading.Tasks;
 
 namespace TestWebAPI.Data.Repository
 {
@@ -17,38 +17,43 @@ namespace TestWebAPI.Data.Repository
             _context = context;
         }
 
-        public IEnumerable<Product> Products => _context.Products.Include(c => c.Category);
-
-        public Product GetByLine(string productLine)
+        public async Task<IEnumerable<Product>> GetAll()
         {
-            return _context.Products.SingleOrDefault(p => p.productLine == productLine);
+            IEnumerable<Product> products = await _context.Products.ToListAsync();
+            return products;
+        }
+       
+
+        public async Task<Product> GetByLine(string productLine)
+        {
+            return await _context.Products.SingleOrDefaultAsync(p => p.productLine == productLine);
 
         }
-        public Product Create(Product product)
+        public async Task<Product> Create(Product product)
         {
             _context.Products.Add(product);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return product;
         }
 
-        public bool Update(Product product)
+        public async Task<bool> Update(Product product)
         {
             if (product != null)
             {
                 _context.Products.Update(product);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 return true;
             }
             return false;
         }
 
-        public bool Delete(int id)
+        public async Task<bool> Delete(int id)
         {
-            var product = _context.Products.FirstOrDefault(p => p.id == id);
+            var product = await _context.Products.FirstOrDefaultAsync(p => p.id == id);
             if (product != null)
             {
                 _context.Products.Remove(product);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 return true;
             }
             return false;

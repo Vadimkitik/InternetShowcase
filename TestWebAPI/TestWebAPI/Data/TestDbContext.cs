@@ -13,6 +13,7 @@ namespace TestWebAPI.Data
         public TestDbContext(DbContextOptions<TestDbContext> options)
              : base(options)
         {
+            
                 Database.EnsureCreated();
         }
         public DbSet<Product> Products { get; set; }

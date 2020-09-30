@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TestWebAPI.Data;
+using TestWebAPI.Data.interfaces;
 using TestWebAPI.Data.Models;
+using TestWebAPI.ViewModels;
 
 namespace TestWebAPI.Controllers
 {
@@ -14,98 +17,58 @@ namespace TestWebAPI.Controllers
     [ApiController]
     public class SubCategoriesController : ControllerBase
     {
-        private readonly TestDbContext _context;
+        private readonly IRepository<SubCategory> _categories;
+        private readonly IMapper _mapper;
 
-        public SubCategoriesController(TestDbContext context)
+        public SubCategoriesController(IRepository<SubCategory> categories, IMapper mapper)
         {
-            _context = context;
+            _categories = categories;
+            _mapper = mapper;
         }
 
-        // GET: api/SubCategories
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<SubCategory>>> GetSubCategories()
+        public async Task<ActionResult<IEnumerable<SubCategoryView>>> GetCategories()
         {
-            return await _context.SubCategories.ToListAsync();
-        }
-
-        // GET: api/SubCategories/5
-        [HttpGet("{subCategoryLine}")]
-        public async Task<ActionResult<SubCategory>> GetSubCategory(string subCategoryLine)
-        {
-            foreach (SubCategory u in _context.SubCategories.Include(p => p.Products)) ;
-            SubCategory subCategory = await _context.SubCategories.SingleOrDefaultAsync(s => s.subCategoryLine == subCategoryLine);
-
-            if (subCategory == null)
-            {
-                return NotFound();
-            }
-
-            return subCategory;
-        }
-
-        // PUT: api/SubCategories/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutSubCategory(int id, SubCategory subCategory)
-        {
-            if (id != subCategory.id)
+            var categories = await _categories.GetAll();
+            if (categories == null)
             {
                 return BadRequest();
             }
-
-            _context.Entry(subCategory).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!SubCategoryExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            return _mapper.Map<List<SubCategory>, List<SubCategoryView>>((List<SubCategory>)categories);
         }
 
-        // POST: api/SubCategories
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        [HttpGet("{categoryLine}")]
+        public async Task<ActionResult<SubCategoryView>> GetCategory(string categoryLine)
+        {
+            var category = await _categories.GetByType(categoryLine);
+            if (category != null)
+            {
+                return _mapper.Map<SubCategory, SubCategoryView>(category);
+            }
+            return NotFound();
+        }
+
         [HttpPost]
-        public async Task<ActionResult<SubCategory>> PostSubCategory(SubCategory subCategory)
+        public async Task<ActionResult<SubCategoryView>> PostCategory(SubCategory model)
         {
-            _context.SubCategories.Add(subCategory);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetSubCategory", new { id = subCategory.id }, subCategory);
-        }
-
-        // DELETE: api/SubCategories/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<SubCategory>> DeleteSubCategory(int id)
-        {
-            var subCategory = await _context.SubCategories.FindAsync(id);
-            if (subCategory == null)
+            if (ModelState.IsValid)
             {
-                return NotFound();
+                _mapper.Map<SubCategory, SubCategoryView>(await _categories.Create(model));
+                return Ok(model);
             }
-
-            _context.SubCategories.Remove(subCategory);
-            await _context.SaveChangesAsync();
-
-            return subCategory;
+            return BadRequest(ModelState);
         }
 
-        private bool SubCategoryExists(int id)
+        [HttpPut("{id}")]
+        public async Task<bool> PutCategory(int id, SubCategory category)
         {
-            return _context.SubCategories.Any(e => e.id == id);
+            return await _categories.Update(id, category);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<bool> DeleteCategory(int id)
+        {
+            return await _categories.Delete(id);
         }
     }
 }
