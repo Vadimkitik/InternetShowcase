@@ -9,6 +9,8 @@
     <Compile Remove="Migrations\20200923125718_initial.Designer.cs" />
     <Compile Remove="Migrations\20200923130531_initial.cs" />
     <Compile Remove="Migrations\20200923130531_initial.Designer.cs" />
+    <Compile Remove="Migrations\20200923130800_initial.cs" />
+    <Compile Remove="Migrations\20200923130800_initial.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,6 +29,10 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.2.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 
