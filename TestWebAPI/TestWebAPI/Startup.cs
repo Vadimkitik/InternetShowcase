@@ -1,5 +1,6 @@
 using System.IO;
 using System.Text;
+using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -12,6 +13,9 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using TestWebAPI.Data;
+using TestWebAPI.Data.interfaces;
+using TestWebAPI.Data.Repository;
+using TestWebAPI.ViewModels.MappingProfile;
 
 namespace TestWebAPI
 {
@@ -27,6 +31,10 @@ namespace TestWebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper(typeof(MappingProfile));
+            services.AddTransient<IAllProducts, ProductReposytory>();
+            services.AddTransient<ICategories, CategoryRepository>();
+            
             string connectionString = "server=localhost;UserId=root;Password=1z2x3cQQ;database=TestDbCat;CharSet=utf8;Persist Security Info=True";
             services.AddDbContext<TestDbContext>(options => options
                    .UseMySql(connectionString));

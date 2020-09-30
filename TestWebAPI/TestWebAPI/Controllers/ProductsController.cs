@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using TestWebAPI.Data;
+using TestWebAPI.Data.interfaces;
 using TestWebAPI.Data.Models;
+using TestWebAPI.ViewModels;
 
 namespace TestWebAPI.Controllers
 {
@@ -14,97 +16,59 @@ namespace TestWebAPI.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private readonly TestDbContext _context;
+        private readonly IAllProducts _allProducts;
+        private readonly IMapper _mapper;
 
-        public ProductsController(TestDbContext context)
+        public ProductsController(IAllProducts iAllProducts, IMapper mapper)
         {
-            _context = context;
+            _allProducts = iAllProducts;
+            _mapper = mapper;
         }
 
-        // GET: api/Products
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
+        public ActionResult<IEnumerable<ProductView>> Get()
         {
-            return await _context.Products.ToListAsync();
-        }
-
-        // GET: api/Products/5
-        [HttpGet("{productLine}")]
-        public async Task<ActionResult<Product>> GetProduct(string productLine)
-        {
-            var product = await _context.Products.SingleOrDefaultAsync(s => s.productLine == productLine);
-
-            if (product == null)
-            {
-                return NotFound();
-            }
-
-            return product;
-        }
-
-        // PUT: api/Products/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutProduct(int id, Product product)
-        {
-            if (id != product.id)
+            var products = _allProducts.Products.ToList();
+            var productsView = _mapper.Map<List<Product>, List<ProductView>>(products);
+            if (productsView == null)
             {
                 return BadRequest();
             }
-
-            _context.Entry(product).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ProductExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            return productsView;
         }
 
-        // POST: api/Products
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        [HttpGet("{productLine}")]
+        public ActionResult<ProductView> Get(string productLine)
+        {
+            var product = _mapper.Map<Product, ProductView>(_allProducts.GetByLine(productLine));
+            if (product != null)
+            {
+                return product;
+            }
+            return NotFound();
+        }
+     
         [HttpPost]
-        public async Task<ActionResult<Product>> PostProduct(Product product)
+        public ActionResult<ProductView> Post(Product product)
         {
-            _context.Products.Add(product);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetProduct", new { id = product.id }, product);
-        }
-
-        // DELETE: api/Products/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Product>> DeleteProduct(int id)
-        {
-            var product = await _context.Products.FindAsync(id);
-            if (product == null)
+            if (ModelState.IsValid)
             {
-                return NotFound();
+                _mapper.Map<Product, ProductView>(_allProducts.Create(product));
+                return Ok(product);
             }
-
-            _context.Products.Remove(product);
-            await _context.SaveChangesAsync();
-
-            return product;
+            return BadRequest(ModelState);
         }
 
-        private bool ProductExists(int id)
+        [HttpDelete("{id}")]
+        public bool Post(int id)
         {
-            return _context.Products.Any(e => e.id == id);
+            return _allProducts.Delete(id);
+        }
+
+        [HttpPut]
+        public bool Edit(Product product)
+        {
+            return _allProducts.Update(product);
         }
     }
 }

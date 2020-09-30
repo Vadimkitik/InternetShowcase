@@ -5,6 +5,7 @@ using InternetShowcase.Data.Models;
 using AutoMapper;
 using InternetShowcase.Data.interfaces;
 using InternetShowcase.ViewModels;
+using System.Threading.Tasks;
 
 namespace InternetShowcase.Controllers
 {
@@ -22,14 +23,14 @@ namespace InternetShowcase.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<CategoryView>> GetCategories()
+        public async Task<ActionResult<IEnumerable<CategoryView>>> GetCategories()
         {
-            var categories = _categories.GetCategories().ToList();
+            var categories = await _categories.GetCategoriesAsync();
             if(categories == null)
             {
                 return BadRequest();
             }
-            return _mapper.Map<List<Category>, List<CategoryView>>(categories);
+            return _mapper.Map<List<Category>, List<CategoryView>>((List<Category>)categories);
         }
 
        

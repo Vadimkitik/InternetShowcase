@@ -23,7 +23,18 @@ import { UploadService } from 'src/app/shared/services/upload.service';
 export class PanelComponent implements OnInit {
 
   dataSource: MatTableDataSource<Product>;
-  columnsToDisplay = [ 'name', 'productLine', 'price', 'oldPrice', 'isFavourite', 'available', 'category', 'button'];
+  columnsToDisplay = [ 
+    'name', 
+    'productLine', 
+    'price', 
+    'oldPrice', 
+    'isFavourite',
+    'available', 
+    'category', 
+    'subCategory', 
+    'underSubCategory', 
+    'button'
+  ];
   expandedElement: Product | null;
   errorMsg: string;
   

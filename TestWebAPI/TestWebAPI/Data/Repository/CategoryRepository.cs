@@ -1,26 +1,24 @@
-﻿using InternetShowcase.Data.interfaces;
-using InternetShowcase.Data.Models;
+﻿using TestWebAPI.Data.interfaces;
+using TestWebAPI.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
-namespace InternetShowcase.Data.Repository
+namespace TestWebAPI.Data.Repository
 {
     public class CategoryRepository : ICategories
     {
-        private readonly ShowcaseDbContent _context;
+        private readonly TestDbContext _context;
 
-        public CategoryRepository(ShowcaseDbContent context)
+        public CategoryRepository(TestDbContext context)
         {
             _context = context;
         }
 
-        public async Task<IEnumerable<Category>> GetCategoriesAsync()
+        public IEnumerable<Category> GetCategories()
         {
-            foreach (Category u in _context.Categories.Include(p => p.Products)) ;
-            IEnumerable<Category> categories = await _context.Categories.ToListAsync();
-            return categories;
+            foreach (Category u in _context.Categories.Include(p => p.Products));
+            return _context.Categories.OrderBy(c => c.id);
         }
 
         public Category GetByType(string categoryLine)
