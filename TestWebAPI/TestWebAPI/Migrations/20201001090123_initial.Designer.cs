@@ -9,7 +9,7 @@ using TestWebAPI.Data;
 namespace TestWebAPI.Migrations
 {
     [DbContext(typeof(TestDbContext))]
-    [Migration("20200930090823_initial")]
+    [Migration("20201001090123_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

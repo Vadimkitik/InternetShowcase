@@ -14,7 +14,7 @@ namespace TestWebAPI.Data
              : base(options)
         {
             
-                Database.EnsureCreated();
+               Database.EnsureCreated();
         }
         public DbSet<Product> Products { get; set; }
         public DbSet<User> Users { get; set; }

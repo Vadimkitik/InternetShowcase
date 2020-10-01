@@ -111,8 +111,8 @@ namespace TestWebAPI.Data
                             Category = Categories["Изделия из дерева"]
                         },
                         new SubCategory { 
-                            subCategoryLine = "sadovie_izdeliya",
-                            subCategoryName = "Садовые изделия",
+                            subCategoryLine = "dekorativnie_izdeliya",
+                            subCategoryName = "Декоративные изделия",
                             Category = Categories["Изделия из дерева"]
                         }
                     };
@@ -212,6 +212,26 @@ namespace TestWebAPI.Data
                             underSubCategoryLine = "yaschiki_dlya_cvetov", 
                             underSubCategoryName = "Ящики для цветов", 
                             SubCategory = SubCategories["Ящики"] 
+                        },
+                        new UnderSubCategory {
+                            underSubCategoryLine = "kuriniy_pomet",
+                            underSubCategoryName = "Куриный помет",
+                            SubCategory = SubCategories["Грунт"]
+                        },
+                        new UnderSubCategory {
+                            underSubCategoryLine = "grunt_flora",
+                            underSubCategoryName = "Грунт флора",
+                            SubCategory = SubCategories["Грунт"]
+                        },
+                         new UnderSubCategory {
+                            underSubCategoryLine = "dekor_telega",
+                            underSubCategoryName = "Декоративые телеги",
+                            SubCategory = SubCategories["Декоративные изделия"]
+                        },
+                          new UnderSubCategory {
+                            underSubCategoryLine = "dekor_kolodec",
+                            underSubCategoryName = "Декоративный колодец",
+                            SubCategory = SubCategories["Декоративные изделия"]
                         }
                     };
 

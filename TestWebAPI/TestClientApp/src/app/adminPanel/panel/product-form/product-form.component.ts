@@ -1,4 +1,5 @@
 ﻿import { Component, Input } from '@angular/core';
+import {CdkTextareaAutosize} from '@angular/cdk/text-field';
 
 import { Product } from '../../../shared/models/product.model';
 import { Category } from '../../../shared/models/category.model';

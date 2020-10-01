@@ -8,6 +8,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator'
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
+import {TextFieldModule} from '@angular/cdk/text-field';
 
 const MaterialComponents =[
   MatButtonModule,
@@ -17,7 +18,8 @@ const MaterialComponents =[
   MatSortModule,
   MatPaginatorModule,
   MatSelectModule,
-  MatRadioModule
+  MatRadioModule,
+  TextFieldModule
 ];
 
 @NgModule({

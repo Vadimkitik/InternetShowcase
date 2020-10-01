@@ -19,15 +19,25 @@ namespace TestWebAPI.Data.Repository
 
         public async Task<IEnumerable<Product>> GetAll()
         {
-            IEnumerable<Product> products = await _context.Products.ToListAsync();
+            IEnumerable<Product> products = await _context.Products.Include(p => p.Category)
+                                                                   .ThenInclude(p => p.SubCategories)
+                                                                   .ThenInclude(p => p.UnderSubCategories)
+                                                                   .ToListAsync();
             return products;
         }
        
 
         public async Task<Product> GetByLine(string productLine)
         {
-            return await _context.Products.SingleOrDefaultAsync(p => p.productLine == productLine);
+            Product product = await _context.Products.SingleOrDefaultAsync(p => p.productLine == productLine);
 
+            if (product != null ) {
+                _context.Products.Include(p => p.Category)
+                                 .ThenInclude(p => p.SubCategories)
+                                 .ThenInclude(p => p.UnderSubCategories);
+                return product;                        
+            }
+            return product;
         }
         public async Task<Product> Create(Product product)
         {

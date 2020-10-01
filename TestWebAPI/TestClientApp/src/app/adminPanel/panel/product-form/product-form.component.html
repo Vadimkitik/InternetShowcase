@@ -8,10 +8,15 @@
         <input matInput placeholder="Розы, тюльпаны, божий одуванчик..." type="text" [(ngModel)]="product.name" />
     </mat-form-field>
 
-    <mat-form-field class="product-full-width">
+    <mat-form-field [style.fontSize]="16" class="product-full-width">
         <mat-label>Описание товара</mat-label>
-        <input matInput placeholder="Че то про товар" type="text" [(ngModel)]="product.description" />
-    </mat-form-field>
+        <textarea matInput
+                  [(ngModel)]="product.description"
+                  cdkTextareaAutosize
+                  #autosize="cdkTextareaAutosize"
+                  cdkAutosizeMinRows="1"
+                  cdkAutosizeMaxRows="5"></textarea>
+      </mat-form-field>
 
     <mat-form-field class="product-full-width">
         <mat-label>Цена</mat-label>
@@ -49,7 +54,7 @@
             *ngFor="let category of categories; let i = index"
             (click)="SetCategory(i)"
             >
-                {{ category.categoryName }} {{ i }}</mat-option>
+                {{ category.categoryName }}</mat-option>
         </mat-select>
     </mat-form-field>
 
@@ -58,7 +63,7 @@
         <h1>{{errorMsg}}</h1>
         <mat-select [(ngModel)]="product.subCategoryId" >
             <mat-option value="{{subCategory.id}}" *ngFor="let subCategory of categories[numbCat].subCategories; let i = index" (click)="SetSubCategory(i)">
-                {{ subCategory.subCategoryName }} {{ i }}</mat-option>
+                {{ subCategory.subCategoryName }}</mat-option>
         </mat-select>
     </mat-form-field>
     
