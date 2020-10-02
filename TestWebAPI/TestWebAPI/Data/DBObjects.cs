@@ -32,9 +32,56 @@ namespace TestWebAPI.Data
                 context.UnderSubCategories.AddRange(UnderSubCategories.Select(c => c.Value));
                 context.SaveChanges();
             }  
+
+            if (!context.Products.Any()){
+                for(int i=0; i<=50; i++)
+                {
+                    var rnd = new Random();
+                    var priceRnd = rnd.Next(4, 15);
+                    var oldPriceRnd = rnd.Next(15, 30);
+                    var imageRnd = rnd.Next(1,4);
+                    var underSubCatRnd = rnd.Next(0, underSubCatList.Length);
+                    var underSubCata = underSubCategory[underSubCatList[underSubCatRnd]];
+                    var subCata = underSubCategory[underSubCatList[underSubCatRnd]].SubCategory;
+                    var Cata = underSubCategory[underSubCatList[underSubCatRnd]].SubCategory.Category;
+                    var productName = underSubCatList[underSubCatRnd];
+                    var descriptionString = $"Товар: {productName} находится в " +
+                                           $"{Cata.categoryName} -> " +
+                                           $"{subCata.subCategoryName} -> " +
+                                           $"{underSubCata.underSubCategoryName} :)";
+
+                    if ( i%3 == 0)
+                    {
+                        oldPriceRnd = 0;
+                        underSubCata = null;
+                        subCata = subCategory["Букеты из Роз"];
+                        Cata = subCata.Category;
+                        productName = subCategory["Букеты из Роз"].subCategoryName;
+                        descriptionString = $"Товар: {productName} находится в " +
+                                           $"{Cata.categoryName} -> " +
+                                           $"{subCata.subCategoryName} :)";
+                    }
+                    var product = new Product
+                    {
+                        UnderSubCategory =  underSubCata,
+                        SubCategory = subCata,
+                        Category = Cata,
+                        name = productName,
+                        productLine = "cvetok_" + i,
+                        price = priceRnd,
+                        oldPrice = oldPriceRnd,
+                        description = descriptionString,
+                        imageUrl = $"https://localhost:5001/Resources/images/product-{imageRnd}.jpg",
+                        available = true,
+                        isFavourite = true
+                    };
+                    context.Add(product);
+                    context.SaveChanges();
+                }
+                
+            }
         }
-
-
+        
         private static string[] catList;
         private static Dictionary<string, Category> category;
         public static Dictionary<string, Category> Categories
@@ -46,12 +93,11 @@ namespace TestWebAPI.Data
                     var list = new Category[]
                     {
                         new Category { categoryLine = "cveti", categoryName = "Цветы" },
-                        new Category { categoryLine = "shari", categoryName = "Шары" },
-                        new Category { categoryLine = "udobrenie", categoryName = "Удобрения" },
                         new Category { categoryLine = "buketi", categoryName = "Букеты" },
+                        new Category { categoryLine = "shari", categoryName = "Шары" },
+                        new Category { categoryLine = "udobrenie", categoryName = "Удобрения" },                        
                         new Category { categoryLine = "gorshki", categoryName = "Горшки" },
                         new Category { categoryLine = "izdelia_iz_dereva", categoryName = "Изделия из дерева" }
-
                     };
 
                     category = new Dictionary<string, Category>();
@@ -76,24 +122,45 @@ namespace TestWebAPI.Data
                     var list = new SubCategory[]
                     {
                         new SubCategory { 
-                            subCategoryLine = "jivie_cveti",
-                            subCategoryName = "Живые цветы",
-                            Category = Categories["Цветы"]
-                        },
-                        new SubCategory { 
                             subCategoryLine = "iskusstvennie_cveti", 
                             subCategoryName = "Искусственные цветы",
                             Category = Categories["Цветы"] 
                         },
+                        new SubCategory { 
+                            subCategoryLine = "jivie_cveti",
+                            subCategoryName = "Живые цветы",
+                            Category = Categories["Цветы"]
+                        },
+                        
                         new SubCategory {
                             subCategoryLine = "gorshki_plastikovie", 
                             subCategoryName = "Горшки для цветов пластиковые", 
                             Category = Categories["Горшки"]
                         },
-                        new SubCategory { 
-                            subCategoryLine = "gorshki_keramicheskie", 
+                        new SubCategory {
+                            subCategoryLine = "gorshki_keramik",
                             subCategoryName = "Горшки для цветов керамические",
-                            Category = Categories["Горшки"] 
+                            Category = Categories["Горшки"]
+                        },
+                        new SubCategory {
+                            subCategoryLine = "shari_lateks", 
+                            subCategoryName = "Шары из латекса", 
+                            Category = Categories["Шары"]
+                        },
+                        new SubCategory {
+                            subCategoryLine = "shari_folgirovanie", 
+                            subCategoryName = "Фольгированные шары", 
+                            Category = Categories["Шары"]
+                        },
+                        new SubCategory {
+                            subCategoryLine = "buketi_iz_cvetov", 
+                            subCategoryName = "Букеты из цветов", 
+                            Category = Categories["Букеты"]
+                        },
+                        new SubCategory {
+                            subCategoryLine = "buketi_iz_roz", 
+                            subCategoryName = "Букеты из Роз", 
+                            Category = Categories["Букеты"]
                         },
                         new SubCategory { 
                             subCategoryLine = "sredstva_zaschiti_rasteniy", 
@@ -162,6 +229,61 @@ namespace TestWebAPI.Data
                             underSubCategoryLine = "rozi_isk", 
                             underSubCategoryName = "Розы искусственные", 
                             SubCategory = SubCategories["Искусственные цветы"] 
+                        },
+                        new UnderSubCategory { 
+                            underSubCategoryLine = "shari_lateks_bez_obr", 
+                            underSubCategoryName = "Шары латексные без обработки", 
+                            SubCategory = SubCategories["Шары из латекса"] 
+                        },
+                        new UnderSubCategory { 
+                            underSubCategoryLine = "shari_lateks_happy_birthday", 
+                            underSubCategoryName = "С днем рождения!", 
+                            SubCategory = SubCategories["Шары из латекса"] 
+                        },
+                        new UnderSubCategory { 
+                            underSubCategoryLine = "shari_lateks_prikol", 
+                            underSubCategoryName = "Прикольные", 
+                            SubCategory = SubCategories["Шары из латекса"] 
+                        },
+                        new UnderSubCategory { 
+                            underSubCategoryLine = "shari_folgirovanie_cifri", 
+                            underSubCategoryName = "Шары цифры", 
+                            SubCategory = SubCategories["Фольгированные шары"] 
+                        },
+                        new UnderSubCategory { 
+                            underSubCategoryLine = "shari_folgirovanie_hearts", 
+                            underSubCategoryName = "Шары в форме сердца", 
+                            SubCategory = SubCategories["Фольгированные шары"] 
+                        },
+                        new UnderSubCategory { 
+                            underSubCategoryLine = "shari_folgirovanie_stars", 
+                            underSubCategoryName = "Шары в форме звезды", 
+                            SubCategory = SubCategories["Фольгированные шары"] 
+                        },
+                        new UnderSubCategory { 
+                            underSubCategoryLine = "buketi_romashki", 
+                            underSubCategoryName = "Букеты из Ромашек", 
+                            SubCategory = SubCategories["Букеты из цветов"] 
+                        },
+                        new UnderSubCategory { 
+                            underSubCategoryLine = "buketi_hrizantem", 
+                            underSubCategoryName = "Букеты из Хризантем", 
+                            SubCategory = SubCategories["Букеты из цветов"] 
+                        },
+                        new UnderSubCategory { 
+                            underSubCategoryLine = "buketi_suhocvetov", 
+                            underSubCategoryName = "Букеты из Сухоцветов", 
+                            SubCategory = SubCategories["Букеты из цветов"] 
+                        },
+                        new UnderSubCategory { 
+                            underSubCategoryLine = "buketi_tulpani", 
+                            underSubCategoryName = "Букеты из Тюльпанов", 
+                            SubCategory = SubCategories["Букеты из цветов"] 
+                        },
+                        new UnderSubCategory { 
+                            underSubCategoryLine = "buketi_miks", 
+                            underSubCategoryName = "Микс букеты", 
+                            SubCategory = SubCategories["Букеты из цветов"] 
                         },
                         new UnderSubCategory { 
                             underSubCategoryLine = "bolshie_plastik_gorshki", 
