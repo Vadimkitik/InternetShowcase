@@ -21,10 +21,10 @@ namespace TestWebAPI.Data.Models
 
         public ICollection<Product> Products { get; set; }
         public ICollection<UnderSubCategory>? UnderSubCategories { get; set; }
-        public SubCategory()
-        {
-            Products = new List<Product>();
-            UnderSubCategories = new List<UnderSubCategory>();
-        }
+        //public SubCategory()
+        //{
+        //    Products = new List<Product>();
+        //    UnderSubCategories = new List<UnderSubCategory>();
+        //}
     }
 }

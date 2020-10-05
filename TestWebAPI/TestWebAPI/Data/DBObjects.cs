@@ -34,7 +34,7 @@ namespace TestWebAPI.Data
             }  
 
             if (!context.Products.Any()){
-                for(int i=0; i<=50; i++)
+                for(int i=0; i<=10; i++)
                 {
                     var rnd = new Random();
                     var priceRnd = rnd.Next(4, 15);
@@ -49,18 +49,7 @@ namespace TestWebAPI.Data
                                            $"{Cata.categoryName} -> " +
                                            $"{subCata.subCategoryName} -> " +
                                            $"{underSubCata.underSubCategoryName} :)";
-
-                    if ( i%3 == 0)
-                    {
-                        oldPriceRnd = 0;
-                        underSubCata = null;
-                        subCata = subCategory["Букеты из Роз"];
-                        Cata = subCata.Category;
-                        productName = subCategory["Букеты из Роз"].subCategoryName;
-                        descriptionString = $"Товар: {productName} находится в " +
-                                           $"{Cata.categoryName} -> " +
-                                           $"{subCata.subCategoryName} :)";
-                    }
+                   
                     var product = new Product
                     {
                         UnderSubCategory =  underSubCata,
@@ -284,6 +273,16 @@ namespace TestWebAPI.Data
                             underSubCategoryLine = "buketi_miks", 
                             underSubCategoryName = "Микс букеты", 
                             SubCategory = SubCategories["Букеты из цветов"] 
+                        },
+                        new UnderSubCategory {
+                            underSubCategoryLine = "buketi_roz_11",
+                            underSubCategoryName = "11 Роз",
+                            SubCategory = SubCategories["Букеты из Роз"]
+                        },
+                        new UnderSubCategory {
+                            underSubCategoryLine = "buketi_roz_101",
+                            underSubCategoryName = "101 Роза",
+                            SubCategory = SubCategories["Букеты из Роз"]
                         },
                         new UnderSubCategory { 
                             underSubCategoryLine = "bolshie_plastik_gorshki", 

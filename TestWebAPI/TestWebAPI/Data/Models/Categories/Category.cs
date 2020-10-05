@@ -19,10 +19,10 @@ namespace TestWebAPI.Data.Models
        
         public ICollection<SubCategory> SubCategories { get; set; }
 
-        public Category()
-        {
-            Products = new List<Product>();
-            SubCategories = new List<SubCategory>();
-        }
+        //public Category()
+        //{
+        //    Products = new List<Product>();
+        //    SubCategories = new List<SubCategory>();
+        //}
     }
 }

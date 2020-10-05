@@ -19,11 +19,13 @@ namespace TestWebAPI.Data.Repository
 
         public async Task<IEnumerable<Product>> GetAll()
         {
-            foreach (Product u in _context.Products.Include(c => c.Category)) ;
-            foreach (Category u in _context.Categories.Include(c => c.SubCategories)) ;
-            foreach (SubCategory u in _context.SubCategories.Include(c => c.UnderSubCategories)) ;
-
-            IEnumerable<Product> products = await _context.Products.Include(c => c.Category).ToListAsync();
+            IEnumerable<Product> products = await _context.Products.ToListAsync();
+            //foreach (Product product in products)
+            //{
+            //    product.Category = await _context.Categories.FindAsync(product.categoryID);
+            //    product.SubCategory = await _context.SubCategories.FindAsync(product.subcategoryID);
+            //    product.UnderSubCategory = await _context.UnderSubCategories.FindAsync(product.underSubcategoryID);
+            //}
             return products;
         }
        
