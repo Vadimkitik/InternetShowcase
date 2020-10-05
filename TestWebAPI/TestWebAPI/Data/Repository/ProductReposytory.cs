@@ -19,10 +19,11 @@ namespace TestWebAPI.Data.Repository
 
         public async Task<IEnumerable<Product>> GetAll()
         {
-            IEnumerable<Product> products = await _context.Products.Include(p => p.Category)
-                                                                   .ThenInclude(p => p.SubCategories)
-                                                                   .ThenInclude(p => p.UnderSubCategories)
-                                                                   .ToListAsync();
+            foreach (Product u in _context.Products.Include(c => c.Category)) ;
+            foreach (Category u in _context.Categories.Include(c => c.SubCategories)) ;
+            foreach (SubCategory u in _context.SubCategories.Include(c => c.UnderSubCategories)) ;
+
+            IEnumerable<Product> products = await _context.Products.Include(c => c.Category).ToListAsync();
             return products;
         }
        
@@ -32,9 +33,9 @@ namespace TestWebAPI.Data.Repository
             Product product = await _context.Products.SingleOrDefaultAsync(p => p.productLine == productLine);
 
             if (product != null ) {
-                _context.Products.Include(p => p.Category)
-                                 .ThenInclude(p => p.SubCategories)
-                                 .ThenInclude(p => p.UnderSubCategories);
+                product.Category = await _context.Categories.FindAsync(product.categoryID);
+                product.SubCategory = await _context.SubCategories.FindAsync(product.subcategoryID);
+                product.UnderSubCategory = await _context.UnderSubCategories.FindAsync(product.underSubcategoryID);
                 return product;                        
             }
             return product;
