@@ -10,7 +10,5 @@ namespace TestWebAPI.ViewModels
         public string categoryName { get; set; }
 
         public ICollection<ProductView> Products { get; set; }
-
-        public ICollection<SubCategoryView> SubCategories { get; set; }
     }
 }

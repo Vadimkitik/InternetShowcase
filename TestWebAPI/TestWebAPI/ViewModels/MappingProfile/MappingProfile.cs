@@ -12,12 +12,8 @@ namespace TestWebAPI.ViewModels.MappingProfile
        public MappingProfile()
         {
             CreateMap<Product, ProductView>();
-
             CreateMap<Category, CategoryView>();
-            CreateMap<SubCategory, SubCategoryView>();
-            CreateMap<UnderSubCategory, UnderSubCategoryView>();
             CreateMap<User, UserView>();
-
         }
     }
 }

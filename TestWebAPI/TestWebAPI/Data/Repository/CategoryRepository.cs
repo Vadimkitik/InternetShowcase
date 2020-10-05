@@ -17,9 +17,6 @@ namespace TestWebAPI.Data.Repository
 
         public async Task<IEnumerable<Category>> GetAll()
         {
-            foreach (Category u in _context.Categories.Include(c => c.SubCategories));
-            foreach (SubCategory u in _context.SubCategories.Include(c => c.UnderSubCategories));
-
             IEnumerable<Category> categories = await _context.Categories.ToListAsync();
             return categories;
         }

@@ -36,8 +36,6 @@ namespace TestWebAPI.Data.Repository
 
             if (product != null ) {
                 product.Category = await _context.Categories.FindAsync(product.categoryID);
-                product.SubCategory = await _context.SubCategories.FindAsync(product.subcategoryID);
-                product.UnderSubCategory = await _context.UnderSubCategories.FindAsync(product.underSubcategoryID);
                 return product;                        
             }
             return product;
