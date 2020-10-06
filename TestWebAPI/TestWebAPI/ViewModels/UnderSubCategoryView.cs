@@ -12,7 +12,7 @@ namespace TestWebAPI.ViewModels
 
         public int SubCategoryID { get; set; }
        
-        public CategoryView SubCategory { get; set; }
+        public SubCategoryView SubCategory { get; set; }
 
         public ICollection<ProductView> Products { get; set; }
     }
