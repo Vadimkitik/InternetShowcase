@@ -31,8 +31,6 @@ export class PanelComponent implements OnInit {
     'isFavourite',
     'available', 
     'category', 
-    'subCategory', 
-    'underSubCategory', 
     'button'
   ];
   expandedElement: Product | null;

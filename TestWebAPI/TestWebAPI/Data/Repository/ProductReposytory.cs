@@ -20,12 +20,6 @@ namespace TestWebAPI.Data.Repository
         public async Task<IEnumerable<Product>> GetAll()
         {
             IEnumerable<Product> products = await _context.Products.ToListAsync();
-            //foreach (Product product in products)
-            //{
-            //    product.Category = await _context.Categories.FindAsync(product.categoryID);
-            //    product.SubCategory = await _context.SubCategories.FindAsync(product.subcategoryID);
-            //    product.UnderSubCategory = await _context.UnderSubCategories.FindAsync(product.underSubcategoryID);
-            //}
             return products;
         }
        
@@ -33,11 +27,6 @@ namespace TestWebAPI.Data.Repository
         public async Task<Product> GetByLine(string productLine)
         {
             Product product = await _context.Products.SingleOrDefaultAsync(p => p.productLine == productLine);
-
-            if (product != null ) {
-                product.Category = await _context.Categories.FindAsync(product.categoryID);
-                return product;                        
-            }
             return product;
         }
         public async Task<Product> Create(Product product)
