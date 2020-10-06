@@ -11,14 +11,14 @@ namespace TestWebAPI.Migrations
                 name: "Categories",
                 columns: table => new
                 {
-                    id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    categoryLine = table.Column<string>(nullable: false),
-                    categoryName = table.Column<string>(nullable: false)
+                    CategoryLine = table.Column<string>(nullable: false),
+                    CategoryName = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Categories", x => x.id);
+                    table.PrimaryKey("PK_Categories", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -41,20 +41,20 @@ namespace TestWebAPI.Migrations
                 name: "SubCategories",
                 columns: table => new
                 {
-                    id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    subCategoryLine = table.Column<string>(nullable: false),
-                    subCategoryName = table.Column<string>(nullable: false),
-                    categoryID = table.Column<int>(nullable: false)
+                    SubCategoryLine = table.Column<string>(nullable: false),
+                    SubCategoryName = table.Column<string>(nullable: false),
+                    CategoryID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SubCategories", x => x.id);
+                    table.PrimaryKey("PK_SubCategories", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_SubCategories_Categories_categoryID",
-                        column: x => x.categoryID,
+                        name: "FK_SubCategories_Categories_CategoryID",
+                        column: x => x.CategoryID,
                         principalTable: "Categories",
-                        principalColumn: "id",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -62,20 +62,20 @@ namespace TestWebAPI.Migrations
                 name: "UnderSubCategories",
                 columns: table => new
                 {
-                    id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    underSubCategoryLine = table.Column<string>(nullable: false),
-                    underSubCategoryName = table.Column<string>(nullable: false),
-                    subCategoryID = table.Column<int>(nullable: false)
+                    UnderSubCategoryLine = table.Column<string>(nullable: false),
+                    UnderSubCategoryName = table.Column<string>(nullable: false),
+                    SubCategoryID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UnderSubCategories", x => x.id);
+                    table.PrimaryKey("PK_UnderSubCategories", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_UnderSubCategories_SubCategories_subCategoryID",
-                        column: x => x.subCategoryID,
+                        name: "FK_UnderSubCategories_SubCategories_SubCategoryID",
+                        column: x => x.SubCategoryID,
                         principalTable: "SubCategories",
-                        principalColumn: "id",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -88,62 +88,62 @@ namespace TestWebAPI.Migrations
                     productLine = table.Column<string>(nullable: false),
                     name = table.Column<string>(nullable: false),
                     description = table.Column<string>(nullable: false),
-                    price = table.Column<double>(nullable: false),
-                    oldPrice = table.Column<double>(nullable: true),
-                    imageUrl = table.Column<string>(nullable: false),
-                    isFavourite = table.Column<bool>(nullable: false),
-                    available = table.Column<bool>(nullable: false),
-                    categoryID = table.Column<int>(nullable: false),
-                    subcategoryID = table.Column<int>(nullable: true),
-                    underSubcategoryID = table.Column<int>(nullable: true)
+                    Price = table.Column<double>(nullable: false),
+                    OldPrice = table.Column<double>(nullable: true),
+                    ImageUrl = table.Column<string>(nullable: false),
+                    IsFavourite = table.Column<bool>(nullable: false),
+                    Available = table.Column<bool>(nullable: false),
+                    CategoryID = table.Column<int>(nullable: false),
+                    SubCategoryID = table.Column<int>(nullable: false),
+                    UnderSubCategoryID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Products", x => x.id);
                     table.ForeignKey(
-                        name: "FK_Products_Categories_categoryID",
-                        column: x => x.categoryID,
+                        name: "FK_Products_Categories_CategoryID",
+                        column: x => x.CategoryID,
                         principalTable: "Categories",
-                        principalColumn: "id",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Products_SubCategories_subcategoryID",
-                        column: x => x.subcategoryID,
+                        name: "FK_Products_SubCategories_SubCategoryID",
+                        column: x => x.SubCategoryID,
                         principalTable: "SubCategories",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Products_UnderSubCategories_underSubcategoryID",
-                        column: x => x.underSubcategoryID,
+                        name: "FK_Products_UnderSubCategories_UnderSubCategoryID",
+                        column: x => x.UnderSubCategoryID,
                         principalTable: "UnderSubCategories",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_categoryID",
+                name: "IX_Products_CategoryID",
                 table: "Products",
-                column: "categoryID");
+                column: "CategoryID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_subcategoryID",
+                name: "IX_Products_SubCategoryID",
                 table: "Products",
-                column: "subcategoryID");
+                column: "SubCategoryID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_underSubcategoryID",
+                name: "IX_Products_UnderSubCategoryID",
                 table: "Products",
-                column: "underSubcategoryID");
+                column: "UnderSubCategoryID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SubCategories_categoryID",
+                name: "IX_SubCategories_CategoryID",
                 table: "SubCategories",
-                column: "categoryID");
+                column: "CategoryID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UnderSubCategories_subCategoryID",
+                name: "IX_UnderSubCategories_SubCategoryID",
                 table: "UnderSubCategories",
-                column: "subCategoryID");
+                column: "SubCategoryID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

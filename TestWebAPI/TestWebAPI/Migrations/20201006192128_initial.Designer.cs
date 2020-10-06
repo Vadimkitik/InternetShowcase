@@ -9,7 +9,7 @@ using TestWebAPI.Data;
 namespace TestWebAPI.Migrations
 {
     [DbContext(typeof(TestDbContext))]
-    [Migration("20201001090123_initial")]
+    [Migration("20201006192128_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,19 +21,19 @@ namespace TestWebAPI.Migrations
 
             modelBuilder.Entity("TestWebAPI.Data.Models.Category", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("categoryLine")
+                    b.Property<string>("CategoryLine")
                         .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("categoryName")
+                    b.Property<string>("CategoryName")
                         .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.ToTable("Categories");
                 });
@@ -44,98 +44,98 @@ namespace TestWebAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<bool>("available")
+                    b.Property<bool>("Available")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<int>("categoryID")
+                    b.Property<int>("CategoryID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<bool>("IsFavourite")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<double?>("OldPrice")
+                        .HasColumnType("double");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("double");
+
+                    b.Property<int>("SubCategoryID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UnderSubCategoryID")
                         .HasColumnType("int");
 
                     b.Property<string>("description")
                         .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("imageUrl")
-                        .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<bool>("isFavourite")
-                        .HasColumnType("tinyint(1)");
-
                     b.Property<string>("name")
                         .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<double?>("oldPrice")
-                        .HasColumnType("double");
-
-                    b.Property<double>("price")
-                        .HasColumnType("double");
 
                     b.Property<string>("productLine")
                         .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<int?>("subcategoryID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("underSubcategoryID")
-                        .HasColumnType("int");
-
                     b.HasKey("id");
 
-                    b.HasIndex("categoryID");
+                    b.HasIndex("CategoryID");
 
-                    b.HasIndex("subcategoryID");
+                    b.HasIndex("SubCategoryID");
 
-                    b.HasIndex("underSubcategoryID");
+                    b.HasIndex("UnderSubCategoryID");
 
                     b.ToTable("Products");
                 });
 
             modelBuilder.Entity("TestWebAPI.Data.Models.SubCategory", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("categoryID")
+                    b.Property<int>("CategoryID")
                         .HasColumnType("int");
 
-                    b.Property<string>("subCategoryLine")
+                    b.Property<string>("SubCategoryLine")
                         .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("subCategoryName")
+                    b.Property<string>("SubCategoryName")
                         .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
-                    b.HasIndex("categoryID");
+                    b.HasIndex("CategoryID");
 
                     b.ToTable("SubCategories");
                 });
 
             modelBuilder.Entity("TestWebAPI.Data.Models.UnderSubCategory", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("subCategoryID")
+                    b.Property<int>("SubCategoryID")
                         .HasColumnType("int");
 
-                    b.Property<string>("underSubCategoryLine")
+                    b.Property<string>("UnderSubCategoryLine")
                         .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("underSubCategoryName")
+                    b.Property<string>("UnderSubCategoryName")
                         .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
-                    b.HasIndex("subCategoryID");
+                    b.HasIndex("SubCategoryID");
 
                     b.ToTable("UnderSubCategories");
                 });
@@ -171,24 +171,28 @@ namespace TestWebAPI.Migrations
                 {
                     b.HasOne("TestWebAPI.Data.Models.Category", "Category")
                         .WithMany("Products")
-                        .HasForeignKey("categoryID")
+                        .HasForeignKey("CategoryID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("TestWebAPI.Data.Models.SubCategory", "SubCategory")
                         .WithMany("Products")
-                        .HasForeignKey("subcategoryID");
+                        .HasForeignKey("SubCategoryID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("TestWebAPI.Data.Models.UnderSubCategory", "UnderSubCategory")
                         .WithMany("Products")
-                        .HasForeignKey("underSubcategoryID");
+                        .HasForeignKey("UnderSubCategoryID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("TestWebAPI.Data.Models.SubCategory", b =>
                 {
                     b.HasOne("TestWebAPI.Data.Models.Category", "Category")
                         .WithMany("SubCategories")
-                        .HasForeignKey("categoryID")
+                        .HasForeignKey("CategoryID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -197,7 +201,7 @@ namespace TestWebAPI.Migrations
                 {
                     b.HasOne("TestWebAPI.Data.Models.SubCategory", "SubCategory")
                         .WithMany("UnderSubCategories")
-                        .HasForeignKey("subCategoryID")
+                        .HasForeignKey("SubCategoryID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

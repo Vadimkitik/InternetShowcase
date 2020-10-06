@@ -35,6 +35,8 @@ namespace TestWebAPI
             services.AddAutoMapper(typeof(MappingProfile));
             services.AddTransient<IAllProducts, ProductReposytory>();
             services.AddTransient<IRepository<Category>, CategoryRepository>();
+            services.AddTransient<IRepository<SubCategory>, SubCatRepository>();
+            services.AddTransient<IRepository<UnderSubCategory>, UndSubCatRepository>();
             services.AddTransient<IRepository<User>, UserRepository>();
 
             string connectionString = "server=localhost;UserId=root;Password=1z2x3cQQ;database=TestDbCat;CharSet=utf8;Persist Security Info=True";

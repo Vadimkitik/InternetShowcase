@@ -9,19 +9,20 @@ namespace TestWebAPI.Data.Models
     public class Category
     {
         [Key]
-        public int id { get; set; }
+        public int Id { get; set; }
         [Required]
-        public string categoryLine { get; set; }
+        public string CategoryLine { get; set; }
         [Required]
-        public string categoryName { get; set; }
-        [Required]
-        public int parentId { get; set; }
+        public string CategoryName { get; set; }
 
         public ICollection<Product> Products { get; set; }
+        public ICollection<SubCategory> SubCategories { get; set; }
+
 
         public Category()
         {
             Products = new List<Product>();
+            SubCategories = new List<SubCategory>();
         }
     }
 }

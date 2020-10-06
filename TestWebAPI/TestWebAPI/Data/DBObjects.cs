@@ -19,37 +19,16 @@ namespace TestWebAPI.Data
             if (!context.Categories.Any()){
                 context.Categories.AddRange(Categories.Select(c => c.Value));
                 context.SaveChanges();
-            }    
-
-            if (!context.Products.Any()){
-                for(int i=0; i<=10; i++)
-                {
-                    var rnd = new Random();
-                    var priceRnd = rnd.Next(4, 15);
-                    var oldPriceRnd = rnd.Next(15, 30);
-                    var imageRnd = rnd.Next(1,4);
-                    var catRnd = rnd.Next(0, catList.Length);
-                    var Cata = category[catList[catRnd]];
-                    var productName = catList[catRnd];
-                    var descriptionString = $"Товар: {productName} находится в " +
-                                           $"{Cata.categoryName} ";
-                   
-                    var product = new Product
-                    {
-                        name = productName,
-                        productLine = "cvetok_" + i,
-                        price = priceRnd,
-                        oldPrice = oldPriceRnd,
-                        description = descriptionString,
-                        imageUrl = $"https://localhost:5001/Resources/images/product-{imageRnd}.jpg",
-                        available = true,
-                        isFavourite = true,
-                        Category = Cata
-                    };
-                    context.Add(product);
-                    context.SaveChanges();
-                }
-                
+            }
+            if (!context.SubCategories.Any())
+            {
+                context.SubCategories.AddRange(SubCategories.Select(c => c.Value));
+                context.SaveChanges();
+            }
+            if (!context.UnderSubCategories.Any())
+            {
+                context.UnderSubCategories.AddRange(UnderSubCategories.Select(c => c.Value));
+                context.SaveChanges();
             }
         }
         
@@ -64,268 +43,308 @@ namespace TestWebAPI.Data
                     var list = new Category[]
                     {
                         new Category { 
-                            categoryLine = "cveti", 
-                            categoryName = "Цветы" , 
-                            parentId = 0
+                            CategoryLine = "cveti", 
+                            CategoryName = "Цветы" 
+                        },
+                        new Category {
+                            CategoryLine = "buketi",
+                            CategoryName = "Букеты"
+                        },
+                        new Category {
+                            CategoryLine = "shari", 
+                            CategoryName = "Шары"
                         },
                         new Category { 
-                            categoryLine = "buketi", 
-                            categoryName = "Букеты", 
-                            parentId = 0
-                        },
-                        new Category { 
-                            categoryLine = "shari", 
-                            categoryName = "Шары", 
-                            parentId = 0
-                        },
-                        new Category { 
-                            categoryLine = "udobrenie", 
-                            categoryName = "Удобрения", 
-                            parentId = 0 
+                            CategoryLine = "udobrenie", 
+                            CategoryName = "Удобрения"
                         },                        
                         new Category { 
-                            categoryLine = "gorshki", 
-                            categoryName = "Горшки", 
-                            parentId = 0 
+                            CategoryLine = "gorshki", 
+                            CategoryName = "Горшки"
                         },
                         new Category { 
-                            categoryLine = "izdelia_iz_dereva", 
-                            categoryName = "Изделия из дерева",
-                            parentId = 0
-                        },
-                        new Category {
-                            categoryLine = "iskusstvennie_cveti",
-                            categoryName = "Искусственные цветы",
-                            parentId = 1
-                        },
-                        new Category {
-                            categoryLine = "jivie_cveti",
-                            categoryName = "Живые цветы",
-                            parentId = 1
-                        },
-
-                        new Category {
-                            categoryLine = "gorshki_plastikovie",
-                            categoryName = "Горшки для цветов пластиковые",
-                            parentId = 1
-                        },
-                        new Category {
-                            categoryLine = "gorshki_keramik",
-                            categoryName = "Горшки для цветов керамические",
-                            parentId = 1
-                        },
-                        new Category {
-                            categoryLine = "shari_lateks",
-                            categoryName = "Шары из латекса",
-                            parentId = 1
-                        },
-                        new Category {
-                            categoryLine = "shari_folgirovanie",
-                            categoryName = "Фольгированные шары",
-                            parentId = 1
-                        },
-                        new Category {
-                            categoryLine = "buketi_iz_cvetov",
-                            categoryName = "Букеты из цветов",
-                            parentId = 1
-                        },
-                        new Category {
-                            categoryLine = "buketi_iz_roz",
-                            categoryName = "Букеты из Роз",
-                            parentId = 1
-                        },
-                        new Category {
-                            categoryLine = "sredstva_zaschiti_rasteniy",
-                            categoryName = "Средства защиты растений",
-                            parentId = 1
-                        },
-                        new Category {
-                            categoryLine = "grunt",
-                            categoryName = "Грунт",
-                            parentId = 1
-                        },
-                        new Category {
-                            categoryLine = "yaschiki",
-                            categoryName = "Ящики",
-                            parentId = 1
-                        },
-                        new Category {
-                            categoryLine = "dekorativnie_izdeliya",
-                            categoryName = "Декоративные изделия",
-                            parentId = 1
-                        },
-                        new Category {
-                            categoryLine = "rozi",
-                            categoryName = "Розы",
-                            parentId = 2
-                        },
-                        new Category {
-                            categoryLine = "tulpani",
-                            categoryName = "Тюльпаны",
-                            parentId = 2
-                        },
-                        new Category {
-                            categoryLine = "hrizantemi",
-                            categoryName = "Хризантемы",
-                            parentId = 2
-                        },
-                        new Category {
-                            categoryLine = "venki_isk",
-                            categoryName = "Венки искусственные",
-                            parentId = 2
-                        },
-                        new Category {
-                            categoryLine = "rozi_isk",
-                            categoryName = "Розы искусственные",
-                            parentId = 2
-                        },
-                        new Category {
-                            categoryLine = "shari_lateks_bez_obr",
-                            categoryName = "Шары латексные без обработки",
-                            parentId = 2
-                        },
-                        new Category {
-                            categoryLine = "shari_lateks_happy_birthday",
-                            categoryName = "С днем рождения!",
-                            parentId = 2
-                        },
-                        new Category {
-                            categoryLine = "shari_lateks_prikol",
-                            categoryName = "Прикольные",
-                            parentId = 2
-                        },
-                        new Category {
-                            categoryLine = "shari_folgirovanie_cifri",
-                            categoryName = "Шары цифры",
-                            parentId = 2
-                        },
-                        new Category {
-                            categoryLine = "shari_folgirovanie_hearts",
-                            categoryName = "Шары в форме сердца",
-                            parentId = 2
-                        },
-                        new Category {
-                            categoryLine = "shari_folgirovanie_stars",
-                            categoryName = "Шары в форме звезды",
-                            parentId = 2
-                        },
-                        new Category {
-                            categoryLine = "buketi_romashki",
-                            categoryName = "Букеты из Ромашек",
-                            parentId = 2
-                        },
-                        new Category {
-                            categoryLine = "buketi_hrizantem",
-                            categoryName = "Букеты из Хризантем",
-                            parentId = 2
-                        },
-                        new Category {
-                            categoryLine = "buketi_suhocvetov",
-                            categoryName = "Букеты из Сухоцветов",
-                            parentId = 2
-                        },
-                        new Category {
-                            categoryLine = "buketi_tulpani",
-                            categoryName = "Букеты из Тюльпанов",
-                            parentId = 1
-                        },
-                        new Category {
-                            categoryLine = "buketi_miks",
-                            categoryName = "Микс букеты",
-                            parentId = 2
-                        },
-                        new Category {
-                            categoryLine = "buketi_roz_11",
-                            categoryName = "11 Роз",
-                            parentId = 2
-                        },
-                        new Category {
-                            categoryLine = "buketi_roz_101",
-                            categoryName = "101 Роза",
-                            parentId = 2
-                        },
-                        new Category {
-                            categoryLine = "bolshie_plastik_gorshki",
-                            categoryName = "Большие пластиковые горшки для цветов",
-                            parentId = 2
-                        },
-                        new Category {
-                            categoryLine = "balkonie_plastik_gorshki",
-                            categoryName = "Балконные пластиковые горшки для цветов",
-                            parentId = 2
-                        },
-                        new Category {
-                            categoryLine = "podvesnie_plastik_gorshki",
-                            categoryName = "Подвесные пластиковые горшки для цветов",
-                            parentId = 2
-                        },
-                        new Category {
-                            categoryLine = "bolshie_keramik_gorshki",
-                            categoryName = "Большие керамические горшки для цветов",
-                            parentId = 2
-                        },
-                        new Category {
-                            categoryLine = "kvadrat_keramik_gorshki",
-                            categoryName = "Квадратные керамические горшки для цветов",
-                            parentId = 2
-                        },
-                        new Category {
-                            categoryLine = "kruglie_keramik_gorshki",
-                            categoryName = "Круглые керамические горшки для цветов",
-                            parentId = 2
-                        },
-                        new Category {
-                            categoryLine = "udobreniya_dlya_arhidet",
-                            categoryName = "Удобрения для архидей",
-                            parentId = 2
-                        },
-                        new Category {
-                            categoryLine = "zaschita_ot_vrediteley",
-                            categoryName = "Защита от вредителей",
-                            parentId = 2
-                        },
-                        new Category {
-                            categoryLine = "ukrasheniya",
-                            categoryName = "Украшения",
-                            parentId = 2
-                        },
-                        new Category {
-                            categoryLine = "yaschiki_dlya_cvetov",
-                            categoryName = "Ящики для цветов",
-                            parentId = 2
-                        },
-                        new Category {
-                            categoryLine = "kuriniy_pomet",
-                            categoryName = "Куриный помет",
-                            parentId = 2
-                        },
-                        new Category {
-                            categoryLine = "grunt_flora",
-                            categoryName = "Грунт флора",
-                            parentId = 2
-                        },
-                         new Category {
-                            categoryLine = "dekor_telega",
-                            categoryName = "Декоративые телеги",
-                            parentId = 2
-                        },
-                          new Category {
-                            categoryLine = "dekor_kolodec",
-                            categoryName = "Декоративный колодец",
-                            parentId = 2
+                            CategoryLine = "izdelia_iz_dereva", 
+                            CategoryName = "Изделия из дерева"
                         }
                     };
 
                     category = new Dictionary<string, Category>();
                     foreach (Category el in list)
                     {
-                        category.Add(el.categoryName, el);
-                        catList = CreateArrString(el.categoryName, catList);
+                        category.Add(el.CategoryName, el);
+                        catList = CreateArrString(el.CategoryName, catList);
                     }
                 }
                 return category;
             }
         }
+
+        private static string[] subCatList;
+        private static Dictionary<string, SubCategory> subCategory;
+        public static Dictionary<string, SubCategory> SubCategories
+        {
+            get
+            {
+                if (subCategory == null)
+                {
+                    var list = new SubCategory[]
+                    {
+                        new SubCategory {
+                            SubCategoryLine = "iskusstvennie_cveti",
+                            SubCategoryName = "Искусственные цветы",
+                            Category = category["Цветы"]
+                        },
+                        new SubCategory {
+                            SubCategoryLine = "jivie_cveti",
+                            SubCategoryName = "Живые цветы",
+                            Category = category["Цветы"]
+                        },                        
+                        new SubCategory {
+                            SubCategoryLine = "gorshki_plastikovie",
+                            SubCategoryName = "Горшки для цветов пластиковые",
+                            Category = category["Горшки"]
+                        },
+                        new SubCategory {
+                            SubCategoryLine = "gorshki_keramik",
+                            SubCategoryName = "Горшки для цветов керамические",
+                            Category = category["Горшки"]
+                        },
+                        new SubCategory {
+                            SubCategoryLine = "shari_lateks",
+                            SubCategoryName = "Шары из латекса",
+                            Category = category["Шары"]
+                        },
+                        new SubCategory {
+                            SubCategoryLine = "shari_folgirovanie",
+                            SubCategoryName = "Фольгированные шары",
+                            Category = category["Шары"]
+                        },
+                        new SubCategory {
+                            SubCategoryLine = "buketi_iz_cvetov",
+                            SubCategoryName = "Букеты из цветов",
+                            Category = category["Букеты"]
+                        },
+                        new SubCategory {
+                            SubCategoryLine = "buketi_iz_roz",
+                            SubCategoryName = "Букеты из Роз",
+                            Category = category["Букеты"]
+                        },
+                        new SubCategory {
+                            SubCategoryLine = "sredstva_zaschiti_rasteniy",
+                            SubCategoryName = "Средства защиты растений",
+                            Category = category["Удобрения"]
+                        },
+                        new SubCategory {
+                            SubCategoryLine = "grunt",
+                            SubCategoryName = "Грунт",
+                            Category = category["Удобрения"]
+                        },
+                        new SubCategory {
+                            SubCategoryLine = "yaschiki",
+                            SubCategoryName = "Ящики",
+                            Category = category["Изделия из дерева"]
+                        },
+                        new SubCategory {
+                            SubCategoryLine = "dekorativnie_izdeliya",
+                            SubCategoryName = "Декоративные изделия",
+                            Category = category["Изделия из дерева"]
+                        }
+                    };
+
+                    subCategory = new Dictionary<string, SubCategory>();
+                    foreach (SubCategory el in list)
+                    {
+                        subCategory.Add(el.SubCategoryName, el);
+                        subCatList = CreateArrString(el.SubCategoryName, subCatList);
+                    }
+                }
+                return subCategory;
+            }
+        }
+
+        private static string[] underSubCatList;
+        private static Dictionary<string, UnderSubCategory> underSubCategory;
+        public static Dictionary<string, UnderSubCategory> UnderSubCategories
+        {
+            get
+            {
+                if (underSubCategory == null)
+                {
+                    var list = new UnderSubCategory[]
+                    {
+                        new UnderSubCategory {
+                            UnderSubCategoryLine = "rozi",
+                            UnderSubCategoryName = "Розы",
+                            SubCategory = subCategory["Живые цветы"]
+                        },
+                        new UnderSubCategory {
+                            UnderSubCategoryLine = "tulpani",
+                            UnderSubCategoryName = "Тюльпаны",
+                            SubCategory = subCategory["Живые цветы"]
+                        },
+                        new UnderSubCategory {
+                            UnderSubCategoryLine = "hrizantemi",
+                            UnderSubCategoryName = "Хризантемы",
+                            SubCategory = subCategory["Живые цветы"]
+                        },
+                        new UnderSubCategory {
+                            UnderSubCategoryLine = "venki_isk",
+                            UnderSubCategoryName = "Венки искусственные",
+                            SubCategory = subCategory["Искусственные цветы"]
+                        },
+                        new UnderSubCategory {
+                            UnderSubCategoryLine = "rozi_isk",
+                            UnderSubCategoryName = "Розы искусственные",
+                            SubCategory = subCategory["Искусственные цветы"]
+                        },
+                        new UnderSubCategory {
+                            UnderSubCategoryLine = "shari_lateks_bez_obr",
+                            UnderSubCategoryName = "Шары латексные без обработки",
+                            SubCategory = subCategory["Шары из латекса"]
+                        },
+                        new UnderSubCategory {
+                            UnderSubCategoryLine = "shari_lateks_happy_birthday",
+                            UnderSubCategoryName = "С днем рождения!",
+                            SubCategory = subCategory["Шары из латекса"]
+                        },
+                        new UnderSubCategory {
+                            UnderSubCategoryLine = "shari_lateks_prikol",
+                            UnderSubCategoryName = "Прикольные",
+                            SubCategory = subCategory["Шары из латекса"]
+                        },
+                        new UnderSubCategory {
+                            UnderSubCategoryLine = "shari_folgirovanie_cifri",
+                            UnderSubCategoryName = "Шары цифры",
+                            SubCategory = subCategory["Фольгированные шары"]
+                        },
+                        new UnderSubCategory {
+                            UnderSubCategoryLine = "shari_folgirovanie_hearts",
+                            UnderSubCategoryName = "Шары в форме сердца",
+                            SubCategory = subCategory["Фольгированные шары"]
+                        },
+                        new UnderSubCategory {
+                            UnderSubCategoryLine = "shari_folgirovanie_stars",
+                            UnderSubCategoryName = "Шары в форме звезды",
+                            SubCategory = subCategory["Фольгированные шары"]
+                        },
+                        new UnderSubCategory {
+                            UnderSubCategoryLine = "buketi_romashki",
+                            UnderSubCategoryName = "Букеты из Ромашек",
+                            SubCategory = subCategory["Букеты из цветов"]
+                        },
+                        new UnderSubCategory {
+                            UnderSubCategoryLine = "buketi_hrizantem",
+                            UnderSubCategoryName = "Букеты из Хризантем",
+                            SubCategory = subCategory["Букеты из цветов"]
+                        },
+                        new UnderSubCategory {
+                            UnderSubCategoryLine = "buketi_suhocvetov",
+                            UnderSubCategoryName = "Букеты из Сухоцветов",
+                            SubCategory = subCategory["Букеты из цветов"]
+                        },
+                        new UnderSubCategory {
+                            UnderSubCategoryLine = "buketi_tulpani",
+                            UnderSubCategoryName = "Букеты из Тюльпанов",
+                            SubCategory = subCategory["Букеты из цветов"]
+                        },
+                        new UnderSubCategory {
+                            UnderSubCategoryLine = "buketi_miks",
+                            UnderSubCategoryName = "Микс букеты",
+                            SubCategory = subCategory["Букеты из цветов"]
+                        },
+                        new UnderSubCategory {
+                            UnderSubCategoryLine = "buketi_roz_11",
+                            UnderSubCategoryName = "11 Роз",
+                            SubCategory = subCategory["Букеты из Роз"]
+                        },
+                        new UnderSubCategory {
+                            UnderSubCategoryLine = "buketi_roz_101",
+                            UnderSubCategoryName = "101 Роза",
+                            SubCategory = subCategory["Букеты из Роз"]
+                        },
+                        new UnderSubCategory {
+                            UnderSubCategoryLine = "bolshie_plastik_gorshki",
+                            UnderSubCategoryName = "Большие пластиковые горшки для цветов",
+                            SubCategory = subCategory["Горшки для цветов пластиковые"]
+                        },
+                        new UnderSubCategory {
+                            UnderSubCategoryLine = "balkonie_plastik_gorshki",
+                            UnderSubCategoryName = "Балконные пластиковые горшки для цветов",
+                            SubCategory = subCategory["Горшки для цветов пластиковые"]
+                        },
+                        new UnderSubCategory {
+                            UnderSubCategoryLine = "podvesnie_plastik_gorshki",
+                            UnderSubCategoryName = "Подвесные пластиковые горшки для цветов",
+                            SubCategory = subCategory["Горшки для цветов пластиковые"]
+                        },
+                        new UnderSubCategory {
+                            UnderSubCategoryLine = "bolshie_keramik_gorshki",
+                            UnderSubCategoryName = "Большие керамические горшки для цветов",
+                            SubCategory = subCategory["Горшки для цветов керамические"]
+                        },
+                        new UnderSubCategory {
+                            UnderSubCategoryLine = "kvadrat_keramik_gorshki",
+                            UnderSubCategoryName = "Квадратные керамические горшки для цветов",
+                            SubCategory = subCategory["Горшки для цветов керамические"]
+                        },
+                        new UnderSubCategory {
+                            UnderSubCategoryLine = "kruglie_keramik_gorshki",
+                            UnderSubCategoryName = "Круглые керамические горшки для цветов",
+                            SubCategory = subCategory["Горшки для цветов керамические"]
+                        },
+                        new UnderSubCategory {
+                            UnderSubCategoryLine = "udobreniya_dlya_arhidet",
+                            UnderSubCategoryName = "Удобрения для архидей",
+                            SubCategory = subCategory["Средства защиты растений"]
+                        },
+                        new UnderSubCategory {
+                            UnderSubCategoryLine = "zaschita_ot_vrediteley",
+                            UnderSubCategoryName = "Защита от вредителей",
+                            SubCategory = subCategory["Средства защиты растений"]
+                        },
+                        new UnderSubCategory {
+                            UnderSubCategoryLine = "kuriniy_pomet",
+                            UnderSubCategoryName = "Куриный помет",
+                            SubCategory = subCategory["Грунт"]
+                        },
+                        new UnderSubCategory {
+                            UnderSubCategoryLine = "grunt_flora",
+                            UnderSubCategoryName = "Грунт флора",
+                            SubCategory = subCategory["Грунт"]
+                        },
+                        new UnderSubCategory {
+                            UnderSubCategoryLine = "yaschiki_dlya_cvetov",
+                            UnderSubCategoryName = "Ящики для цветов",
+                            SubCategory = subCategory["Ящики"]
+                        },
+                        new UnderSubCategory {
+                            UnderSubCategoryLine = "ukrasheniya",
+                            UnderSubCategoryName = "Украшения",
+                            SubCategory = subCategory["Декоративные изделия"]
+                        },
+                         new UnderSubCategory {
+                            UnderSubCategoryLine = "dekor_telega",
+                            UnderSubCategoryName = "Декоративые телеги",
+                            SubCategory = subCategory["Декоративные изделия"]
+                        },
+                          new UnderSubCategory {
+                            UnderSubCategoryLine = "dekor_kolodec",
+                            UnderSubCategoryName = "Декоративный колодец",
+                            SubCategory = subCategory["Декоративные изделия"]
+                        }
+                    };
+
+                    underSubCategory = new Dictionary<string, UnderSubCategory>();
+                    foreach (UnderSubCategory el in list)
+                    {
+                        underSubCategory.Add(el.UnderSubCategoryName, el);
+                        underSubCatList = CreateArrString(el.UnderSubCategoryName, underSubCatList);
+                    }
+                }
+                return underSubCategory;
+            }
+        }
+
 
         private static string[] CreateArrString(string s, string[] mainArray)
         {

@@ -26,7 +26,7 @@ namespace TestWebAPI.Data.Repository
 
         public async Task<Product> GetByLine(string productLine)
         {
-            Product product = await _context.Products.SingleOrDefaultAsync(p => p.productLine == productLine);
+            Product product = await _context.Products.SingleOrDefaultAsync(p => p.ProductLine == productLine);
             return product;
         }
         public async Task<Product> Create(Product product)
@@ -49,7 +49,7 @@ namespace TestWebAPI.Data.Repository
 
         public async Task<bool> Delete(int id)
         {
-            var product = await _context.Products.FirstOrDefaultAsync(p => p.id == id);
+            var product = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
             if (product != null)
             {
                 _context.Products.Remove(product);
@@ -60,9 +60,9 @@ namespace TestWebAPI.Data.Repository
         }
 
 
-        public IEnumerable<Product> getFavProducts => _context.Products.Where(p => p.isFavourite == true).Include(c => c.Category);
+        public IEnumerable<Product> getFavProducts => _context.Products.Where(p => p.IsFavourite == true).Include(c => c.Category);
 
-        public Product getObjproduct(int productId) => _context.Products.FirstOrDefault(p => p.id == productId);
+        public Product getObjproduct(int productId) => _context.Products.FirstOrDefault(p => p.Id == productId);
     }
 
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using TestWebAPI.Data.Models;
 
 namespace TestWebAPI.ViewModels.MappingProfile
@@ -13,6 +9,8 @@ namespace TestWebAPI.ViewModels.MappingProfile
         {
             CreateMap<Product, ProductView>();
             CreateMap<Category, CategoryView>();
+            CreateMap<SubCategory, SubCategoryView>();
+            CreateMap<UnderSubCategory, UnderSubCategoryView>();
             CreateMap<User, UserView>();
         }
     }

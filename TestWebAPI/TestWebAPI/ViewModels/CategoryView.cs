@@ -4,11 +4,12 @@ namespace TestWebAPI.ViewModels
 {
     public class CategoryView
     {
-        public int id { get; set; }
-        public string categoryLine { get; set; }
+        public int Id { get; set; }
+        public string CategoryLine { get; set; }
 
-        public string categoryName { get; set; }
+        public string CategoryName { get; set; }
 
         public ICollection<ProductView> Products { get; set; }
+        public ICollection<SubCategoryView> SubCategories { get; set; }
     }
 }

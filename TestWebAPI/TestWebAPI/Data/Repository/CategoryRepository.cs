@@ -24,7 +24,7 @@ namespace TestWebAPI.Data.Repository
         public async Task<Category> GetByType(string categoryLine)
         {
             foreach (Category u in _context.Categories.Include(p => p.Products)) ;
-            Category _category = await _context.Categories.SingleOrDefaultAsync(s => s.categoryLine == categoryLine);
+            Category _category = await _context.Categories.SingleOrDefaultAsync(s => s.CategoryLine == categoryLine);
           
             return _category;
         }
@@ -55,7 +55,7 @@ namespace TestWebAPI.Data.Repository
         public async Task<bool> Update(int id, Category category)
         {
             
-            if (id != category.id)
+            if (id != category.Id)
             {
                 return false;
             }
