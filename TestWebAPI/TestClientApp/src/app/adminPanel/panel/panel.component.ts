@@ -7,6 +7,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Product } from 'src/app/shared/models/product.model';
 import { ProductService } from 'src/app/shared/services/product.service';
 import { UploadService } from 'src/app/shared/services/upload.service';
+import { Category } from 'src/app/shared/models/category.model';
+import { CategoryService } from 'src/app/shared/services/category.service';
 
 @Component({
   selector: 'panel',
@@ -30,18 +32,19 @@ export class PanelComponent implements OnInit {
     'oldPrice', 
     'isFavourite',
     'available', 
-    'category', 
     'button'
   ];
   expandedElement: Product | null;
   errorMsg: string;
+  categories: Category;
   
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   constructor(
     private productService: ProductService,
-    private uploadService: UploadService
+    private uploadService: UploadService,
+    private categoryService: CategoryService
   ) { }
 
   ngOnInit() {

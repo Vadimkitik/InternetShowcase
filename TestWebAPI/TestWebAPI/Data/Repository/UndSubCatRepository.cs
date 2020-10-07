@@ -25,8 +25,8 @@ namespace TestWebAPI.Data.Repository
 
         public async Task<UnderSubCategory> GetByType(string underSubCategoryLine)
         {
+            foreach (UnderSubCategory u in _context.UnderSubCategories.Include(p => p.Products)) ;
             UnderSubCategory udnerSubCategory = await _context.UnderSubCategories.SingleOrDefaultAsync(s => s.UnderSubCategoryLine == underSubCategoryLine);
-
             return udnerSubCategory;
         }
 
