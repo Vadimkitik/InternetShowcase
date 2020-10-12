@@ -463,7 +463,8 @@ PRODUCT DESCRIPTION
 }
 .product__image img:focus, 
 .product__image img:focus ~ * { 
-    pointer-events: none; 
+    pointer-events: all;
+    cursor: default;
 }
 
 
@@ -729,6 +730,10 @@ FOOTER
 @media (max-width: 1205px) {
     .logo {
         right: 38%;
+    }
+    .card__button_nal {
+        margin: 10px 6%;
+        width: 160px;
     }
 }
 @media (max-width: 995px) {
