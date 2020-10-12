@@ -349,11 +349,16 @@ CARD
 .card__image img {
     max-width: 100%;
 }
-.card__title {    
+.card__title {
+    margin-bottom: 5px;
+    text-decoration: none;
     color: #222;
     font-size: 18px;
     font-weight: 600;
-    margin-bottom: 5px;
+}
+.card__title:hover {
+    color: #f3388f;    
+    text-decoration: none; 
 }
 
 .card__price {
@@ -372,6 +377,8 @@ CARD
     top: 0;
     left: 0;
     position: absolute;
+    font-size: 30px;
+    color: #f3388f;
     background-color: rgba(0, 0, 0, 0.4);
     width: 100%;
     height: 100%;
@@ -382,12 +389,15 @@ CARD
     transition: all 0.18s ease-in;
 }
 .card__hover:hover {
-    opacity: 1;
+    opacity: 0.5;
+    color: #fff;
+    text-decoration: none;
 }
 
 .card__button {
     font-family: 'Mulish', sans-serif;
     background-color: #f3388f;
+    font-weight: 300;
     color: #ffffff;
     font-size: 14px;
     padding-top: 13px;
@@ -402,8 +412,10 @@ CARD
     margin-bottom: 12px;      
 }
 .card__button_nal {
+    margin: 10px 6%;
     padding-top: 12px;
-    width: 153px;
+    width: 200px;
+    display: block;
 }
 .card__button:hover {
     color: #ffffff;
