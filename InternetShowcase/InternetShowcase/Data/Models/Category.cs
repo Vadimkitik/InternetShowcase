@@ -12,10 +12,13 @@ namespace InternetShowcase.Data.Models
         [Required]
         public string categoryName { get; set; }
 
-        public ICollection<Product> Products { get; set; }
-        public Category()
-        {
-            Products = new List<Product>();
-        }
+        public int Parent_id { get; set; }
+
+
+        // public ICollection<Product> Products { get; set; }
+        // public Category()
+        // {
+        //     Products = new List<Product>();
+        // }
     }
 }
