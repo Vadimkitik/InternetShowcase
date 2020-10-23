@@ -1,6 +1,7 @@
 using AutoMapper;
 using InternetShowcase.Data;
 using InternetShowcase.Data.interfaces;
+using InternetShowcase.Data.Models;
 using InternetShowcase.Data.Repository;
 using InternetShowcase.ViewModels.MappingProfile;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -36,10 +37,13 @@ namespace InternetShowcase
         {
             services.AddAutoMapper(typeof(MappingProfile));
             services.AddTransient<IAllProducts, ProductReposytory>();
-            services.AddTransient<ICategories, CategoryRepository>();
+            services.AddTransient<IRepository<Category>, CategoryRepository>();
+            services.AddTransient<IRepository<SubCategory>, SubCatRepository>();
+            services.AddTransient<IRepository<UnderSubCategory>, UndSubCatRepository>();
+            services.AddTransient<IRepository<User>, UserRepository>();
 
             string connectionString = "server=localhost;UserId=root;Password=1z2x3cQQ;database=ShowCase;CharSet=utf8;Persist Security Info=True";
-            services.AddDbContext<ShowcaseDbContent>(options => options
+            services.AddDbContext<ShowcaseDbContext>(options => options
                    .UseMySql(connectionString));
 
             //
@@ -110,7 +114,7 @@ namespace InternetShowcase
 
             using(var scope = app.ApplicationServices.CreateScope())
             {
-                ShowcaseDbContent content = scope.ServiceProvider.GetRequiredService<ShowcaseDbContent>();
+                ShowcaseDbContext content = scope.ServiceProvider.GetRequiredService<ShowcaseDbContext>();
                 DBObjects.initial(content);
             }
             

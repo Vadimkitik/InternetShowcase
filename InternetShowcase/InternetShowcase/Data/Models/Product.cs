@@ -6,26 +6,35 @@ namespace InternetShowcase.Data.Models
     public class Product
     {
         [Key]
-        public int id { get; set; }
+        public int Id { get; set; }
         [Required]
-        public string productLine { get; set; }
+        public string ProductLine { get; set; }
         [Required]
-        public string name { get; set; }  
+        public string Name { get; set; }
         [Required]
-        public string description { get; set; }
+        public string Description { get; set; }
         [Required]
-        public double price { get; set; }
+        public double Price { get; set; }
 
-        public double? oldPrice { get; set; }
+        public double? OldPrice { get; set; }
         [Required]
-        public string imageUrl { get; set; }
+        public string ImageUrl { get; set; }
         [Required]
-        public bool isFavourite { get; set; }
+        public bool IsFavourite { get; set; }
         [Required]
-        public bool available { get; set; }
+        public bool Available { get; set; }
+
         [Required]
-        public int categoryID { get; set; }
-        [ForeignKey("categoryID")]
-        public  Category Category { get; set; }
+        public int CategoryID { get; set; }
+        [ForeignKey("CategoryID")]
+        public Category Category { get; set; }
+
+        public int SubCategoryID { get; set; }
+        [ForeignKey("SubCategoryID")]
+        public SubCategory SubCategory { get; set; }
+
+        public int UnderSubCategoryID { get; set; }
+        [ForeignKey("UnderSubCategoryID")]
+        public UnderSubCategory UnderSubCategory { get; set; }
     }
 }

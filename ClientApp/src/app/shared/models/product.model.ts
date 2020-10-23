@@ -1,4 +1,6 @@
 ﻿import { Category } from './category.model';
+import { SubCategory } from './subCategory.model';
+import { UnderSubCategory } from './underSubCategory.model';
 
 export class Product {
     constructor(
@@ -12,7 +14,11 @@ export class Product {
         public isFavourite?: boolean,
         public available?: boolean,
         public categoryId?: number,
-        public Category?: Category
+        public Category?: Category,
+        public subCategoryId?: number,
+        public SubCategory?: SubCategory,
+        public nderSubCategoryId?: number,
+        public UnderSubCategory?: UnderSubCategory
         ) { }
 }
 

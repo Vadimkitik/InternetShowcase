@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using Microsoft.AspNetCore.Mvc;
-using InternetShowcase.Data.Models;
-using AutoMapper;
-using InternetShowcase.Data.interfaces;
-using InternetShowcase.ViewModels;
 using System.Threading.Tasks;
+using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using InternetShowcase.Data.interfaces;
+using InternetShowcase.Data.Models;
+using InternetShowcase.ViewModels;
 
 namespace InternetShowcase.Controllers
 {
@@ -13,59 +12,58 @@ namespace InternetShowcase.Controllers
     [ApiController]
     public class CategoriesController : ControllerBase
     {
-        private readonly ICategories _categories;
+        private readonly IRepository<Category> _categories;
         private readonly IMapper _mapper;
 
-        public CategoriesController(ICategories categories, IMapper mapper)
+        public CategoriesController(IRepository<Category> categories, IMapper mapper)
         {
             _categories = categories;
             _mapper = mapper;
         }
-
+    
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CategoryView>>> GetCategories()
         {
-            var categories = await _categories.GetCategoriesAsync();
-            if(categories == null)
+            var categories = await _categories.GetAll();
+            if (categories == null)
             {
                 return BadRequest();
             }
             return _mapper.Map<List<Category>, List<CategoryView>>((List<Category>)categories);
         }
 
-       
         [HttpGet("{categoryLine}")]
-        public ActionResult<CategoryView> GetCategory(string categoryLine)
+        public async Task<ActionResult<CategoryView>> GetCategory(string categoryLine)
         {
-            var category = _mapper.Map<Category, CategoryView>(_categories.GetByType(categoryLine));
+            var category = await _categories.GetByType(categoryLine);
             if (category != null)
             {
-                return category;
+                return _mapper.Map<Category, CategoryView>(category);
             }
             return NotFound();
         }
-        
+
         [HttpPost]
-        public ActionResult<CategoryView> PostCategory(Category model)
+        public async Task<ActionResult<CategoryView>> PostCategory(Category model)
         {
             if (ModelState.IsValid)
             {
-                _mapper.Map<Category, CategoryView>(_categories.Create(model));
+                _mapper.Map<Category, CategoryView>(await _categories.Create(model));
                 return Ok(model);
             }
             return BadRequest(ModelState);
         }
 
         [HttpPut("{id}")]
-        public bool PutCategory(int id, Category category)
+        public async Task<bool> PutCategory(int id, Category category)
         {
-            return _categories.Update(id, category);
+            return await _categories.Update(id, category);
         }
 
         [HttpDelete("{id}")]
-        public bool DeleteCategory(int id)
+        public async Task<bool> DeleteCategory(int id)
         {
-            return _categories.Delete(id);
-        }      
+            return await _categories.Delete(id);
+        }
     }
 }

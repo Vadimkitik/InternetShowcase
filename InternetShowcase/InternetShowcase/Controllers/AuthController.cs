@@ -15,8 +15,8 @@ namespace InternetShowcase.Controllers
     [Route("api/[controller]")]
     public class AuthController : ControllerBase
     {
-        private ShowcaseDbContent db;
-        public AuthController(ShowcaseDbContent context)
+        private ShowcaseDbContext db;
+        public AuthController(ShowcaseDbContext context)
         {
             db = context;
         }

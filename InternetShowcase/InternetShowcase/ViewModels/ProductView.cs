@@ -1,31 +1,25 @@
-﻿using InternetShowcase.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace InternetShowcase.ViewModels
+﻿namespace InternetShowcase.ViewModels
 {
     public class ProductView
     {
-        public int id { get; set; }
-        public string productLine { get; set; }
+        public int Id { get; set; }
+        public string ProductLine { get; set; }
 
-        public string name { get; set; }
+        public string Name { get; set; }
        
-        public string description { get; set; }
+        public string Description { get; set; }
    
-        public double price { get; set; }
+        public double Price { get; set; }
 
-        public double? oldPrice { get; set; }
+        public double? OldPrice { get; set; }
       
-        public string imageUrl { get; set; }
+        public string ImageUrl { get; set; }
 
-        public bool isFavourite { get; set; }
+        public bool IsFavourite { get; set; }
 
-        public bool available { get; set; }
+        public bool Available { get; set; }
        
-        public int categoryID { get; set; }
+        public int CategoryID { get; set; }
         public CategoryView Category { get; set; }
     }
 }

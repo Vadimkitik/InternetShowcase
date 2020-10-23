@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError  } from 'rxjs';
+import { throwError  } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-import { Product } from '../models/product.model';
 import { Category } from '../models/category.model';
 
 @Injectable()
@@ -17,10 +16,6 @@ export class CategoryService {
 
     getCategories() {
         return this.http.get(this.url).pipe(
-            catchError(this.handleError));
-    }
-    getCategoryByLine(categoryLine: string) {
-        return this.http.get(this.url + '/' + categoryLine).pipe(
             catchError(this.handleError));
     }
 

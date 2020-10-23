@@ -4,7 +4,7 @@
 </div>
 <div *ngIf="loaded">
     <h1 class="h1-line"><span>{{categoryName}}</span></h1>
-    <div class="section">
+    <div class="section" >
         <div class="container">
             <!--ROW-->
             <div class="row">
@@ -13,17 +13,22 @@
                     <div class="card">
                         <div class="card__image">
                             <img [src]="product.imageUrl" alt="">
-                            <div class="card__hover">
-                                <a [routerLink]="['/product', product.productLine]" class="card__button">Подробнее</a>
-                                <a [routerLink]="['/product', product.productLine]"
-                                    class="card__button card__button_nal">Уточнить наличие</a>
-                            </div>
+                            <a [routerLink]="['/product', product.productLine]" class="card__hover">
+                                <div>
+                                    Подробнее
+                                </div>
+                            </a>
                         </div>
-                        <div class="card__title">{{ product.name}}</div>
+                        <a [routerLink]="['/product', product.productLine]" class="card__title">
+                            <div>{{ product.name}}</div>
+                        </a>
                         <div class="card__price">
-                            <span *ngIf="product.oldPrice">${{ product.oldPrice}}</span>
-                            ${{ product.price}}
+                            <span *ngIf="product.oldPrice">{{ product.oldPrice}} BYN</span>
+                            {{ product.price}} BYN
                         </div>
+                        <a [routerLink]="['/product', product.productLine]"
+                            class="card__button card__button_nal">Уточнить
+                            наличие</a>
                     </div>
                 </div>
                 <!--//col-md-3-->

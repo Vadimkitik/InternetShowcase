@@ -2,62 +2,62 @@
 using InternetShowcase.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace InternetShowcase.Data.Repository
 {
-    public class CategoryRepository : ICategories
+    public class CategoryRepository : IRepository<Category>
     {
-        private readonly ShowcaseDbContent _context;
+        private readonly ShowcaseDbContext _context;
 
-        public CategoryRepository(ShowcaseDbContent context)
+        public CategoryRepository(ShowcaseDbContext context)
         {
             _context = context;
         }
 
-        public async Task<IEnumerable<Category>> GetCategoriesAsync()
+        public async Task<IEnumerable<Category>> GetAll()
         {
-            foreach (Category u in _context.Categories.Include(p => p.Products)) ;
+            foreach (Category u in _context.Categories.Include(p => p.SubCategories)) ;
+            foreach (SubCategory subCategory in _context.SubCategories.Include(s => s.UnderSubCategories)) ;
             IEnumerable<Category> categories = await _context.Categories.ToListAsync();
             return categories;
         }
 
-        public Category GetByType(string categoryLine)
+        public async Task<Category> GetByType(string categoryLine)
         {
             foreach (Category u in _context.Categories.Include(p => p.Products)) ;
-            Category _category = _context.Categories.SingleOrDefault(s => s.categoryLine == categoryLine);
+            Category _category = await _context.Categories.SingleOrDefaultAsync(s => s.CategoryLine == categoryLine);
           
             return _category;
         }
 
-        public Category Create(Category category)
+        public async Task<Category> Create(Category category)
         {
-            _context.Categories.Add(category);
-            _context.SaveChanges();
+            await _context.Categories.AddAsync(category);
+            await _context.SaveChangesAsync();
             return category;
         }
 
-        public bool Delete(int id)
+        public async Task<bool> Delete(int id)
         {
-            var category = _context.Categories.Find(id);
+            var category = await _context.Categories.FindAsync(id);
             if (category == null)
             {
                 return false;
             }
 
             _context.Categories.Remove(category);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return true;
         }
 
         
 
-        public bool Update(int id, Category category)
+        public async Task<bool> Update(int id, Category category)
         {
             
-            if (id != category.id)
+            if (id != category.Id)
             {
                 return false;
             }
@@ -66,7 +66,7 @@ namespace InternetShowcase.Data.Repository
 
             try
             {
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 return true;
             }
             catch (DbUpdateConcurrencyException)

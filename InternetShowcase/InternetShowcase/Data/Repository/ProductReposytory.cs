@@ -1,63 +1,68 @@
-﻿using InternetShowcase.Data.interfaces;
+﻿using InternetShowcase.Data;
+using InternetShowcase.Data.interfaces;
 using InternetShowcase.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-
+using System.Threading.Tasks;
 
 namespace InternetShowcase.Data.Repository
 {
     public class ProductReposytory : IAllProducts
     {
-        private readonly ShowcaseDbContent _context;
+        private readonly ShowcaseDbContext _context;
 
-        public ProductReposytory(ShowcaseDbContent context)
+        public ProductReposytory(ShowcaseDbContext context)
         {
             _context = context;
         }
 
-        public IEnumerable<Product> Products => _context.Products.Include(c => c.Category);
-
-        public Product GetByLine(string productLine)
+        public async Task<IEnumerable<Product>> GetAll()
         {
-            return _context.Products.SingleOrDefault(p => p.productLine == productLine);
-
+            IEnumerable<Product> products = await _context.Products.ToListAsync();
+            return products;
         }
-        public Product Create(Product product)
+       
+
+        public async Task<Product> GetByLine(string productLine)
+        {
+            Product product = await _context.Products.SingleOrDefaultAsync(p => p.ProductLine == productLine);
+            return product;
+        }
+        public async Task<Product> Create(Product product)
         {
             _context.Products.Add(product);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return product;
         }
 
-        public bool Update(Product product)
+        public async Task<bool> Update(Product product)
         {
             if (product != null)
             {
                 _context.Products.Update(product);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 return true;
             }
             return false;
         }
 
-        public bool Delete(int id)
+        public async Task<bool> Delete(int id)
         {
-            var product = _context.Products.FirstOrDefault(p => p.id == id);
+            var product = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
             if (product != null)
             {
                 _context.Products.Remove(product);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 return true;
             }
             return false;
         }
 
 
-        public IEnumerable<Product> getFavProducts => _context.Products.Where(p => p.isFavourite == true).Include(c => c.Category);
+        public IEnumerable<Product> getFavProducts => _context.Products.Where(p => p.IsFavourite == true).Include(c => c.Category);
 
-        public Product getObjproduct(int productId) => _context.Products.FirstOrDefault(p => p.id == productId);
+        public Product getObjproduct(int productId) => _context.Products.FirstOrDefault(p => p.Id == productId);
     }
 
 }

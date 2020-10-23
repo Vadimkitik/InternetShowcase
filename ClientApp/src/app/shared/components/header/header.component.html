@@ -28,68 +28,27 @@
                     <nav>
                         <ul class="nav" id="sub-menu">
                             <li><span><a [routerLink]="'/'">Главная</a></span></li>
-                            <li><span><a [routerLink]="['products/', 'cveti']">Цветы</a></span>
+                            <li *ngFor="let category of categories">
+                                <span><a [routerLink]="['products/', category.categoryLine]"
+                                        fragment="Cata">{{category.categoryName}}</a></span>
                                 <ul class="nav">
-                                    <li><span><a [routerLink]="'/'" class="">Живые цветы</a></span>
+                                    <li *ngFor="let subCategory of category.subCategories">
+                                        <span><a [routerLink]="['products/', subCategory.subCategoryLine]"
+                                                fragment="SubCata">{{subCategory.subCategoryName}}</a></span>
                                         <ul class="nav">
-                                            <li><span><a [routerLink]="'/'">Розы</a></span></li>
-                                            <li><span><a [routerLink]="'/'">Тюльпаны</a></span></li>
-                                            <li><span><a [routerLink]="'/'">Хризантемы</a></span></li>
+                                            <li *ngFor="let underSubCategory of subCategory.underSubCategories">
+                                                <span><a [routerLink]="['products/', underSubCategory.underSubCategoryLine]"
+                                                        fragment="UnderSubCata">{{underSubCategory.underSubCategoryName}}
+                                                    </a>
+                                                </span>
+                                            </li>
                                         </ul>
                                     </li>
-                                    <li><span><a [routerLink]="'/'" class="">Искусственные цветы</a></span>
-                                        <ul class="nav">
-                                            <li><span><a [routerLink]="'/'">Большая роза искусственная</a></span></li>
-                                            <li><span><a [routerLink]="'/'">Венки искусственные</a></span></li>
-                                            <li><span><a [routerLink]="'/'">Розы искусственные</a></span></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><span><a [routerLink]="['products/', 'buketi']">Букеты</a></span></li>
-                            <li><span><a [routerLink]="['products/', 'shari']">Шары</a></span></li>
-                            <li><span><a [routerLink]="['products/', 'gorshki']">Горшки</a></span>
-                                <ul class="nav">
-                                    <li><span><a [routerLink]="'/'" class="">Горшки для цветов пластиковые</a></span>
-                                        <ul class="nav">
-                                            <li><span><a [routerLink]="'/'">Большие пластиковые горшки для цветов</a></span></li>
-                                            <li><span><a [routerLink]="'/'">Балконные пластиковые горшки для цветов</a></span></li>
-                                            <li><span><a [routerLink]="'/'">Подвесные пластиковые горшки для цветов</a></span></li>
-                                        </ul>
-                                    </li>
-                                    <li><span><a [routerLink]="'/'" class="">Горшки для цветов керамические</a></span>
-                                        <ul class="nav">
-                                            <li><span><a [routerLink]="'/'">Большие керамические горшки для цветов</a></span></li>
-                                            <li><span><a [routerLink]="'/'">Квадратные керамические горшки для цветов</a></span></li>
-                                            <li><span><a [routerLink]="'/'">Круглые керамические горшки для цветов</a></span></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><span><a [routerLink]="['products/', 'udobrenie']">Удобрения</a></span>
-                                <ul class="nav">
-                                    <li><span><a [routerLink]="'/'" class="">Средства защиты растений</a></span>
-                                        <ul class="nav">
-                                            <li><span><a [routerLink]="'/'">Удобрения для архидей</a></span></li>
-                                            <li><span><a [routerLink]="'/'">Защита от вредителей</a></span></li>
-                                        </ul>
-                                    </li>
-                                    <li><span><a [routerLink]="'/'" class="">Грунт</a></span></li>
-                                </ul>
-                            </li>
-                            <li><span><a [routerLink]="['products/', 'izdelia_iz_dereva']">Изделия из дерева</a></span>
-                                <ul class="nav">
-                                    <li><span><a [routerLink]="'/'" class="">Ящики</a></span>
-                                        <ul class="nav">
-                                            <li><span><a [routerLink]="'/'">Украшения</a></span></li>
-                                            <li><span><a [routerLink]="'/'">Ящики для цветов</a></span></li>
-                                        </ul>
-                                    </li>
-                                    <li><span><a [routerLink]="'/'" class="">Садовые изделия</a></span></li>
                                 </ul>
                             </li>
                             <li><span><a [routerLink]="'/shop'">Магазин</a></span></li>
                         </ul>
+                        
                     </nav>
                 </div>
             </div>
