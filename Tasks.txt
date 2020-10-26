@@ -9,3 +9,5 @@
 -------адаптация 
 
 -------SEO https://promopult.ru/
+
+(PowerShell: Set-ExecutionPolicy -ExecutionPolicy Unrestricted)
