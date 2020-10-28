@@ -59,19 +59,19 @@ export class ProductListComponent implements OnInit {
         this.categoryService.getCategory(this.categoryLine).subscribe((category: Category) => 
         {
             console.log(category);
+            this.categoryName = category.categoryName;
             if(category.products.length != 0) {
-                this.categoryName = category.categoryName;
                 this.errorMsg = "";
                 this.loaded = true;
                 this.products = category.products;
             }
             else {
-                this.categoryName = category.categoryName;
                 this.errorMsg = "В этой категории нет товаров.";
                 this.loaded = false;
             }
 
         }, error => {
+            this.categoryName = "Error";
             this.loaded = false;
             this.errorMsg = error;
         });
@@ -80,19 +80,19 @@ export class ProductListComponent implements OnInit {
         this.subCategory.getSubCategory(this.categoryLine).subscribe((category: SubCategory) => 
         {
             console.log(category);
+            this.categoryName = category.subCategoryName;
             if(category.products.length != 0) {
-                this.categoryName = category.subCategoryName;
                 this.errorMsg = "";
                 this.loaded = true;
                 this.products = category.products;
             }
             else {
-                this.categoryName = category.subCategoryName;
                 this.errorMsg = "В этой категории нет товаров.";
                 this.loaded = false;
             }
 
         }, error => {
+            this.categoryName = "Error";
             this.loaded = false;
             this.errorMsg = error;
         });
@@ -102,19 +102,19 @@ export class ProductListComponent implements OnInit {
         this.underSubCategory.getUnderSubCategory(this.categoryLine).subscribe((category: UnderSubCategory) => 
         {
             console.log(category);
+            this.categoryName = category.underSubCategoryName;
             if(category.products.length != 0) {
-                this.categoryName = category.underSubCategoryName;
                 this.errorMsg = "";
                 this.loaded = true;
                 this.products = category.products;
             }
             else {
-                this.categoryName = category.underSubCategoryName;
                 this.errorMsg = "В этой категории нет товаров.";
                 this.loaded = false;
             }
 
         }, error => {
+            this.categoryName = "Error";
             this.loaded = false;
             this.errorMsg = error;
         });
