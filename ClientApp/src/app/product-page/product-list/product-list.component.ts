@@ -66,6 +66,7 @@ export class ProductListComponent implements OnInit {
                 this.products = category.products;
             }
             else {
+                this.categoryName = category.categoryName;
                 this.errorMsg = "В этой категории нет товаров.";
                 this.loaded = false;
             }
@@ -86,6 +87,7 @@ export class ProductListComponent implements OnInit {
                 this.products = category.products;
             }
             else {
+                this.categoryName = category.subCategoryName;
                 this.errorMsg = "В этой категории нет товаров.";
                 this.loaded = false;
             }
@@ -107,6 +109,7 @@ export class ProductListComponent implements OnInit {
                 this.products = category.products;
             }
             else {
+                this.categoryName = category.underSubCategoryName;
                 this.errorMsg = "В этой категории нет товаров.";
                 this.loaded = false;
             }
