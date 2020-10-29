@@ -18,6 +18,15 @@ export class LoginComponent implements OnInit {
   name: string;
   isLoggedIn: boolean = false;
 
+  // email = new FormControl('', [Validators.required, Validators.email]);
+  // getErrorMessage() {
+  //   if (this.email.hasError('required')) {
+  //     return 'You must enter a value';
+  //   }
+
+  //   return this.email.hasError('email') ? 'Not a valid email' : '';
+  // }
+
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -44,6 +53,7 @@ export class LoginComponent implements OnInit {
     })
   }
 
+  
   showMessage(message: Message) {
     this.message = message;
     window.setTimeout(() => {
