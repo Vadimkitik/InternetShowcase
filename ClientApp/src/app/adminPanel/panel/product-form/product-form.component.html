@@ -63,7 +63,7 @@
         <h1>{{errorMsg}}</h1>
         <mat-select [(ngModel)]="product.subCategoryId" >
             <mat-option value="{{subCategory.id}}" *ngFor="let subCategory of categories[numbCat].subCategories; let i = index" (click)="SetSubCategory(i)">
-                {{ subCategory.subCategoryName }}</mat-option>
+                {{ subCategory.categoryName }}</mat-option>
         </mat-select>
     </mat-form-field>
     
@@ -72,7 +72,7 @@
         <h1>{{errorMsg}}</h1>
         <mat-select [(ngModel)]="product.underSubCategoryId">
             <mat-option value="{{underSubCategory.id}}" *ngFor="let underSubCategory of categories[numbCat].subCategories[numbSubCat].underSubCategories" >
-                {{ underSubCategory.underSubCategoryName }}</mat-option>
+                {{ underSubCategory.categoryName }}</mat-option>
         </mat-select>
     </mat-form-field>
 </div>

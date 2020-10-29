@@ -1,7 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using InternetShowcase.Data.interfaces;
 using InternetShowcase.Data.Models;
@@ -23,10 +21,10 @@ namespace InternetShowcase.Data.Repository
             return udnerSubCategories;
         }
 
-        public async Task<UnderSubCategory> GetByType(string underSubCategoryLine)
+        public async Task<UnderSubCategory> GetByType(string CategoryLine)
         {
             foreach (UnderSubCategory u in _context.UnderSubCategories.Include(p => p.Products)) ;
-            UnderSubCategory udnerSubCategory = await _context.UnderSubCategories.SingleOrDefaultAsync(s => s.UnderSubCategoryLine == underSubCategoryLine);
+            UnderSubCategory udnerSubCategory = await _context.UnderSubCategories.SingleOrDefaultAsync(s => s.CategoryLine == CategoryLine);
             return udnerSubCategory;
         }
 

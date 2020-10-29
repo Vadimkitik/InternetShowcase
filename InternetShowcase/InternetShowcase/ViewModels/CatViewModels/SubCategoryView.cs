@@ -6,10 +6,9 @@ namespace InternetShowcase.ViewModels
     {
         
         public int Id { get; set; }
-        
-        public string SubCategoryLine { get; set; }
-       
-        public string SubCategoryName { get; set; }
+        public string CategoryLine { get; set; }
+
+        public string CategoryName { get; set; }
 
         
         public int CategoryID { get; set; }

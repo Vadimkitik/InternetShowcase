@@ -36,12 +36,12 @@
                                         fragment="Cata">{{category.categoryName}}</a></span>
                                 <ul class="nav">
                                     <li *ngFor="let subCategory of category.subCategories">
-                                        <span><a [routerLink]="['products/', subCategory.subCategoryLine]"
-                                                fragment="SubCata">{{subCategory.subCategoryName}}</a></span>
+                                        <span><a [routerLink]="['products/', subCategory.categoryLine]"
+                                                fragment="SubCata">{{subCategory.categoryName}}</a></span>
                                         <ul class="nav">
                                             <li *ngFor="let underSubCategory of subCategory.underSubCategories">
-                                                <span><a [routerLink]="['products/', underSubCategory.underSubCategoryLine]"
-                                                        fragment="UnderSubCata">{{underSubCategory.underSubCategoryName}}
+                                                <span><a [routerLink]="['products/', underSubCategory.categoryLine]"
+                                                        fragment="UnderSubCata">{{underSubCategory.categoryName}}
                                                     </a>
                                                 </span>
                                             </li>

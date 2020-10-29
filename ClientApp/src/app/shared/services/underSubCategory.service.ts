@@ -19,8 +19,8 @@ export class UnderSubCategoryService {
             catchError(this.handleError));
     }
 
-    getUnderSubCategory(underSubCategoryLine: string) {
-        return this.http.get(this.url + '/' + underSubCategoryLine).pipe(
+    getUnderSubCategory(CategoryLine: string) {
+        return this.http.get(this.url + '/' + CategoryLine).pipe(
             catchError(this.handleError));
     }
 

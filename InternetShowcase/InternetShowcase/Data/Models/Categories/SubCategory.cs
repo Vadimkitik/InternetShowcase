@@ -9,9 +9,9 @@ namespace InternetShowcase.Data.Models
         [Key]
         public int Id { get; set; }
         [Required]
-        public string SubCategoryLine { get; set; }
+        public string CategoryLine { get; set; }
         [Required]
-        public string SubCategoryName { get; set; }
+        public string CategoryName { get; set; }
 
         [Required]
         public int CategoryID { get; set; }

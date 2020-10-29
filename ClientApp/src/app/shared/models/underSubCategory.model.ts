@@ -4,8 +4,8 @@ import { SubCategory } from './subCategory.model';
 export class UnderSubCategory {
     constructor(
         public id?: number,
-        public underSubCategoryLine?: string,
-        public underSubCategoryName?: string,
+        public categoryLine?: string,
+        public categoryName?: string,
         public products?: Product[],
         public subCategoryId?: number,
         public subCategory?: SubCategory

@@ -33,90 +33,50 @@ export class ProductListComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.load();
-    }
-
-    load() {
         this.route.params.subscribe((params: Params) => {
             this.categoryLine = this.route.snapshot.params['categoryLine'];
             this.cata = this.route.snapshot.fragment;
-            console.log(this.cata);
 
-            if(this.cata == 'Cata'){
-                this.GetCategory();
+            if (this.cata == 'Cata') {
+                this.categoryService.getCategory(this.categoryLine).subscribe((category: Category) => {
+                    this.loadData(category);
+                }, error => {
+                    this.errorData(error);
+                });
             }
-            if(this.cata == 'SubCata'){
-                this.GetSubCategory();
+            if (this.cata == 'SubCata') {
+                this.subCategory.getSubCategory(this.categoryLine).subscribe((category: SubCategory) => {
+                    this.loadData(category);
+                }, error => {
+                    this.errorData(error);
+                });
             }
-            if(this.cata == 'UnderSubCata'){
-                this.GetUnderSubCategory();
+            if (this.cata == 'UnderSubCata') {
+                this.underSubCategory.getUnderSubCategory(this.categoryLine).subscribe((category: UnderSubCategory) => {
+                    this.loadData(category);
+                }, error => {
+                    this.errorData(error);
+                });
             }
-            
         });
     }
 
-    GetCategory() {
-        this.categoryService.getCategory(this.categoryLine).subscribe((category: Category) => 
-        {
-            console.log(category);
-            this.categoryName = category.categoryName;
-            if(category.products.length != 0) {
-                this.errorMsg = "";
-                this.loaded = true;
-                this.products = category.products;
-            }
-            else {
-                this.errorMsg = "В этой категории нет товаров.";
-                this.loaded = false;
-            }
-
-        }, error => {
-            this.categoryName = "Error";
+    loadData(category: any) {
+        console.log(category);
+        this.categoryName = category.categoryName;
+        if (category.products.length != 0) {
+            this.errorMsg = "";
+            this.loaded = true;
+            this.products = category.products;
+        }
+        else {
+            this.errorMsg = "В этой категории нет товаров.";
             this.loaded = false;
-            this.errorMsg = error;
-        });
+        }
     }
-    GetSubCategory() {
-        this.subCategory.getSubCategory(this.categoryLine).subscribe((category: SubCategory) => 
-        {
-            console.log(category);
-            this.categoryName = category.subCategoryName;
-            if(category.products.length != 0) {
-                this.errorMsg = "";
-                this.loaded = true;
-                this.products = category.products;
-            }
-            else {
-                this.errorMsg = "В этой категории нет товаров.";
-                this.loaded = false;
-            }
-
-        }, error => {
-            this.categoryName = "Error";
-            this.loaded = false;
-            this.errorMsg = error;
-        });
-    }
-
-    GetUnderSubCategory() {
-        this.underSubCategory.getUnderSubCategory(this.categoryLine).subscribe((category: UnderSubCategory) => 
-        {
-            console.log(category);
-            this.categoryName = category.underSubCategoryName;
-            if(category.products.length != 0) {
-                this.errorMsg = "";
-                this.loaded = true;
-                this.products = category.products;
-            }
-            else {
-                this.errorMsg = "В этой категории нет товаров.";
-                this.loaded = false;
-            }
-
-        }, error => {
-            this.categoryName = "Error";
-            this.loaded = false;
-            this.errorMsg = error;
-        });
+    errorData(error: any) {
+        this.categoryName = "Error";
+        this.loaded = false;
+        this.errorMsg = error;
     }
 }

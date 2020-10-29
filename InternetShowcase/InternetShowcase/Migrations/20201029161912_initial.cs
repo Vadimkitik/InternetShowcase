@@ -43,8 +43,8 @@ namespace InternetShowcase.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    SubCategoryLine = table.Column<string>(nullable: false),
-                    SubCategoryName = table.Column<string>(nullable: false),
+                    CategoryLine = table.Column<string>(nullable: false),
+                    CategoryName = table.Column<string>(nullable: false),
                     CategoryID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -64,8 +64,8 @@ namespace InternetShowcase.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    UnderSubCategoryLine = table.Column<string>(nullable: false),
-                    UnderSubCategoryName = table.Column<string>(nullable: false),
+                    CategoryLine = table.Column<string>(nullable: false),
+                    CategoryName = table.Column<string>(nullable: false),
                     SubCategoryID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>

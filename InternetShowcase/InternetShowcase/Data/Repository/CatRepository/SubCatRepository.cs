@@ -21,10 +21,10 @@ namespace InternetShowcase.Data.Repository
             return subCategories;
         }
 
-        public async Task<SubCategory> GetByType(string subCategoryLine)
+        public async Task<SubCategory> GetByType(string CategoryLine)
         {
             foreach (SubCategory u in _context.SubCategories.Include(p => p.Products)) ;
-            SubCategory subCategory = await _context.SubCategories.SingleOrDefaultAsync(s => s.SubCategoryLine == subCategoryLine);
+            SubCategory subCategory = await _context.SubCategories.SingleOrDefaultAsync(s => s.CategoryLine == CategoryLine);
 
             return subCategory;
         }
