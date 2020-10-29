@@ -11,6 +11,7 @@ import { UploadComponent } from './panel/product-form/upload/upload.component';
 import { ProductCreateComponent } from './panel/product-form/product-create/product-create.component';
 import { ProductEditComponent } from './panel/product-form/product-edit/product-edit.component';
 import { ProductFormComponent } from './panel/product-form/product-form.component';
+import { TestJsonComponent } from './test-json/test-json.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ProductFormComponent } from './panel/product-form/product-form.componen
         ProductFormComponent,
         ProductCreateComponent,
         ProductEditComponent,
-        UploadComponent
+        UploadComponent,
+        TestJsonComponent
     ],
     imports: [
         CommonModule,
