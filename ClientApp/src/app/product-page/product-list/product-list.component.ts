@@ -37,26 +37,36 @@ export class ProductListComponent implements OnInit {
             this.categoryLine = this.route.snapshot.params['categoryLine'];
             this.cata = this.route.snapshot.fragment;
 
-            if (this.cata == 'Cata') {
-                this.categoryService.getCategory(this.categoryLine).subscribe((category: Category) => {
-                    this.loadData(category);
-                }, error => {
+            switch (this.cata) {
+                case 'Cata': {
+                    this.categoryService.getCategory(this.categoryLine).subscribe((category: Category) => {
+                        this.loadData(category);
+                    }, error => {
+                        this.errorData(error);
+                    });
+                    break;
+                }
+                case 'SubCata': {
+                    this.subCategory.getSubCategory(this.categoryLine).subscribe((category: SubCategory) => {
+                        this.loadData(category);
+                    }, error => {
+                        this.errorData(error);
+                    });
+                    break;
+                }
+                case 'UnderSubCata': {
+                    this.underSubCategory.getUnderSubCategory(this.categoryLine).subscribe((category: UnderSubCategory) => {
+                        this.loadData(category);
+                    }, error => {
+                        this.errorData(error);
+                    });
+                    break;
+                }
+                default: {
+                    let error = 'Page NOT FOUND 404'
                     this.errorData(error);
-                });
-            }
-            if (this.cata == 'SubCata') {
-                this.subCategory.getSubCategory(this.categoryLine).subscribe((category: SubCategory) => {
-                    this.loadData(category);
-                }, error => {
-                    this.errorData(error);
-                });
-            }
-            if (this.cata == 'UnderSubCata') {
-                this.underSubCategory.getUnderSubCategory(this.categoryLine).subscribe((category: UnderSubCategory) => {
-                    this.loadData(category);
-                }, error => {
-                    this.errorData(error);
-                });
+                    break;
+                }
             }
         });
     }
