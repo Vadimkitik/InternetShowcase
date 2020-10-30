@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 
+import {TextFieldModule} from '@angular/cdk/text-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -8,9 +9,10 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator'
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
-import {TextFieldModule} from '@angular/cdk/text-field';
+import { MatIconModule } from '@angular/material/icon';
 
 const MaterialComponents =[
+  MatIconModule,
   MatButtonModule,
   MatInputModule,
   MatFormFieldModule,
@@ -19,7 +21,7 @@ const MaterialComponents =[
   MatPaginatorModule,
   MatSelectModule,
   MatRadioModule,
-  TextFieldModule
+  TextFieldModule  
 ];
 
 @NgModule({
