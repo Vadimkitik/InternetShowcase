@@ -2,6 +2,7 @@
 using InternetShowcase.Data.interfaces;
 using InternetShowcase.Data.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,10 +17,12 @@ namespace InternetShowcase.Data.Repository
         {
             _context = context;
         }
-
         public async Task<IEnumerable<Product>> GetAll()
         {
-            IEnumerable<Product> products = await _context.Products.ToListAsync();
+            foreach (Product u in _context.Products.Include(p => p.Category)) ;
+            foreach (Product u in _context.Products.Include(p => p.SubCategory)) ;
+            foreach (Product u in _context.Products.Include(p => p.UnderSubCategory)) ;
+            var products = await _context.Products.ToListAsync();
             return products;
         }
        

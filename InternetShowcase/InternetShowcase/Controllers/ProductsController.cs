@@ -5,6 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 using InternetShowcase.Data.interfaces;
 using InternetShowcase.Data.Models;
 using InternetShowcase.ViewModels;
+using InternetShowcase.Data;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace InternetShowcase.Controllers
 {
@@ -14,23 +17,37 @@ namespace InternetShowcase.Controllers
     {
         private readonly IAllProducts _allProducts;
         private readonly IMapper _mapper;
+        private readonly ShowcaseDbContext _context;
 
-        public ProductsController(IAllProducts iAllProducts, IMapper mapper)
+        public ProductsController(IAllProducts iAllProducts, IMapper mapper, ShowcaseDbContext context)
         {
             _allProducts = iAllProducts;
             _mapper = mapper;
+            _context = context;
         }
 
+        //[HttpGet]
+        //public IEnumerable<IndexProductView> GetProducts()
+        //{
+        //    foreach (Product u in _context.Products.Include(p => p.Category)) ;
+        //    foreach (Product u in _context.Products.Include(p => p.SubCategory)) ;
+        //    foreach (Product u in _context.Products.Include(p => p.UnderSubCategory)) ;
+        //    var products = _context.Products.ToList();
+
+        //    var productView = _mapper.Map<List<Product>, List<IndexProductView>>(products);
+        //    return productView;
+        //}
+
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ProductView>>> GetProducts()
+        public async Task<ActionResult<IEnumerable<IndexProductView>>> GetProducts()
         {
             var products = await _allProducts.GetAll();
-            
+
             if (products == null)
             {
                 return BadRequest();
             }
-            return _mapper.Map<List<Product>, List<ProductView>>((List<Product>)products);
+            return _mapper.Map<List<Product>, List<IndexProductView>>((List<Product>)products);
         }
 
         [HttpGet("{productLine}")]

@@ -31,7 +31,10 @@ export class PanelComponent implements OnInit {
     'price', 
     'oldPrice', 
     'isFavourite',
-    'available', 
+    'available',
+    'category',
+    'subCategory',
+    'underSubCategory',
     'button'
   ];
   expandedElement: Product | null;
@@ -43,8 +46,7 @@ export class PanelComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   constructor(
     private productService: ProductService,
-    private uploadService: UploadService,
-    private categoryService: CategoryService
+    private uploadService: UploadService
   ) { }
 
   ngOnInit() {
