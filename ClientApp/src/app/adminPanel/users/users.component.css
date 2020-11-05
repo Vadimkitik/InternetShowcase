@@ -1,0 +1,20 @@
+table, .mat-form-field, mat-paginator {
+    width: 90%;
+    margin: 10px 5% 0px 5%;
+  }
+  .mat-form-field {
+    margin: 20px 5% 0px 5%;
+}
+mat-paginator {
+    margin: 0px 5% 30px 5%;
+}
+  .createButton {
+    margin-left: 5%;
+  }
+  
+  td button {
+    margin-left: 10px;
+  }
+  
+  
+  

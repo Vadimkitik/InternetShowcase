@@ -8,7 +8,6 @@ import { Product } from 'src/app/shared/models/product.model';
 import { ProductService } from 'src/app/shared/services/product.service';
 import { UploadService } from 'src/app/shared/services/upload.service';
 import { Category } from 'src/app/shared/models/category.model';
-import { CategoryService } from 'src/app/shared/services/category.service';
 
 @Component({
   selector: 'panel',
