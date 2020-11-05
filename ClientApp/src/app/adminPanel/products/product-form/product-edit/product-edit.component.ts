@@ -39,7 +39,7 @@ export class ProductEditComponent implements OnInit {
 
     save() {
         this.productService.updateProduct(this.product).subscribe(() => { 
-            this.router.navigateByUrl("/admin-panel")
+            this.router.navigateByUrl("/admin-panel/product")
         }, error => this.errorMsg = error);
     }
     deleteFile() {

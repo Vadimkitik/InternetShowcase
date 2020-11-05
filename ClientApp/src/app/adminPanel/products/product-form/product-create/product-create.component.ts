@@ -19,7 +19,7 @@ export class ProductCreateComponent {
     save() {
         console.log(this.product);
         this.productService.createProduct(this.product).subscribe(() => {
-             this.router.navigateByUrl("/admin-panel")
+             this.router.navigateByUrl("/admin-panel/product")
             }, error => this.errorMsg = error);
      }
 }

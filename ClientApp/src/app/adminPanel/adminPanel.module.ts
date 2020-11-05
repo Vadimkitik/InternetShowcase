@@ -6,26 +6,27 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material/material.module';
 import { AdminPanelRoutingModule } from './adminPanel-routing.module';
 import { SharedModule } from '../shared/shared.module';
-import { PanelComponent } from './panel/panel.component';
-import { UploadComponent } from './panel/product-form/upload/upload.component';
-import { ProductCreateComponent } from './panel/product-form/product-create/product-create.component';
-import { ProductEditComponent } from './panel/product-form/product-edit/product-edit.component';
-import { ProductFormComponent } from './panel/product-form/product-form.component';
+import { PanelComponent } from './products/panel.component';
+import { UploadComponent } from './products/product-form/upload/upload.component';
+import { ProductCreateComponent } from './products/product-form/product-create/product-create.component';
+import { ProductEditComponent } from './products/product-form/product-edit/product-edit.component';
+import { ProductFormComponent } from './products/product-form/product-form.component';
 import { TestJsonComponent } from './test-json/test-json.component';
-import { UsersFormComponent } from './panel/users-form/users-form.component';
-import { CategoryFormComponent } from './panel/category-form/category-form.component';
-
+import { AdminPanelComponent } from './adminPanel.component';
+import { UsersComponent } from './users/users.component';
+import { CategoriesComponent } from './categories/categories.component';
 
 @NgModule({
     declarations: [
+        AdminPanelComponent,
         PanelComponent,
         ProductFormComponent,
         ProductCreateComponent,
         ProductEditComponent,
         UploadComponent,
         TestJsonComponent,
-        UsersFormComponent,
-        CategoryFormComponent
+        UsersComponent,
+        CategoriesComponent
     ],
     imports: [
         CommonModule,

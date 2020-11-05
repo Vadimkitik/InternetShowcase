@@ -4,7 +4,7 @@
     <product-form [(product)]="product"></product-form>
     <div class="form-group">
         <button mat-raised-button color="primary" (click)="save()">Сохранить</button>
-        <button [routerLink]="'/admin-panel'" mat-raised-button color="warn">Назад</button>
+        <button [routerLink]="'/admin-panel/product'" mat-raised-button color="warn">Назад</button>
         <button mat-raised-button color="warn" (click)="deleteFile()" *ngIf="product.imageUrl">Удалить фото</button>
     </div>
 </div>
