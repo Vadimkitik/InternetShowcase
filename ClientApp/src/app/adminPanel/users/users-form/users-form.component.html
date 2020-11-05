@@ -1,18 +1,30 @@
 <div class="product-form">
     <mat-form-field class="product-full-width">
         <mat-label>Name</mat-label>
-        <input matInput placeholder="rozi,tulpani, bojiy_oduvanchik..." type="text" [(ngModel)]="user.name" />
+        <input matInput placeholder="rozi,tulpani, bojiy_oduvanchik..." type="text" [formControl]="name" [(ngModel)]="user.name" />
+        <mat-error *ngIf="name.invalid">{{getErrorMessageName()}}</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
         <mat-label>Email</mat-label>
-        <input matInput placeholder="pat@example.com" [formControl]="email" required>
-        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-      </mat-form-field>
+        <input matInput placeholder="pat@example.com" [(ngModel)]="user.email" [formControl]="email" required>
+        <mat-error *ngIf="email.invalid">{{getErrorMessageEmail()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Введите пароль</mat-label>
+        <input matInput [formControl]="password" [(ngModel)]="user.password" [type]="hide ? 'password' : 'text'">
+        <mat-error *ngIf="password.invalid">{{getErrorMessagePassw()}}</mat-error>
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? "visibility_off" : 'visibility'}}</mat-icon>
+        </button>
+    </mat-form-field>
 
     <mat-form-field class="product-full-width">
         <mat-label>Role</mat-label>
-        <input matInput placeholder="5$" type="text" [(ngModel)]="user.role" />
+        <input matInput placeholder="5$" type="text" [formControl]="role" [(ngModel)]="user.role" />
+        <mat-error *ngIf="role.invalid">{{getErrorMessageRole()}}</mat-error>
     </mat-form-field>
 
 </div>

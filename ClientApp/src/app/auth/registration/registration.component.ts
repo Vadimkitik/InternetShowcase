@@ -28,21 +28,17 @@ export class RegistrationComponent implements OnInit {
         'confpassword': new FormControl(null, [Validators.required])
        }, this.passwordsAreEqual()),
       'name': new FormControl(null, Validators.required),
-      'telephone': new FormControl(null, [Validators.required, Validators.minLength(9), this.phoneValidator]),
-      'address': new FormControl(null, Validators.required),
       'agree': new FormControl(null, Validators.required)
     });
   }
 
   onSubmit(){
-    const { email, password, name, telephone, address, role} = this.form.value;
+    const { email, password, name, role} = this.form.value;
     const user = new User
     (
       email, 
       this.form.value['passwords']['password'], 
-      name, 
-      "375" + this.form.value['telephone'], 
-      address, 
+      name,  
       "User"
     );
 
@@ -79,14 +75,5 @@ export class RegistrationComponent implements OnInit {
       };
     };
   }
-  private phoneValidator(): ValidatorFn {
-    const pattern: RegExp = /^[\+]?[(]?(0-9){3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
-    return (control: AbstractControl): { [key: string]: any } => {
-      if (!(control.dirty || control.touched)) {
-        return null;
-      } else {
-      return pattern.test(control.value) ? null : {costom: 'Invalid phone number'}
-      }
-    };
-  }
+  
 }
