@@ -1,4 +1,4 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import { Component, Input, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { ProductService } from '../../../../shared/services/product.service';
@@ -12,7 +12,7 @@ import { UploadService } from 'src/app/shared/services/upload.service';
 export class ProductEditComponent implements OnInit {
 
     productLine: string;
-    product: Product;    // изменяемый объект
+    @Input() product: Product;    // изменяемый объект
     loaded: boolean = false;
     errorMsg: string;
     message: string;
@@ -32,6 +32,7 @@ export class ProductEditComponent implements OnInit {
             this.productService.getProduct(this.productLine)
                 .subscribe((data: Product) => {
                     this.product = data;
+                    console.log(this.product);
                     if (this.product != null) this.loaded = true;
                 }, error => this.errorMsg = error);
     }

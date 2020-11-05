@@ -12,6 +12,8 @@ import { ProductCreateComponent } from './panel/product-form/product-create/prod
 import { ProductEditComponent } from './panel/product-form/product-edit/product-edit.component';
 import { ProductFormComponent } from './panel/product-form/product-form.component';
 import { TestJsonComponent } from './test-json/test-json.component';
+import { UsersFormComponent } from './panel/users-form/users-form.component';
+import { CategoryFormComponent } from './panel/category-form/category-form.component';
 
 
 @NgModule({
@@ -21,7 +23,9 @@ import { TestJsonComponent } from './test-json/test-json.component';
         ProductCreateComponent,
         ProductEditComponent,
         UploadComponent,
-        TestJsonComponent
+        TestJsonComponent,
+        UsersFormComponent,
+        CategoryFormComponent
     ],
     imports: [
         CommonModule,
