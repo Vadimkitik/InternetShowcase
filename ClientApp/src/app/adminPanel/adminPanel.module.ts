@@ -15,6 +15,9 @@ import { TestJsonComponent } from './test-json/test-json.component';
 import { AdminPanelComponent } from './adminPanel.component';
 import { UsersComponent } from './users/users.component';
 import { CategoriesComponent } from './categories/categories.component';
+import { UsersFormComponent } from './users/users-form/users-form.component';
+import { UsersCreateComponent } from './users/users-form/users-create/users-create.component';
+import { UsersEditComponent } from './users/users-form/users-edit/users-edit.component';
 
 @NgModule({
     declarations: [
@@ -26,7 +29,10 @@ import { CategoriesComponent } from './categories/categories.component';
         UploadComponent,
         TestJsonComponent,
         UsersComponent,
-        CategoriesComponent
+        CategoriesComponent,
+        UsersFormComponent,
+        UsersCreateComponent,
+        UsersEditComponent
     ],
     imports: [
         CommonModule,

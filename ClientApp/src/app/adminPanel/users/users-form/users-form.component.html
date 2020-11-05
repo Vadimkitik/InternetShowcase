@@ -1,0 +1,18 @@
+<div class="product-form">
+    <mat-form-field class="product-full-width">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="rozi,tulpani, bojiy_oduvanchik..." type="text" [(ngModel)]="user.name" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="pat@example.com" [formControl]="email" required>
+        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+
+    <mat-form-field class="product-full-width">
+        <mat-label>Role</mat-label>
+        <input matInput placeholder="5$" type="text" [(ngModel)]="user.role" />
+    </mat-form-field>
+
+</div>
