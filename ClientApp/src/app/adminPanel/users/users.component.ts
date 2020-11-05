@@ -46,7 +46,7 @@ export class UsersComponent implements OnInit {
 
   delete(id: number) {
     this.usersService.deleteUser(id).subscribe(data => { 
-      console.log(`Product with id ${id} is Deleted!`);
+      console.log(`User with ID "${id}" is Deleted!`);
       this.load();
     }, error => this.errorMsg = error);    
   }

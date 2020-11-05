@@ -26,18 +26,6 @@ namespace InternetShowcase.Controllers
             _context = context;
         }
 
-        //[HttpGet]
-        //public IEnumerable<IndexProductView> GetProducts()
-        //{
-        //    foreach (Product u in _context.Products.Include(p => p.Category)) ;
-        //    foreach (Product u in _context.Products.Include(p => p.SubCategory)) ;
-        //    foreach (Product u in _context.Products.Include(p => p.UnderSubCategory)) ;
-        //    var products = _context.Products.ToList();
-
-        //    var productView = _mapper.Map<List<Product>, List<IndexProductView>>(products);
-        //    return productView;
-        //}
-
         [HttpGet]
         public async Task<ActionResult<IEnumerable<IndexProductView>>> GetProducts()
         {

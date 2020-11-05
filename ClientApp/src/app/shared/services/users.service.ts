@@ -29,13 +29,7 @@ export class UsersService {
             catchError(this.handleError));
     }
 
-    getUserById(id: number) {
-        return this.http.get(this.url + '/' + id).pipe(
-            catchError(this.handleError));
-    }
-    
    
-
     updateUser(user: User) {
         return this.http.put(this.url, user).pipe(
             catchError(this.handleError));

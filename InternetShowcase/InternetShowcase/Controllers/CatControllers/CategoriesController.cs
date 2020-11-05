@@ -54,10 +54,10 @@ namespace InternetShowcase.Controllers
             return BadRequest(ModelState);
         }
 
-        [HttpPut("{id}")]
-        public async Task<bool> PutCategory(int id, Category category)
+        [HttpPut()]
+        public async Task<bool> PutCategory(Category category)
         {
-            return await _categories.Update(id, category);
+            return await _categories.Update(category);
         }
 
         [HttpDelete("{id}")]

@@ -34,12 +34,8 @@ namespace InternetShowcase.Data.Repository
             return user;
         }
 
-        public async Task<bool> Update(int id, User user)
+        public async Task<bool> Update(User user)
         {
-            if (id != user.Id)
-            {
-                return false;
-            }
 
             _context.Entry(user).State = EntityState.Modified;
 

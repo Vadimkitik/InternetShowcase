@@ -23,7 +23,7 @@ namespace InternetShowcase.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<UserView>>> GetProducts()
+        public async Task<ActionResult<IEnumerable<UserView>>> GetUsers()
         {
             var users = await _users.GetAll();
 
@@ -48,7 +48,7 @@ namespace InternetShowcase.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<UserView>> PostCategory(User model)
+        public async Task<ActionResult<UserView>> PostUser(User model)
         {
             if (ModelState.IsValid)
             {
@@ -58,14 +58,14 @@ namespace InternetShowcase.Controllers
             return BadRequest(ModelState);
         }
 
-        [HttpPut("{id}")]
-        public async Task<bool> PutCategory(int id, User user)
+        [HttpPut()]
+        public async Task<bool> EditUser(User user)
         {
-            return await _users.Update(id, user);
+            return await _users.Update(user);
         }
 
         [HttpDelete("{id}")]
-        public async Task<bool> DeleteCategory(int id)
+        public async Task<bool> DeleteUser(int id)
         {
             return await _users.Delete(id);
         }

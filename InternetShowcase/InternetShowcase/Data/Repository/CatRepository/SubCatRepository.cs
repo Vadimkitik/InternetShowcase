@@ -52,13 +52,8 @@ namespace InternetShowcase.Data.Repository
 
 
 
-        public async Task<bool> Update(int id, SubCategory subCategory)
+        public async Task<bool> Update(SubCategory subCategory)
         {
-
-            if (id != subCategory.Id)
-            {
-                return false;
-            }
 
             _context.Entry(subCategory).State = EntityState.Modified;
 

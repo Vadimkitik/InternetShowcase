@@ -10,7 +10,7 @@ namespace InternetShowcase.Data.interfaces {
         Task<IEnumerable<T>> GetAll();
         Task<T> GetByType(string line);
         Task<T> Create(T item);
-        Task<bool> Update(int id, T item);
+        Task<bool> Update(T item);
         Task<bool> Delete(int id);
     }
 }
