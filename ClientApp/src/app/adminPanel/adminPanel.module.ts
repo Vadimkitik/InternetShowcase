@@ -18,6 +18,9 @@ import { CategoriesComponent } from './categories/categories.component';
 import { UsersFormComponent } from './users/users-form/users-form.component';
 import { UsersCreateComponent } from './users/users-form/users-create/users-create.component';
 import { UsersEditComponent } from './users/users-form/users-edit/users-edit.component';
+import { CategoriesFormComponent } from './categories/categories-form/categories-form.component';
+import { CategoriesCreateComponent } from './categories/categories-form/categories-create/categories-create.component';
+import { CategoriesEditComponent } from './categories/categories-form/categories-edit/categories-edit.component';
 
 @NgModule({
     declarations: [
@@ -32,7 +35,10 @@ import { UsersEditComponent } from './users/users-form/users-edit/users-edit.com
         CategoriesComponent,
         UsersFormComponent,
         UsersCreateComponent,
-        UsersEditComponent
+        UsersEditComponent,
+        CategoriesFormComponent,
+        CategoriesCreateComponent,
+        CategoriesEditComponent
     ],
     imports: [
         CommonModule,
