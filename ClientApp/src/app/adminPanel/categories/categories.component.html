@@ -20,8 +20,10 @@
     <ng-container matColumnDef="button">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let category">
-            <button [routerLink]="['/admin-panel/categories/edit', category.categoryLine]" mat-raised-button disabled
-                color="accent">Изменить</button>
+            <button 
+            [routerLink]="['/admin-panel/categories/edit', category.line]" 
+            mat-raised-button 
+            color="accent">Изменить</button>
             <button (click)="delete(category.id)" mat-raised-button color="warn" disabled >Удалить</button>
         </td>
     </ng-container>

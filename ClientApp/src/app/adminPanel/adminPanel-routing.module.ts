@@ -24,7 +24,7 @@ const adminRoutes: Routes = [
         { path: 'users/edit/:email', component: UsersEditComponent },
         { path: 'categories', component: CategoriesComponent },
         { path: 'categories/create', component: CategoriesCreateComponent },
-        { path: 'categories/edit/:email', component: CategoriesEditComponent }
+        { path: 'categories/edit/:categoryLine', component: CategoriesEditComponent }
     ] },
     
     { path: 'testjson', component: TestJsonComponent }
