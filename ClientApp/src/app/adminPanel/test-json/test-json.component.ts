@@ -25,40 +25,45 @@ export class TestJsonComponent implements OnInit {
   sortData_recurs(data: any[]) {
 
     data.forEach(element => {
-
       if (element['parant_ID'] == 0) {
-        this.categories_rec.push({
-          id: element['id'],
-          name: element['name'],
-          children: []
-        })
+        this.pushToArray(element, this.categories_rec);
       }
-      if (element['parant_ID'] != 0) {
-        this.categories_rec.forEach(item => {
-          if (element['parant_ID'] == item['id']) {
+      else {
+        this.searchRecur(element);
+      }
+    });
 
-            item['children'].push({
-              id: element['id'],
-              name: element['name'],
-              children: []
-            })
+  }
+  searchRecur(element: any) {
+     
+    this.categories_rec.forEach(item => {
+      
+      if (element['parant_ID'] == item['id']) {
+        this.pushToArray(element, item['children']);
+
+      }
+      else {
+        
+        item['children'].forEach(cata => {
+
+          if (element['parant_ID'] == cata['id']) {
+            this.pushToArray(element, cata['children']);
+            console.log(element)
           }
-          if (element['parant_ID'] != item['id']) {
-            item['children'].forEach(cata => {
-              if (element['parant_ID'] == cata['id']) {
-
-                cata['children'].push({
-                  id: element['id'],
-                  name: element['name'],
-                  children: []
-                })
-              }
-            });
-          } 
+          
         });
       }
     });
   }
+
+  pushToArray(element: any, mass: any[]) {
+    mass.push({
+      id: element['id'],
+      name: element['name'],
+      children: []
+    });
+  }
+
   sortData(data: any[]) {
     data.forEach(element => {
 
@@ -81,7 +86,7 @@ export class TestJsonComponent implements OnInit {
               children: []
             })
           }
-          if (element['parant_ID'] != item['id']) {
+          else {
             item['children'].forEach(cata => {
               if (element['parant_ID'] == cata['id']) {
 
@@ -92,7 +97,7 @@ export class TestJsonComponent implements OnInit {
                 })
               }
             });
-          } 
+          }
         });
       }
     });
