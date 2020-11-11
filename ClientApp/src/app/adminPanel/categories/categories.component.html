@@ -1,4 +1,6 @@
-<button [routerLink]="['/admin-panel/categories', 'create']" class="createButton" mat-raised-button>Добавить Категорию</button>
+<button [routerLink]="['/admin-panel/categories', 'create']" class="createButton" mat-raised-button>Создать Категорию</button>
+
+<h1 *ngIf="errorMsg" style="text-align: center; color: red;">{{errorMsg}}</h1>
 
 <mat-form-field>
     <mat-label>Filter</mat-label>
@@ -24,7 +26,7 @@
             [routerLink]="['/admin-panel/categories/edit', category.line]" 
             mat-raised-button 
             color="accent">Изменить</button>
-            <button (click)="delete(category.id)" mat-raised-button color="warn" disabled >Удалить</button>
+            <button (click)="delete(category.id)" mat-raised-button color="warn" >Удалить</button>
         </td>
     </ng-container>
 

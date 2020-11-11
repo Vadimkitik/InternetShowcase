@@ -46,7 +46,13 @@ export class CategoriesComponent implements OnInit {
 
   delete(id: number) {
     this.categoryService.deleteCategory(id).subscribe(data => { 
-      console.log(`Category with ID "${id}" is Deleted!`);
+      if(data) {
+        console.log(`Category with ID "${id}" is Deleted!`);
+      }
+      else {
+        this.errorMsg =`Category with ID "${id}" is NOT Deleted!`;
+      }      
+      console.log(data)
       this.load();
     }, error => this.errorMsg = error);    
   }
