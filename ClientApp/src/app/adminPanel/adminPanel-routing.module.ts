@@ -27,7 +27,7 @@ const adminRoutes: Routes = [
         { path: 'categories/edit/:categoryLine', component: CategoriesEditComponent }
     ] },
     
-    { path: 'testjson', component: TestJsonComponent }
+    { path: 'test', component: TestJsonComponent }
 ];
 
 @NgModule({

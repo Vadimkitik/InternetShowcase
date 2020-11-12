@@ -1,18 +1,48 @@
-<div style="display: flex; justify-content: space-around;">
-<div>
-    <pre>countryList
-        {{ countryList | json}}
-    </pre>
-</div>
-<div>
-    <pre> entries
-        {{ entries | json}}
-    </pre>
-</div>
-<div>
-    <pre> categories
-        {{ categories | json}}
-    </pre>
-</div>
-
-</div>
+<h1 style="text-align: center;">Page for TESTING</h1>
+<header class="header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md col-sm col-xl">
+                <!--NAVIGATION-->
+                <div class="navbar">
+                    <nav>
+                        <ul class="nav" id="sub-menu">
+                            <li><span><a [routerLink]="'/'">Главная</a></span></li>
+                            <li *ngFor="let category of countryList">
+                                <span><a [routerLink]="['products/', category.name]"
+                                        >{{category.name}}</a></span>
+                                <ul class="nav">
+                                    <li *ngFor="let subCategory of category.children">
+                                        <span><a [routerLink]="['products/', subCategory.name]"
+                                                >{{subCategory.name}}</a></span>
+                                        <ul class="nav">
+                                            <li *ngFor="let underSubCategory of subCategory.children">
+                                                <span><a [routerLink]="['products/', underSubCategory.name]"
+                                                        >{{underSubCategory.name}}
+                                                    </a>
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><span><a [routerLink]="'/shop'">Магазин</a></span></li>
+                        </ul>
+                        
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div class="logo-container">
+        <div class="logo">
+            <div class="logo_text">
+                <a [routerLink]="'/'">
+                    <h1>Alleutina Shop</h1>
+                    <h2>HAND MADE</h2>
+                </a>
+            </div>
+        </div>
+        </div>
+    </div>
+    <img src="assets/img/bg/bg-main1.jpg" alt="" class="header_img">
+</header>
