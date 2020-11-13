@@ -13,6 +13,7 @@ namespace InternetShowcase.Data.Models
         public string Name { get; set; }
         [Required]
         public int Parent_Id { get; set; }
+        public ICollection<Category> Children { get; set; }
 
         public ICollection<Product> Products { get; set; }
 
@@ -20,6 +21,7 @@ namespace InternetShowcase.Data.Models
         public Category()
         {
             Products = new List<Product>();
+            Children = new List<Category>();
         }
     }
 }

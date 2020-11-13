@@ -23,6 +23,9 @@ namespace InternetShowcase.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<int?>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Line")
                         .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
@@ -35,6 +38,8 @@ namespace InternetShowcase.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Categories");
                 });
@@ -108,6 +113,13 @@ namespace InternetShowcase.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("InternetShowcase.Data.Models.Category", b =>
+                {
+                    b.HasOne("InternetShowcase.Data.Models.Category", null)
+                        .WithMany("Children")
+                        .HasForeignKey("CategoryId");
                 });
 
             modelBuilder.Entity("InternetShowcase.Data.Models.Product", b =>

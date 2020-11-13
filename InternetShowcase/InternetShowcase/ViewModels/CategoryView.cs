@@ -9,6 +9,7 @@ namespace InternetShowcase.ViewModels
 
         public string Name { get; set; }
         public int Parent_Id { get; set; }
+        public ICollection<CategoryView> Children { get; set; }
 
         public ICollection<ProductView> Products { get; set; }
     }
