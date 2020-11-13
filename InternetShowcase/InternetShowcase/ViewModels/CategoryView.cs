@@ -5,11 +5,11 @@ namespace InternetShowcase.ViewModels
     public class CategoryView
     {
         public int Id { get; set; }
-        public string CategoryLine { get; set; }
+        public string Line { get; set; }
 
-        public string CategoryName { get; set; }
+        public string Name { get; set; }
+        public int Parent_Id { get; set; }
 
         public ICollection<ProductView> Products { get; set; }
-        public ICollection<SubCategoryView> SubCategories { get; set; }
     }
 }

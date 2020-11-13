@@ -28,13 +28,5 @@ namespace InternetShowcase.Data.Models
         public int CategoryID { get; set; }
         [ForeignKey("CategoryID")]
         public Category Category { get; set; }
-
-        public int SubCategoryID { get; set; }
-        [ForeignKey("SubCategoryID")]
-        public SubCategory SubCategory { get; set; }
-
-        public int UnderSubCategoryID { get; set; }
-        [ForeignKey("UnderSubCategoryID")]
-        public UnderSubCategory UnderSubCategory { get; set; }
     }
 }

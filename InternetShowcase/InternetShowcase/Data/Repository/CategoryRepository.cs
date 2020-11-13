@@ -17,8 +17,6 @@ namespace InternetShowcase.Data.Repository
 
         public async Task<IEnumerable<Category>> GetAll()
         {
-            foreach (Category u in _context.Categories.Include(p => p.SubCategories)) ;
-            foreach (SubCategory subCategory in _context.SubCategories.Include(s => s.UnderSubCategories)) ;
             IEnumerable<Category> categories = await _context.Categories.ToListAsync();
             return categories;
         }
@@ -26,7 +24,7 @@ namespace InternetShowcase.Data.Repository
         public async Task<Category> GetByType(string categoryLine)
         {
             foreach (Category u in _context.Categories.Include(p => p.Products)) ;
-            Category _category = await _context.Categories.SingleOrDefaultAsync(s => s.CategoryLine == categoryLine);
+            Category _category = await _context.Categories.SingleOrDefaultAsync(s => s.Line == categoryLine);
           
             return _category;
         }

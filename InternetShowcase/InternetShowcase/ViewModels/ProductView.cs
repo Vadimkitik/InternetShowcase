@@ -20,7 +20,5 @@
         public bool Available { get; set; }
        
         public CategoryView Category { get; set; }
-        public SubCategoryView SubCategory { get; set; }
-        public UnderSubCategoryView UnderSubCategory { get; set; }
     }
 }

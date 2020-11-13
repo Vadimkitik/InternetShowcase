@@ -17,13 +17,11 @@ namespace InternetShowcase.Controllers
     {
         private readonly IAllProducts _allProducts;
         private readonly IMapper _mapper;
-        private readonly ShowcaseDbContext _context;
 
-        public ProductsController(IAllProducts iAllProducts, IMapper mapper, ShowcaseDbContext context)
+        public ProductsController(IAllProducts iAllProducts, IMapper mapper)
         {
             _allProducts = iAllProducts;
             _mapper = mapper;
-            _context = context;
         }
 
         [HttpGet]

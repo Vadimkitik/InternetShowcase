@@ -25,7 +25,5 @@ namespace InternetShowcase.ViewModels
         public bool Available { get; set; }
 
         public string Category { get; set; }
-        public string SubCategory { get; set; }
-        public string UnderSubCategory { get; set; }
     }
 }
