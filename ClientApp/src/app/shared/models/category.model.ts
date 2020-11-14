@@ -1,12 +1,12 @@
 import { Product } from './product.model';
-import { SubCategory } from './subCategory.model';
 
 export class Category {
     constructor(
         public id?: number,
-        public categoryLine?: string,
-        public categoryName?: string,
+        public line?: string,
+        public name?: string,
+        public parent_Id?: number,
         public products?: Product[],
-        public subCategories?: SubCategory[]
+        public children?: null
         ){ }
 }

@@ -4,7 +4,7 @@
         <mat-label>Path</mat-label>
         <input 
         matInput placeholder="rozi,tulpani, bojiy_oduvanchik..."
-        type="text" [(ngModel)]="category.categoryLine" 
+        type="text" [(ngModel)]="category.line" 
         [formControl]="line"
         />
         <mat-error *ngIf="line.invalid">{{getErrorMessage()}}</mat-error>
@@ -12,8 +12,8 @@
 
     <mat-form-field class="product-full-width">
         <mat-label>Название</mat-label>
-        <input matInput placeholder="Розы, тюльпаны, божий одуванчик..." 
-        type="text" [(ngModel)]="category.categoryName" 
+        <input matInput placeholder="Горшки, шары..." 
+        type="text" [(ngModel)]="category.name" 
         [formControl]="name"
         />
         <mat-error *ngIf="name.invalid">{{getErrorMessage()}}</mat-error>

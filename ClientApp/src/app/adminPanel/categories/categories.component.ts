@@ -13,12 +13,12 @@ import { CategoryService } from 'src/app/shared/services/category.service';
 })
 export class CategoriesComponent implements OnInit {
 
-  categoriesAll = [];
-  dataSource: MatTableDataSource<any[]>;
+  dataSource: MatTableDataSource<Category>;
   columnsToDisplay = [
     'id', 
     'line', 
-    'name', 
+    'name',
+    'parent_Id', 
     'button'
   ];
   expandedElement: Category | null;
@@ -37,8 +37,7 @@ export class CategoriesComponent implements OnInit {
 
   load() {
     this.categoryService.getCategories().subscribe((data: Category[]) => {
-      this.catReplace(data);
-      this.dataSource = new MatTableDataSource(this.categoriesAll);
+      this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     }, error => this.errorMsg = error);
@@ -64,57 +63,5 @@ export class CategoriesComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
-  }
-
-  
-  catReplace(data: any[]) {
-    data.forEach(element => {
-
-      this.categoriesAll.push({
-        id: element.id,
-        line: element.categoryLine,
-        name: element.categoryName                
-      });
-
-      for(let key in element) {
-
-        if(Array.isArray(element[key]) && element[key].length != 0) {
-          this.catReplace(element[key]);
-        }
-      }
-    });
-  }
-
-  // catReplace(data: Category[]){
-  //   for(let i=0;; i++)
-  //   {
-  //     if(data[i] == null) { break; }
-
-  //     this.categoriesAll.push({
-  //       id: data[i].id,
-  //       line: data[i].categoryLine,
-  //       name: data[i].categoryName                
-  //     });
-      
-  //     if(data[i].subCategories) {
-  //       for(let j = 0; j < data[i].subCategories.length; j++) {
-  //         this.categoriesAll.push({
-  //           id: data[i].subCategories[j].id,
-  //           line: data[i].subCategories[j].categoryLine,
-  //           name: data[i].subCategories[j].categoryName                
-  //         });
-
-  //         if(data[i].subCategories[j].underSubCategories) {
-  //           for(let x = 0; x < data[i].subCategories[j].underSubCategories.length; x++) {
-  //             this.categoriesAll.push({
-  //               id: data[i].subCategories[j].underSubCategories[x].id,
-  //               line: data[i].subCategories[j].underSubCategories[x].categoryLine,
-  //               name: data[i].subCategories[j].underSubCategories[x].categoryName                
-  //             });
-  //           }
-  //         }
-  //       }
-  //     } 
-  //   }  
-  // }
+  } 
 }

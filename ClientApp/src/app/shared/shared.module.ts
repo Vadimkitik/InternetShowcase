@@ -9,8 +9,6 @@ import { TokenStorageService } from './services/token-storage.service';
 import { CategoryService } from './services/category.service';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { UploadService } from './services/upload.service';
-import { SubCategoryService } from './services/subCategory.service';
-import { UnderSubCategoryService } from './services/underSubCategory.service';
 
 @NgModule({
     imports: [
@@ -24,9 +22,7 @@ import { UnderSubCategoryService } from './services/underSubCategory.service';
         AuthGuard,
         TokenStorageService,
         CategoryService,
-        UploadService,
-        SubCategoryService,
-        UnderSubCategoryService
+        UploadService
     ],
     declarations: [NotFoundComponent],
     exports: [ReactiveFormsModule, FormsModule]

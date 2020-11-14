@@ -33,16 +33,16 @@
                         <ul class="nav" id="sub-menu">
                             <li><span><a [routerLink]="'/'">Главная</a></span></li>
                             <li *ngFor="let category of categories">
-                                <span><a [routerLink]="['products/', category.categoryLine]"
-                                        fragment="Cata">{{category.categoryName}}</a></span>
+                                <span><a [routerLink]="['products/', category.line]"
+                                        >{{category.name}}</a></span>
                                 <ul class="nav">
-                                    <li *ngFor="let subCategory of category.subCategories">
-                                        <span><a [routerLink]="['products/', subCategory.categoryLine]"
-                                                fragment="SubCata">{{subCategory.categoryName}}</a></span>
+                                    <li *ngFor="let subCategory of category.children">
+                                        <span><a [routerLink]="['products/', subCategory.line]"
+                                                >{{subCategory.name}}</a></span>
                                         <ul class="nav">
-                                            <li *ngFor="let underSubCategory of subCategory.underSubCategories">
-                                                <span><a [routerLink]="['products/', underSubCategory.categoryLine]"
-                                                        fragment="UnderSubCata">{{underSubCategory.categoryName}}
+                                            <li *ngFor="let underSubCategory of subCategory.children">
+                                                <span><a [routerLink]="['products/', underSubCategory.line]"
+                                                        >{{underSubCategory.name}}
                                                     </a>
                                                 </span>
                                             </li>

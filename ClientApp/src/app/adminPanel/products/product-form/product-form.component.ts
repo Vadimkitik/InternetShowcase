@@ -13,8 +13,6 @@ export class ProductFormComponent {
 
     @Input() response: { dbPath: '' };
     categories: Category[];
-    numbCat: number;
-    numbSubCat: number;
     @Input() product: Product;
     public errorMsg;
     loaded: boolean = false;
@@ -34,13 +32,5 @@ export class ProductFormComponent {
     uploadFinished = (event) => {
         this.response = event; 
         this.product.imageUrl = this.response.dbPath;
-    }
-    SetCategory(index: number) {
-        this.numbCat = index;
-        console.log(this.numbCat);
-    }
-    SetSubCategory(index: number) {
-        this.numbSubCat = index;
-        console.log(this.numbSubCat);
     }
 }
