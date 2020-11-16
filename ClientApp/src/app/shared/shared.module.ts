@@ -9,6 +9,7 @@ import { TokenStorageService } from './services/token-storage.service';
 import { CategoryService } from './services/category.service';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { UploadService } from './services/upload.service';
+import { TreeService} from './services/tree.service';
 
 @NgModule({
     imports: [
@@ -22,7 +23,8 @@ import { UploadService } from './services/upload.service';
         AuthGuard,
         TokenStorageService,
         CategoryService,
-        UploadService
+        UploadService,
+        TreeService
     ],
     declarations: [NotFoundComponent],
     exports: [ReactiveFormsModule, FormsModule]

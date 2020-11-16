@@ -35,9 +35,7 @@ export class PanelComponent implements OnInit {
     'button'
   ];
   expandedElement: Product | null;
-  errorMsg: string;
-  categories: Category;
-  
+  errorMsg: string;  
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;

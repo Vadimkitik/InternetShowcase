@@ -22,11 +22,11 @@ export function tokenGetter(){
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
+        MaterialModule,
         SharedModule,
         ProductsModule,
         HttpClientModule,
         AppRoutingModule,
-        MaterialModule,
         JwtModule.forRoot({
            config: {
                tokenGetter: tokenGetter,

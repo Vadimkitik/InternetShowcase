@@ -25,6 +25,7 @@ namespace InternetShowcase.Data.Repository
 
         public async Task<Product> GetByLine(string productLine)
         {
+            foreach (Product u in _context.Products.Include(p => p.Category)) ;
             Product product = await _context.Products.SingleOrDefaultAsync(p => p.ProductLine == productLine);
             return product;
         }

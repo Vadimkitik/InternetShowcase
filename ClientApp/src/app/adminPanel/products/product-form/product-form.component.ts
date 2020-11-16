@@ -3,6 +3,7 @@
 import { Product } from '../../../shared/models/product.model';
 import { Category } from '../../../shared/models/category.model';
 import { CategoryService } from 'src/app/shared/services/category.service';
+import { TreeService } from 'src/app/shared/services/tree.service';
 
 @Component({
     selector: "product-form",
@@ -18,14 +19,15 @@ export class ProductFormComponent {
     loaded: boolean = false;
 
     constructor(
-        private catService: CategoryService
+        private catService: CategoryService,
+        private treeService: TreeService
         ) { }
 
     ngOnInit() {
         this.catService.getCategories().subscribe((categories: Category[]) => {
-            this.categories = categories;
+            this.categories = this.treeService.list_to_tree(categories);
+            this.categories = this.treeService.last_level_of_tree(categories);
             this.loaded = true;
-            console.log(categories);
         }, error => this.errorMsg = error);
     }
 
