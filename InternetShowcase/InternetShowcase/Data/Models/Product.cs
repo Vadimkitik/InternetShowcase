@@ -20,10 +20,10 @@ namespace InternetShowcase.Data.Models
         [Required]
         public string ImageUrl { get; set; }
         [Required]
-        public bool IsFavourite { get; set; }
+        public string IsFavourite { get; set; }
         [Required]
-        public bool Available { get; set; }
-
+        public string Available { get; set; }
+        
         [Required]
         public int CategoryID { get; set; }
         [ForeignKey("CategoryID")]

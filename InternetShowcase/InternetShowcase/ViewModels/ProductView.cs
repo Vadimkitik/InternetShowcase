@@ -15,9 +15,11 @@
       
         public string ImageUrl { get; set; }
 
-        public bool IsFavourite { get; set; }
+        public string IsFavourite { get; set; }
 
-        public bool Available { get; set; }
+        public string Available { get; set; }
+        
+        public string CategoryId { get; set; }
        
         public CategoryView Category { get; set; }
     }

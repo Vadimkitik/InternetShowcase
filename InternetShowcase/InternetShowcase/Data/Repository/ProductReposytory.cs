@@ -25,8 +25,8 @@ namespace InternetShowcase.Data.Repository
 
         public async Task<Product> GetByLine(string productLine)
         {
-            foreach (Product u in _context.Products.Include(p => p.Category)) ;
-            Product product = await _context.Products.SingleOrDefaultAsync(p => p.ProductLine == productLine);
+            //foreach (Product u in _context.Products.Include(p => p.Category)) ;
+            Product product = await _context.Products.Include(p => p.Category).SingleOrDefaultAsync(p => p.ProductLine == productLine);
             return product;
         }
         public async Task<Product> Create(Product product)
@@ -38,13 +38,17 @@ namespace InternetShowcase.Data.Repository
 
         public async Task<bool> Update(Product product)
         {
-            if (product != null)
+            _context.Entry(product).State = EntityState.Modified;
+
+            try
             {
-                _context.Products.Update(product);
                 await _context.SaveChangesAsync();
                 return true;
             }
-            return false;
+            catch (DbUpdateConcurrencyException)
+            {
+                return false;
+            }
         }
 
         public async Task<bool> Delete(int id)
@@ -60,7 +64,7 @@ namespace InternetShowcase.Data.Repository
         }
 
 
-        public IEnumerable<Product> getFavProducts => _context.Products.Where(p => p.IsFavourite == true).Include(c => c.Category);
+        public IEnumerable<Product> getFavProducts => _context.Products.Where(p => p.IsFavourite == "true").Include(c => c.Category);
 
         public Product getObjproduct(int productId) => _context.Products.FirstOrDefault(p => p.Id == productId);
     }

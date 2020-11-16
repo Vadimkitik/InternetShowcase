@@ -50,8 +50,9 @@ namespace InternetShowcase.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<bool>("Available")
-                        .HasColumnType("tinyint(1)");
+                    b.Property<string>("Available")
+                        .IsRequired()
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("CategoryID")
                         .HasColumnType("int");
@@ -64,8 +65,9 @@ namespace InternetShowcase.Migrations
                         .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<bool>("IsFavourite")
-                        .HasColumnType("tinyint(1)");
+                    b.Property<string>("IsFavourite")
+                        .IsRequired()
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Name")
                         .IsRequired()

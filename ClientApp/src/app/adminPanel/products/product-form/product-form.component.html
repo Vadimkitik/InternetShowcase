@@ -48,7 +48,7 @@
     <mat-form-field class="product-full-width">
         <mat-label>Категория товара</mat-label>
         <h1>{{errorMsg}}</h1>
-        <mat-select [(ngModel)]="product.categoryId">
+        <mat-select [(ngModel)]="product.categoryId" >
             <mat-option 
             value="{{category.id}}"
             *ngFor="let category of categories; let i = index"

@@ -37,12 +37,12 @@ namespace InternetShowcase.Controllers
         }
 
         [HttpGet("{productLine}")]
-        public async Task<ActionResult<IndexProductView>> GetProduct(string productLine)
+        public async Task<ActionResult<ProductView>> GetProduct(string productLine)
         {
             var product = await _allProducts.GetByLine(productLine);
             if (product != null)
             {
-                return _mapper.Map<Product, IndexProductView>(product);
+                return _mapper.Map<Product, ProductView>(product);
             }
             return NotFound();
         }

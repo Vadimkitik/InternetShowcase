@@ -30,7 +30,6 @@ export class TreeService {
             roots.push(list[i]);
           }
         }        
-        console.log(roots)
         return roots;
       }
 } 

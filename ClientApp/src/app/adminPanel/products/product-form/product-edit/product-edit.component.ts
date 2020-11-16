@@ -38,6 +38,7 @@ export class ProductEditComponent implements OnInit {
     }
 
     save() {
+        console.log(this.product)
         this.productService.updateProduct(this.product).subscribe(() => { 
             this.router.navigateByUrl("/admin-panel/product")
         }, error => this.errorMsg = error);

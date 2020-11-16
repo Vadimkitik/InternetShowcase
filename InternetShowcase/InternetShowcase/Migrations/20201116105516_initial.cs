@@ -57,8 +57,8 @@ namespace InternetShowcase.Migrations
                     Price = table.Column<double>(nullable: false),
                     OldPrice = table.Column<double>(nullable: true),
                     ImageUrl = table.Column<string>(nullable: false),
-                    IsFavourite = table.Column<bool>(nullable: false),
-                    Available = table.Column<bool>(nullable: false),
+                    IsFavourite = table.Column<string>(nullable: false),
+                    Available = table.Column<string>(nullable: false),
                     CategoryID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
