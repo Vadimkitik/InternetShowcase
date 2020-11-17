@@ -2,6 +2,7 @@
 using InternetShowcase.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace InternetShowcase.Data.Repository
@@ -23,10 +24,29 @@ namespace InternetShowcase.Data.Repository
 
         public async Task<Category> GetByType(string categoryLine)
         {
-            foreach (Category u in _context.Categories.Include(p => p.Products)) ;
-            Category _category = await _context.Categories.SingleOrDefaultAsync(s => s.Line == categoryLine);
-          
+            
+            Category _category = await _context.Categories.Include(p => p.Products).SingleOrDefaultAsync(s => s.Line == categoryLine);
+            _category.Children = await GetChildrenCategory(_category.Id); 
+
             return _category;
+        }
+        public async Task<ICollection<Category>> GetChildrenCategory(int id)
+        {
+            ICollection<Category> categories;
+
+            if (!_context.Categories.Any(c => id == c.Parent_Id))
+            {
+                return null;
+            }
+            else
+            {
+                categories = await _context.Categories.Where(c => id == c.Parent_Id).Include(p => p.Products).ToListAsync();
+                foreach(var category in categories)
+                {
+                    category.Children = await GetChildrenCategory(category.Id);
+                }         
+            }
+            return categories;
         }
 
         public async Task<Category> Create(Category category)
