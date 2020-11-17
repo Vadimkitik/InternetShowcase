@@ -24,10 +24,10 @@ namespace InternetShowcase.Controllers
         [HttpPost, Route("login")]
         public IActionResult Login([FromBody]LoginModel checkUser)
         {
-            User user = db.Users.FirstOrDefault(u => u.Email == checkUser.Email && u.Password == checkUser.Password);
+            User user = db.Users.FirstOrDefault(u => u.Email == checkUser.Email && String.Equals(u.Password, checkUser.Password, StringComparison.CurrentCulture));
             if (user == null)
             {
-                return BadRequest("Invalid client request");
+                return NotFound("Invalid client request");
             }
 
             var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345#@!%>?#@!"));

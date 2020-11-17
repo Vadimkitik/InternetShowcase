@@ -5,13 +5,13 @@
         <mat-error *ngIf="name.invalid">{{getErrorMessageName()}}</mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill" class="product-full-width">
         <mat-label>Email</mat-label>
         <input matInput placeholder="pat@example.com" [(ngModel)]="user.email" [formControl]="email" required>
         <mat-error *ngIf="email.invalid">{{getErrorMessageEmail()}}</mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill" class="product-full-width">
         <mat-label>Введите пароль</mat-label>
         <input matInput [formControl]="password" [(ngModel)]="user.password" [type]="hide ? 'password' : 'text'">
         <mat-error *ngIf="password.invalid">{{getErrorMessagePassw()}}</mat-error>
