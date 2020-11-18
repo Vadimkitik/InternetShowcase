@@ -8,7 +8,7 @@ namespace InternetShowcase.ViewModels
         public string Line { get; set; }
 
         public string Name { get; set; }
-        public int Parent_Id { get; set; }
+        public string Parent_Id { get; set; }
         public ICollection<CategoryView> Children { get; set; }
 
         public ICollection<ProductView> Products { get; set; }

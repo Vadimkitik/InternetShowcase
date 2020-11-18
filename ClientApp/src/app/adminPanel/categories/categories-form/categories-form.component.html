@@ -19,34 +19,16 @@
         <mat-error *ngIf="name.invalid">{{getErrorMessage()}}</mat-error>
     </mat-form-field>
 
-    <!-- <mat-form-field class="product-full-width">
-        <mat-label>Категория товара</mat-label>
+    <mat-form-field class="product-full-width">
+        <mat-label>Parent_id</mat-label>
         <h1>{{errorMsg}}</h1>
-        <mat-select [(ngModel)]="product.categoryId">
+        <mat-select [(ngModel)]="category.parent_Id" >
             <mat-option 
             value="{{category.id}}"
             *ngFor="let category of categories; let i = index"
-            (click)="SetCategory(i)"
             >
-                {{ category.categoryName }}</mat-option>
+                {{ category.name }}</mat-option>
         </mat-select>
     </mat-form-field>
 
-    <mat-form-field class="product-full-width" *ngIf="product.categoryId" >
-        <mat-label>Подкатегория товара</mat-label>
-        <h1>{{errorMsg}}</h1>
-        <mat-select [(ngModel)]="product.subCategoryId" >
-            <mat-option value="{{subCategory.id}}" *ngFor="let subCategory of categories[numbCat].subCategories; let i = index" (click)="SetSubCategory(i)">
-                {{ subCategory.categoryName }}</mat-option>
-        </mat-select>
-    </mat-form-field>
-    
-    <mat-form-field class="product-full-width" *ngIf="product.subCategoryId">
-        <mat-label>Подподкатегория товара :)</mat-label>
-        <h1>{{errorMsg}}</h1>
-        <mat-select [(ngModel)]="product.underSubCategoryId">
-            <mat-option value="{{underSubCategory.id}}" *ngFor="let underSubCategory of categories[numbCat].subCategories[numbSubCat].underSubCategories" >
-                {{ underSubCategory.categoryName }}</mat-option>
-        </mat-select>
-    </mat-form-field> -->
 </div>

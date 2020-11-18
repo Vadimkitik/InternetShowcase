@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Category } from 'src/app/shared/models/category.model';
+import { CategoryService } from 'src/app/shared/services/category.service';
 
 @Component({
   selector: 'categories-form',
@@ -10,16 +11,32 @@ import { Category } from 'src/app/shared/models/category.model';
 export class CategoriesFormComponent implements OnInit {
 
   @Input() category: Category;
+  @Input() categories: Category[];
   public errorMsg;
   loaded: boolean = false;
   hide = true;
   name = new FormControl('', [Validators.required]);
   line = new FormControl('', [Validators.required]);
 
-  
-  constructor() { }
+
+  constructor(
+    private categoryService: CategoryService
+  ) { }
 
   ngOnInit() {
+    console.log(this.categories)
+    this.categoryService.getCategories().subscribe((data: Category[]) => {
+      this.categories = data;
+      this.categories.push({
+        children: null,
+        id: 0,
+        line: "",
+        name: "Родительская категория",
+        parent_Id: null,
+        products: null
+      })
+    });
+    console.log(this.categories)
   }
   getErrorMessage() {
     if (this.name.hasError('required')) {

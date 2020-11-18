@@ -23,7 +23,6 @@ export class CategoriesEditComponent implements OnInit {
         ) 
     {
         this.categoryLine = activeRoute.snapshot.params["categoryLine"];
-        console.log(this.categoryLine)
     }
 
     ngOnInit() {

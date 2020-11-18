@@ -50,7 +50,6 @@ export class PanelComponent implements OnInit {
 
   load() {
     this.productService.getProducts().subscribe((data: Product[]) => {
-      console.log(data);
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
