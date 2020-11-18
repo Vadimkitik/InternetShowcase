@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 export class RegistrationComponent implements OnInit {
 
   form: FormGroup;
+  user: User;
     constructor(
         private router: Router,
         private usersService: UsersService
@@ -33,16 +34,17 @@ export class RegistrationComponent implements OnInit {
   }
 
   onSubmit(){
-    const { email, password, name, role} = this.form.value;
-    const user = new User
-    (
-      email, 
-      this.form.value['passwords']['password'], 
-      name,  
-      "User"
-    );
+    console.log(this.form.value)
+    this.user =
+    {
+      name: this.form.value['name'],
+      password: this.form.value['passwords']['password'],
+      email: this.form.value['email'],
+      role: "User"
+    };
 
-      this.usersService.createUser(user)
+    console.log(this.user)
+      this.usersService.createUser(this.user)
       .subscribe((user: User) => {
         this.router.navigate(['/auth/login'], {
           queryParams: {
