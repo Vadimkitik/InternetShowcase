@@ -45,27 +45,7 @@ export class LoginComponent implements OnInit {
       'password': new FormControl(null, [Validators.required, Validators.minLength(6)])
     })
   }
-  getErrorMessageEmail() {
-    if (this.form.get('email').hasError('required')) {
-      return 'Не оставлять пустым!';
-    }
-    return this.form.get('email').hasError('email') ? 'Введите корректный email' : '';
-  }
-
-  getErrorMessagePassv() {
-    if (this.form.get('password').hasError('required')) {
-      return 'Не оставлять пустым!';
-    }
-    return this.form.get('password').hasError('minlength') ? 'Пароль должен быть больше 5 символов' : '';
-  }
-
-  showMessage(message: Message) {
-    this.message = message;
-    window.setTimeout(() => {
-      this.message.text = '';
-    }, 4000);
-  }
-
+  
   onSubmit() {
     this.authService.login1(this.form.value)
       .subscribe(response => {
@@ -86,5 +66,26 @@ export class LoginComponent implements OnInit {
           type: 'danger'
         });
       });
+  }
+
+  getErrorMessageEmail() {
+    if (this.form.get('email').hasError('required')) {
+      return 'Не оставлять пустым!';
+    }
+    return this.form.get('email').hasError('email') ? 'Введите корректный email' : '';
+  }
+
+  getErrorMessagePassv() {
+    if (this.form.get('password').hasError('required')) {
+      return 'Не оставлять пустым!';
+    }
+    return this.form.get('password').hasError('minlength') ? 'Пароль должен быть больше 5 символов' : '';
+  }
+
+  showMessage(message: Message) {
+    this.message = message;
+    window.setTimeout(() => {
+      this.message.text = '';
+    }, 4000);
   }
 }
