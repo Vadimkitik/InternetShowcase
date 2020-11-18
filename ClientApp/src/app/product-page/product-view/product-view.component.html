@@ -1,7 +1,10 @@
 <!--PRODUCT DESCRIPTION -->
 <section>
     <div class="container">
-        <h1>{{ errorMsg }}</h1>
+        <div class="errorOrNot" *ngIf="errorMsg">
+            <h1>{{ errorMsg }}</h1>
+            <a [routerLink]="'/'" class="button-outline">продолжить</a>
+        </div>
         <div class="row" *ngIf="loaded">
             <div class="col-md-12">
                 <div class="product-cont">

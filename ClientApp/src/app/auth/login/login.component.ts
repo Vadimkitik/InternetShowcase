@@ -77,7 +77,7 @@ export class LoginComponent implements OnInit {
         this.authService.login()
         this.name = this.tokenStorage.getUser().name;
         this.message.text = '';
-        console.log('Loggin successful');
+        console.log(`Loggin successful, ${name}`);
 
         this.router.navigate(['/admin-panel']);
       }, error => {

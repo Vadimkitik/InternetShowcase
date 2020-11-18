@@ -24,17 +24,17 @@ export class RegistrationComponent implements OnInit {
   ngOnInit() {   
     this.form =new FormGroup({
       'email': new FormControl(null, [Validators.required, Validators.email], this.forbiddenEmails.bind(this)),
-      'passwords': new FormGroup({
-        'password': new FormControl(null, [Validators.required, Validators.minLength(6)]),
-        'confpassword': new FormControl(null, [Validators.required])
-       }, this.passwordsAreEqual()),
+      'passwords': new FormGroup(
+        {
+          'password': new FormControl(null, [Validators.required, Validators.minLength(6)]),
+          'confpassword': new FormControl(null, [Validators.required])
+        }, this.passwordsAreEqual()),
       'name': new FormControl(null, Validators.required),
       'agree': new FormControl(null, Validators.required)
     });
   }
 
   onSubmit(){
-    console.log(this.form.value)
     this.user =
     {
       name: this.form.value['name'],
@@ -42,8 +42,7 @@ export class RegistrationComponent implements OnInit {
       email: this.form.value['email'],
       role: "User"
     };
-
-    console.log(this.user)
+    
       this.usersService.createUser(this.user)
       .subscribe((user: User) => {
         this.router.navigate(['/auth/login'], {

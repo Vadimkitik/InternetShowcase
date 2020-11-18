@@ -25,11 +25,11 @@ namespace InternetShowcase.Controllers
         public async Task<ActionResult<IEnumerable<CategoryView>>> GetCategories()
         {
             var categories = await _categories.GetAll();
-            if (categories == null)
+            if (categories != null)
             {
-                return BadRequest();
+                return _mapper.Map<List<Category>, List<CategoryView>>((List<Category>)categories); 
             }
-            return _mapper.Map<List<Category>, List<CategoryView>>((List<Category>)categories);
+            return BadRequest();
         }
 
         [HttpGet("{categoryLine}")]

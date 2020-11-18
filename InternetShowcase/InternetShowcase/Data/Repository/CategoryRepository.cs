@@ -26,11 +26,15 @@ namespace InternetShowcase.Data.Repository
         {
             
             Category _category = await _context.Categories.Include(p => p.Products).SingleOrDefaultAsync(s => s.Line == categoryLine);
+            if(_category == null)
+            {
+                return null;
+            }
             _category.Children = await GetChildrenCategory(_category.Id); 
 
             return _category;
         }
-        public async Task<ICollection<Category>> GetChildrenCategory(int id)
+        private async Task<ICollection<Category>> GetChildrenCategory(int id)
         {
             ICollection<Category> categories;
 

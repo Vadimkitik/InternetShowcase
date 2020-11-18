@@ -1,4 +1,4 @@
-﻿<h1 class="h1-line"><span>{{categoryName}}</span></h1>
+﻿<h1 class="h1-line" *ngIf="categoryName"><span>{{categoryName}}</span></h1>
 <div class="errorOrNot" *ngIf="errorMsg">
     <h1>{{ errorMsg }}</h1>
     <a [routerLink]="'/'" class="button-outline">продолжить</a>
