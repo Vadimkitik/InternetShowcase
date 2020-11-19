@@ -8,6 +8,13 @@ body{
     background-color: #fcecfa;
 }
 
+.errorOrNot h1{
+    text-align: center;
+}
+.errorOrNot a {
+    margin-bottom: 15px;
+    margin-top: 10px;
+}
 /*...................
 SOCIAL
 ...................*/
@@ -126,8 +133,8 @@ HEADER
     position: relative;
 }
 
-.header-phone .header-phonei-item {
-    margin: 6px 0;
+.header-phone .header-phone-item {
+    margin: 6px 11px 6px 5px;
     line-height: 26px;
     font-size: 16px;
     padding-left: 34px;
@@ -137,10 +144,11 @@ HEADER
     text-decoration: none;
     font-weight: 500;
 }
-.header-phonei-item:hover{
+
+.header-phone-item:hover{
     color: #f3388f;
 }
-.header-phone .header-phonei-item.mts:before {
+.header-phone .header-phone-item.mts:before {
     content: "";
     background: url(./img/bg/mts.png) no-repeat;
     background-size: cover;
@@ -173,7 +181,7 @@ HEADER
     margin-bottom: 20px;
     color: rgb(17, 12, 12);
     text-decoration: none;    
-    margin-right: 20px;
+    margin-right: 10px;
  }
  .header-social a:last-child {
     margin-right: 45px;
@@ -201,7 +209,11 @@ HEADER
     border: 0;
     top: 50px;
 }
-
+.logo-container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
 .logo {
     display: flex;
     align-items: center;
@@ -212,7 +224,6 @@ HEADER
     height: 240px;
     z-index: 1;
     top: 105px;
-    right: 40%;
     background-color: #fcecfa;
     transform: rotate(45deg);
     opacity: 0.9;
@@ -728,18 +739,12 @@ FOOTER
 @MEDIA
 ...................*/
 @media (max-width: 1205px) {
-    .logo {
-        right: 38%;
-    }
     .card__button_nal {
         margin: 10px 6%;
         width: 160px;
     }
 }
 @media (max-width: 995px) {
-    .logo {
-        right: 33%;
-    }
     .header .container .row {
         padding-top: 10px;
         
@@ -842,9 +847,8 @@ FOOTER
     position: relative;
   }
   .logo {
-    right: 36%;
-    width: 190px;
-    height: 190px;
+    width: 185px;
+    height: 185px;
     font-size: 16px;
     top: 94px;
 }

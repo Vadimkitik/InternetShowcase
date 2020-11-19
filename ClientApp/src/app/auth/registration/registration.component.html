@@ -29,67 +29,22 @@
       <input 
       matInput 
       formControlName="confpassword" 
-      type="password"
+      type="password"      
+      [errorStateMatcher]="matcher"
       required
       >
-      <mat-error *ngIf="form.get('passwords')['errors'] && form.get('passwords').get('confpassword').touched">{{getErrorMessagePassvConf()}} dwadwa</mat-error>
+      <mat-error 
+      *ngIf="form.get('passwords').hasError('notSame') && form.get('passwords').get('confpassword').touched"
+      >Пароли должны совпадать</mat-error>
     </mat-form-field>
   </div>
 </div>
-
- 
-  <!-- <div formGroupName="passwords">
-  <div 
-   class="form-group"
-   [ngClass]="{'has-error': form.get('passwords').get('password').invalid && form.get('passwords').get('password').touched }"
-   >
-    <label for="password">Пароль</label>
-    <input 
-      type="password" 
-      class="form-control underlined" 
-      id="passwordw"
-      formControlName="password" 
-      placeholder="Введите пароль"
-      required
-      >
-      <span 
-      class="form-help-text"
-      *ngIf="form.get('passwords').get('password').invalid && form.get('passwords').get('password').touched"
-      >
-      <span *ngIf="form.get('passwords').get('password')['errors']['required']">Пароль не должен быть пустым.</span>
-      <span 
-        *ngIf="form.get('passwords').get('password')['errors']['minlength']"
-      >Пароль должен быть не меньше {{ form.get('passwords').get('password')['errors']['minlength']['requiredLength'] }} символов.
-    </span>
-    </span>
-  </div>
-  
-  <div 
-   class="form-group"
-   [ngClass]="{'has-error': form.get('passwords').invalid && form.get('passwords').get('confpassword').touched }"
-   >
-    <label for="confpassword">Повторите пароль</label>
-    <input 
-      type="password" 
-      class="form-control underlined" 
-      id="confpasswordw"
-      formControlName="confpassword" 
-      placeholder="Повторите пароль"
-      required
-      >
-      <span 
-      class="form-help-text"
-      *ngIf="form.get('passwords').invalid && form.get('passwords').get('confpassword').touched"
-      >Пароли должны совпадать.
-    </span>
-  </div>
-</div> -->
 
 <div class="example-container">
   <mat-form-field appearance="fill">
     <mat-label>Имя</mat-label>
     <input matInput placeholder="example@example.com" formControlName="name" required>
-    <mat-error *ngIf="form.get('name').invalid">{{getErrorMessageName()}}</mat-error>
+    <mat-error *ngIf="form.get('name').invalid">Введите имя</mat-error>
   </mat-form-field>
 </div>
   
@@ -107,6 +62,7 @@
     type="submit" 
     class="submit_button" 
     mat-raised-button color="primary" 
+    [disabled]="form.invalid"
     >Зарегистрироваться
   </button>
   </div>
