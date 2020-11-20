@@ -5,4 +5,7 @@ import { Component } from '@angular/core';
     templateUrl: './adminPanel.component.html',
     styleUrls: ['./adminPanel.component.scss']
 })
-export class AdminPanelComponent { }
+export class AdminPanelComponent {
+
+    date: Date = new Date();
+ }

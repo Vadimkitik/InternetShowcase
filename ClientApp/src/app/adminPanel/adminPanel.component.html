@@ -1,6 +1,15 @@
 <div class="admin-container">
-  <button [routerLink]="['/admin-panel/product']" class="createButton" mat-raised-button>Товары</button>
-  <button [routerLink]="['/admin-panel/categories']" class="createButton" mat-raised-button >Категории</button>
-  <button [routerLink]="['/admin-panel/users']" class="createButton" mat-raised-button>Пользователи</button>
+  <div class="admin-time">
+    {{ date | date:'dd.MM.yyyy'}}
+  </div>
+  <div class="admin-nav">
+    <button [routerLink]="['/admin-panel/product']" class="createButton" mat-raised-button>Товары</button>
+    <button [routerLink]="['/admin-panel/categories']" class="createButton" mat-raised-button >Категории</button>
+    <button [routerLink]="['/admin-panel/users']" class="createButton" mat-raised-button>Пользователи</button>
+  </div>
+
+  <div>
+    Hello, NONAME
+  </div>
 </div>
 <router-outlet></router-outlet>
