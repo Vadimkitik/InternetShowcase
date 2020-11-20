@@ -16,6 +16,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using System;
 using System.IO;
 using System.Text;
 
@@ -43,7 +44,7 @@ namespace InternetShowcase
 
             
             services.AddDbContext<ShowcaseDbContext>(options => options
-                   .UseMySql(Configuration.GetConnectionString("DefaultConnection")));
+                   .UseMySql(Configuration.GetConnectionString("DefaultConnection"), new MySqlServerVersion(new Version(8, 0, 11))));
 
             //services.AddDefaultIdentity<IdentityUser>();
 
