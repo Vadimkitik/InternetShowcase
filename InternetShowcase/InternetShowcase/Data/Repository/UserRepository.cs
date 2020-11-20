@@ -7,7 +7,7 @@ using InternetShowcase.Data;
 
 namespace InternetShowcase.Data.Repository
 {
-    public class UserRepository : IRepository<User>
+    public class UserRepository : IRepository<UserOld>
     {
         private readonly ShowcaseDbContext _context;
 
@@ -16,25 +16,26 @@ namespace InternetShowcase.Data.Repository
             _context = context;
         }
 
-        public async Task<IEnumerable<User>> GetAll()
+        public async Task<IEnumerable<UserOld>> GetAll()
         {
-            IEnumerable<User> users = await _context.Users.ToListAsync();
-            return users;
+            //IEnumerable<User> users = await _context.Users.ToListAsync();
+            return null;
+                //users;
         }
 
-        public async Task<User> GetByType(string email)
+        public async Task<UserOld> GetByType(string email)
         {
-            return await _context.Users.SingleOrDefaultAsync(p => p.Email == email);
-
+            //return await _context.Users.SingleOrDefaultAsync(p => p.Email == email);
+            return null;
         }
-        public async Task<User> Create(User user)
+        public async Task<UserOld> Create(UserOld user)
         {
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
+            //_context.Users.Add(user);
+            //await _context.SaveChangesAsync();
             return user;
         }
 
-        public async Task<bool> Update(User user)
+        public async Task<bool> Update(UserOld user)
         {
 
             _context.Entry(user).State = EntityState.Modified;
@@ -52,13 +53,13 @@ namespace InternetShowcase.Data.Repository
 
         public async Task<bool> Delete(int id)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(p => p.Id == id);
-            if (user != null)
-            {
-                _context.Users.Remove(user);
-                await _context.SaveChangesAsync();
-                return true;
-            }
+            //var user = await _context.Users.FirstOrDefaultAsync(p => p.Id == id);
+            //if (user != null)
+            //{
+            //    _context.Users.Remove(user);
+            //    await _context.SaveChangesAsync();
+            //    return true;
+            //}
             return false;
         }
 

@@ -12,11 +12,11 @@ namespace InternetShowcase.ViewModels.MappingProfile
                 .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.Category.Name));
 
             CreateMap<Category, CategoryView>();
-            CreateMap<User, UserView>();
+            CreateMap<UserOld, UserView>();
 
             CreateMap<ProductView, Product>();
             CreateMap<CategoryView, Category>();
-            CreateMap<UserView, User>();
+            CreateMap<UserView, UserOld>();
         }
     }
 }

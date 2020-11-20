@@ -8,12 +8,12 @@ namespace InternetShowcase.Data
     {
         public static void initial(ShowcaseDbContext context)
         {
-            if (!context.Users.Any())
-            {
-                User user = new User { Email = "alle@gmail.com", Password = "1z2x3cQQ", Name = "Alla", Role = "Admin" };
-                context.Users.Add(user);
-                context.SaveChanges();
-            }
+            //if (!context.Users.Any())
+            //{
+            //    User user = new User { Email = "alle@gmail.com", Password = "1z2x3cQQ", Name = "Alla", Role = "Admin" };
+            //    context.Users.Add(user);
+            //    context.SaveChanges();
+            //}
 
             if (!context.Categories.Any())
             {

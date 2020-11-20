@@ -2,6 +2,7 @@ using AutoMapper;
 using InternetShowcase.Data;
 using InternetShowcase.Data.interfaces;
 using InternetShowcase.Data.Models;
+using InternetShowcase.Data.Models.Identity;
 using InternetShowcase.Data.Repository;
 using InternetShowcase.ViewModels.MappingProfile;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -40,7 +41,7 @@ namespace InternetShowcase
             services.AddAutoMapper(typeof(MappingProfile));
             services.AddTransient<IAllProducts, ProductReposytory>();
             services.AddTransient<IRepository<Category>, CategoryRepository>();
-            services.AddTransient<IRepository<User>, UserRepository>();
+            services.AddTransient<IRepository<UserOld>, UserRepository>();
 
             
             services.AddDbContext<ShowcaseDbContext>(options => options
@@ -115,7 +116,7 @@ namespace InternetShowcase
         {
             if (env.IsDevelopment())
             {
-                app.UseDatabaseErrorPage();
+                app.UseDeveloperExceptionPage();
             }
             
             app.UseRouting();

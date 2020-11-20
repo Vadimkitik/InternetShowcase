@@ -18,7 +18,7 @@ namespace InternetShowcase.Controllers
         private readonly UserManager<User> userManager;
         private readonly AppSettings appSettings;
 
-        protected IdentityController(
+        public IdentityController(
             UserManager<User> userManager,
             IOptions<AppSettings> appSettings)
         {
@@ -26,7 +26,7 @@ namespace InternetShowcase.Controllers
             this.appSettings = appSettings.Value;
         }
 
-        public async Task<IActionResult> Register(RegisterRequestModel model)
+        public async Task<ActionResult> Register(RegisterRequestModel model)
         {
             var user = new User
             {
@@ -56,7 +56,6 @@ namespace InternetShowcase.Controllers
             {
                 return Unauthorized();
             }
-
 
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(this.appSettings.Secret);

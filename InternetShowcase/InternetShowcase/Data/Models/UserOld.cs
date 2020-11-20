@@ -2,7 +2,7 @@
 
 namespace InternetShowcase.Data.Models
 {
-    public class User
+    public class UserOld
     {     
         public int Id { get; set; }
         [Required]
