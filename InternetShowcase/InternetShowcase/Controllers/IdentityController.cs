@@ -3,7 +3,6 @@ using InternetShowcase.Models.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -26,6 +25,7 @@ namespace InternetShowcase.Controllers
             this.appSettings = appSettings.Value;
         }
 
+        [Route(nameof(Register))]
         public async Task<ActionResult> Register(RegisterRequestModel model)
         {
             var user = new User
@@ -42,6 +42,7 @@ namespace InternetShowcase.Controllers
             return BadRequest(result.Errors);
         }
 
+        [Route(nameof(Login))]
         public async Task<ActionResult<string>> Login(LoginRequestModel model)
         {
             var user = await this.userManager.FindByEmailAsync(model.Email);
@@ -67,37 +68,13 @@ namespace InternetShowcase.Controllers
                     new Claim(ClaimTypes.Name, user.Id.ToString())
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256)
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
             var encryptedToken = tokenHandler.WriteToken(token);
 
             return encryptedToken;
-            // attach user to context on successful jwt validation
-            //context.Items["User"] = userService.GetById(userId);
-
-            ///////////////////
-            /*
-            var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345#@!%>?#@!"));
-            var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
-            var claims = new List<Claim>
-                {
-                    new Claim(ClaimTypes.Name, user.Email),
-                    new Claim(ClaimTypes.Role, user.Role)
-                };
-
-            var tokeOptions = new JwtSecurityToken(
-            issuer: "http://localhost:5000",
-            audience: "http://localhost:5000",
-            claims: claims,
-            expires: DateTime.Now.AddMinutes(5),
-            signingCredentials: signinCredentials
-            );
-
-            var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
-            return Ok(new { Token = tokenString, user.Name, user.Role, user.Email });
-            */
         }
     }
 }

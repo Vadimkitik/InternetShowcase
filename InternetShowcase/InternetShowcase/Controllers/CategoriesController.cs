@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using InternetShowcase.Data.interfaces;
 using InternetShowcase.Data.Models;
 using InternetShowcase.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace InternetShowcase.Controllers
 {
@@ -19,6 +20,7 @@ namespace InternetShowcase.Controllers
             _mapper = mapper;
         }
     
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CategoryView>>> GetCategories()
         {
