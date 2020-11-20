@@ -42,7 +42,7 @@ namespace InternetShowcase.Controllers
             claims: claims,
             expires: DateTime.Now.AddMinutes(5),
             signingCredentials: signinCredentials
-        );
+            );
 
             var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
             return Ok(new { Token = tokenString, user.Name, user.Role, user.Email });

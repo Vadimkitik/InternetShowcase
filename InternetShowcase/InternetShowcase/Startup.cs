@@ -46,7 +46,16 @@ namespace InternetShowcase
             services.AddDbContext<ShowcaseDbContext>(options => options
                    .UseMySql(Configuration.GetConnectionString("DefaultConnection"), new MySqlServerVersion(new Version(8, 0, 11))));
 
-            //services.AddDefaultIdentity<IdentityUser>();
+            services
+                .AddIdentity<User, IdentityRole>(options => 
+                {
+                    options.Password.RequiredLength = 5;
+                    options.Password.RequireDigit = false;
+                    options.Password.RequireLowercase = false;
+                    options.Password.RequireUppercase = false;
+                    options.Password.RequireNonAlphanumeric = false;
+                })
+                .AddEntityFrameworkStores<ShowcaseDbContext>();
 
             //!*AUTH
             var applicationSettingsConfiguration = Configuration.GetSection("ApplicationSettings");
@@ -106,12 +115,12 @@ namespace InternetShowcase
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
             }
             
             app.UseRouting();
             app.UseCors(MyAllowSpecificOrigins);
-            app.UseStaticFiles();
+
             app.UseStaticFiles(new StaticFileOptions {
                 FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Resources")),
                 RequestPath = new PathString("/Resources")
