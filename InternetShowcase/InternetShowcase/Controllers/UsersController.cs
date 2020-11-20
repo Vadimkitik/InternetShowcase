@@ -9,9 +9,7 @@ using InternetShowcase.ViewModels;
 
 namespace InternetShowcase.Controllers
 {
-    [Route("api/users")]
-    [ApiController]
-    public class UsersController : ControllerBase
+    public class UsersController : ApiController
     {
         private readonly IRepository<User> _users;
         private readonly IMapper _mapper;

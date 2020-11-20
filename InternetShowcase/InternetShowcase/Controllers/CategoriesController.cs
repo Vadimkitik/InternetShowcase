@@ -8,9 +8,7 @@ using InternetShowcase.ViewModels;
 
 namespace InternetShowcase.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class CategoriesController : ControllerBase
+    public class CategoriesController : ApiController
     {
         private readonly IRepository<Category> _categories;
         private readonly IMapper _mapper;

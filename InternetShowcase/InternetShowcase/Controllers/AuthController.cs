@@ -11,9 +11,7 @@ using InternetShowcase.Data.Models;
 
 namespace InternetShowcase.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class AuthController : ControllerBase
+    public class AuthController : ApiController
     {
         private ShowcaseDbContext db;
         public AuthController(ShowcaseDbContext context)

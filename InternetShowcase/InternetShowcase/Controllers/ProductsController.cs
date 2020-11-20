@@ -5,15 +5,10 @@ using Microsoft.AspNetCore.Mvc;
 using InternetShowcase.Data.interfaces;
 using InternetShowcase.Data.Models;
 using InternetShowcase.ViewModels;
-using InternetShowcase.Data;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
 
 namespace InternetShowcase.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ProductsController : ControllerBase
+    public class ProductsController : ApiController
     {
         private readonly IAllProducts _allProducts;
         private readonly IMapper _mapper;

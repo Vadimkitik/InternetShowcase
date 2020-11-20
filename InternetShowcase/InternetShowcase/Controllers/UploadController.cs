@@ -5,9 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace InternetShowcase.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class UploadController : ControllerBase
+    public class UploadController : ApiController
     {
         [HttpPost, DisableRequestSizeLimit]
         public IActionResult Upload()
