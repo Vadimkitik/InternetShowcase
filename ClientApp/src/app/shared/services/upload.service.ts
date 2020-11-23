@@ -3,11 +3,12 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
+import { environment } from '../../../environments/environment';
+
 @Injectable()
 export class UploadService {
 
-    private url = 'http://localhost:5000/api/upload';
-    //private url = "api/upload";
+    private url = environment.apiUrl + 'upload';
      
      constructor(private http: HttpClient) {}
  
