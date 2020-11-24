@@ -14,16 +14,9 @@ export class AuthService {
     private urlLogin = environment.apiUrl + "identity/login";
     private urlRegister = environment.apiUrl + "identity/register";
 
-    headers = new HttpHeaders().set('Content-Type', 'application/json');
-
- 
-
     login(data): Observable<any> {
-        const credentials = JSON.stringify(data);
-        return this.http.post(this.urlLogin, credentials, {
-           headers: this.headers,
-           responseType: 'text'
-      })
+        
+        return this.http.post(this.urlLogin, data);
     }
 
     register(data): Observable<any> {
@@ -31,7 +24,6 @@ export class AuthService {
     }
 
     saveToke(token) {
-        console.log(token)
         localStorage.setItem('token', token);
     }
     getToke() {

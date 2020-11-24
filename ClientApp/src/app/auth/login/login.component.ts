@@ -36,17 +36,14 @@ export class LoginComponent implements OnInit {
   
   onSubmit() {
     this.authService.login(this.form.value)
-      .subscribe(response => {
-        console.log(`Loggin successful, ${name}`);
+      .subscribe(data => {
+        console.log(`Loggin successful`);
+        this.authService.saveToke(data["token"]);
 
-        console.log(response)
-        this.authService.saveToke(response);
-
-        this.router.navigate(['/admin-panel']);
+       // this.router.navigate(['/admin-panel']);
       }, error => {
-        console.log(error)
         this.showMessage({
-          text: error,
+          text: error.message,
           type: 'danger'
         });
       });
@@ -70,6 +67,6 @@ export class LoginComponent implements OnInit {
     this.message = message;
     window.setTimeout(() => {
       this.message.text = '';
-    }, 4000);
+    }, 5000);
   }
 }
