@@ -1,5 +1,5 @@
 <p class="text-xs-center">Войдите для работы</p>
-<div class="message_Info message_Info-{{message.type}}" *ngIf="message.text" >{{ message.text }}</div>
+<div class="message_Info message_Info-{{message.type}}" *ngIf="message.text" >{{ message.text | json }}</div>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <div class="example-container">
     <mat-form-field appearance="fill">

@@ -20,7 +20,7 @@ namespace InternetShowcase.Controllers
             _mapper = mapper;
         }
     
-        [Authorize]
+        
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CategoryView>>> GetCategories()
         {

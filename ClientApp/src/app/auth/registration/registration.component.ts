@@ -5,6 +5,7 @@ import { User } from 'src/app/shared/models/user.model';
 import { UsersService } from 'src/app/shared/services/users.service';
 import { Router } from '@angular/router';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -29,6 +30,7 @@ export class RegistrationComponent implements OnInit {
     constructor(
         private router: Router,
         private usersService: UsersService,
+        private authService: AuthService,
         private formBuilder: FormBuilder
   ) {}
   
@@ -53,18 +55,13 @@ export class RegistrationComponent implements OnInit {
     {
       name: this.form.value['name'],
       password: this.form.value['passwords']['password'],
-      email: this.form.value['email'],
-      role: "User"
+      email: this.form.value['email']
     };
-    
-      this.usersService.createUser(this.user)
-      .subscribe((user: User) => {
-        this.router.navigate(['/auth/login'], {
-          queryParams: {
-            nowCanLoggin: true
-          }
-        });
-   });
+
+    this.authService.register(this.user).subscribe(data => {
+      console.log(`Registered ${this.user.name}, Ok!`)
+      this.router.navigate(['/auth/login']);
+  }, error => console.log(error));
   }
 
   forbiddenEmails(control: FormControl) : Promise<any> {

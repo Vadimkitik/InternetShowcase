@@ -11,17 +11,18 @@ export class AuthService {
 
     constructor(private http: HttpClient) { }
 
-    private urlLogin = environment.apiUrl + "login";
-    private urlRegister = environment.apiUrl + "register";
-    private isAuthenticated = false;
+    private urlLogin = environment.apiUrl + "identity/login";
+    private urlRegister = environment.apiUrl + "identity/register";
+
     headers = new HttpHeaders().set('Content-Type', 'application/json');
 
  
 
-    login1(form: NgForm) {
-        const credentials = JSON.stringify(form);
+    login(data): Observable<any> {
+        const credentials = JSON.stringify(data);
         return this.http.post(this.urlLogin, credentials, {
-           headers: this.headers
+           headers: this.headers,
+           responseType: 'text'
       })
     }
 
@@ -29,17 +30,11 @@ export class AuthService {
         return this.http.post(this.urlRegister, data);
     }
 
-    login(){
-        this.isAuthenticated = true;           
+    saveToke(token) {
+        console.log(token)
+        localStorage.setItem('token', token);
     }
-
-    logout() {
-        this.isAuthenticated = false;
-        localStorage.removeItem("jwt");
-    }
-
-    isLoggedIn(){
-        return this.isAuthenticated;
-    }
-    
+    getToke() {
+        return localStorage.getItem('token');
+    }    
 }
