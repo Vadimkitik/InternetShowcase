@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.form.value)
       .subscribe(data => {
         console.log(`Loggin successful`);
-        this.authService.saveToke(data["token"]);
+        this.authService.saveToken(data["token"]);
 
        // this.router.navigate(['/admin-panel']);
       }, error => {

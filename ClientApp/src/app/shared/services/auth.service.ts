@@ -23,10 +23,10 @@ export class AuthService {
         return this.http.post(this.urlRegister, data);
     }
 
-    saveToke(token) {
+    saveToken(token) {
         localStorage.setItem('token', token);
     }
-    getToke() {
+    getToken() {
         return localStorage.getItem('token');
     }    
 }

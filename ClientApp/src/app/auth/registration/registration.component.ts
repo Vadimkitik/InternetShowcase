@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl, FormBuilder, FormGroupDirective, NgForm } from '@angular/forms';
 
 import { User } from 'src/app/shared/models/user.model';
-import { UsersService } from 'src/app/shared/services/users.service';
 import { Router } from '@angular/router';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { AuthService } from 'src/app/shared/services/auth.service';
@@ -29,7 +28,6 @@ export class RegistrationComponent implements OnInit {
 
     constructor(
         private router: Router,
-        private usersService: UsersService,
         private authService: AuthService,
         private formBuilder: FormBuilder
   ) {}
