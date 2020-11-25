@@ -1,12 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace InternetShowcase.Models.Identity
+namespace InternetShowcase.Features.Identity
 {
-    public class LoginRequestModel
+    public class RegisterRequestModel
     {
         [Required]
         public string Email { get; set; }
         [Required]
         public string Password { get; set; }
+        [Required]
+        public string Name { get; set; }
     }
 }

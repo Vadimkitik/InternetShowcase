@@ -1,21 +1,42 @@
-﻿using InternetShowcase.Data.Models.Identity;
+﻿using AutoMapper;
 using InternetShowcase.Data;
+using InternetShowcase.Data.Features.Categories;
+using InternetShowcase.Features;
+using InternetShowcase.Data.Models;
+using InternetShowcase.Data.Models.Identity;
+using InternetShowcase.ViewModels.MappingProfile;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using AutoMapper;
-using InternetShowcase.Data.interfaces;
-using InternetShowcase.Data.Models;
-using InternetShowcase.ViewModels.MappingProfile;
-using InternetShowcase.Data.Repository;
-using Microsoft.AspNetCore.Http.Features;
+using InternetShowcase.Features.Products;
+using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace InternetShowcase.Infrastructure
 {
     public static class ServiceCollectionExtensions
     {
+        public static AppSettings GetApplicationSettings(
+            this IServiceCollection services,
+            IConfiguration configuration)
+        {
+            var applicationSettingsConfiguration = configuration.GetSection("ApplicationSettings");
+            services.Configure<AppSettings>(applicationSettingsConfiguration);
+
+            return applicationSettingsConfiguration.Get<AppSettings>();
+        }
+
+        public static IServiceCollection AddDatabase(
+            this IServiceCollection services, 
+            IConfiguration configuration)
+            => services
+                 .AddDbContext<ShowcaseDbContext>(options => options
+                     .UseMySql(configuration.GetDefaultConnectionString(), new MySqlServerVersion(new Version(8, 0, 11))));
+
         public static IServiceCollection AddIdentity(this IServiceCollection services)
         {
             services
@@ -65,7 +86,6 @@ namespace InternetShowcase.Infrastructure
             services.AddAutoMapper(typeof(MappingProfile));
             services.AddTransient<IAllProducts, ProductReposytory>();
             services.AddTransient<IRepository<Category>, CategoryRepository>();
-            services.AddTransient<IRepository<UserOld>, UserRepository>();
 
             return services;
         }

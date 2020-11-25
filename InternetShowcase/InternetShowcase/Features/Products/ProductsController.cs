@@ -2,11 +2,10 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using InternetShowcase.Data.interfaces;
 using InternetShowcase.Data.Models;
 using InternetShowcase.ViewModels;
 
-namespace InternetShowcase.Controllers
+namespace InternetShowcase.Features.Products
 {
     public class ProductsController : ApiController
     {

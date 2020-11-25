@@ -1,9 +1,8 @@
-using InternetShowcase.Data.Models;
 using System.Collections.Generic;
-using System;
 using System.Threading.Tasks;
 
-namespace InternetShowcase.Data.interfaces {
+namespace InternetShowcase.Features
+{
     public interface IRepository<T>
         where T : class
     {

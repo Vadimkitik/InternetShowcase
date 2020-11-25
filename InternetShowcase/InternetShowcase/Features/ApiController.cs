@@ -1,7 +1,6 @@
-﻿
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
-namespace InternetShowcase.Controllers
+namespace InternetShowcase.Features
 {
     [ApiController]
     [Route("api/[controller]")]

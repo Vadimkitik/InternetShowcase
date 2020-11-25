@@ -2,7 +2,7 @@ using InternetShowcase.Data.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace InternetShowcase.Data.interfaces
+namespace InternetShowcase.Features.Products
 {
    public interface IAllProducts
     {

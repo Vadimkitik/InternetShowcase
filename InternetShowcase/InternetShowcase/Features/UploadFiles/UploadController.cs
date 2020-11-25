@@ -3,7 +3,7 @@ using System.IO;
 using System.Net.Http.Headers;
 using Microsoft.AspNetCore.Mvc;
 
-namespace InternetShowcase.Controllers
+namespace InternetShowcase.Features.UploadFiles
 {
     public class UploadController : ApiController
     {

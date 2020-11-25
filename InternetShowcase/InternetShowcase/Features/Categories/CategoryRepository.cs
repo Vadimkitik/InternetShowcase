@@ -1,11 +1,11 @@
-﻿using InternetShowcase.Data.interfaces;
+﻿using InternetShowcase.Features;
 using InternetShowcase.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace InternetShowcase.Data.Repository
+namespace InternetShowcase.Data.Features.Categories
 {
     public class CategoryRepository : IRepository<Category>
     {

@@ -1,14 +1,9 @@
 using InternetShowcase.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.IO;
 using InternetShowcase.Infrastructure;
 
 namespace InternetShowcase
@@ -27,12 +22,11 @@ namespace InternetShowcase
         {
             services
                 .AddMappingTransients()
-                .AddDbContext<ShowcaseDbContext>(options => options
-                   .UseMySql(Configuration.GetConnectionString("DefaultConnection"), new MySqlServerVersion(new Version(8, 0, 11))))
+                .AddDatabase(this.Configuration)
                 .AddIdentity()
                 .AddConfigure()
                 .AddMyCors(MyAllowSpecificOrigins)
-                .AddJwtAuthentication(services.GetApplicationSettings(Configuration))
+                .AddJwtAuthentication(services.GetApplicationSettings(this.Configuration))
                 .AddControllers()
                 .AddNewtonsoftJson(options =>
                      options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
@@ -48,10 +42,7 @@ namespace InternetShowcase
             
             app.UseRouting()
                .UseCors(MyAllowSpecificOrigins)
-               .UseStaticFiles(new StaticFileOptions {
-                   FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Resources")),
-                   RequestPath = new PathString("/Resources")
-               })
+               .UseAppStaticFiles()
                .UseAuthentication()
                .UseAuthorization()
                .UseEndpoints(endpoints =>

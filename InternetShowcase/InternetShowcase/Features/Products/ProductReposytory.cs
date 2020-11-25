@@ -1,11 +1,11 @@
-﻿using InternetShowcase.Data.interfaces;
+﻿using InternetShowcase.Data;
 using InternetShowcase.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace InternetShowcase.Data.Repository
+namespace InternetShowcase.Features.Products
 {
     public class ProductReposytory : IAllProducts
     {
