@@ -1,4 +1,6 @@
-﻿namespace InternetShowcase.ViewModels
+﻿using InternetShowcase.Features.Categories;
+
+namespace InternetShowcase.Features.Products
 {
     public class ProductView
     {

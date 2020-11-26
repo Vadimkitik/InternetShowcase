@@ -1,14 +1,16 @@
 ﻿using AutoMapper;
 using InternetShowcase.Data.Models;
+using InternetShowcase.Features.Categories;
+using InternetShowcase.Features.Products;
 
-namespace InternetShowcase.ViewModels.MappingProfile
+namespace InternetShowcase.MappingProfiles
 {
     public class MappingProfile : Profile
     {
        public MappingProfile()
         {
             CreateMap<Product, ProductView>();
-            CreateMap<Product, IndexProductView>()
+            CreateMap<Product, ProductListView>()
                 .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.Category.Name));
 
             CreateMap<Category, CategoryView>();

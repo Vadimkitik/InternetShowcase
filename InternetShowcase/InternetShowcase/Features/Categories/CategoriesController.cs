@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using InternetShowcase.Data.Models;
-using InternetShowcase.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InternetShowcase.Features.Categories
@@ -41,6 +41,7 @@ namespace InternetShowcase.Features.Categories
             return NotFound();
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<CategoryView>> PostCategory(Category model)
         {
@@ -52,12 +53,14 @@ namespace InternetShowcase.Features.Categories
             return BadRequest(ModelState);
         }
 
+        [Authorize]
         [HttpPut()]
         public async Task<bool> PutCategory(Category category)
         {
             return await _categories.Update(category);
         }
 
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<bool> DeleteCategory(int id)
         {

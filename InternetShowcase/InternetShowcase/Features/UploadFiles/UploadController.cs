@@ -1,12 +1,14 @@
 ﻿using System;
 using System.IO;
 using System.Net.Http.Headers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InternetShowcase.Features.UploadFiles
 {
     public class UploadController : ApiController
     {
+        [Authorize]
         [HttpPost, DisableRequestSizeLimit]
         public IActionResult Upload()
         {
@@ -40,6 +42,7 @@ namespace InternetShowcase.Features.UploadFiles
             }
         }
 
+        [Authorize]
         [HttpDelete("{imageName}")]
         public IActionResult Delete(string imageName)
         {

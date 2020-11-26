@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using InternetShowcase.Data.Models;
-using InternetShowcase.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace InternetShowcase.Features.Products
 {
@@ -19,7 +19,7 @@ namespace InternetShowcase.Features.Products
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<IndexProductView>>> GetProducts()
+        public async Task<ActionResult<IEnumerable<ProductListView>>> GetProducts()
         {
             var products = await _allProducts.GetAll();
 
@@ -27,7 +27,7 @@ namespace InternetShowcase.Features.Products
             {
                 return BadRequest();
             }
-            return _mapper.Map<List<Product>, List<IndexProductView>>((List<Product>)products);
+            return _mapper.Map<List<Product>, List<ProductListView>>((List<Product>)products);
         }
 
         [HttpGet("{productLine}")]
@@ -40,7 +40,8 @@ namespace InternetShowcase.Features.Products
             }
             return NotFound();
         }
-     
+
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<ProductView>> Post(Product product)
         {
@@ -52,12 +53,14 @@ namespace InternetShowcase.Features.Products
             return BadRequest(ModelState);
         }
 
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<bool> Post(int id)
         {
             return await _allProducts.Delete(id);
         }
 
+        [Authorize]
         [HttpPut]
         public async Task<bool> Edit(Product product)
         {

@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using InternetShowcase.Features.Products;
+using System.Collections.Generic;
 
-namespace InternetShowcase.ViewModels
+namespace InternetShowcase.Features.Categories
 {
     public class CategoryView
     {
