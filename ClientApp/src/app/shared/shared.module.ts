@@ -10,6 +10,9 @@ import { CategoryService } from './services/category.service';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { UploadService } from './services/upload.service';
 import { TreeService} from './services/tree.service';
+import { TokenIntersepterService } from './services/token-intersepter.service';
+import { from } from 'rxjs';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
     imports: [
@@ -24,7 +27,12 @@ import { TreeService} from './services/tree.service';
         TokenStorageService,
         CategoryService,
         UploadService,
-        TreeService
+        TreeService,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: TokenIntersepterService,
+            multi: true
+        }        
     ],
     declarations: [NotFoundComponent],
     exports: [ReactiveFormsModule, FormsModule]
