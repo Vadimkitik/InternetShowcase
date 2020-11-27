@@ -1,4 +1,4 @@
-﻿namespace InternetShowcase.Features.Identity
+﻿namespace InternetShowcase.Features.Identity.Models
 {
     public class LoginResponseModel
     {

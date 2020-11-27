@@ -1,8 +1,9 @@
-﻿using InternetShowcase.Data.Models.Identity;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
+using InternetShowcase.Data.Models;
+using InternetShowcase.Features.Identity.Models;
 
 namespace InternetShowcase.Features.Identity
 {

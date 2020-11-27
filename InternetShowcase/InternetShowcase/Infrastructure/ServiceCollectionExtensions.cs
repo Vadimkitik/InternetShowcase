@@ -3,7 +3,6 @@ using InternetShowcase.Data;
 using InternetShowcase.Data.Features.Categories;
 using InternetShowcase.Features;
 using InternetShowcase.Data.Models;
-using InternetShowcase.Data.Models.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Identity;

@@ -4,6 +4,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using InternetShowcase.Data.Models;
 using Microsoft.AspNetCore.Authorization;
+using InternetShowcase.Features.Products.Models;
 
 namespace InternetShowcase.Features.Products
 {
@@ -19,7 +20,7 @@ namespace InternetShowcase.Features.Products
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ProductListView>>> GetProducts()
+        public async Task<ActionResult<IEnumerable<ProductListingServiceModel>>> GetProducts()
         {
             var products = await _allProducts.GetAll();
 
@@ -27,7 +28,7 @@ namespace InternetShowcase.Features.Products
             {
                 return BadRequest();
             }
-            return _mapper.Map<List<Product>, List<ProductListView>>((List<Product>)products);
+            return _mapper.Map<List<Product>, List<ProductListingServiceModel>>((List<Product>)products);
         }
 
         [HttpGet("{productLine}")]

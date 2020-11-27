@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using InternetShowcase.Data.Models;
-using InternetShowcase.Features.Categories;
-using InternetShowcase.Features.Products;
+using InternetShowcase.Features.Categories.Models;
+using InternetShowcase.Features.Products.Models;
 
 namespace InternetShowcase.MappingProfiles
 {
@@ -10,7 +10,7 @@ namespace InternetShowcase.MappingProfiles
        public MappingProfile()
         {
             CreateMap<Product, ProductView>();
-            CreateMap<Product, ProductListView>()
+            CreateMap<Product, ProductListingServiceModel>()
                 .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.Category.Name));
 
             CreateMap<Category, CategoryView>();

@@ -1,5 +1,4 @@
 ﻿using InternetShowcase.Data.Models;
-using InternetShowcase.Data.Models.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 

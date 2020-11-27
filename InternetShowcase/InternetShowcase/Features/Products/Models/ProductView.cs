@@ -1,6 +1,6 @@
-﻿using InternetShowcase.Features.Categories;
+﻿using InternetShowcase.Features.Categories.Models;
 
-namespace InternetShowcase.Features.Products
+namespace InternetShowcase.Features.Products.Models
 {
     public class ProductView
     {

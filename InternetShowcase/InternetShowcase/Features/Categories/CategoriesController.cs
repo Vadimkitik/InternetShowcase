@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using InternetShowcase.Data.Models;
+using InternetShowcase.Features.Categories.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

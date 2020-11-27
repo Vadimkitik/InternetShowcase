@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace InternetShowcase.Features.Identity
+namespace InternetShowcase.Features.Identity.Models
 {
     public class RegisterRequestModel
     {

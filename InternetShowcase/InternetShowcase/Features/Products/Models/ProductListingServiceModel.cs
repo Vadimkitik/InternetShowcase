@@ -1,6 +1,6 @@
-﻿namespace InternetShowcase.Features.Products
+﻿namespace InternetShowcase.Features.Products.Models
 {
-    public class ProductListView
+    public class ProductListingServiceModel
     {
         public int Id { get; set; }
         public string ProductLine { get; set; }
