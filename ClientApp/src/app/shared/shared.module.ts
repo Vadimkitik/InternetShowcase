@@ -11,7 +11,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { UploadService } from './services/upload.service';
 import { TreeService} from './services/tree.service';
 import { TokenIntersepterService } from './services/token-intersepter.service';
-import { from } from 'rxjs';
+import { ErrorIntersepterService } from './services/error-intersepter.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
@@ -31,6 +31,11 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
         {
             provide: HTTP_INTERCEPTORS,
             useClass: TokenIntersepterService,
+            multi: true
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: ErrorIntersepterService,
             multi: true
         }        
     ],

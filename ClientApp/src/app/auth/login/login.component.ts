@@ -5,7 +5,6 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { Message } from 'src/app/shared/models/message.model';
 import { AuthService } from 'src/app/shared/services/auth.service';
-import { TokenStorageService } from 'src/app/shared/services/token-storage.service';
 
 @Component({
   selector: 'login',
@@ -40,7 +39,7 @@ export class LoginComponent implements OnInit {
         console.log(`Loggin successful`);
         this.authService.saveToken(data["token"]);
 
-       // this.router.navigate(['/admin-panel']);
+        this.router.navigate(['/admin-panel']);
       }, error => {
         this.showMessage({
           text: error.message,
