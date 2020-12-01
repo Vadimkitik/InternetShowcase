@@ -14,6 +14,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using System;
 using InternetShowcase.MappingProfiles;
+using InternetShowcase.Features.Identity;
+using InternetShowcase.Features.Users;
+using InternetShowcase.Features.Roles;
 
 namespace InternetShowcase.Infrastructure
 {
@@ -85,6 +88,9 @@ namespace InternetShowcase.Infrastructure
             services.AddAutoMapper(typeof(MappingProfile));
             services.AddTransient<IAllProducts, ProductReposytory>();
             services.AddTransient<IRepository<Category>, CategoryRepository>();
+            services.AddTransient<IIdentityService, IdentityService>();
+            services.AddTransient<IUsersService, UsersService>();
+            services.AddTransient<IRolesService, RolesService>();
 
             return services;
         }
