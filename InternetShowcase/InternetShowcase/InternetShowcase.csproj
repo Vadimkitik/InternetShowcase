@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <Folder Include="Features\Roles\Models\" />
+    <Folder Include="Infrastructure\Filters\" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 
-namespace InternetShowcase.Infrastructure
+namespace InternetShowcase.Infrastructure.Extensions
 {
     public static class ConfigurationExtensions
     {

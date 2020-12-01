@@ -29,7 +29,7 @@ namespace InternetShowcase.Features.Identity
             var user = new User
             {
                 Email = model.Email,
-                UserName = model.Name
+                UserName = model.UserName
             };
             var result = await this.userManager.CreateAsync(user, model.Password);
 

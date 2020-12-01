@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using InternetShowcase.Data.Models.Base;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace InternetShowcase.Data.Models
 {
-    public class Category
+    public class Category : DeletableEntity
     {
         [Key]
         public int Id { get; set; }

@@ -17,8 +17,9 @@ using InternetShowcase.MappingProfiles;
 using InternetShowcase.Features.Identity;
 using InternetShowcase.Features.Users;
 using InternetShowcase.Features.Roles;
+using InternetShowcase.Infrastructure.Services;
 
-namespace InternetShowcase.Infrastructure
+namespace InternetShowcase.Infrastructure.Extensions
 {
     public static class ServiceCollectionExtensions
     {
@@ -49,9 +50,9 @@ namespace InternetShowcase.Infrastructure
                     options.Password.RequireLowercase = false;
                     options.Password.RequireUppercase = false;
                     options.Password.RequireNonAlphanumeric = false;
+                    options.User.RequireUniqueEmail = true;
                 })
                 .AddEntityFrameworkStores<ShowcaseDbContext>();
-
             return services;
         }
 
@@ -84,16 +85,13 @@ namespace InternetShowcase.Infrastructure
         }
 
         public static IServiceCollection AddMappingTransients(this IServiceCollection services)
-        {
-            services.AddAutoMapper(typeof(MappingProfile));
-            services.AddTransient<IAllProducts, ProductReposytory>();
-            services.AddTransient<IRepository<Category>, CategoryRepository>();
-            services.AddTransient<IIdentityService, IdentityService>();
-            services.AddTransient<IUsersService, UsersService>();
-            services.AddTransient<IRolesService, RolesService>();
-
-            return services;
-        }
+            => services
+                .AddAutoMapper(typeof(MappingProfile))
+                .AddTransient<IAllProducts, ProductReposytory>()
+                .AddTransient<IRepository<Category>, CategoryRepository>()
+                .AddTransient<IIdentityService, IdentityService>()
+                .AddScoped<ICurrentUserService, CurrentUserService>()
+                .AddTransient<IUsersService, UsersService>().AddTransient<IRolesService, RolesService>();  
 
         public static IServiceCollection AddConfigure(this IServiceCollection services)
         {

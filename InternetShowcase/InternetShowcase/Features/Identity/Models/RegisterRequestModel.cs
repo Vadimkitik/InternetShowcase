@@ -9,6 +9,6 @@ namespace InternetShowcase.Features.Identity.Models
         [Required]
         public string Password { get; set; }
         [Required]
-        public string Name { get; set; }
+        public string UserName { get; set; }
     }
 }

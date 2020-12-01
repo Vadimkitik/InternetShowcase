@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
 
-namespace InternetShowcase.Infrastructure
+namespace InternetShowcase.Infrastructure.Extensions
 {
     public static class ApplicationBuilderExtensions
     {

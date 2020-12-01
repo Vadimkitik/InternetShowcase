@@ -1,10 +1,8 @@
-﻿using InternetShowcase.Data.Models.Base;
-using Microsoft.AspNetCore.Identity;
-using System;
+﻿using System;
 
-namespace InternetShowcase.Data.Models
+namespace InternetShowcase.Data.Models.Base
 {
-    public class User: IdentityUser, IEntity
+    public abstract class Entity : IEntity
     {
         public DateTime CreatedOn { get; set; }
 
