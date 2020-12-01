@@ -11,7 +11,6 @@ import { User } from 'src/app/shared/models/user.model';
 export class UsersFormComponent implements OnInit {
 
   @Input() user: User;
-  public errorMsg;
   loaded: boolean = false;
   hide = true;
   name = new FormControl('', [Validators.required]);

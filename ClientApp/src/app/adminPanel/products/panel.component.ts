@@ -7,7 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Product } from 'src/app/shared/models/product.model';
 import { ProductService } from 'src/app/shared/services/product.service';
 import { UploadService } from 'src/app/shared/services/upload.service';
-import { Category } from 'src/app/shared/models/category.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'panel',
@@ -35,13 +35,13 @@ export class PanelComponent implements OnInit {
     'button'
   ];
   expandedElement: Product | null;
-  errorMsg: string;  
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   constructor(
     private productService: ProductService,
-    private uploadService: UploadService
+    private uploadService: UploadService,
+    private toastrService: ToastrService
   ) { }
 
   ngOnInit() {
@@ -53,18 +53,18 @@ export class PanelComponent implements OnInit {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-    }, error => this.errorMsg = error);
+    });
   }
 
   delete(id: number, imageUrl: string) {
     var imageName = imageUrl.split("\\").pop();
         this.uploadService.DeleteFile(imageName).subscribe(event => {
-            console.log(`File ${imageName} is Deleted!`);
-        }, error => this.errorMsg = error );
+          this.toastrService.success(`Removal image ${imageName} successful`)
+        });
     this.productService.deleteProduct(id).subscribe(data => { 
-      console.log(`Product with id ${id} is Deleted!`);
+      this.toastrService.success(`Removal product with id ${id} successful`)
       this.load();
-    }, error => this.errorMsg = error);    
+    });    
   }
 
   applyFilter(event: Event) {

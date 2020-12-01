@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Category } from 'src/app/shared/models/category.model';
 import { CategoryService } from 'src/app/shared/services/category.service';
 
@@ -13,12 +14,11 @@ export class CategoriesEditComponent implements OnInit {
   categoryLine: string;
     @Input() category: Category;    // изменяемый объект
     loaded: boolean = false;
-    errorMsg: string;
-    message: string;
 
     constructor(
         private categoryService: CategoryService,
         private router: Router,
+        private toastrService: ToastrService,
         activeRoute: ActivatedRoute
         ) 
     {
@@ -30,15 +30,15 @@ export class CategoriesEditComponent implements OnInit {
             this.categoryService.getCategory(this.categoryLine)
                 .subscribe((data: Category) => {
                     this.category = data;
-                    console.log(this.category);
                     if (this.category != null) this.loaded = true;
-                }, error => this.errorMsg = error);
+                });
     }
 
     save() {
        console.log(this.category);
         this.categoryService.updateCategory(this.category).subscribe(() => { 
+            this.toastrService.success(`Category changed`);
             this.router.navigateByUrl("/admin-panel/categories")
-        }, error => this.errorMsg = error);
+        });
     }
 }

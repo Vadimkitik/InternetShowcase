@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../../../shared/services/product.service';
 import { Product } from '../../../../shared/models/product.model';
 import { UploadService } from 'src/app/shared/services/upload.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     templateUrl: './product-edit.component.html',
@@ -14,14 +15,13 @@ export class ProductEditComponent implements OnInit {
     productLine: string;
     @Input() product: Product;    // изменяемый объект
     loaded: boolean = false;
-    errorMsg: string;
-    message: string;
 
     constructor(
         private productService: ProductService,
         private router: Router, 
         private uploadService: UploadService,
-        activeRoute: ActivatedRoute
+        private activeRoute: ActivatedRoute,
+        private toastrService: ToastrService
         ) 
     {
         this.productLine = activeRoute.snapshot.params["productLine"];
@@ -32,23 +32,22 @@ export class ProductEditComponent implements OnInit {
             this.productService.getProduct(this.productLine)
                 .subscribe((data: Product) => {
                     this.product = data;
-                    console.log(this.product);
                     if (this.product != null) this.loaded = true;
-                }, error => this.errorMsg = error);
+                });
     }
 
     save() {
-        console.log(this.product)
-        this.productService.updateProduct(this.product).subscribe(() => { 
+        this.productService.updateProduct(this.product).subscribe(() => {
+            this.toastrService.success(`Product changed`)
             this.router.navigateByUrl("/admin-panel/product")
-        }, error => this.errorMsg = error);
+        });
     }
     deleteFile() {
         var imageName = this.product.imageUrl.split("\\").pop();
         this.uploadService.DeleteFile(imageName).subscribe(event => {
-            console.log(`File ${imageName} is Deleted!`);
+            this.toastrService.success(`File ${imageName} is Deleted!`);
             this.product.imageUrl = '';
-        }, error => this.errorMsg = error );
+        });
         
     }
 }

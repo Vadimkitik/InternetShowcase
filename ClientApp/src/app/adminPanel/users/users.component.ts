@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { ToastrService } from 'ngx-toastr';
 import { Category } from 'src/app/shared/models/category.model';
 import { User } from 'src/app/shared/models/user.model';
 import { UsersService } from 'src/app/shared/services/users.service';
@@ -21,14 +22,14 @@ export class UsersComponent implements OnInit {
     'button'
   ];
   expandedElement: User | null;
-  errorMsg: string;
   categories: Category;
   
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   constructor(
-    private usersService: UsersService
+    private usersService: UsersService,
+    private toastrSrvice: ToastrService
   ) { }
 
   ngOnInit() {
@@ -40,14 +41,14 @@ export class UsersComponent implements OnInit {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-    }, error => this.errorMsg = error);
+    });
   }
 
   delete(id: number) {
-    this.usersService.deleteUser(id).subscribe(data => { 
-      console.log(`User with ID "${id}" is Deleted!`);
+    this.usersService.deleteUser(id).subscribe(res => { 
+      this.toastrSrvice.success(`User with ID "${id}" is Deleted!`);
       this.load();
-    }, error => this.errorMsg = error);    
+    });    
   }
 
   applyFilter(event: Event) {

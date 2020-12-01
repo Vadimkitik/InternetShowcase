@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Category } from 'src/app/shared/models/category.model';
 import { CategoryService } from 'src/app/shared/services/category.service';
 
@@ -10,17 +11,18 @@ import { CategoryService } from 'src/app/shared/services/category.service';
 })
 export class CategoriesCreateComponent {
 
-    public errorMsg;
     @Input() category: Category = new Category;    // добавляемый объект
     constructor(
         private categoryService: CategoryService,
-        private router: Router) { }
+        private router: Router,
+        private toastrService: ToastrService) { }
 
     save() {
         console.log(this.category);
         this.categoryService.createCategory(this.category).subscribe(() => {
-             this.router.navigateByUrl("/admin-panel/categories")
-            }, error => this.errorMsg = error);
+          this.toastrService.success(`Category ${this.category.name} is Created`);
+          this.router.navigateByUrl("/admin-panel/categories")
+        });
      }
 
 }

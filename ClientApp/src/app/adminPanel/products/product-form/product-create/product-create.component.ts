@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { ProductService } from '../../../../shared/services/product.service';
 import { Product } from '../../../../shared/models/product.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     templateUrl: './product-create.component.html',
@@ -10,19 +11,18 @@ import { Product } from '../../../../shared/models/product.model';
 })
 export class ProductCreateComponent {
 
-    public errorMsg;
     product: Product = new Product();    // добавляемый объект
     constructor(
         private productService: ProductService,
-         private router: Router) { }
+        private router: Router,
+        private toastrService: ToastrService
+        ) { }
 
     save() {
         console.log(this.product);
         this.productService.createProduct(this.product).subscribe(() => {
+            this.toastrService.success(`Product ${this.product.name} Created`)
              this.router.navigateByUrl("/admin-panel/product")
-            }, error => this.errorMsg = error);
+            });
      }
 }
-
-
-// assets/img/products/product-1.jpg

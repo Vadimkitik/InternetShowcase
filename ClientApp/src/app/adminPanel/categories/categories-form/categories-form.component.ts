@@ -12,7 +12,6 @@ export class CategoriesFormComponent implements OnInit {
 
   @Input() category: Category;
   @Input() categories: Category[];
-  public errorMsg;
   loaded: boolean = false;
   hide = true;
   name = new FormControl('', [Validators.required]);
@@ -36,7 +35,6 @@ export class CategoriesFormComponent implements OnInit {
         products: null
       })
     });
-    console.log(this.categories)
   }
   getErrorMessage() {
     if (this.name.hasError('required')) {

@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { ToastrService } from 'ngx-toastr';
 
 import { Category } from 'src/app/shared/models/category.model';
 import { CategoryService } from 'src/app/shared/services/category.service';
@@ -22,13 +23,13 @@ export class CategoriesComponent implements OnInit {
     'button'
   ];
   expandedElement: Category | null;
-  errorMsg: string;
   
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   constructor(
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private toastrService: ToastrService
   ) { }
 
   ngOnInit() {
@@ -40,20 +41,14 @@ export class CategoriesComponent implements OnInit {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-    }, error => this.errorMsg = error);
+    });
   }
 
   delete(id: number) {
-    this.categoryService.deleteCategory(id).subscribe(data => { 
-      if(data) {
-        console.log(`Category with ID "${id}" is Deleted!`);
-      }
-      else {
-        this.errorMsg =`Category with ID "${id}" is NOT Deleted!`;
-      }      
-      console.log(data)
+    this.categoryService.deleteCategory(id).subscribe(res => { 
+      this.toastrService.success(`Category with ID "${id}" is Deleted!`);
       this.load();
-    }, error => this.errorMsg = error);    
+    });    
   }
 
   applyFilter(event: Event) {
