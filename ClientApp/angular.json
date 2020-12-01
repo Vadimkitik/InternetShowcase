@@ -22,7 +22,7 @@
               "src/assets/libs/bootstrap/css/bootstrap-reboot.min.css",
               "src/assets/libs/bootstrap/css/bootstrap-grid.css",
               "src/styles.scss",
-              "src/assets/main.css"                           
+              "node_modules/ngx-toastr/toastr.css"                          
             ],
             "aot": true
           },

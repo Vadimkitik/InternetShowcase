@@ -13,6 +13,7 @@ import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { ProductsModule } from './product-page/products.module';
 import { MainPageComponent } from './main-page/main-page.component';
+import { ToastrModule } from 'ngx-toastr/';
 
 export function tokenGetter(){
     return localStorage.getItem("jwt");
@@ -22,6 +23,7 @@ export function tokenGetter(){
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
+        ToastrModule.forRoot(),
         MaterialModule,
         SharedModule,
         ProductsModule,
