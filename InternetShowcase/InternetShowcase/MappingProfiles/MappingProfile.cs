@@ -2,6 +2,7 @@
 using InternetShowcase.Data.Models;
 using InternetShowcase.Features.Categories.Models;
 using InternetShowcase.Features.Products.Models;
+using InternetShowcase.Features.Users.Models;
 
 namespace InternetShowcase.MappingProfiles
 {
@@ -10,9 +11,8 @@ namespace InternetShowcase.MappingProfiles
        public MappingProfile()
         {
             CreateMap<Product, ProductView>();
-            CreateMap<Product, ProductListingServiceModel>()
+            CreateMap<Product, ProductListingModel>()
                 .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.Category.Name));
-
             CreateMap<Category, CategoryView>();
 
             CreateMap<ProductView, Product>();

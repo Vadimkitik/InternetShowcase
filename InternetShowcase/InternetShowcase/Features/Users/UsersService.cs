@@ -19,6 +19,9 @@ namespace InternetShowcase.Features.Users
         public IEnumerable<User> GetAll()
            => _userManager.Users.ToList();
 
+        public Task<User> GetByEmail(string email)
+            => _userManager.FindByEmailAsync(email);
+
         public async Task<IdentityResult> Create(UserCreateRequestModel model)
         {
             User user = new User 
@@ -52,11 +55,6 @@ namespace InternetShowcase.Features.Users
         public Task<bool> ChangePassword(ChangePasswordRequestModel id)
         {
             throw new System.NotImplementedException();
-        }
-
-        public Task<User> GetByEmail(string email)
-        {
-            throw new System.NotImplementedException();
-        }
+        }        
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace InternetShowcase.Features.Users
 {
-    [Authorize]
+    //[Authorize]
     public class UsersController : ApiController
     {
         UserManager<User> _userManager;
@@ -26,8 +26,19 @@ namespace InternetShowcase.Features.Users
         public  IEnumerable<User> GetAll() 
             => _usersService.GetAll();
 
+        [HttpGet("{Email}")]
+        public async Task<ActionResult<User>> GetUser(string email)
+        {
+            var user = await _usersService.GetByEmail(email);
+            if (user != null)
+            {
+                return user;
+            }
+            return NotFound($"User with Email: {email}");
+        }
+
         [HttpPost]
-        public async Task<IActionResult> Create(UserCreateRequestModel model)
+        public async Task<IActionResult> CreateUser(UserCreateRequestModel model)
         {
             if (ModelState.IsValid)
             {
@@ -44,8 +55,8 @@ namespace InternetShowcase.Features.Users
             return Ok(model);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Edit(UserEditServiceModel model)
+        [HttpPut]
+        public async Task<IActionResult> EditUser(UserEditServiceModel model)
         {
             if (ModelState.IsValid)
             {
@@ -70,8 +81,8 @@ namespace InternetShowcase.Features.Users
             return BadRequest(ModelState.ErrorCount);
         }
 
-        [HttpPost]
-        public async Task<ActionResult> Delete(string id)
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteUser(string id)
         {
             User user = await _userManager.FindByIdAsync(id);
             if (user != null)
@@ -79,14 +90,14 @@ namespace InternetShowcase.Features.Users
                 var result = await _userManager.DeleteAsync(user);
                 if (result.Succeeded)
                 {
-                    return Ok(result);
+                    return Ok(result.Succeeded);
                 }
                 else
                 {
                     return BadRequest(result.Errors);
                 }
             }
-            return NotFound(id);
+            return NotFound($"User with id: {id}");
         }
 
         [HttpPost]

@@ -20,7 +20,7 @@ namespace InternetShowcase.Features.Products
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ProductListingServiceModel>>> GetProducts()
+        public async Task<ActionResult<IEnumerable<ProductListingModel>>> GetProducts()
         {
             var products = await _allProducts.GetAll();
 
@@ -28,7 +28,7 @@ namespace InternetShowcase.Features.Products
             {
                 return BadRequest();
             }
-            return _mapper.Map<List<Product>, List<ProductListingServiceModel>>((List<Product>)products);
+            return _mapper.Map<List<Product>, List<ProductListingModel>>((List<Product>)products);
         }
 
         [HttpGet("{productLine}")]
@@ -44,7 +44,7 @@ namespace InternetShowcase.Features.Products
 
         [Authorize]
         [HttpPost]
-        public async Task<ActionResult<ProductView>> Post(Product product)
+        public async Task<ActionResult<ProductView>> CreateProduct(Product product)
         {
             if (ModelState.IsValid)
             {
@@ -56,14 +56,14 @@ namespace InternetShowcase.Features.Products
 
         [Authorize]
         [HttpDelete("{id}")]
-        public async Task<bool> Post(int id)
+        public async Task<bool> DeleteProduct(int id)
         {
             return await _allProducts.Delete(id);
         }
 
         [Authorize]
         [HttpPut]
-        public async Task<bool> Edit(Product product)
+        public async Task<bool> EditProduct(Product product)
         {
             return await _allProducts.Update(product);
         }
