@@ -1,4 +1,5 @@
-﻿using InternetShowcase.Data.Models;
+﻿using AutoMapper;
+using InternetShowcase.Data.Models;
 using InternetShowcase.Features.Users.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -11,20 +12,30 @@ namespace InternetShowcase.Features.Users
     //[Authorize]
     public class UsersController : ApiController
     {
-        UserManager<User> _userManager;
+        private readonly UserManager<User> _userManager;
         private readonly IUsersService _usersService;
+        private readonly IMapper _mapper;
 
         public UsersController(
-            UserManager<User> userManager, 
-            IUsersService usersService)
+            UserManager<User> userManager,
+            IUsersService usersService, IMapper mapper)
         {
             _userManager = userManager;
             _usersService = usersService;
+            _mapper = mapper;
         }
 
         [HttpGet]
-        public  IEnumerable<User> GetAll() 
-            => _usersService.GetAll();
+        public ActionResult<IEnumerable<UsersListingModel>> GetAll()
+        {
+            var users = _usersService.GetAll();
+
+            if (users == null)
+            {
+                return BadRequest();
+            }
+            return _mapper.Map<List<User>, List<UsersListingModel>>((List<User>)users);
+        }
 
         [HttpGet("{Email}")]
         public async Task<ActionResult<User>> GetUser(string email)
@@ -56,7 +67,7 @@ namespace InternetShowcase.Features.Users
         }
 
         [HttpPut]
-        public async Task<IActionResult> EditUser(UserEditServiceModel model)
+        public async Task<IActionResult> EditUser(UserEditModel model)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +76,7 @@ namespace InternetShowcase.Features.Users
                 {
                     user.Email = model.Email;
                     user.UserName = model.Email;
-                    user.UserName = model.Name;
+                    user.UserName = model.UserName;
 
                     var result = await _userManager.UpdateAsync(user);
                     if (result.Succeeded)

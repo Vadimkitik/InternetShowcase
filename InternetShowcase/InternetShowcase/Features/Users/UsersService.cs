@@ -27,20 +27,20 @@ namespace InternetShowcase.Features.Users
             User user = new User 
             {
                 Email = model.Email,
-                UserName = model.Name
+                UserName = model.UserName
             };
             IdentityResult result = await _userManager.CreateAsync(user, model.Password);
             return result;
 
         }
-        public async Task<IdentityResult> Edit(UserEditServiceModel model)
+        public async Task<IdentityResult> Edit(UserEditModel model)
         {
             User user = await _userManager.FindByIdAsync(model.Id);
             if (user != null)
             {
                 user.Email = model.Email;
                 user.UserName = model.Email;
-                user.UserName = model.Name;
+                user.UserName = model.UserName;
 
                 return await _userManager.UpdateAsync(user);
             }
