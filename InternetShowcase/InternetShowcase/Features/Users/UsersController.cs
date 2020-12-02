@@ -1,36 +1,37 @@
 ﻿using InternetShowcase.Data.Models;
 using InternetShowcase.Features.Users.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace InternetShowcase.Features.Users
 {
+    [Authorize]
     public class UsersController : ApiController
     {
         UserManager<User> _userManager;
+        private readonly IUsersService _usersService;
 
-        public UsersController(UserManager<User> userManager)
+        public UsersController(
+            UserManager<User> userManager, 
+            IUsersService usersService)
         {
             _userManager = userManager;
+            _usersService = usersService;
         }
 
         [HttpGet]
-        public  IEnumerable<User> GetAll()
-        {
-            IEnumerable<User> users = _userManager.Users.ToList();
-            return users;
-        }
+        public  IEnumerable<User> GetAll() 
+            => _usersService.GetAll();
 
         [HttpPost]
         public async Task<IActionResult> Create(UserCreateRequestModel model)
         {
             if (ModelState.IsValid)
             {
-                User user = new User { Email = model.Email, UserName = model.Name };
-                var result = await _userManager.CreateAsync(user, model.Password);
+                var result = await _usersService.Create(model);
                 if (result.Succeeded)
                 {
                     return Ok(model);
@@ -44,7 +45,7 @@ namespace InternetShowcase.Features.Users
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(UserDetailsServiceModel model)
+        public async Task<IActionResult> Edit(UserEditServiceModel model)
         {
             if (ModelState.IsValid)
             {
@@ -75,10 +76,10 @@ namespace InternetShowcase.Features.Users
             User user = await _userManager.FindByIdAsync(id);
             if (user != null)
             {
-                IdentityResult result = await _userManager.DeleteAsync(user);
+                var result = await _userManager.DeleteAsync(user);
                 if (result.Succeeded)
                 {
-                    return Ok();
+                    return Ok(result);
                 }
                 else
                 {
@@ -96,13 +97,17 @@ namespace InternetShowcase.Features.Users
                 User user = await _userManager.FindByIdAsync(model.Id);
                 if (user != null)
                 {
-                    var _passwordValidator =
-                        HttpContext.RequestServices.GetService(typeof(IPasswordValidator<User>)) as IPasswordValidator<User>;
-                    var _passwordHasher =
-                        HttpContext.RequestServices.GetService(typeof(IPasswordHasher<User>)) as IPasswordHasher<User>;
+                    var _passwordValidator = HttpContext
+                                               .RequestServices
+                                               .GetService(typeof(IPasswordValidator<User>))
+                                               as IPasswordValidator<User>;
+                    var _passwordHasher = HttpContext
+                                            .RequestServices
+                                            .GetService(typeof(IPasswordHasher<User>))
+                                            as IPasswordHasher<User>;
 
-                    IdentityResult result =
-                        await _passwordValidator.ValidateAsync(_userManager, user, model.NewPassword);
+                    IdentityResult result = await _passwordValidator
+                                                    .ValidateAsync(_userManager, user, model.NewPassword);
                     if (result.Succeeded)
                     {
                         user.PasswordHash = _passwordHasher.HashPassword(user, model.NewPassword);

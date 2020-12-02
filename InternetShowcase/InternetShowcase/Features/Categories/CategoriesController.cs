@@ -44,7 +44,7 @@ namespace InternetShowcase.Features.Categories
 
         [Authorize]
         [HttpPost]
-        public async Task<ActionResult<CategoryView>> PostCategory(Category model)
+        public async Task<ActionResult<CategoryView>> CreateCategory(Category model)
         {
             if (ModelState.IsValid)
             {
