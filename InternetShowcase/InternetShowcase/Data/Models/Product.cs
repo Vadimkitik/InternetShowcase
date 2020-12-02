@@ -1,9 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using InternetShowcase.Data.Models.Base;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace InternetShowcase.Data.Models
 {
-    public class Product
+    public class Product : DeletableEntity
     {
         [Key]
         public int Id { get; set; }

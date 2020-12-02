@@ -9,6 +9,51 @@ namespace InternetShowcase.Migrations
         {
             migrationBuilder.AddColumn<string>(
                 name: "CreatedBy",
+                table: "Products",
+                type: "longtext CHARACTER SET utf8mb4",
+                nullable: true);
+
+            migrationBuilder.AddColumn<DateTime>(
+                name: "CreatedOn",
+                table: "Products",
+                type: "datetime(6)",
+                nullable: false,
+                defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
+
+            migrationBuilder.AddColumn<string>(
+                name: "DeletedBy",
+                table: "Products",
+                type: "longtext CHARACTER SET utf8mb4",
+                nullable: false);
+
+            migrationBuilder.AddColumn<DateTime>(
+                name: "DeletedOn",
+                table: "Products",
+                type: "datetime(6)",
+                nullable: false,
+                defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
+
+            migrationBuilder.AddColumn<bool>(
+                name: "IsDeleted",
+                table: "Products",
+                type: "tinyint(1)",
+                nullable: false,
+                defaultValue: false);
+
+            migrationBuilder.AddColumn<string>(
+                name: "ModifiedBy",
+                table: "Products",
+                type: "longtext CHARACTER SET utf8mb4",
+                nullable: true);
+
+            migrationBuilder.AddColumn<DateTime>(
+                name: "ModifiedOn",
+                table: "Products",
+                type: "datetime(6)",
+                nullable: true);
+
+            migrationBuilder.AddColumn<string>(
+                name: "CreatedBy",
                 table: "Categories",
                 type: "longtext CHARACTER SET utf8mb4",
                 nullable: true);
@@ -18,7 +63,7 @@ namespace InternetShowcase.Migrations
                 table: "Categories",
                 type: "datetime(6)",
                 nullable: false,
-                defaultValue: new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
+                defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
 
             migrationBuilder.AddColumn<string>(
                 name: "DeletedBy",
@@ -80,6 +125,34 @@ namespace InternetShowcase.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropColumn(
+                name: "CreatedBy",
+                table: "Products");
+
+            migrationBuilder.DropColumn(
+                name: "CreatedOn",
+                table: "Products");
+
+            migrationBuilder.DropColumn(
+                name: "DeletedBy",
+                table: "Products");
+
+            migrationBuilder.DropColumn(
+                name: "DeletedOn",
+                table: "Products");
+
+            migrationBuilder.DropColumn(
+                name: "IsDeleted",
+                table: "Products");
+
+            migrationBuilder.DropColumn(
+                name: "ModifiedBy",
+                table: "Products");
+
+            migrationBuilder.DropColumn(
+                name: "ModifiedOn",
+                table: "Products");
+
             migrationBuilder.DropColumn(
                 name: "CreatedBy",
                 table: "Categories");

@@ -40,6 +40,9 @@ namespace InternetShowcase.Data
             builder
                 .Entity<Category>()
                 .HasQueryFilter(c => !c.IsDeleted);
+            builder
+                .Entity<Product>()
+                .HasQueryFilter(c => !c.IsDeleted);
 
             base.OnModelCreating(builder);
         }
