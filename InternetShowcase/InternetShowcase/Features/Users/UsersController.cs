@@ -71,22 +71,14 @@ namespace InternetShowcase.Features.Users
         {
             if (ModelState.IsValid)
             {
-                User user = await _userManager.FindByIdAsync(model.Id);
-                if (user != null)
+                var result = await _usersService.Edit(model);
+                if (result.Succeeded)
                 {
-                    user.Email = model.Email;
-                    user.UserName = model.Email;
-                    user.UserName = model.UserName;
-
-                    var result = await _userManager.UpdateAsync(user);
-                    if (result.Succeeded)
-                    {
-                        return Ok(model);
-                    }
-                    else
-                    {
-                        return BadRequest(result.Errors);
-                    }
+                    return Ok(result.Succeeded);
+                }
+                else
+                {
+                    return BadRequest(result.Errors);
                 }
             }
             return BadRequest(ModelState.ErrorCount);

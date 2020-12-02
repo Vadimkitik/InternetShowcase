@@ -42,9 +42,14 @@ namespace InternetShowcase.Features.Users
                 user.UserName = model.Email;
                 user.UserName = model.UserName;
 
-                return await _userManager.UpdateAsync(user);
+                var result = await _userManager.UpdateAsync(user);
+                return result;
             }
-            return null;
+            var error = new IdentityError
+            {
+                Description = "Not Found User"
+            };
+            return IdentityResult.Failed(error);
         }
 
         public Task<bool> Delete(string id)
