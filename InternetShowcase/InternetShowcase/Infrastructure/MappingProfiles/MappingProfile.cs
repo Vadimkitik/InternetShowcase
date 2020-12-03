@@ -4,7 +4,7 @@ using InternetShowcase.Features.Categories.Models;
 using InternetShowcase.Features.Products.Models;
 using InternetShowcase.Features.Users.Models;
 
-namespace InternetShowcase.MappingProfiles
+namespace InternetShowcase.Infrastructure.MappingProfiles
 {
     public class MappingProfile : Profile
     {

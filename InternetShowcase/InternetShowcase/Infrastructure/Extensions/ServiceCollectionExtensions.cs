@@ -13,11 +13,11 @@ using InternetShowcase.Features.Products;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using System;
-using InternetShowcase.MappingProfiles;
 using InternetShowcase.Features.Identity;
 using InternetShowcase.Features.Users;
 using InternetShowcase.Features.Roles;
 using InternetShowcase.Infrastructure.Services;
+using InternetShowcase.Infrastructure.MappingProfiles;
 
 namespace InternetShowcase.Infrastructure.Extensions
 {

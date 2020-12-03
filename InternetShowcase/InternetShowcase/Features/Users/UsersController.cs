@@ -45,7 +45,7 @@ namespace InternetShowcase.Features.Users
             {
                 return user;
             }
-            return NotFound($"User with Email: {email}");
+            return NotFound($"NotFound User with Email: {email}");
         }
 
         [HttpPost]
@@ -100,7 +100,7 @@ namespace InternetShowcase.Features.Users
                     return BadRequest(result.Errors);
                 }
             }
-            return NotFound($"User with id: {id}");
+            return NotFound($"NotFound User with id: {id}");
         }
 
         [HttpPost]
