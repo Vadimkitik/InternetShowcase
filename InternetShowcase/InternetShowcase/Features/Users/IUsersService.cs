@@ -13,6 +13,6 @@ namespace InternetShowcase.Features.Users
         Task<IdentityResult> Create(UserCreateRequestModel user);
         Task<IdentityResult> Edit(UserEditModel model);
         Task<bool> Delete(string id); 
-        Task<bool> ChangePassword(ChangePasswordRequestModel id);
+        Task<IdentityResult> ChangePassword(ChangePasswordRequestModel model);
     }
 }
