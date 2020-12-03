@@ -2,6 +2,7 @@
 using InternetShowcase.Features.Users.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,12 +12,10 @@ namespace InternetShowcase.Features.Users
     public class UsersService : IUsersService
     {
         private readonly UserManager<User> _userManager;
-        private readonly HttpContext httpContext;
 
-        public UsersService(UserManager<User> userManager, HttpContext httpContext = null)
+        public UsersService(UserManager<User> userManager)
         {
             _userManager = userManager;
-            this.httpContext = httpContext;
         }
 
         public IEnumerable<User> GetAll()
@@ -65,11 +64,11 @@ namespace InternetShowcase.Features.Users
             User user = await _userManager.FindByIdAsync(model.Id);
             if (user != null)
             {
-                var _passwordValidator = httpContext
+                var _passwordValidator = HttpContext
                                            .RequestServices
                                            .GetService(typeof(IPasswordValidator<User>))
                                            as IPasswordValidator<User>;
-                var _passwordHasher = httpContext
+                var _passwordHasher = HttpContext
                                         .RequestServices
                                         .GetService(typeof(IPasswordHasher<User>))
                                         as IPasswordHasher<User>;

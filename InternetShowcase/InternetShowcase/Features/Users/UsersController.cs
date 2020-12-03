@@ -71,6 +71,7 @@ namespace InternetShowcase.Features.Users
         {
             if (ModelState.IsValid)
             {
+
                 var result = await _usersService.Edit(model);
                 if (result.Succeeded)
                 {
@@ -103,7 +104,7 @@ namespace InternetShowcase.Features.Users
             return NotFound($"NotFound User with id: {id}");
         }
 
-        [HttpPost]
+        [HttpPost("changePassword")]
         public async Task<IActionResult> ChangePassword(ChangePasswordRequestModel model)
         {
             if (ModelState.IsValid)
