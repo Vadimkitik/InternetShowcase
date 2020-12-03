@@ -24,7 +24,7 @@ namespace InternetShowcase.Features.Users
         public Task<User> GetByEmail(string email)
             => _userManager.FindByEmailAsync(email);
 
-        public async Task<IdentityResult> Create(UserCreateRequestModel model)
+        public async Task<IdentityResult> Create(CreateUserRequestModel model)
         {
             User user = new User 
             {
@@ -35,7 +35,7 @@ namespace InternetShowcase.Features.Users
             return result;
 
         }
-        public async Task<IdentityResult> Edit(UserEditModel model)
+        public async Task<IdentityResult> Edit(UpdateUserRequestModel model)
         {
             User user = await _userManager.FindByIdAsync(model.Id);
             if (user != null)
@@ -59,22 +59,16 @@ namespace InternetShowcase.Features.Users
             throw new System.NotImplementedException();
         }
 
-        public async Task<IdentityResult> ChangePassword(ChangePasswordRequestModel model)
+        public async Task<IdentityResult> ChangePassword(
+            ChangePasswordRequestModel model, 
+            IPasswordValidator<User> _passwordValidator, 
+            IPasswordHasher<User> _passwordHasher)
         {
             User user = await _userManager.FindByIdAsync(model.Id);
             if (user != null)
             {
-                var _passwordValidator = HttpContext
-                                           .RequestServices
-                                           .GetService(typeof(IPasswordValidator<User>))
-                                           as IPasswordValidator<User>;
-                var _passwordHasher = HttpContext
-                                        .RequestServices
-                                        .GetService(typeof(IPasswordHasher<User>))
-                                        as IPasswordHasher<User>;
-
                 var result = await _passwordValidator
-                                                .ValidateAsync(_userManager, user, model.NewPassword);                
+                                      .ValidateAsync(_userManager, user, model.NewPassword);                
                 if (result.Succeeded)
                 {
                     user.PasswordHash = _passwordHasher.HashPassword(user, model.NewPassword);
@@ -83,14 +77,11 @@ namespace InternetShowcase.Features.Users
                 }
                 return result;                
             }
-            else
+            var error = new IdentityError
             {
-                var error = new IdentityError
-                {
-                    Description = "Not Found User"
-                };
-                return IdentityResult.Failed(error); ;
-            }
+                Description = "Not Found User"
+            };
+            return IdentityResult.Failed(error); ;
         }        
     }
 }

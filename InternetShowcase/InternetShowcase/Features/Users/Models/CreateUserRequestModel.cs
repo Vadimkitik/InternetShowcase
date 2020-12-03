@@ -1,6 +1,6 @@
 ﻿namespace InternetShowcase.Features.Users.Models
 {
-    public class UserCreateRequestModel
+    public class CreateUserRequestModel
     {
         public string UserName { get; set; }
         public string Email { get; set; }

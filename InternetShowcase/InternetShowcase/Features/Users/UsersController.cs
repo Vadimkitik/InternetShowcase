@@ -49,7 +49,7 @@ namespace InternetShowcase.Features.Users
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateUser(UserCreateRequestModel model)
+        public async Task<IActionResult> CreateUser(CreateUserRequestModel model)
         {
             if (ModelState.IsValid)
             {
@@ -67,7 +67,7 @@ namespace InternetShowcase.Features.Users
         }
 
         [HttpPut]
-        public async Task<IActionResult> EditUser(UserEditModel model)
+        public async Task<IActionResult> EditUser(UpdateUserRequestModel model)
         {
             if (ModelState.IsValid)
             {
@@ -109,7 +109,15 @@ namespace InternetShowcase.Features.Users
         {
             if (ModelState.IsValid)
             {
-                var result = await _usersService.ChangePassword(model);
+                var _passwordValidator = HttpContext
+                                          .RequestServices
+                                          .GetService(typeof(IPasswordValidator<User>))
+                                          as IPasswordValidator<User>;
+                var _passwordHasher = HttpContext
+                                        .RequestServices
+                                        .GetService(typeof(IPasswordHasher<User>))
+                                        as IPasswordHasher<User>;
+                var result = await _usersService.ChangePassword(model, _passwordValidator, _passwordHasher);
                 if (result.Succeeded)
                 {
                     return Ok(result.Succeeded);

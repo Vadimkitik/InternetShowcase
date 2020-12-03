@@ -1,6 +1,6 @@
 ﻿namespace InternetShowcase.Features.Users.Models
 {
-    public class UserEditModel
+    public class UpdateUserRequestModel
     {
         public string Id { get; set; }
         public string Email { get; set; }
