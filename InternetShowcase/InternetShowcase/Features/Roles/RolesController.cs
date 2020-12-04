@@ -1,4 +1,5 @@
-﻿using InternetShowcase.Data.Models;
+﻿using AutoMapper;
+using InternetShowcase.Data.Models;
 using InternetShowcase.Features.Roles.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -9,43 +10,54 @@ using System.Threading.Tasks;
 
 namespace InternetShowcase.Features.Roles
 {
-    [Authorize]
+    //[Authorize]
     public class RolesController : ApiController
     {
-        RoleManager<IdentityRole> _roleManager;
-        UserManager<User> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly UserManager<User> _userManager;
+        private readonly IMapper _mapper;
         public RolesController(
             RoleManager<IdentityRole> roleManager,
-            UserManager<User> userManager)
+            UserManager<User> userManager,
+            IMapper mapper)
         {
             _roleManager = roleManager;
             _userManager = userManager;
+            _mapper = mapper;
         }
 
         [HttpGet]
-        public IEnumerable<IdentityRole> GetRoles() 
-            => _roleManager.Roles.ToList();
-        
-        [HttpPost]
-        public async Task<IActionResult> Create(string name)
+        public ActionResult<IEnumerable<RolesListingModel>> GetRoles()
         {
-            if (!string.IsNullOrEmpty(name))
+            var roles = _roleManager.Roles.ToList();
+
+            if (roles == null)
             {
-                var result = await _roleManager.CreateAsync(new IdentityRole(name));
+                return BadRequest();
+            }
+            return _mapper.Map<List<IdentityRole>, List<RolesListingModel>>(roles);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateRole(RoleModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await _roleManager.CreateAsync(new IdentityRole(model.Name));
                 if (result.Succeeded)
                 {
-                    return Ok(name);
+                    return Ok(model);
                 }
                 else
                 {
                     BadRequest(result.Errors);
                 }
             }
-            return BadRequest(name);
+            return BadRequest(ModelState.ErrorCount);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Delete(string id)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteRole(string id)
         {
             var role = await _roleManager.FindByIdAsync(id);
             if (role != null)
@@ -63,7 +75,7 @@ namespace InternetShowcase.Features.Roles
             return BadRequest();
         }
 
-        public async Task<IActionResult> Edit(string userId)
+        public async Task<IActionResult> EditRole(string userId)
         {
             // получаем пользователя
             User user = await _userManager.FindByIdAsync(userId);
@@ -72,7 +84,7 @@ namespace InternetShowcase.Features.Roles
                 // получем список ролей пользователя
                 var userRoles = await _userManager.GetRolesAsync(user);
                 var allRoles = _roleManager.Roles.ToList();
-                ChangeRoleResponseModel model = new ChangeRoleResponseModel
+                ChangeRoleRequestModel model = new ChangeRoleRequestModel
                 {
                     UserId = user.Id,
                     UserEmail = user.Email,
@@ -84,8 +96,8 @@ namespace InternetShowcase.Features.Roles
             return NotFound();
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Edit(string userId, List<string> roles)
+        [HttpPut]
+        public async Task<IActionResult> EditRole(string userId, List<string> roles)
         {
             // получаем пользователя
             User user = await _userManager.FindByIdAsync(userId);
