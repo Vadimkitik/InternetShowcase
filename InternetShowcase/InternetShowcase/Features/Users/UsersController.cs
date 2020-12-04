@@ -109,15 +109,9 @@ namespace InternetShowcase.Features.Users
         {
             if (ModelState.IsValid)
             {
-                var _passwordValidator = HttpContext
-                                          .RequestServices
-                                          .GetService(typeof(IPasswordValidator<User>))
-                                          as IPasswordValidator<User>;
-                var _passwordHasher = HttpContext
-                                        .RequestServices
-                                        .GetService(typeof(IPasswordHasher<User>))
-                                        as IPasswordHasher<User>;
-                var result = await _usersService.ChangePassword(model, _passwordValidator, _passwordHasher);
+                var passwordValidator = GetPasswordValidator();
+                var passwordHasher = GetPasswordHash();
+                var result = await _usersService.ChangePassword(model, passwordValidator, passwordHasher);
                 if (result.Succeeded)
                 {
                     return Ok(result.Succeeded);
