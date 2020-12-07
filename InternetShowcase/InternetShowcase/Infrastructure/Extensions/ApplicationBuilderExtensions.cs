@@ -1,7 +1,15 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using InternetShowcase.Data;
+using InternetShowcase.Data.Models;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using System;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace InternetShowcase.Infrastructure.Extensions
 {
@@ -13,5 +21,25 @@ namespace InternetShowcase.Infrastructure.Extensions
                 FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Resources")),
                 RequestPath = new PathString("/Resources")
             });
+        public static async Task<IHost> InitialDataBaseUsersRolesAsync(this IHost host)
+        {
+            using (var scope = host.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                try
+                {
+                    ShowcaseDbContext content = scope.ServiceProvider.GetRequiredService<ShowcaseDbContext>();
+                    var userManager = services.GetRequiredService<UserManager<User>>();
+                    var rolesManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+                    await DBObjects.AddAdminAndRolesAsync(userManager, rolesManager);
+                }
+                catch (Exception ex)
+                {
+                    var logger = services.GetRequiredService<ILogger<Program>>();
+                    logger.LogError(ex, "An error occurred while seeding the database.");
+                }
+            }
+            return host;
+        }
     }
 }

@@ -50,12 +50,12 @@ namespace InternetShowcase
                    endpoints.MapControllers();
                });
 
-            using(var scope = app.ApplicationServices.CreateScope())
+            using (IServiceScope scope = app.ApplicationServices.CreateScope())
             {
                 ShowcaseDbContext content = scope.ServiceProvider.GetRequiredService<ShowcaseDbContext>();
-                DBObjects.initial(content);
+                DBObjects.Initialize(content);
             }
-            
+
         }
     }
 }

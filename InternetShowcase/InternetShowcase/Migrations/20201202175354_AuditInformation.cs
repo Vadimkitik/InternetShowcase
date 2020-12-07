@@ -24,7 +24,7 @@ namespace InternetShowcase.Migrations
                 name: "DeletedBy",
                 table: "Products",
                 type: "longtext CHARACTER SET utf8mb4",
-                nullable: false);
+                nullable: true);
 
             migrationBuilder.AddColumn<DateTime>(
                 name: "DeletedOn",
@@ -69,7 +69,7 @@ namespace InternetShowcase.Migrations
                 name: "DeletedBy",
                 table: "Categories",
                 type: "longtext CHARACTER SET utf8mb4",
-                nullable: false);
+                nullable: true);
 
             migrationBuilder.AddColumn<DateTime>(
                 name: "DeletedOn",

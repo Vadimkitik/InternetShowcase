@@ -8,8 +8,8 @@ namespace InternetShowcase.Data
 {
     public class DBObjects
     {
-        public static void initial(ShowcaseDbContext context)
-        { 
+        public static void Initialize(ShowcaseDbContext context)
+        {
             if (!context.Categories.Any())
             {
                 context.Categories.AddRange(Categories.Select(c => c.Value));
@@ -20,7 +20,7 @@ namespace InternetShowcase.Data
                 context.SaveChanges();
             }
         }
-        public static async Task InitializeAsync(UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
+        public static async Task AddAdminAndRolesAsync(UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
         {
             string adminEmail = "aleutina@gmail.com";
             string password = "1z2x3cQQer";
