@@ -74,8 +74,19 @@ namespace InternetShowcase.Features.Roles
             }
             return BadRequest();
         }
+        [HttpGet("UsersList")]
+        public ActionResult<IEnumerable<UsersListWithAccessModel>> UserList()
+        {
+            var users = _userManager.Users.ToList();
+            if (users == null)
+            {
+                return BadRequest();
+            }
+            return _mapper.Map<List<User>, List<UsersListWithAccessModel>>(users);
+        }
 
-        public async Task<IActionResult> EditRole(string userId)
+        [HttpGet("{userId}")]
+        public async Task<IActionResult> UserRoles(string userId)
         {
             // получаем пользователя
             User user = await _userManager.FindByIdAsync(userId);
@@ -97,10 +108,10 @@ namespace InternetShowcase.Features.Roles
         }
 
         [HttpPut]
-        public async Task<IActionResult> EditRole(string userId, List<string> roles)
+        public async Task<IActionResult> EditRole(UpdateUserRolesRequestModel updateUser)
         {
             // получаем пользователя
-            User user = await _userManager.FindByIdAsync(userId);
+            User user = await _userManager.FindByIdAsync(updateUser.UserId);
             if (user != null)
             {
                 // получем список ролей пользователя
@@ -108,9 +119,9 @@ namespace InternetShowcase.Features.Roles
                 // получаем все роли
                 var allRoles = _roleManager.Roles.ToList();
                 // получаем список ролей, которые были добавлены
-                var addedRoles = roles.Except(userRoles);
+                var addedRoles = updateUser.Roles.Except(userRoles);
                 // получаем роли, которые были удалены
-                var removedRoles = userRoles.Except(roles);
+                var removedRoles = userRoles.Except(updateUser.Roles);
 
                 await _userManager.AddToRolesAsync(user, addedRoles);
 
