@@ -1,20 +1,15 @@
 ﻿using InternetShowcase.Data.Models;
+using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace InternetShowcase.Data
 {
     public class DBObjects
     {
         public static void initial(ShowcaseDbContext context)
-        {
-            //if (!context.Users.Any())
-            //{
-            //    User user = new User { Email = "alle@gmail.com", Password = "1z2x3cQQ", Name = "Alla", Role = "Admin" };
-            //    context.Users.Add(user);
-            //    context.SaveChanges();
-            //}
-
+        { 
             if (!context.Categories.Any())
             {
                 context.Categories.AddRange(Categories.Select(c => c.Value));
@@ -23,6 +18,32 @@ namespace InternetShowcase.Data
                 context.SaveChanges();
                 context.Categories.AddRange(UnderSubCategoies.Select(c => c.Value));
                 context.SaveChanges();
+            }
+        }
+        public static async Task InitializeAsync(UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
+        {
+            string adminEmail = "aleutina@gmail.com";
+            string password = "1z2x3cQQer";
+            if (await roleManager.FindByNameAsync("admin") == null)
+            {
+                await roleManager.CreateAsync(new IdentityRole("admin"));
+            }
+            if (await roleManager.FindByNameAsync("manager") == null)
+            {
+                await roleManager.CreateAsync(new IdentityRole("manager"));
+            }
+            if (await roleManager.FindByNameAsync("user") == null)
+            {
+                await roleManager.CreateAsync(new IdentityRole("user"));
+            }
+            if (await userManager.FindByNameAsync(adminEmail) == null)
+            {
+                User admin = new User { Email = adminEmail, UserName = adminEmail };
+                IdentityResult result = await userManager.CreateAsync(admin, password);
+                if (result.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(admin, "admin");
+                }
             }
         }
 
