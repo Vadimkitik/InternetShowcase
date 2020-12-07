@@ -4,7 +4,7 @@ namespace InternetShowcase.Data.Models.Base
 {
     public interface IDeletableEntity : IEntity
     {
-        DateTime DeletedOn { get; set; }
+        DateTime? DeletedOn { get; set; }
 
         string DeletedBy { get; set; }
 

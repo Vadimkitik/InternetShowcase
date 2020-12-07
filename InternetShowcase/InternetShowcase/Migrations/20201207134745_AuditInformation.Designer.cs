@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InternetShowcase.Migrations
 {
     [DbContext(typeof(ShowcaseDbContext))]
-    [Migration("20201202175354_AuditInformation")]
+    [Migration("20201207134745_AuditInformation")]
     partial class AuditInformation
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -35,7 +35,6 @@ namespace InternetShowcase.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("DeletedBy")
-                        .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<DateTime>("DeletedOn")
@@ -88,7 +87,6 @@ namespace InternetShowcase.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("DeletedBy")
-                        .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<DateTime>("DeletedOn")

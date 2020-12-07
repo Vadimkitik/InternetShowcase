@@ -21,6 +21,16 @@ namespace InternetShowcase.Infrastructure.Extensions
                 FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Resources")),
                 RequestPath = new PathString("/Resources")
             });
+
+        public static void InitialDataBaseCategories(this IApplicationBuilder app)
+        {
+            using (IServiceScope scope = app.ApplicationServices.CreateScope())
+            {
+                ShowcaseDbContext content = scope.ServiceProvider.GetRequiredService<ShowcaseDbContext>();
+                DBObjects.Initialize(content);
+            }
+        }
+
         public static async Task<IHost> InitialDataBaseUsersRolesAsync(this IHost host)
         {
             using (var scope = host.Services.CreateScope())

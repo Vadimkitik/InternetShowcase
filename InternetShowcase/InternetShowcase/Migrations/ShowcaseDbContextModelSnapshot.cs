@@ -33,7 +33,6 @@ namespace InternetShowcase.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("DeletedBy")
-                        .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<DateTime>("DeletedOn")
@@ -86,7 +85,6 @@ namespace InternetShowcase.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("DeletedBy")
-                        .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<DateTime>("DeletedOn")

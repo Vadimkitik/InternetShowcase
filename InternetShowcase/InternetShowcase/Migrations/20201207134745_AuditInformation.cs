@@ -18,7 +18,7 @@ namespace InternetShowcase.Migrations
                 table: "Products",
                 type: "datetime(6)",
                 nullable: false,
-                defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
+                defaultValue: new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc));
 
             migrationBuilder.AddColumn<string>(
                 name: "DeletedBy",
@@ -30,8 +30,8 @@ namespace InternetShowcase.Migrations
                 name: "DeletedOn",
                 table: "Products",
                 type: "datetime(6)",
-                nullable: false,
-                defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
+                nullable: true,
+                defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc));
 
             migrationBuilder.AddColumn<bool>(
                 name: "IsDeleted",
@@ -63,7 +63,7 @@ namespace InternetShowcase.Migrations
                 table: "Categories",
                 type: "datetime(6)",
                 nullable: false,
-                defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
+                defaultValue: new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc));
 
             migrationBuilder.AddColumn<string>(
                 name: "DeletedBy",
@@ -75,8 +75,8 @@ namespace InternetShowcase.Migrations
                 name: "DeletedOn",
                 table: "Categories",
                 type: "datetime(6)",
-                nullable: false,
-                defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
+                nullable: true,
+                defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc));
 
             migrationBuilder.AddColumn<bool>(
                 name: "IsDeleted",
@@ -108,7 +108,7 @@ namespace InternetShowcase.Migrations
                 table: "AspNetUsers",
                 type: "datetime(6)",
                 nullable: false,
-                defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
+                defaultValue: new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc));
 
             migrationBuilder.AddColumn<string>(
                 name: "ModifiedBy",

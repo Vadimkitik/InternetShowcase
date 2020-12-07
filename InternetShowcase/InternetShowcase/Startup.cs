@@ -48,14 +48,8 @@ namespace InternetShowcase
                .UseEndpoints(endpoints =>
                {
                    endpoints.MapControllers();
-               });
-
-            using (IServiceScope scope = app.ApplicationServices.CreateScope())
-            {
-                ShowcaseDbContext content = scope.ServiceProvider.GetRequiredService<ShowcaseDbContext>();
-                DBObjects.Initialize(content);
-            }
-
+               })
+               .InitialDataBaseCategories();
         }
     }
 }
