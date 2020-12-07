@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
 using InternetShowcase.Data;
-using InternetShowcase.Data.Features.Categories;
-using InternetShowcase.Features;
 using InternetShowcase.Data.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http.Features;
@@ -18,6 +16,7 @@ using InternetShowcase.Features.Users;
 using InternetShowcase.Features.Roles;
 using InternetShowcase.Infrastructure.Services;
 using InternetShowcase.Infrastructure.MappingProfiles;
+using InternetShowcase.Features.Categories;
 
 namespace InternetShowcase.Infrastructure.Extensions
 {
@@ -88,7 +87,7 @@ namespace InternetShowcase.Infrastructure.Extensions
             => services
                 .AddAutoMapper(typeof(MappingProfile))
                 .AddTransient<IAllProducts, ProductReposytory>()
-                .AddTransient<IRepository<Category>, CategoryRepository>()
+                .AddTransient<ICategoriesService, CategoriesService>()
                 .AddTransient<IIdentityService, IdentityService>()
                 .AddScoped<ICurrentUserService, CurrentUserService>()
                 .AddTransient<IUsersService, UsersService>()

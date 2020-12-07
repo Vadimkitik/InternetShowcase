@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using InternetShowcase.Data.Models;
 using InternetShowcase.Features.Categories.Models;
+using InternetShowcase.Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,10 +11,10 @@ namespace InternetShowcase.Features.Categories
 {
     public class CategoriesController : ApiController
     {
-        private readonly IRepository<Category> _categories;
+        private readonly ICategoriesService _categories;
         private readonly IMapper _mapper;
 
-        public CategoriesController(IRepository<Category> categories, IMapper mapper)
+        public CategoriesController(ICategoriesService categories, IMapper mapper)
         {
             _categories = categories;
             _mapper = mapper;
@@ -34,7 +35,7 @@ namespace InternetShowcase.Features.Categories
         [HttpGet("{categoryLine}")]
         public async Task<ActionResult<CategoryView>> GetCategory(string categoryLine)
         {
-            var category = await _categories.GetByType(categoryLine);
+            var category = await _categories.GetByLine(categoryLine);
             if (category != null)
             {
                 return _mapper.Map<Category, CategoryView>(category);
@@ -56,16 +57,26 @@ namespace InternetShowcase.Features.Categories
 
         [Authorize]
         [HttpPut()]
-        public async Task<bool> PutCategory(Category category)
+        public async Task<IActionResult> PutCategory(Category category)
         {
-            return await _categories.Update(category);
+            var result = await _categories.Update(category);
+            if (result.Failure)
+            {
+                return BadRequest(result.Error);
+            }
+            return Ok();
         }
 
         [Authorize]
         [HttpDelete("{id}")]
-        public async Task<bool> DeleteCategory(int id)
+        public async Task<IActionResult> DeleteCategory(int id)
         {
-            return await _categories.Delete(id);
+            var result = await _categories.Delete(id);
+            if (result.Failure)
+            {
+                return BadRequest(result.Error);
+            }
+            return Ok();
         }
     }
 }
