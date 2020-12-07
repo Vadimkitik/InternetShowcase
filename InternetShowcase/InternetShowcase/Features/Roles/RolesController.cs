@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using InternetShowcase.Data.Models;
 using InternetShowcase.Features.Roles.Models;
+using InternetShowcase.Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -15,15 +16,18 @@ namespace InternetShowcase.Features.Roles
     {
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly UserManager<User> _userManager;
+        private readonly IRolesService _rolesService;
         private readonly IMapper _mapper;
         public RolesController(
             RoleManager<IdentityRole> roleManager,
             UserManager<User> userManager,
-            IMapper mapper)
+            IMapper mapper, 
+            IRolesService rolesService)
         {
             _roleManager = roleManager;
             _userManager = userManager;
             _mapper = mapper;
+            _rolesService = rolesService;
         }
 
         [HttpGet]
@@ -43,15 +47,12 @@ namespace InternetShowcase.Features.Roles
         {
             if (ModelState.IsValid)
             {
-                var result = await _roleManager.CreateAsync(new IdentityRole(model.Name));
-                if (result.Succeeded)
+                var result = await _rolesService.CreateRole(model);
+                if (result.Failure)
                 {
-                    return Ok(model);
+                    return BadRequest(result.Error);
                 }
-                else
-                {
-                    BadRequest(result.Errors);
-                }
+                return Ok();
             }
             return BadRequest(ModelState.ErrorCount);
         }
@@ -59,23 +60,16 @@ namespace InternetShowcase.Features.Roles
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteRole(string id)
         {
-            var role = await _roleManager.FindByIdAsync(id);
-            if (role != null)
+            var result = await _rolesService.DeleteRole(id);
+            if (result.Failure)
             {
-                var result = await _roleManager.DeleteAsync(role);
-                if (result.Succeeded)
-                {
-                    return Ok(id);
-                }
-                else
-                {
-                    BadRequest(result.Errors);
-                }
+                return BadRequest(result.Error);
             }
-            return BadRequest();
+            return Ok();
         }
-        [HttpGet("UsersList")]
-        public ActionResult<IEnumerable<UsersListWithAccessModel>> UserList()
+
+        [HttpGet("usersList")]
+        public ActionResult<IEnumerable<UsersListWithAccessModel>> UsersList()
         {
             var users = _userManager.Users.ToList();
             if (users == null)
@@ -86,51 +80,28 @@ namespace InternetShowcase.Features.Roles
         }
 
         [HttpGet("{userId}")]
-        public async Task<IActionResult> UserRoles(string userId)
+        public async Task<ActionResult<ChangeRoleRequestModel>> UserRoles(string userId)
         {
             // получаем пользователя
             User user = await _userManager.FindByIdAsync(userId);
             if (user != null)
             {
-                // получем список ролей пользователя
-                var userRoles = await _userManager.GetRolesAsync(user);
-                var allRoles = _roleManager.Roles.ToList();
-                ChangeRoleRequestModel model = new ChangeRoleRequestModel
-                {
-                    UserId = user.Id,
-                    UserEmail = user.Email,
-                    UserRoles = userRoles,
-                    AllRoles = allRoles
-                };
+                ChangeRoleRequestModel model = await _rolesService.GetUserWithRoles(user);
                 return Ok(model);
             }
             return NotFound();
         }
 
         [HttpPut]
-        public async Task<IActionResult> EditRole(UpdateUserRolesRequestModel updateUser)
+        public async Task<IActionResult> EditUserRoles(UpdateUserRolesRequestModel updateUser)
         {
-            // получаем пользователя
-            User user = await _userManager.FindByIdAsync(updateUser.UserId);
-            if (user != null)
+            Result result = await _rolesService.EditUserRoles(updateUser);
+            if(result.Failure)
             {
-                // получем список ролей пользователя
-                var userRoles = await _userManager.GetRolesAsync(user);
-                // получаем все роли
-                var allRoles = _roleManager.Roles.ToList();
-                // получаем список ролей, которые были добавлены
-                var addedRoles = updateUser.Roles.Except(userRoles);
-                // получаем роли, которые были удалены
-                var removedRoles = userRoles.Except(updateUser.Roles);
 
-                await _userManager.AddToRolesAsync(user, addedRoles);
-
-                await _userManager.RemoveFromRolesAsync(user, removedRoles);
-
-                return Ok(user);
+                return BadRequest(result.Succeeded); 
             }
-
-            return NotFound();
+            return Ok();
         }
     }
 }

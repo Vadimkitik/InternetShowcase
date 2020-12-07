@@ -91,7 +91,8 @@ namespace InternetShowcase.Infrastructure.Extensions
                 .AddTransient<IRepository<Category>, CategoryRepository>()
                 .AddTransient<IIdentityService, IdentityService>()
                 .AddScoped<ICurrentUserService, CurrentUserService>()
-                .AddTransient<IUsersService, UsersService>().AddTransient<IRolesService, RolesService>();  
+                .AddTransient<IUsersService, UsersService>()
+                .AddTransient<IRolesService, RolesService>();  
 
         public static IServiceCollection AddConfigure(this IServiceCollection services)
         {
