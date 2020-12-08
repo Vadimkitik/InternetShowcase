@@ -58,12 +58,9 @@ namespace InternetShowcase.Features.Users
                 {
                     return Ok(model);
                 }
-                else
-                {
-                    return BadRequest(result.Errors);
-                }
+                return BadRequest(result.Errors);                
             }
-            return Ok(model);
+             return BadRequest();
         }
 
         [HttpPut]
@@ -82,7 +79,7 @@ namespace InternetShowcase.Features.Users
                     return BadRequest(result.Errors);
                 }
             }
-            return BadRequest(ModelState.ErrorCount);
+            return BadRequest();
         }
 
         [HttpDelete("{id}")]
