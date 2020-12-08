@@ -25,10 +25,7 @@ namespace InternetShowcase.Infrastructure.Services
 
                 using (var client = new SmtpClient())
                 {
-                    var credentials = new NetworkCredential("chizhik_vj", "vUdZ4R4D");
-                    client.ProxyClient = new HttpProxyClient("proxy2.grsu.by", 80, credentials);
-
-                    await client.ConnectAsync("smtp.gmail.com", 587, true);
+                    await client.ConnectAsync("smtp.gmail.com", 587, false);
                     await client.AuthenticateAsync("alleutina.shop@gmail.com", "25057519alch");
                     await client.SendAsync(emailMessage);
                     
