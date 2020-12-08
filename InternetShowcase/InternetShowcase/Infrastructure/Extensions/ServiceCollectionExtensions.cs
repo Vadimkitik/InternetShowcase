@@ -51,7 +51,8 @@ namespace InternetShowcase.Infrastructure.Extensions
                     options.Password.RequireNonAlphanumeric = false;
                     options.User.RequireUniqueEmail = true;
                 })
-                .AddEntityFrameworkStores<ShowcaseDbContext>();
+                .AddEntityFrameworkStores<ShowcaseDbContext>()
+                .AddDefaultTokenProviders();
             return services;
         }
 
@@ -91,7 +92,8 @@ namespace InternetShowcase.Infrastructure.Extensions
                 .AddTransient<IIdentityService, IdentityService>()
                 .AddScoped<ICurrentUserService, CurrentUserService>()
                 .AddTransient<IUsersService, UsersService>()
-                .AddTransient<IRolesService, RolesService>();  
+                .AddTransient<IRolesService, RolesService>()
+                .AddTransient<IEmailService, EmailService>();  
 
         public static IServiceCollection AddConfigure(this IServiceCollection services)
         {
