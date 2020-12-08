@@ -11,7 +11,7 @@ namespace InternetShowcase
         public static async Task Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
-            await host.InitialDataBaseUsersRolesAsync();
+            await host.InitialDataBaseAsync();
             host.Run();
         }
 

@@ -8,16 +8,16 @@ namespace InternetShowcase.Data
 {
     public class DBObjects
     {
-        public static void Initialize(ShowcaseDbContext context)
+        public static async Task InitializeAsync(ShowcaseDbContext context)
         {
             if (!context.Categories.Any())
             {
-                context.Categories.AddRange(Categories.Select(c => c.Value));
-                context.SaveChanges();
-                context.Categories.AddRange(SubCategoies.Select(c => c.Value));
-                context.SaveChanges();
-                context.Categories.AddRange(UnderSubCategoies.Select(c => c.Value));
-                context.SaveChanges();
+                await context.Categories.AddRangeAsync(Categories.Select(c => c.Value));
+                await context.SaveChangesAsync();
+                await context.Categories.AddRangeAsync(SubCategoies.Select(c => c.Value));
+                await context.SaveChangesAsync();
+                await context.Categories.AddRangeAsync(UnderSubCategoies.Select(c => c.Value));
+                await context.SaveChangesAsync();
             }
         }
         public static async Task AddAdminAndRolesAsync(UserManager<User> userManager, RoleManager<IdentityRole> roleManager)

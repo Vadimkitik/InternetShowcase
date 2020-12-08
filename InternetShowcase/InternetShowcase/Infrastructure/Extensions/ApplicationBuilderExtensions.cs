@@ -22,26 +22,18 @@ namespace InternetShowcase.Infrastructure.Extensions
                 RequestPath = new PathString("/Resources")
             });
 
-        public static void InitialDataBaseCategories(this IApplicationBuilder app)
-        {
-            using (IServiceScope scope = app.ApplicationServices.CreateScope())
-            {
-                ShowcaseDbContext content = scope.ServiceProvider.GetRequiredService<ShowcaseDbContext>();
-                DBObjects.Initialize(content);
-            }
-        }
-
-        public static async Task<IHost> InitialDataBaseUsersRolesAsync(this IHost host)
+        public static async Task<IHost> InitialDataBaseAsync(this IHost host)
         {
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
                 try
                 {
-                    ShowcaseDbContext content = scope.ServiceProvider.GetRequiredService<ShowcaseDbContext>();
+                    ShowcaseDbContext content = services.GetRequiredService<ShowcaseDbContext>();
                     var userManager = services.GetRequiredService<UserManager<User>>();
                     var rolesManager = services.GetRequiredService<RoleManager<IdentityRole>>();
                     await DBObjects.AddAdminAndRolesAsync(userManager, rolesManager);
+                    await DBObjects.InitializeAsync(content);
                 }
                 catch (Exception ex)
                 {
