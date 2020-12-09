@@ -25,6 +25,33 @@ namespace InternetShowcase.Features.Identity
             this.identityService = identityService;
         }
 
+        [Route(nameof(Login))]
+        public async Task<ActionResult<object>> Login(LoginRequestModel model)
+        {
+            var user = await this.userManager.FindByEmailAsync(model.Email);
+
+            if (user == null)
+            {
+                return Unauthorized();
+            }
+
+            var passwordValid = await this.userManager.CheckPasswordAsync(user, model.Password);
+            if (!passwordValid)
+            {
+                return Unauthorized();
+            }
+
+            var token = this.identityService.GenerateJwtToken(
+                user.Id,
+                user.UserName,
+                this.appSettings.Secret);
+
+            return new LoginResponseModel
+            {
+                Token = token
+            };
+        }
+
         [Route(nameof(Register))]
         public async Task<ActionResult> Register(RegisterRequestModel model)
         {
@@ -78,31 +105,56 @@ namespace InternetShowcase.Features.Identity
             return BadRequest("Error");
         }
 
-        [Route(nameof(Login))]
-        public async Task<ActionResult<object>> Login(LoginRequestModel model)
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        [Route(nameof(ForgotPassword))]
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordRequestModel model)
         {
-            var user = await this.userManager.FindByEmailAsync(model.Email);
-
-            if(user == null )
+            if (ModelState.IsValid)
             {
-                return Unauthorized();
+                var user = await userManager.FindByEmailAsync(model.Email);
+                if (user == null || !(await userManager.IsEmailConfirmedAsync(user)))
+                {
+                    return Content("Для завершения сброса пароля проверьте электронную почту и перейдите по ссылке, указанной в письме");
+                }
+
+                var code = await userManager.GeneratePasswordResetTokenAsync(user);
+                var callbackUrl = Url.Action(
+                    "ResetPassword",
+                    "Identity",
+                    new { userId = user.Id, code = code },
+                    Request.Scheme);
+
+                EmailService emailService = new EmailService();
+                await emailService.SendEmailAsync(model.Email, "Reset Password",
+                    $"Для сброса пароля пройдите по ссылке: <a href='{callbackUrl}'>{callbackUrl}</a>");
+                return Content("Для завершения сброса пароля проверьте электронную почту и перейдите по ссылке, указанной в письме");
             }
+            return BadRequest(model);
+        }
 
-            var passwordValid = await this.userManager.CheckPasswordAsync(user, model.Password);
-            if(!passwordValid)
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        [Route(nameof(ResetPassword))]
+        public async Task<IActionResult> ResetPassword(ResetPasswordRequestModel model)
+        {
+            if (!ModelState.IsValid)
             {
-                return Unauthorized();
+                return BadRequest(model);
             }
-
-            var token = this.identityService.GenerateJwtToken(
-                user.Id, 
-                user.UserName, 
-                this.appSettings.Secret);
-
-            return new LoginResponseModel
+            var user = await userManager.FindByEmailAsync(model.Email);
+            if (user == null)
             {
-                Token = token
-            };
+                return BadRequest();
+            }
+            var result = await userManager.ResetPasswordAsync(user, model.Code, model.Password);
+            if (result.Succeeded)
+            {
+                return Ok();
+            }
+            return BadRequest(model);
         }
     }
 }
