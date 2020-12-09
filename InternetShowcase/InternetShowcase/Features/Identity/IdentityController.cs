@@ -107,7 +107,6 @@ namespace InternetShowcase.Features.Identity
 
         [HttpPost]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
         [Route(nameof(ForgotPassword))]
         public async Task<IActionResult> ForgotPassword(ForgotPasswordRequestModel model)
         {
@@ -129,14 +128,13 @@ namespace InternetShowcase.Features.Identity
                 EmailService emailService = new EmailService();
                 await emailService.SendEmailAsync(model.Email, "Reset Password",
                     $"Для сброса пароля пройдите по ссылке: <a href='{callbackUrl}'>{callbackUrl}</a>");
-                return Content("Для завершения сброса пароля проверьте электронную почту и перейдите по ссылке, указанной в письме");
+                return Content($"Для завершения сброса пароля проверьте электронную почту и перейдите по ссылке, указанной в письме");
             }
             return BadRequest(model);
         }
 
         [HttpPost]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
         [Route(nameof(ResetPassword))]
         public async Task<IActionResult> ResetPassword(ResetPasswordRequestModel model)
         {
@@ -154,7 +152,7 @@ namespace InternetShowcase.Features.Identity
             {
                 return Ok();
             }
-            return BadRequest(model);
+            return BadRequest(result.Errors);
         }
     }
 }
