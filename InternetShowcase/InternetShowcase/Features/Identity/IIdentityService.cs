@@ -7,7 +7,7 @@ namespace InternetShowcase.Features.Identity
     {
         string GenerateJwtToken(string userId, string userName, string secret);
 
-        Task<Result> ResetPasswordAsync(string email, string password, string code);
+        Task<Result> ResetPasswordAsync(string email, string newPassword, string code);
 
         Task<Result> ConfirmEmail(string userId, string code);
 

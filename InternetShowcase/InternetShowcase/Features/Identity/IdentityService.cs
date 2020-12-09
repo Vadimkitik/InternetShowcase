@@ -86,19 +86,19 @@ namespace InternetShowcase.Features.Identity
             return encryptedToken;
         }
 
-        public async Task<Result> ResetPasswordAsync(string email, string password, string code)
+        public async Task<Result> ResetPasswordAsync(string email, string newPassword, string code)
         {
             var user = await userManager.FindByEmailAsync(email);
             if (user == null)
             {
                 return "User not Founded";
             }
-            var result = await userManager.ResetPasswordAsync(user, code, password);
+            var result = await userManager.ResetPasswordAsync(user, code, newPassword);
             if (result.Succeeded)
             {
                 return true;
             }
-            return result.Errors.ToString();
+            return "inValid Token";
         }
     }
 }

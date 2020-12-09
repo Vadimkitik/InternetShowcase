@@ -2,7 +2,7 @@
 
 namespace InternetShowcase.Features.Roles.Models
 {
-    public class RoleModel
+    public class CreateRoleRequestModel
     {
         [Required]
         public string Name { get; set; }

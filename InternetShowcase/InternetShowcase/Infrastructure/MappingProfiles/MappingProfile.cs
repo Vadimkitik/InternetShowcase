@@ -17,8 +17,8 @@ namespace InternetShowcase.Infrastructure.MappingProfiles
                 .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.Category.Name));
 
             CreateMap<User, UsersListingModel>();
-            CreateMap<IdentityRole, RolesListingModel>();
-            CreateMap<User, UsersListWithAccessModel>(); 
+            CreateMap<IdentityRole, RolesListingResponseModel>();
+            CreateMap<User, UsersListAccessResponseModel>(); 
 
             CreateMap<Category, CategoryView>();
 

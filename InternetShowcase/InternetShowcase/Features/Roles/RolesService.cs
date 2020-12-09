@@ -20,7 +20,7 @@ namespace InternetShowcase.Features.Roles
             _userManager = userManager;
         }
 
-        public async Task<Result> CreateRole(RoleModel model)
+        public async Task<Result> CreateRole(CreateRoleRequestModel model)
         {
                 var result = await _roleManager.CreateAsync(new IdentityRole(model.Name));
                 if (result.Succeeded)
@@ -89,12 +89,12 @@ namespace InternetShowcase.Features.Roles
             return "User Not Founded";
         }
 
-        public async Task<ChangeRoleRequestModel> GetUserWithRoles(User user)
+        public async Task<ChangeRoleResponseModel> GetUserWithRoles(User user)
 {
             // получем список ролей пользователя
             var userRoles = await _userManager.GetRolesAsync(user);
             var allRoles = _roleManager.Roles.ToList();
-            ChangeRoleRequestModel model = new ChangeRoleRequestModel
+            ChangeRoleResponseModel model = new ChangeRoleResponseModel
             {
                 UserId = user.Id,
                 UserEmail = user.Email,

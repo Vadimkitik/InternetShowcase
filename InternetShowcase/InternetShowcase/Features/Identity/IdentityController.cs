@@ -19,7 +19,8 @@ namespace InternetShowcase.Features.Identity
             UserManager<User> userManager,
             IOptions<AppSettings> appSettings,
             IIdentityService identityService,
-            IEmailService emailService)
+            IEmailService emailService, 
+            RoleManager<IdentityRole> roleManager)
         {
             this.userManager = userManager;
             this.appSettings = appSettings.Value;
@@ -35,7 +36,7 @@ namespace InternetShowcase.Features.Identity
             {
                 return Unauthorized();
             }
-
+            
             var passwordValid = await this.userManager.CheckPasswordAsync(user, model.Password);
             if (!passwordValid)
             {
@@ -47,10 +48,15 @@ namespace InternetShowcase.Features.Identity
                 user.UserName,
                 this.appSettings.Secret);
 
-            return new LoginResponseModel
+            var loginResponse = new LoginResponseModel
             {
-                Token = token
+                Token = token,
+                UserName = user.UserName,
+                Email = user.Email,
+                UserRoles = await userManager.GetRolesAsync(user)
             };
+
+            return loginResponse;
         }
 
         [Route(nameof(Register))]

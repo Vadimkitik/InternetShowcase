@@ -31,7 +31,7 @@ namespace InternetShowcase.Features.Roles
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<RolesListingModel>> GetRoles()
+        public ActionResult<IEnumerable<RolesListingResponseModel>> GetRoles()
         {
             var roles = _roleManager.Roles.ToList();
 
@@ -39,11 +39,11 @@ namespace InternetShowcase.Features.Roles
             {
                 return BadRequest();
             }
-            return _mapper.Map<List<IdentityRole>, List<RolesListingModel>>(roles);
+            return _mapper.Map<List<IdentityRole>, List<RolesListingResponseModel>>(roles);
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateRole(RoleModel model)
+        public async Task<IActionResult> CreateRole(CreateRoleRequestModel model)
         {
             if (ModelState.IsValid)
             {
@@ -69,24 +69,24 @@ namespace InternetShowcase.Features.Roles
         }
 
         [HttpGet("usersList")]
-        public ActionResult<IEnumerable<UsersListWithAccessModel>> UsersList()
+        public ActionResult<IEnumerable<UsersListAccessResponseModel>> UsersList()
         {
             var users = _userManager.Users.ToList();
             if (users == null)
             {
                 return BadRequest();
             }
-            return _mapper.Map<List<User>, List<UsersListWithAccessModel>>(users);
+            return _mapper.Map<List<User>, List<UsersListAccessResponseModel>>(users);
         }
 
         [HttpGet("{userId}")]
-        public async Task<ActionResult<ChangeRoleRequestModel>> UserRoles(string userId)
+        public async Task<ActionResult<ChangeRoleResponseModel>> UserRoles(string userId)
         {
             // получаем пользователя
             User user = await _userManager.FindByIdAsync(userId);
             if (user != null)
             {
-                ChangeRoleRequestModel model = await _rolesService.GetUserWithRoles(user);
+                ChangeRoleResponseModel model = await _rolesService.GetUserWithRoles(user);
                 return Ok(model);
             }
             return NotFound();
