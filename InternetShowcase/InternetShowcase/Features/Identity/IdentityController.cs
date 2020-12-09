@@ -18,7 +18,8 @@ namespace InternetShowcase.Features.Identity
         public IdentityController(
             UserManager<User> userManager,
             IOptions<AppSettings> appSettings,
-            IIdentityService identityService)
+            IIdentityService identityService,
+            IEmailService emailService)
         {
             this.userManager = userManager;
             this.appSettings = appSettings.Value;
@@ -59,7 +60,6 @@ namespace InternetShowcase.Features.Identity
             {
                 return BadRequest(model);
             }
-
             var user = new User
             {
                 Email = model.Email,
@@ -69,17 +69,10 @@ namespace InternetShowcase.Features.Identity
             if(result.Succeeded)
             {
                 var code = await userManager.GenerateEmailConfirmationTokenAsync(user);
-                var callbackUrl = Url.Action(
-                                    "ConfirmEmail",
-                                    "Identity",
-                                    new { userId = user.Id, code = code },
-                                    Request.Scheme);
+                var callbackUrl = GetCallbackUrl("ConfirmEmail", "Identity", user.Id, code);
+                var sendEmail = await identityService.ConfirmRegisterEmail(model.Email, callbackUrl);
 
-                EmailService emailService = new EmailService();
-                await emailService.SendEmailAsync(model.Email, "Confirm your account",
-                    $"Подтвердите регистрацию, перейдя по ссылке: <a href='{callbackUrl}'>{callbackUrl}</a>");
-
-                return Content("Для завершения регистрации проверьте электронную почту и перейдите по ссылке, указанной в письме");
+                return Content(sendEmail);
             }
             return BadRequest(result.Errors);
         }
@@ -88,21 +81,12 @@ namespace InternetShowcase.Features.Identity
         [AllowAnonymous]
         public async Task<IActionResult> ConfirmEmail(string userId, string code)
         {
-            if (userId == null || code == null)
+            var result = await identityService.ConfirmEmail(userId, code);
+            if (result.Failure)
             {
-                return BadRequest("Error");
-            }
-            var user = await userManager.FindByIdAsync(userId);
-            if (user == null)
-            {
-                return BadRequest("Error");
-            }
-            var result = await userManager.ConfirmEmailAsync(user, code);
-            if (result.Succeeded)
-            {
-                return Ok();
+                return BadRequest(result.Error);
             }                
-            return BadRequest("Error");
+            return Ok(result.Succeeded);
         }
 
         [HttpPost]
@@ -110,27 +94,20 @@ namespace InternetShowcase.Features.Identity
         [Route(nameof(ForgotPassword))]
         public async Task<IActionResult> ForgotPassword(ForgotPasswordRequestModel model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                var user = await userManager.FindByEmailAsync(model.Email);
-                if (user == null || !(await userManager.IsEmailConfirmedAsync(user)))
-                {
-                    return Content("Для завершения сброса пароля проверьте электронную почту и перейдите по ссылке, указанной в письме");
-                }
-
-                var code = await userManager.GeneratePasswordResetTokenAsync(user);
-                var callbackUrl = Url.Action(
-                    "ResetPassword",
-                    "Identity",
-                    new { userId = user.Id, code = code },
-                    Request.Scheme);
-
-                EmailService emailService = new EmailService();
-                await emailService.SendEmailAsync(model.Email, "Reset Password",
-                    $"Для сброса пароля пройдите по ссылке: <a href='{callbackUrl}'>{callbackUrl}</a>");
-                return Content($"Для завершения сброса пароля проверьте электронную почту и перейдите по ссылке, указанной в письме");
+                return BadRequest(model);
+            }            
+            var user = await userManager.FindByEmailAsync(model.Email);
+            if (user == null || !(await userManager.IsEmailConfirmedAsync(user)))
+            {
+                return Content("Для завершения сброса пароля проверьте электронную почту и перейдите по ссылке, указанной в письме");
             }
-            return BadRequest(model);
+            var code = await userManager.GeneratePasswordResetTokenAsync(user);
+            var callbackUrl = GetCallbackUrl("ResetPassword", "Identity", user.Id, code);
+            var sendEmail = await identityService.ConfirmForgotPasswordEmail(model.Email, callbackUrl);
+
+            return Content(sendEmail);
         }
 
         [HttpPost]
@@ -142,17 +119,12 @@ namespace InternetShowcase.Features.Identity
             {
                 return BadRequest(model);
             }
-            var user = await userManager.FindByEmailAsync(model.Email);
-            if (user == null)
+            var result = await identityService.ResetPasswordAsync(model.Email, model.Password, model.Code);
+            if (result.Failure)
             {
-                return BadRequest();
+                return BadRequest(result.Error);                
             }
-            var result = await userManager.ResetPasswordAsync(user, model.Code, model.Password);
-            if (result.Succeeded)
-            {
-                return Ok();
-            }
-            return BadRequest(result.Errors);
+            return Ok(result.Succeeded);
         }
     }
 }
