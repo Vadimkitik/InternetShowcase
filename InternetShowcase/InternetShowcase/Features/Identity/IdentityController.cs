@@ -43,6 +43,12 @@ namespace InternetShowcase.Features.Identity
                 return Unauthorized();
             }
 
+            var confirmEmail = await userManager.IsEmailConfirmedAsync(user);
+            if(!confirmEmail)
+            {
+                return Unauthorized("Подтвердите ваш Email перейдя по ссылке, проверьте почту");
+            }
+
             var token = this.identityService.GenerateJwtToken(
                 user.Id,
                 user.UserName,

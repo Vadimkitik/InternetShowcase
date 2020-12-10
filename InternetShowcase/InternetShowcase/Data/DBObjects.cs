@@ -22,8 +22,9 @@ namespace InternetShowcase.Data
         }
         public static async Task AddAdminAndRolesAsync(UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
         {
-            string adminEmail = "aleutina@gmail.com";
+            string adminEmail = "alleutina.shop@gmail.com";
             string password = "1z2x3cQQer";
+            string userName = "Administrator";
             if (await roleManager.FindByNameAsync("admin") == null)
             {
                 await roleManager.CreateAsync(new IdentityRole("admin"));
@@ -36,12 +37,14 @@ namespace InternetShowcase.Data
             {
                 await roleManager.CreateAsync(new IdentityRole("user"));
             }
-            if (await userManager.FindByNameAsync(adminEmail) == null)
+            if (await userManager.FindByNameAsync(userName) == null)
             {
-                User admin = new User { Email = adminEmail, UserName = adminEmail };
-                IdentityResult result = await userManager.CreateAsync(admin, password);
+                User admin = new User { Email = adminEmail, UserName = userName };
+                var result = await userManager.CreateAsync(admin, password);
                 if (result.Succeeded)
                 {
+                    var code = await userManager.GenerateEmailConfirmationTokenAsync(admin);
+                    await userManager.ConfirmEmailAsync(admin, code);
                     await userManager.AddToRoleAsync(admin, "admin");
                 }
             }
