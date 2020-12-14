@@ -34,19 +34,19 @@ namespace InternetShowcase.Features.Identity
 
             if (user == null)
             {
-                return Unauthorized();
+                return Unauthorized("Login or password is not correct");
             }
             
             var passwordValid = await this.userManager.CheckPasswordAsync(user, model.Password);
             if (!passwordValid)
             {
-                return Unauthorized();
+                return Unauthorized("Login or password is not correct");
             }
 
             var confirmEmail = await userManager.IsEmailConfirmedAsync(user);
             if(!confirmEmail)
             {
-                return Unauthorized("Подтвердите ваш Email перейдя по ссылке, проверьте почту");
+                return Unauthorized("Confirm your Email by clicking on the link, check your mail");
             }
 
             var token = this.identityService.GenerateJwtToken(
@@ -81,15 +81,17 @@ namespace InternetShowcase.Features.Identity
             if(result.Succeeded)
             {
                 var code = await userManager.GenerateEmailConfirmationTokenAsync(user);
-                var callbackUrl = Url
-                                   .Action(
+                var callbackUrl = Url.Action(
                                    "ConfirmEmail",
                                    "Identity",
                                    new { userId = user.Id, code = code },
                                    Request.Scheme);
-                var sendEmail = await identityService.ConfirmRegisterEmail(model.Email, callbackUrl);
-
-                return Content(sendEmail);
+                var resultSendEmail = await identityService.ConfirmRegisterEmail(model.Email, callbackUrl);
+                if (resultSendEmail.Failure)
+                {
+                    return BadRequest(resultSendEmail.Error);
+                }
+                return Ok(resultSendEmail.Succeeded);
             }
             return BadRequest(result.Errors);
         }
@@ -121,15 +123,17 @@ namespace InternetShowcase.Features.Identity
                 return Content("Для завершения сброса пароля проверьте электронную почту и перейдите по ссылке, указанной в письме");
             }
             var code = await userManager.GeneratePasswordResetTokenAsync(user);
-            var callbackUrl = Url
-                                .Action(
+            var callbackUrl = Url.Action(
                                 "ResetPassword",
                                 "Identity",
                                 new { userId = user.Id, code = code },
                                 Request.Scheme);
-            var sendEmail = await identityService.ConfirmForgotPasswordEmail(model.Email, callbackUrl);
-
-            return Content(sendEmail);
+            var resultSendEmail = await identityService.ConfirmForgotPasswordEmail(model.Email, callbackUrl);
+            if (resultSendEmail.Failure)
+            {
+                return BadRequest(resultSendEmail.Error);
+            }
+            return Ok(resultSendEmail.Succeeded);
         }
 
         [HttpPost]

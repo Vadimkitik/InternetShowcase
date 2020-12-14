@@ -11,8 +11,8 @@ namespace InternetShowcase.Features.Identity
 
         Task<Result> ConfirmEmail(string userId, string code);
 
-        Task<string> ConfirmRegisterEmail(string email, string callbackUrl);
+        Task<Result> ConfirmRegisterEmail(string email, string callbackUrl);
 
-        Task<string> ConfirmForgotPasswordEmail(string email, string callbackUrl);
+        Task<Result> ConfirmForgotPasswordEmail(string email, string callbackUrl);
     }
 }

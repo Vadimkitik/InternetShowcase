@@ -42,7 +42,7 @@ namespace InternetShowcase.Features.Identity
             return "token is inValid";
         }
 
-        public async Task<string> ConfirmForgotPasswordEmail(string email, string callbackUrl)
+        public async Task<Result> ConfirmForgotPasswordEmail(string email, string callbackUrl)
         {
             var result = await emailService.SendEmailAsync(email, "Reset Password",
                     $"Для сброса пароля пройдите по ссылке: <a href='{callbackUrl}'>{callbackUrl}</a>");
@@ -50,10 +50,10 @@ namespace InternetShowcase.Features.Identity
             {
                 return result.Error;
             }
-            return $"Для завершения сброса пароля проверьте электронную почту и перейдите по ссылке, указанной в письме";
+            return true;
         }
 
-        public async Task<string> ConfirmRegisterEmail(string email, string callbackUrl)
+        public async Task<Result> ConfirmRegisterEmail(string email, string callbackUrl)
         {
             var result = await emailService.SendEmailAsync(email, "Confirm your account",
                     $"Подтвердите регистрацию, перейдя по ссылке: <a href='{callbackUrl}'>{callbackUrl}</a>");
@@ -61,7 +61,7 @@ namespace InternetShowcase.Features.Identity
             {
                 return result.Error;
             }
-            return "Для завершения регистрации проверьте электронную почту и перейдите по ссылке, указанной в письме";
+            return true;
         }
 
         public string GenerateJwtToken(string userId, string userName, string secret)

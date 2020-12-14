@@ -1,3 +1,4 @@
+import { stringify } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -38,8 +39,8 @@ export class LoginComponent implements OnInit {
         this.toastrService.success(`Loggin successful`);
         this.authService.saveToken(data["token"]);
         this.authService.saveUserProfile(data["userName"], data["email"]);
-        this.router.navigate(['/admin-panel']);
-      });
+        this.router.navigate(['/admin-panel/product']);
+      }, err => this.toastrService.error(err['error']));
   }
 
   getErrorMessageEmail() {

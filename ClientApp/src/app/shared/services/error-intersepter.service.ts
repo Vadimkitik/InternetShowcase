@@ -16,28 +16,28 @@ export class ErrorIntersepterService implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     
     return next.handle(request).pipe(
-      retry(1),
+      retry(0),
       catchError((err) => {
         let message = "";
         if(err.status === 401) {
-          message = "Token has expired or you should be logged in";
+          message = "Unauthorized";
         }
         else if (err.status === 403) {
-          message = "403 Forbidden";
+          message = "Forbidden";
         }
         else if (err.status === 404) {
-          message = "404 Not Found";
+          message = "Not Found";
         }
         else if (err.status === 400) {
-          message = "400 Bad Request";
+          message = "Bad Request";
         }
         else if (err.status === 500) {
-          message = "500 Internal Server Error ";
+          message = "Internal Server Error ";
         }
         else {
           message = "Unexpected error";
         }
-        this.toastrService.error(message)
+        this.toastrService.error(`${message} ${err.status}`);
         return throwError(err);
       })
     )
