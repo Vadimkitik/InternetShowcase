@@ -81,7 +81,12 @@ namespace InternetShowcase.Features.Identity
             if(result.Succeeded)
             {
                 var code = await userManager.GenerateEmailConfirmationTokenAsync(user);
-                var callbackUrl = GetCallbackUrl("ConfirmEmail", "Identity", user.Id, code);
+                var callbackUrl = Url
+                                   .Action(
+                                   "ConfirmEmail",
+                                   "Identity",
+                                   new { userId = user.Id, code = code },
+                                   Request.Scheme);
                 var sendEmail = await identityService.ConfirmRegisterEmail(model.Email, callbackUrl);
 
                 return Content(sendEmail);
@@ -116,7 +121,12 @@ namespace InternetShowcase.Features.Identity
                 return Content("Для завершения сброса пароля проверьте электронную почту и перейдите по ссылке, указанной в письме");
             }
             var code = await userManager.GeneratePasswordResetTokenAsync(user);
-            var callbackUrl = GetCallbackUrl("ResetPassword", "Identity", user.Id, code);
+            var callbackUrl = Url
+                                .Action(
+                                "ResetPassword",
+                                "Identity",
+                                new { userId = user.Id, code = code },
+                                Request.Scheme);
             var sendEmail = await identityService.ConfirmForgotPasswordEmail(model.Email, callbackUrl);
 
             return Content(sendEmail);

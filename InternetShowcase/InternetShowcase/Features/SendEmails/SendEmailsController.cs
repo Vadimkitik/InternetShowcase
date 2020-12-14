@@ -15,7 +15,7 @@ namespace InternetShowcase.Features.SendEmails
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateUser(SendMailRequestModel model)
+        public async Task<IActionResult> SendEmail(SendMailRequestModel model)
         {
             if (ModelState.IsValid)
             {

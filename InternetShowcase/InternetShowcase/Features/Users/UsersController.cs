@@ -26,7 +26,7 @@ namespace InternetShowcase.Features.Users
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<UsersListingModel>> GetAll()
+        public ActionResult<IEnumerable<UsersListingResponseModel>> GetAll()
         {
             var users = _usersService.GetAll();
 
@@ -34,7 +34,7 @@ namespace InternetShowcase.Features.Users
             {
                 return BadRequest();
             }
-            return _mapper.Map<List<User>, List<UsersListingModel>>((List<User>)users);
+            return _mapper.Map<List<User>, List<UsersListingResponseModel>>((List<User>)users);
         }
 
         [HttpGet("{Email}")]
@@ -106,8 +106,14 @@ namespace InternetShowcase.Features.Users
         {
             if (ModelState.IsValid)
             {
-                var passwordValidator = GetPasswordValidator();
-                var passwordHasher = GetPasswordHash();
+                var passwordValidator = HttpContext
+                                          .RequestServices
+                                          .GetService(typeof(IPasswordValidator<User>))
+                                          as IPasswordValidator<User>;
+                var passwordHasher = HttpContext
+                                        .RequestServices
+                                        .GetService(typeof(IPasswordHasher<User>))
+                                        as IPasswordHasher<User>;
                 var result = await _usersService.ChangePassword(model, passwordValidator, passwordHasher);
                 if (result.Succeeded)
                 {

@@ -16,7 +16,7 @@ namespace InternetShowcase.Infrastructure.MappingProfiles
             CreateMap<Product, ProductListingModel>()
                 .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.Category.Name));
 
-            CreateMap<User, UsersListingModel>();
+            CreateMap<User, UsersListingResponseModel>();
             CreateMap<IdentityRole, RolesListingResponseModel>();
             CreateMap<User, UsersListAccessResponseModel>(); 
 

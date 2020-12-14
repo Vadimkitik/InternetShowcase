@@ -17,8 +17,7 @@ export class UsersComponent implements OnInit {
   dataSource: MatTableDataSource<User>;
   columnsToDisplay = [
     'email', 
-    'name', 
-    'role',
+    'userName',
     'button'
   ];
   expandedElement: User | null;
