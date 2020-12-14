@@ -5,6 +5,7 @@ import { User } from 'src/app/shared/models/user.model';
 import { Router } from '@angular/router';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -29,7 +30,8 @@ export class RegistrationComponent implements OnInit {
     constructor(
         private router: Router,
         private authService: AuthService,
-        private formBuilder: FormBuilder
+        private formBuilder: FormBuilder,
+        private toastrService: ToastrService
   ) {}
   
 
@@ -41,7 +43,7 @@ export class RegistrationComponent implements OnInit {
           password: new FormControl(null, [Validators.required, Validators.minLength(6)]),
           confpassword: new FormControl(null)
         }, {validator: this.checkPasswords }),
-      'name': new FormControl(null, Validators.required),
+      'userName': new FormControl(null, Validators.required),
       'agree': new FormControl(null, Validators.required)
     });
     
@@ -51,15 +53,24 @@ export class RegistrationComponent implements OnInit {
   onSubmit(){
     this.user =
     {
-      name: this.form.value['name'],
+      userName: this.form.value['userName'],
       password: this.form.value['passwords']['password'],
       email: this.form.value['email']
     };
 
     this.authService.register(this.user).subscribe(data => {
-      console.log(`Registered ${this.user.name}, Ok!`)
+      console.log(`Registered ${this.user.userName}, Ok!`)
       this.router.navigate(['/auth/login']);
-  }, error => console.log(error));
+  }, error => this.toastrService.error(this.errorsResponse(error['error']))
+    );
+  }
+
+  errorsResponse(errors: Array<object>) {
+    let errorMessage = '';   
+    errors.forEach(item => {
+      errorMessage += `${item['description']} `;            
+    });
+    return errorMessage;
   }
 
   forbiddenEmails(control: FormControl) : Promise<any> {

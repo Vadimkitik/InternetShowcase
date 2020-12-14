@@ -70,7 +70,7 @@ namespace InternetShowcase.Features.Identity
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(model);
+                return BadRequest(ModelState.Values);
             }
             var user = new User
             {

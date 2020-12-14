@@ -1,7 +1,7 @@
 <div class="product-form">
     <mat-form-field class="product-full-width">
         <mat-label>Name</mat-label>
-        <input matInput placeholder="rozi,tulpani, bojiy_oduvanchik..." type="text" [formControl]="name" [(ngModel)]="user.name" />
+        <input matInput placeholder="rozi,tulpani, bojiy_oduvanchik..." type="text" [formControl]="name" [(ngModel)]="user.userName" />
         <mat-error *ngIf="name.invalid">{{getErrorMessageName()}}</mat-error>
     </mat-form-field>
 

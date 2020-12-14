@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse  } from '@angular/common/http';
-import { Observable, throwError  } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { HttpClient  } from '@angular/common/http';
+import { Observable  } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { NgForm } from '@angular/forms';
 
 
 @Injectable()
@@ -26,7 +24,14 @@ export class AuthService {
     saveToken(token) {
         localStorage.setItem('token', token);
     }
+    saveUserProfile(userName: string, email: string) {
+        localStorage.setItem('userName', userName);
+        localStorage.setItem('email', email);
+    }
     getToken() {
         return localStorage.getItem('token');
-    }    
+    } 
+    getUserNameToken() {
+        return localStorage.getItem('userName');
+    }   
 }
