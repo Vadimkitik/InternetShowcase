@@ -21,7 +21,7 @@ const adminRoutes: Routes = [
         { path: 'product/create', component: ProductCreateComponent },
         { path: 'product/edit/:productLine', component: ProductEditComponent },
         { path: 'users', component: UsersComponent },
-        { path: 'users/roles', component: UserRolesComponent },
+        { path: 'users/roles/:userId', component: UserRolesComponent },
         { path: 'users/create', component: UsersCreateComponent },
         { path: 'users/edit/:email', component: UsersEditComponent },
         { path: 'categories', component: CategoriesComponent },

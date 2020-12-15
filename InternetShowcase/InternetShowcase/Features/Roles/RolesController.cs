@@ -80,7 +80,7 @@ namespace InternetShowcase.Features.Roles
         }
 
         [HttpGet("{userId}")]
-        public async Task<ActionResult<ChangeRoleResponseModel>> UserRoles(string userId)
+        public async Task<ActionResult<ChangeRoleResponseModel>> GetUserWithRoles(string userId)
         {
             // получаем пользователя
             User user = await _userManager.FindByIdAsync(userId);

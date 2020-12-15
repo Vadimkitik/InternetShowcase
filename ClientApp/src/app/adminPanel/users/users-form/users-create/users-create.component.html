@@ -1,32 +1,27 @@
-<div>
-    <h1 class="h1-line"><span>Добавление нового пользователя</span></h1>
-    <form class="product-form" [formGroup]="form" (ngSubmit)="onSubmit()">
-        <mat-form-field class="product-full-width">
-            <mat-label>Name</mat-label>
-            <input matInput placeholder="rozi,tulpani, bojiy_oduvanchik..." type="text" formControlName="userName"
-                [(ngModel)]="user.userName" />
-            <mat-error *ngIf="form.get('userName').invalid">{{getErrorMessageName()}}</mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill" class="product-full-width">
-            <mat-label>Email</mat-label>
-            <input matInput placeholder="pat@example.com" [(ngModel)]="user.email" formControlName="email" required>
-            <mat-error *ngIf="form.get('email').invalid">{{getErrorMessageEmail()}}</mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill" class="product-full-width">
-            <mat-label>Введите пароль</mat-label>
-            <input matInput formControlName="password" [(ngModel)]="user.password" [type]="hide ? 'password' : 'text'">
-            <mat-error *ngIf="form.get('password').invalid">{{getErrorMessagePassw()}}</mat-error>
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                [attr.aria-pressed]="hide">
-                <mat-icon>{{hide ? "visibility_off" : 'visibility'}}</mat-icon>
-            </button>
-        </mat-form-field>
-
-        <div class="form-group">
-            <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Сохранить</button>
-            <button mat-raised-button color="warn" [routerLink]="'/admin-panel/users'">Отмена</button>
-        </div>
-    </form>
-</div>
+<h1 class="h1-line"><span>Добавление нового пользователя</span></h1>
+<form class="product-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field class="product-full-width">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="rozi,tulpani, bojiy_oduvanchik..." type="text" formControlName="userName"
+            [(ngModel)]="user.userName" />
+        <mat-error *ngIf="form.get('userName').invalid">{{getErrorMessageName()}}</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="product-full-width">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="pat@example.com" [(ngModel)]="user.email" formControlName="email" required>
+        <mat-error *ngIf="form.get('email').invalid">{{getErrorMessageEmail()}}</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="product-full-width">
+        <mat-label>Введите пароль</mat-label>
+        <input matInput formControlName="password" [(ngModel)]="user.password" [type]="hide ? 'password' : 'text'">
+        <mat-error *ngIf="form.get('password').invalid">{{getErrorMessagePassw()}}</mat-error>
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? "visibility_off" : 'visibility'}}</mat-icon>
+        </button>
+    </mat-form-field>
+    <div class="form-group">
+        <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Сохранить</button>
+        <button mat-raised-button color="warn" [routerLink]="'/admin-panel/users'">Отмена</button>
+    </div>
+</form>

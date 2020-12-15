@@ -74,7 +74,7 @@ namespace InternetShowcase.Features.Roles
                 }
                 // получаем список ролей, которые были добавлены
                 var addedRoles = updateUser.Roles.Except(userRoles);
-                if (userRoles == null)
+                if (addedRoles == null)
                 {
                     return "Bad Request";
                 }

@@ -20,7 +20,7 @@
               <button [routerLink]="['/admin-panel/users/edit', user.email]"
                     mat-menu-item 
                     >Изменить</button>
-            <button [routerLink]="['/admin-panel/users/roles']"
+            <button [routerLink]="['/admin-panel/users/roles', user.id]"
                     mat-menu-item 
                     >Права доступа</button>
             <button [routerLink]="['/admin-panel/users/edit', user.email]"

@@ -9,6 +9,7 @@ import { CategoryService } from './services/category.service';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { UploadService } from './services/upload.service';
 import { TreeService} from './services/tree.service';
+import { RolesService} from './services/roles.service';
 import { TokenIntersepterService } from './services/token-intersepter.service';
 import { ErrorIntersepterService } from './services/error-intersepter.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -25,6 +26,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
         AuthGuard,
         CategoryService,
         UploadService,
+        RolesService,
         TreeService,
         {
             provide: HTTP_INTERCEPTORS,

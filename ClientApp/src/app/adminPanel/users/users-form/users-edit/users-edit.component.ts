@@ -16,7 +16,6 @@ export class UsersEditComponent implements OnInit {
     emailLine: string;
     @Input() user: User;    // изменяемый объект
     loaded: boolean = false;
-    hide = true;
     form: FormGroup;
 
     constructor(

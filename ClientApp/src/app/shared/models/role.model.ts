@@ -1,6 +1,8 @@
-export class Role {
+export class Role{
     constructor(
-        public id?: number,
-        public name?: string
+        public id?: string,
+        public name?: string,
+        public normalizedName?: string,
+        public concurrencyStamp?: string
     ){ }
 }
