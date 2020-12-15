@@ -9,6 +9,7 @@ import { PanelComponent } from "./products/panel.component";
 import { ProductCreateComponent } from './products/product-form/product-create/product-create.component';
 import { ProductEditComponent } from './products/product-form/product-edit/product-edit.component';
 import { TestJsonComponent } from './test-json/test-json.component';
+import { UserRolesComponent } from './users/users-form/user-roles/user-roles/user-roles.component';
 import { UsersCreateComponent } from './users/users-form/users-create/users-create.component';
 import { UsersEditComponent } from './users/users-form/users-edit/users-edit.component';
 import { UsersComponent } from './users/users.component';
@@ -20,6 +21,7 @@ const adminRoutes: Routes = [
         { path: 'product/create', component: ProductCreateComponent },
         { path: 'product/edit/:productLine', component: ProductEditComponent },
         { path: 'users', component: UsersComponent },
+        { path: 'users/roles', component: UserRolesComponent },
         { path: 'users/create', component: UsersCreateComponent },
         { path: 'users/edit/:email', component: UsersEditComponent },
         { path: 'categories', component: CategoriesComponent },

@@ -18,6 +18,7 @@ import { CategoriesFormComponent } from './categories/categories-form/categories
 import { CategoriesCreateComponent } from './categories/categories-form/categories-create/categories-create.component';
 import { CategoriesEditComponent } from './categories/categories-form/categories-edit/categories-edit.component';
 import { UserValidateService } from './users/users-form/userValidate.service';
+import { UserRolesComponent } from './users/users-form/user-roles/user-roles/user-roles.component';
 
 @NgModule({
     declarations: [
@@ -34,7 +35,8 @@ import { UserValidateService } from './users/users-form/userValidate.service';
         UsersEditComponent,
         CategoriesFormComponent,
         CategoriesCreateComponent,
-        CategoriesEditComponent
+        CategoriesEditComponent,
+        UserRolesComponent
     ],
     imports: [
         CommonModule,
