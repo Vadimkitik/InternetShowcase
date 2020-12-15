@@ -6,12 +6,15 @@
             <section class="example-section" *ngFor="let role of userWithRoles.allRoles">
                 <mat-checkbox                   
                     class="example-margin"
-                                        
+                    #roleCheck
+                    checked="{{userRoles.roles.includes(role.name)? 'checked': ''}}"
+                    (change)="onToggle(roleCheck)"
+                    value="{{role.name}}"
                     >{{ role.name }}
                 </mat-checkbox>
             </section>        
         </div>
-        <button mat-raised-button color="primary" onclick="save()">Сохранить</button>
+        <button mat-raised-button color="primary" (click)="save()">Сохранить</button>
         <button [routerLink]="'/admin-panel/users'" mat-raised-button color="warn">Назад</button>
     </div>
 </div>

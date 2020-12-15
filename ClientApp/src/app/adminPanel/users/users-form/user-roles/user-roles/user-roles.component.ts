@@ -34,21 +34,31 @@ export class UserRolesComponent implements OnInit {
               this.userWithRoles = res;
               if (this.userWithRoles != null) {
                   this.loaded = true;
-              }
-              console.log(this.userWithRoles);
-              
-              this.userWithRoles.userRoles = ['admin', 'manager', 'userewq'];
-              console.log(this.userWithRoles.userRoles);
-
-              this.userWithRoles.allRoles.forEach(role => {
-                console.log(`${this.userWithRoles.userRoles.find(x => x == role.name)} ${role.name}` );
-              })              
-
+                  this.userRoles = {
+                    userId: res.userId,
+                    roles: res.userRoles
+                  }
+              }              
           });
   }    
 }
 
-save() {
+onToggle(event) {
+  if (event.checked) {
+    this.userRoles.roles.push(event.value)
+  }
+  else {
+    let index = this.userRoles.roles.indexOf(event.value);
+    if(index > -1) {
+      this.userRoles.roles.splice(index, 1);
+    }    
+  }
+}
 
+save() {
+  this.rolesService.EditUserRoles(this.userRoles).subscribe(res => {
+    this.toastrService.success(`Roles for ${this.userWithRoles.userEmail} changed successfully!`);
+    this.router.navigate(["//admin-panel/users"]);
+  })
 }
 }
