@@ -1,9 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/shared/models/user.model';
 import { UsersService } from 'src/app/shared/services/users.service';
+import { UserValidateService } from '../userValidate.service';
 
 @Component({
     selector: 'users-edit',
@@ -16,28 +17,35 @@ export class UsersEditComponent implements OnInit {
     @Input() user: User;    // изменяемый объект
     loaded: boolean = false;
     hide = true;
-    userName = new FormControl('', [Validators.required]);
-    email = new FormControl('', [Validators.required, Validators.email]);
+    form: FormGroup;
 
     constructor(
         private userService: UsersService,
         private router: Router,
         private toastrService: ToastrService,
+        private userValidate: UserValidateService,
         activeRoute: ActivatedRoute
     ) {
         this.emailLine = activeRoute.snapshot.params["email"];
     }
 
     ngOnInit() {
-        if (this.email)
+        if (this.emailLine) {
             this.userService.getUserByEmail(this.emailLine)
                 .subscribe((data: User) => {
                     this.user = data;
-                    if (this.user != null) this.loaded = true;
+                    if (this.user != null) {
+                        this.form = new FormGroup({
+                            'userName': new FormControl('', [Validators.required]),
+                            'email': new FormControl('', [Validators.required, Validators.email])
+                        });
+                        this.loaded = true;
+                    }
                 });
+        }
     }
 
-    save() {
+    onSubmit() {
         this.userService.updateUser(this.user).subscribe(() => {
             this.toastrService.success(`User changed`);
             this.router.navigateByUrl("/admin-panel/users");
@@ -45,15 +53,10 @@ export class UsersEditComponent implements OnInit {
     }
 
     getErrorMessageName() {
-        if (this.userName.hasError('required')) {
-            return 'You must enter a value';
-        }
+        return this.userValidate.getErrorMessageName(this.form.get('userName'));
     }
 
     getErrorMessageEmail() {
-        if (this.email.hasError('required')) {
-            return 'You must enter a value';
-        }
-        return this.email.hasError('email') ? 'Not a valid email' : '';
+        return this.userValidate.getErrorMessageEmail(this.form.get('email'));
     }
 }
