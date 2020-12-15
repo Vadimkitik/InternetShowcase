@@ -4,13 +4,16 @@
   </div>
   <div class="admin-nav">
     <button [routerLink]="['/admin-panel/product']" class="createButton" mat-raised-button>Товары</button>
-    <button [routerLink]="['/admin-panel/categories']" class="createButton" mat-raised-button >Категории</button>
+    <button [routerLink]="['/admin-panel/categories']" class="createButton" mat-raised-button>Категории</button>
     <button [routerLink]="['/admin-panel/users']" class="createButton" mat-raised-button>Пользователи</button>
   </div>
 
-  <div>
-    Hello, {{ user.userName }} 
-    <button class="createButton" mat-raised-button (click)="onLogout()">Выйти</button>
+  <div class="admin-menu">
+    <button mat-button [matMenuTriggerFor]="menu">Hello, {{ user.userName }}</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>{{ user.email }}</button>
+      <button mat-menu-item (click)="onLogout()">Выйти</button>
+    </mat-menu>
   </div>
 </div>
 <router-outlet></router-outlet>
