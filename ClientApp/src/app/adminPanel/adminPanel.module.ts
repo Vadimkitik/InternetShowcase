@@ -21,6 +21,7 @@ import { UsersEditComponent } from './users/users-form/users-edit/users-edit.com
 import { CategoriesFormComponent } from './categories/categories-form/categories-form.component';
 import { CategoriesCreateComponent } from './categories/categories-form/categories-create/categories-create.component';
 import { CategoriesEditComponent } from './categories/categories-form/categories-edit/categories-edit.component';
+import { UserValidateService } from './users/users-form/userValidate.service';
 
 @NgModule({
     declarations: [
@@ -45,6 +46,9 @@ import { CategoriesEditComponent } from './categories/categories-form/categories
         MaterialModule,
         AdminPanelRoutingModule,
         SharedModule
+    ],
+    providers: [
+        UserValidateService
     ]
 })
 export class AdminPanelModule {

@@ -1,9 +1,10 @@
-import { Component, Input } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 import { User } from 'src/app/shared/models/user.model';
+import { UserValidateService } from '../userValidate.service';
 import { UsersService } from 'src/app/shared/services/users.service';
 
 @Component({
@@ -11,23 +12,29 @@ import { UsersService } from 'src/app/shared/services/users.service';
   templateUrl: './users-create.component.html',
   styleUrls: ['./users-create.component.css']
 })
-export class UsersCreateComponent {
+export class UsersCreateComponent implements OnInit {
 
-  @Input() user: User = new User();    // добавляемый объект
-  
+  @Input() user: User = new User();  
   loaded: boolean = false;
   hide = true;
-  userName = new FormControl('', [Validators.required]);
-  email = new FormControl('', [Validators.required, Validators.email]);
-  password = new FormControl('', [Validators.required, Validators.minLength(5)]);
+  form: FormGroup;
   
   constructor(
       private usersService: UsersService,
       private router: Router,
-      private toastrService: ToastrService
+      private toastrService: ToastrService,
+      private userValidate: UserValidateService
       ) { }
 
-  save() {
+  ngOnInit(): void {
+    this.form = new FormGroup({
+      'userName': new FormControl('', [Validators.required]),
+      'email': new FormControl('', [Validators.required, Validators.email]),
+      'password': new FormControl('', [Validators.required, Validators.minLength(5)])
+    })
+  }
+
+  onSubmit() {
     this.usersService.createUser(this.user).subscribe(() => {
       this.toastrService.success(`User ${this.user.userName} is Created`);
       this.router.navigateByUrl("/admin-panel/users")
@@ -35,21 +42,14 @@ export class UsersCreateComponent {
   }
 
   getErrorMessageName() {
-    if (this.userName.hasError('required')) {
-      return 'You must enter a value';
-    }
+    return this.userValidate.getErrorMessageName(this.form.get('userName'));
   }
 
   getErrorMessageEmail() {
-    if (this.email.hasError('required')) {
-      return 'You must enter a value';
-    }
-    return this.email.hasError('email') ? 'Not a valid email' : '';
+    return this.userValidate.getErrorMessageEmail(this.form.get('email'));
   }
+
   getErrorMessagePassw() {
-    if (this.password.hasError('required')) {
-      return 'Не оставлять пустым!';
-    }
-    return this.password.hasError('minlength') ? 'Пароль должен быть больше 5 символов' : '';
+    return this.userValidate.getErrorMessagePassw(this.form.get('password'));
   }
 }
