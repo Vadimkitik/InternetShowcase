@@ -1,19 +1,21 @@
 import { Injectable } from '@angular/core';
-import { HttpClient  } from '@angular/common/http';
-import { Observable  } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
+
+const TOKEN_KEY = 'token';
+const USER_KEY = 'user-profile';
 
 @Injectable()
 export class AuthService {
 
     constructor(private http: HttpClient) { }
-
     private urlLogin = environment.apiUrl + "identity/login";
     private urlRegister = environment.apiUrl + "identity/register";
 
     login(data): Observable<any> {
-        
+
         return this.http.post(this.urlLogin, data);
     }
 
@@ -21,17 +23,37 @@ export class AuthService {
         return this.http.post(this.urlRegister, data);
     }
 
-    saveToken(token) {
-        localStorage.setItem('token', token);
+    public saveToken(token: string) {
+        window.localStorage.removeItem(TOKEN_KEY);
+        window.localStorage.setItem(TOKEN_KEY, token);
     }
-    saveUserProfile(userName: string, email: string) {
-        localStorage.setItem('userName', userName);
-        localStorage.setItem('email', email);
+
+    public getToken(): string {
+        return localStorage.getItem(TOKEN_KEY);
     }
-    getToken() {
-        return localStorage.getItem('token');
-    } 
-    getUserNameToken() {
-        return localStorage.getItem('userName');
-    }   
+
+    public saveUser(userName: string, email: string) {
+        let profile = {
+            "userName": userName,
+            "email": email
+        };
+        window.localStorage.removeItem(USER_KEY);
+        window.localStorage.setItem(USER_KEY, JSON.stringify(profile));
+    }
+
+    public getUser() {
+        return JSON.parse(localStorage.getItem(USER_KEY));
+    }
+    
+    logout() {
+        window.localStorage.clear();
+    }
+
+
+
+
+
+
+
+
 }

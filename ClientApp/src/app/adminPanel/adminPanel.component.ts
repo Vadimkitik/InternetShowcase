@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../shared/services/auth.service';
+
+import { User } from '../shared/models/user.model';
 
 @Component({
     selector: 'app',
@@ -8,13 +11,24 @@ import { AuthService } from '../shared/services/auth.service';
 })
 export class AdminPanelComponent implements OnInit{
 
-    userName: string;
+    user: User;
     date: Date = new Date();
     constructor(
-        private authService: AuthService
+        private authService: AuthService,
+        private router: Router
     ){}
 
     ngOnInit(){
-        this.userName = this.authService.getUserNameToken();
+        this.user = this.authService.getUser();
+        if (this.user == null) {
+            this.user = {
+                "userName": 'Guest',
+                "email": 'Example@example.com'
+            }
+        }
+    }
+    onLogout() {
+        this.authService.logout();
+        this.router.navigate(['/auth/login']);
     }
  }
