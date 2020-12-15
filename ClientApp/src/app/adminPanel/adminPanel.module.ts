@@ -1,6 +1,3 @@
-
-
-
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material/material.module';
@@ -15,7 +12,6 @@ import { TestJsonComponent } from './test-json/test-json.component';
 import { AdminPanelComponent } from './adminPanel.component';
 import { UsersComponent } from './users/users.component';
 import { CategoriesComponent } from './categories/categories.component';
-import { UsersFormComponent } from './users/users-form/users-form.component';
 import { UsersCreateComponent } from './users/users-form/users-create/users-create.component';
 import { UsersEditComponent } from './users/users-form/users-edit/users-edit.component';
 import { CategoriesFormComponent } from './categories/categories-form/categories-form.component';
@@ -34,7 +30,6 @@ import { UserValidateService } from './users/users-form/userValidate.service';
         TestJsonComponent,
         UsersComponent,
         CategoriesComponent,
-        UsersFormComponent,
         UsersCreateComponent,
         UsersEditComponent,
         CategoriesFormComponent,
