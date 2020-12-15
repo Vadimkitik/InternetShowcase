@@ -41,7 +41,6 @@ namespace InternetShowcase.Features.Users
             if (user != null)
             {
                 user.Email = model.Email;
-                user.UserName = model.Email;
                 user.UserName = model.UserName;
 
                 var result = await _userManager.UpdateAsync(user);

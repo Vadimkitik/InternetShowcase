@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 
 import { User } from 'src/app/shared/models/user.model';
 
@@ -13,10 +13,9 @@ export class UsersFormComponent implements OnInit {
   @Input() user: User;
   loaded: boolean = false;
   hide = true;
-  name = new FormControl('', [Validators.required]);
+  userName = new FormControl('', [Validators.required]);
   email = new FormControl('', [Validators.required, Validators.email]);
   password = new FormControl('', [Validators.required, Validators.minLength(5)]);
-  role = new FormControl('', [Validators.required]);
 
   
   constructor() { }
@@ -24,7 +23,7 @@ export class UsersFormComponent implements OnInit {
   ngOnInit() {
   }
   getErrorMessageName() {
-    if (this.name.hasError('required')) {
+    if (this.userName.hasError('required')) {
       return 'You must enter a value';
     }
   }
@@ -40,10 +39,5 @@ export class UsersFormComponent implements OnInit {
       return 'Не оставлять пустым!';
     }
     return this.password.hasError('minlength') ? 'Пароль должен быть больше 5 символов' : '';
-  }
-  getErrorMessageRole() {
-    if (this.role.hasError('required')) {
-      return 'You must enter a value';
-    }
   }
 }

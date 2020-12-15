@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
@@ -14,6 +15,12 @@ export class UsersCreateComponent {
 
   @Input() user: User = new User();    // добавляемый объект
   
+  loaded: boolean = false;
+  hide = true;
+  userName = new FormControl('', [Validators.required]);
+  email = new FormControl('', [Validators.required, Validators.email]);
+  password = new FormControl('', [Validators.required, Validators.minLength(5)]);
+  
   constructor(
       private usersService: UsersService,
       private router: Router,
@@ -25,5 +32,24 @@ export class UsersCreateComponent {
       this.toastrService.success(`User ${this.user.userName} is Created`);
       this.router.navigateByUrl("/admin-panel/users")
     });
+  }
+
+  getErrorMessageName() {
+    if (this.userName.hasError('required')) {
+      return 'You must enter a value';
+    }
+  }
+
+  getErrorMessageEmail() {
+    if (this.email.hasError('required')) {
+      return 'You must enter a value';
+    }
+    return this.email.hasError('email') ? 'Not a valid email' : '';
+  }
+  getErrorMessagePassw() {
+    if (this.password.hasError('required')) {
+      return 'Не оставлять пустым!';
+    }
+    return this.password.hasError('minlength') ? 'Пароль должен быть больше 5 символов' : '';
   }
 }
