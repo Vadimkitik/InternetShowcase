@@ -1,8 +1,6 @@
 ﻿using InternetShowcase.Data.Models;
 using InternetShowcase.Features.Users.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,10 +10,14 @@ namespace InternetShowcase.Features.Users
     public class UsersService : IUsersService
     {
         private readonly UserManager<User> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public UsersService(UserManager<User> userManager)
+        public UsersService(
+            UserManager<User> userManager, 
+            RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
+            _roleManager = roleManager;
         }
 
         public IEnumerable<User> GetAll()
@@ -31,7 +33,44 @@ namespace InternetShowcase.Features.Users
                 Email = model.Email,
                 UserName = model.UserName
             };
-            IdentityResult result = await _userManager.CreateAsync(user, model.Password);
+            var result = await _userManager.CreateAsync(user, model.Password);
+            if (result.Succeeded)
+            {
+                var userRoles = await _userManager.GetRolesAsync(user);
+                if (userRoles == null)
+                {
+                    return result;
+                }
+                // получаем все роли
+                var allRoles = _roleManager.Roles.ToList();
+                foreach (var role in model.Roles)
+                {
+                    var checkRole = await _roleManager.FindByNameAsync(role);
+                    if (checkRole == null)
+                    {
+                        return result;
+                    }
+                }
+                // получаем список ролей, которые были добавлены
+                var addedRoles = model.Roles.Except(userRoles);
+                if (addedRoles == null)
+                {
+                    return result;
+                }
+                // получаем роли, которые были удалены
+                var removedRoles = userRoles.Except(model.Roles);
+
+                await _userManager.AddToRolesAsync(user, addedRoles);
+                await _userManager.RemoveFromRolesAsync(user, removedRoles);
+
+                var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+
+                var resultConfirmEmail = await _userManager.ConfirmEmailAsync(user, token);
+                if (resultConfirmEmail.Succeeded)
+                {
+                    return resultConfirmEmail;
+                }
+            }
             return result;
 
         }

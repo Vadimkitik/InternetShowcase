@@ -6,6 +6,8 @@ import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/shared/models/user.model';
 import { UserValidateService } from '../userValidate.service';
 import { UsersService } from 'src/app/shared/services/users.service';
+import { UserRoles } from 'src/app/shared/models/userRoles.model';
+import { RolesService } from 'src/app/shared/services/roles.service';
 
 @Component({
   selector: 'users-create',
@@ -18,15 +20,21 @@ export class UsersCreateComponent implements OnInit {
   loaded: boolean = false;
   hide = true;
   form: FormGroup;
+  userRoles: Array<string> = [];
+  allRoles: Array<string> = [];
   
   constructor(
       private usersService: UsersService,
       private router: Router,
       private toastrService: ToastrService,
-      private userValidate: UserValidateService
+      private userValidate: UserValidateService,
+      private rolesService: RolesService
       ) { }
 
   ngOnInit(): void {
+    this.rolesService.GetAllRoles().subscribe(res => {
+      this.allRoles = res;
+    })
     this.form = new FormGroup({
       'userName': new FormControl('', [Validators.required]),
       'email': new FormControl('', [Validators.required, Validators.email]),
@@ -34,10 +42,25 @@ export class UsersCreateComponent implements OnInit {
     })
   }
 
+  onToggle(event) {
+    if (event.checked) {
+      this.userRoles.push(event.value)
+    }
+    else {
+      let index = this.userRoles.indexOf(event.value);
+      if(index > -1) {
+        this.userRoles.splice(index, 1);
+      }    
+    }
+  }
+
   onSubmit() {
+    this.user.roles = this.userRoles;
+    console.log(this.user)
     this.usersService.createUser(this.user).subscribe(() => {
       this.toastrService.success(`User ${this.user.userName} is Created`);
       this.router.navigateByUrl("/admin-panel/users")
+      
     });
   }
 

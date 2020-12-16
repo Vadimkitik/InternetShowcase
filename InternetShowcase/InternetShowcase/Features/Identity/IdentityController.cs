@@ -80,6 +80,7 @@ namespace InternetShowcase.Features.Identity
             var result = await userManager.CreateAsync(user, model.Password);
             if(result.Succeeded)
             {
+                await userManager.AddToRoleAsync(user, "user");
                 var code = await userManager.GenerateEmailConfirmationTokenAsync(user);
                 var callbackUrl = Url.Action(
                                    "ConfirmEmail",

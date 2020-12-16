@@ -17,6 +17,10 @@ export class RolesService {
         return this.http.get(this.url + `/${userId}`);
     }
 
+    public GetAllRoles(): Observable<any>{
+        return this.http.get(this.url);
+    }
+
     public EditUserRoles(userRoles: UserRoles): Observable<any>{
         return this.http.put(this.url, userRoles);
     }
