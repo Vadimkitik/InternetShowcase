@@ -5,6 +5,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
 
 import { Category } from 'src/app/shared/models/category.model';
+import { User } from 'src/app/shared/models/user.model';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { CategoryService } from 'src/app/shared/services/category.service';
 
 @Component({
@@ -14,6 +16,8 @@ import { CategoryService } from 'src/app/shared/services/category.service';
 })
 export class CategoriesComponent implements OnInit {
 
+  accessRights = false;
+  user: User;
   dataSource: MatTableDataSource<Category>;
   columnsToDisplay = [
     'id', 
@@ -29,10 +33,15 @@ export class CategoriesComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   constructor(
     private categoryService: CategoryService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
+    this.user = this.authService.getUser();
+    if(this.user.roles.includes('admin') || this.user.roles.includes('manager')){
+      this.accessRights = true;
+    }
     this.load();
   }
 

@@ -121,7 +121,7 @@ namespace InternetShowcase.Features.Identity
             var user = await userManager.FindByEmailAsync(model.Email);
             if (user == null || !(await userManager.IsEmailConfirmedAsync(user)))
             {
-                return Content("Для завершения сброса пароля проверьте электронную почту и перейдите по ссылке, указанной в письме");
+                return BadRequest("Пользователь с таким Email не найден или Email не подтвержден");
             }
             var code = await userManager.GeneratePasswordResetTokenAsync(user);
             var callbackUrl = Url.Action(
@@ -134,7 +134,7 @@ namespace InternetShowcase.Features.Identity
             {
                 return BadRequest(resultSendEmail.Error);
             }
-            return Ok(resultSendEmail.Succeeded);
+            return Ok("Для завершения сброса пароля проверьте электронную почту и перейдите по ссылке, указанной в письме");
         }
 
         [HttpPost]

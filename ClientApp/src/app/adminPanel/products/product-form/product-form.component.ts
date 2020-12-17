@@ -27,7 +27,6 @@ export class ProductFormComponent {
         this.catService.getCategories().subscribe((categories: Category[]) => {
             this.categories = this.treeService.list_to_tree(categories);
             this.categories = this.treeService.last_level_of_tree(categories);
-            console.log(this.categories);
             this.loaded = true;
         }, error => this.errorMsg = error);
         

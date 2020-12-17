@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace InternetShowcase.Features.Products
 {
-   public interface IAllProducts
+   public interface IProductsService
     {
         Task<IEnumerable<Product>> GetAll();
         Task<Product> GetByLine(string productLine);

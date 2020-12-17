@@ -10,10 +10,10 @@ namespace InternetShowcase.Features.Products
 {
     public class ProductsController : ApiController
     {
-        private readonly IAllProducts _allProducts;
+        private readonly IProductsService _allProducts;
         private readonly IMapper _mapper;
 
-        public ProductsController(IAllProducts iAllProducts, IMapper mapper)
+        public ProductsController(IProductsService iAllProducts, IMapper mapper)
         {
             _allProducts = iAllProducts;
             _mapper = mapper;
@@ -42,8 +42,8 @@ namespace InternetShowcase.Features.Products
             return NotFound();
         }
 
-        [Authorize]
         [HttpPost]
+        [Authorize(Roles = "admin, manager")]
         public async Task<ActionResult<ProductView>> CreateProduct(Product product)
         {
             if (ModelState.IsValid)
@@ -54,15 +54,15 @@ namespace InternetShowcase.Features.Products
             return BadRequest(ModelState);
         }
 
-        [Authorize]
         [HttpDelete("{id}")]
+        [Authorize(Roles = "admin, manager")]
         public async Task<bool> DeleteProduct(int id)
         {
             return await _allProducts.Delete(id);
         }
 
-        [Authorize]
         [HttpPut]
+        [Authorize(Roles = "admin, manager")]
         public async Task<bool> EditProduct(Product product)
         {
             return await _allProducts.Update(product);

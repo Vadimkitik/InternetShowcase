@@ -8,6 +8,8 @@ import { Product } from 'src/app/shared/models/product.model';
 import { ProductService } from 'src/app/shared/services/product.service';
 import { UploadService } from 'src/app/shared/services/upload.service';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { User } from 'src/app/shared/models/user.model';
 
 @Component({
   selector: 'panel',
@@ -23,6 +25,8 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class PanelComponent implements OnInit {
 
+  accessRights = false;
+  user: User;
   dataSource: MatTableDataSource<Product>;
   columnsToDisplay = [ 
     'name', 
@@ -41,14 +45,19 @@ export class PanelComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private uploadService: UploadService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
+    this.user = this.authService.getUser();
+    if(this.user.roles.includes('admin') || this.user.roles.includes('manager')){
+      this.accessRights = true;
+    }
     this.load();
   }
 
-  load() {
+  load() {    
     this.productService.getProducts().subscribe((data: Product[]) => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;

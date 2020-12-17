@@ -12,6 +12,7 @@ import { User } from '../shared/models/user.model';
 export class AdminPanelComponent implements OnInit{
 
     user: User;
+    isAdmin = false;
     date: Date = new Date();
     constructor(
         private authService: AuthService,
@@ -23,8 +24,12 @@ export class AdminPanelComponent implements OnInit{
         if (this.user == null) {
             this.user = {
                 "userName": 'Guest',
-                "email": 'Example@example.com'
+                "email": 'Example@example.com',
+                'roles': []
             }
+        }
+        if (this.user.roles.includes('admin')){
+            this.isAdmin = true;
         }
     }
     onLogout() {

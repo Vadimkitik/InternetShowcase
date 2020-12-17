@@ -87,7 +87,7 @@ namespace InternetShowcase.Infrastructure.Extensions
         public static IServiceCollection AddMappingTransients(this IServiceCollection services)
             => services
                 .AddAutoMapper(typeof(MappingProfile))
-                .AddTransient<IAllProducts, ProductReposytory>()
+                .AddTransient<IProductsService, ProductsService>()
                 .AddTransient<ICategoriesService, CategoriesService>()
                 .AddTransient<IIdentityService, IdentityService>()
                 .AddScoped<ICurrentUserService, CurrentUserService>()

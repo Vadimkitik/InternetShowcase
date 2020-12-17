@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import { User } from '../models/user.model';
 
 
 const TOKEN_KEY = 'token';
@@ -32,10 +33,11 @@ export class AuthService {
         return localStorage.getItem(TOKEN_KEY);
     }
 
-    public saveUser(userName: string, email: string) {
+    public saveUser(userName: string, email: string, roles: Array<string>) {
         let profile = {
             "userName": userName,
-            "email": email
+            "email": email,
+            "roles" : roles
         };
         window.localStorage.removeItem(USER_KEY);
         window.localStorage.setItem(USER_KEY, JSON.stringify(profile));

@@ -43,8 +43,8 @@ namespace InternetShowcase.Features.Categories
             return NotFound();
         }
 
-        [Authorize]
         [HttpPost]
+        [Authorize(Roles = "admin, manager")]
         public async Task<ActionResult<CategoryView>> CreateCategory(Category model)
         {
             if (ModelState.IsValid)
@@ -55,8 +55,8 @@ namespace InternetShowcase.Features.Categories
             return BadRequest(ModelState);
         }
 
-        [Authorize]
-        [HttpPut()]
+        [HttpPut]
+        [Authorize(Roles = "admin, manager")]
         public async Task<IActionResult> PutCategory(Category category)
         {
             var result = await _categories.Update(category);
@@ -67,8 +67,8 @@ namespace InternetShowcase.Features.Categories
             return Ok();
         }
 
-        [Authorize]
         [HttpDelete("{id}")]
+        [Authorize(Roles = "admin, manager")]
         public async Task<IActionResult> DeleteCategory(int id)
         {
             var result = await _categories.Delete(id);

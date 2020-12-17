@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace InternetShowcase.Features.Products
 {
-    public class ProductReposytory : IAllProducts
+    public class ProductsService : IProductsService
     {
         private readonly ShowcaseDbContext _context;
 
-        public ProductReposytory(ShowcaseDbContext context)
+        public ProductsService(ShowcaseDbContext context)
         {
             _context = context;
         }

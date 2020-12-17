@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 
 namespace InternetShowcase.Features.Users
 {
-    //[Authorize]
+   // [Authorize(Roles = "admin")]
+   [Authorize]
     public class UsersController : ApiController
     {
         private readonly UserManager<User> _userManager;

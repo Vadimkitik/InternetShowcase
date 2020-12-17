@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminGuard } from '../shared/services/guards/admin-guard.service';
+import { AuthGuard } from '../shared/services/guards/auth-guard.service';
+import { ManagerGuard } from '../shared/services/guards/manager-guard.service';
 
 import { AdminPanelComponent } from './adminPanel.component';
 import { CategoriesCreateComponent } from './categories/categories-form/categories-create/categories-create.component';
@@ -18,16 +21,16 @@ const adminRoutes: Routes = [
     
     { path: '', component: AdminPanelComponent, children: [
         { path: 'product', component: PanelComponent },
-        { path: 'product/create', component: ProductCreateComponent },
-        { path: 'product/edit/:productLine', component: ProductEditComponent },
-        { path: 'users', component: UsersComponent },
-        { path: 'users/roles/:userId', component: UserRolesComponent },
-        { path: 'users/create', component: UsersCreateComponent },
-        { path: 'users/edit/:email', component: UsersEditComponent },
+        { path: 'product/create', component: ProductCreateComponent, canActivate: [ManagerGuard] },
+        { path: 'product/edit/:productLine', component: ProductEditComponent, canActivate: [ManagerGuard] },
+        { path: 'users', component: UsersComponent  }, // , canActivate: [AdminGuard]
+        { path: 'users/roles/:userId', component: UserRolesComponent }, // , canActivate: [AdminGuard]
+        { path: 'users/create', component: UsersCreateComponent }, // , canActivate: [AdminGuard]
+        { path: 'users/edit/:email', component: UsersEditComponent }, // , canActivate: [AdminGuard]
         { path: 'categories', component: CategoriesComponent },
-        { path: 'categories/create', component: CategoriesCreateComponent },
-        { path: 'categories/edit/:categoryLine', component: CategoriesEditComponent }
-    ] },
+        { path: 'categories/create', component: CategoriesCreateComponent, canActivate: [ManagerGuard] },
+        { path: 'categories/edit/:categoryLine', component: CategoriesEditComponent, canActivate: [ManagerGuard] }
+    ] , canActivate: [AuthGuard] },
     
     { path: 'test', component: TestJsonComponent }
 ];

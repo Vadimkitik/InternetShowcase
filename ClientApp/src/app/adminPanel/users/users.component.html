@@ -17,18 +17,23 @@
         <td mat-cell *matCellDef="let user">
             <button mat-raised-button color="accent" [matMenuTriggerFor]="menu">Управление пользователем</button>
             <mat-menu #menu="matMenu">
-              <button [routerLink]="['/admin-panel/users/edit', user.email]"
+                <button [routerLink]="['/admin-panel/users/edit', user.email]"
                     mat-menu-item 
-                    >Изменить</button>
-            <button [routerLink]="['/admin-panel/users/roles', user.id]"
+                    >Изменить
+                </button>
+                <button [routerLink]="['/admin-panel/users/roles', user.id]"
                     mat-menu-item 
-                    >Права доступа</button>
-            <button [routerLink]="['/admin-panel/users/edit', user.email]"
-                    mat-menu-item disabled
-                    >Сменить пароль</button>
-            <button (click)="delete(user.id)" 
+                    >Права доступа
+                </button>
+                <button [routerLink]="['/admin-panel/users/']"
+                    mat-menu-item 
+                    disabled
+                    >Сменить пароль
+                </button>
+                <button (click)="delete(user.id)" 
                     mat-menu-item
-                    >Удалить</button>
+                    >Удалить
+                </button>
             </mat-menu>            
         </td>
     </ng-container>

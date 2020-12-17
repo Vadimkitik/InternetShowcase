@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
       .subscribe(data => {
         this.toastrService.success(`Loggin successful`);
         this.authService.saveToken(data["token"]);
-        this.authService.saveUser(data["userName"], data["email"]);
+        this.authService.saveUser(data["userName"], data["email"], data['userRoles']);
         this.router.navigate(['/admin-panel/product']);
       }, err => this.toastrService.error(err['error']));
   }
