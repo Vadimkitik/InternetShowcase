@@ -12,9 +12,9 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 import { User } from 'src/app/shared/models/user.model';
 
 @Component({
-  selector: 'panel',
-  templateUrl: './panel.component.html',
-  styleUrls: ['./panel.component.css'],
+  selector: 'products',
+  templateUrl: './products.component.html',
+  styleUrls: ['./products.component.css'],
   animations: [
     trigger('detailExpand', [
       state('collapsed', style({ height: '0px', minHeight: '0' })),
@@ -23,7 +23,7 @@ import { User } from 'src/app/shared/models/user.model';
     ]),
   ]
 })
-export class PanelComponent implements OnInit {
+export class ProductsComponent implements OnInit {
 
   accessRights = false;
   user: User;

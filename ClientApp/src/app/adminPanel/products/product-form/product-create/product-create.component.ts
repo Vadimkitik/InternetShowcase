@@ -22,7 +22,7 @@ export class ProductCreateComponent {
         console.log(this.product);
         this.productService.createProduct(this.product).subscribe(() => {
             this.toastrService.success(`Product ${this.product.name} Created`)
-             this.router.navigateByUrl("/admin-panel/product")
+             this.router.navigateByUrl("/admin-panel/products")
             });
      }
 }

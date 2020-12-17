@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material/material.module';
 import { AdminPanelRoutingModule } from './adminPanel-routing.module';
 import { SharedModule } from '../shared/shared.module';
-import { PanelComponent } from './products/panel.component';
+import { ProductsComponent } from './products/products.component';
 import { UploadComponent } from './products/product-form/upload/upload.component';
 import { ProductCreateComponent } from './products/product-form/product-create/product-create.component';
 import { ProductEditComponent } from './products/product-form/product-edit/product-edit.component';
@@ -23,7 +23,7 @@ import { UserRolesComponent } from './users/users-form/user-roles/user-roles/use
 @NgModule({
     declarations: [
         AdminPanelComponent,
-        PanelComponent,
+        ProductsComponent,
         ProductFormComponent,
         ProductCreateComponent,
         ProductEditComponent,
