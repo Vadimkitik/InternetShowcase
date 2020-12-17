@@ -6,6 +6,10 @@ using InternetShowcase.Data.Models;
 using InternetShowcase.Features.Identity.Models;
 using InternetShowcase.Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
+using System.Collections.Generic;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace InternetShowcase.Features.Identity
 {
@@ -48,10 +52,11 @@ namespace InternetShowcase.Features.Identity
             {
                 return Unauthorized("Confirm your Email by clicking on the link, check your mail");
             }
-
+            var userRoles = await userManager.GetRolesAsync(user);
             var token = this.identityService.GenerateJwtToken(
                 user.Id,
                 user.UserName,
+                userRoles,
                 this.appSettings.Secret);
 
             var loginResponse = new LoginResponseModel
@@ -59,7 +64,7 @@ namespace InternetShowcase.Features.Identity
                 Token = token,
                 UserName = user.UserName,
                 Email = user.Email,
-                UserRoles = await userManager.GetRolesAsync(user)
+                UserRoles = userRoles
             };
 
             return loginResponse;
