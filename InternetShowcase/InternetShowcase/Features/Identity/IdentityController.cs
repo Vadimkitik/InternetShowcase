@@ -46,7 +46,7 @@ namespace InternetShowcase.Features.Identity
             {
                 return Unauthorized("Login or password is not correct");
             }
-
+            
             var confirmEmail = await userManager.IsEmailConfirmedAsync(user);
             if(!confirmEmail)
             {
