@@ -18,6 +18,7 @@ namespace InternetShowcase.Features.Identity.Models
         [Compare("Password", ErrorMessage = "Пароли не совпадают")]
         public string ConfirmPassword { get; set; }
 
+        [Required]
         public string Code { get; set; }
     }
 }

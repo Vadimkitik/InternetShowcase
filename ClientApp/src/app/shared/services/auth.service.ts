@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { User } from '../models/user.model';
-
+import { ResetUserPassword } from '../models/resetUserPassword.model';
+import { ForgotUserPassword } from '../models/forgotUserPassword.model';
 
 const TOKEN_KEY = 'token';
 const USER_KEY = 'user-profile';
@@ -14,6 +14,8 @@ export class AuthService {
     constructor(private http: HttpClient) { }
     private urlLogin = environment.apiUrl + "identity/login";
     private urlRegister = environment.apiUrl + "identity/register";
+    private urlForgotPassword = environment.apiUrl + "identity/forgotpassword"
+    private urlResetPassword = environment.apiUrl + "identity/resetpassword"
 
     login(data): Observable<any> {
 
@@ -22,6 +24,14 @@ export class AuthService {
 
     register(data): Observable<any> {
         return this.http.post(this.urlRegister, data);
+    }
+
+    forgotPassword(forgotUserPassword: ForgotUserPassword): Observable<any> {
+        return this.http.post(this.urlForgotPassword, forgotUserPassword);
+    }
+
+    resetPassword(resetUserPassword: ResetUserPassword): Observable<any> {
+        return this.http.post(this.urlResetPassword, resetUserPassword);
     }
 
     public saveToken(token: string) {

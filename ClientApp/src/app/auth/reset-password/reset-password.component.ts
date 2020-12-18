@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { UserValidateService } from 'src/app/shared/services/userValidate.service';
 import { ResetUserPassword } from 'src/app/shared/models/resetUserPassword.model';
 import { MyErrorStateMatcher } from '../registration/registration.component';
+import { group } from '@angular/animations';
 
 @Component({
   selector: 'reset-password',
@@ -14,6 +15,7 @@ import { MyErrorStateMatcher } from '../registration/registration.component';
 export class ResetPasswordComponent implements OnInit {
 
   form: FormGroup;
+  code: string;
   resetUserPassword: ResetUserPassword;
   matcher = new MyErrorStateMatcher();
 
@@ -46,7 +48,7 @@ export class ResetPasswordComponent implements OnInit {
     //.subscribe(data => {
       console.log(this.resetUserPassword)
       this.toastrService.success(`Ваш пароль сброшен.`);
-    //  this.router.navigate(['/auth/login']);
+      this.router.navigate(['/auth/login']);
     //});
   }
 

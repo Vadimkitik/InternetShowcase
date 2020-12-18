@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { ForgotUserPassword } from 'src/app/shared/models/forgotUserPassword.model';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { UserValidateService } from 'src/app/shared/services/userValidate.service';
 
 @Component({
@@ -11,28 +13,31 @@ import { UserValidateService } from 'src/app/shared/services/userValidate.servic
 })
 export class ForgotPasswordComponent implements OnInit {
 
-  email= new FormControl(null, [Validators.required, Validators.email]);
-  constructor(    
+  forgotUserPassword: ForgotUserPassword;
+  email = new FormControl(null, [Validators.required, Validators.email]);
+  constructor(
     private router: Router,
     private toastrService: ToastrService,
-    private userValidate: UserValidateService
+    private userValidate: UserValidateService,
+    private authService: AuthService
   ) { }
 
-  ngOnInit() {
-      
-  }
+  ngOnInit() {}
 
   onSubmit() {
-    
-     // .subscribe(data => {
-        this.toastrService.success(`Для сброса пароля перейдите по ссылке в письме,
+    this.forgotUserPassword = {
+      email: this.email.value
+    };
+
+    this.authService.forgotPassword(this.forgotUserPassword).subscribe(data => {
+      this.toastrService.success(`Для сброса пароля перейдите по ссылке в письме,
          отправленном на ваш Email ${this.email.value}`);
-        //this.router.navigate(['/auth/login']);
-     // }, err => this.toastrService.error(err['error']));
+      //this.router.navigate(['/auth/login']);
+    }, err => this.toastrService.error(err['error']));
   }
 
   getErrorMessageEmail() {
     return this.userValidate.getErrorMessageEmail(this.email);
-}
+  }
 
 }
