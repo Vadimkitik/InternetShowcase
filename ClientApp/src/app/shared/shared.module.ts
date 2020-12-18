@@ -15,6 +15,7 @@ import { RolesService} from './services/roles.service';
 import { TokenIntersepterService } from './services/token-intersepter.service';
 import { ErrorIntersepterService } from './services/error-intersepter.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { UserValidateService } from './services/userValidate.service';
 
 @NgModule({
     imports: [
@@ -31,6 +32,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
         CategoryService,
         UploadService,
         RolesService,
+        UserValidateService,
         TreeService,
         {
             provide: HTTP_INTERCEPTORS,

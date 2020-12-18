@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/shared/models/user.model';
 import { UsersService } from 'src/app/shared/services/users.service';
-import { UserValidateService } from '../userValidate.service';
+import { UserValidateService } from '../../../../shared/services/userValidate.service';
 
 @Component({
     selector: 'users-edit',

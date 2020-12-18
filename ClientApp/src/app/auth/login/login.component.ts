@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 
 
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { UserValidateService } from 'src/app/shared/services/userValidate.service';
 
 @Component({
   selector: 'login',
@@ -22,7 +23,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private userValidate: UserValidateService
   ) { }
 
   ngOnInit() {
@@ -43,16 +45,10 @@ export class LoginComponent implements OnInit {
   }
 
   getErrorMessageEmail() {
-    if (this.form.get('email').hasError('required')) {
-      return 'Не оставлять пустым!';
-    }
-    return this.form.get('email').hasError('email') ? 'Введите корректный email' : '';
-  }
+    return this.userValidate.getErrorMessageEmail(this.form.get('email'));
+}
 
-  getErrorMessagePassv() {
-    if (this.form.get('password').hasError('required')) {
-      return 'Не оставлять пустым!';
-    }
-    return this.form.get('password').hasError('minlength') ? 'Пароль должен быть больше 5 символов' : '';
-  }
+getErrorMessagePassw() {
+  return this.userValidate.getErrorMessagePassw(this.form.get('password'));
+}
 }

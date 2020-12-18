@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { UserValidateService } from 'src/app/shared/services/userValidate.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -31,7 +32,8 @@ export class RegistrationComponent implements OnInit {
         private router: Router,
         private authService: AuthService,
         private formBuilder: FormBuilder,
-        private toastrService: ToastrService
+        private toastrService: ToastrService,
+        private userValidate: UserValidateService
   ) {}
   
 
@@ -87,21 +89,19 @@ export class RegistrationComponent implements OnInit {
   }
 
   getErrorMessageEmail() {
-    if (this.form.get('email').hasError('required')) {
-      return 'Не оставлять пустым!';
-    }
-    if(this.form.get('email').hasError('forbiddenEmail')){
-      return 'Данный email уже зарегестрирован';
-    }
-    return this.form.get('email').hasError('email') ? 'Введите корректный email' : '';
+    return this.userValidate.getErrorMessageEmail(this.form.get('email'));
   }
+    // if(this.form.get('email').hasError('forbiddenEmail')){
+    //   return 'Данный email уже зарегестрирован';
+    // }
 
-  getErrorMessagePassv() {
-    if (this.form.get('passwords').get('password').hasError('required')) {
-      return 'Не оставлять пустым!';
+    getErrorMessagePassw() {
+      return this.userValidate.getErrorMessagePassw(this.form.get('passwords').get('password'));
     }
-    return this.form.get('passwords').get('password').hasError('minlength') ? 'Пароль должен быть больше 5 символов' : '';
-  }
+
+  
+
+  
 
   checkPasswords(group: FormGroup) { // here we have the 'passwords' group
   let pass = group.controls.password.value;

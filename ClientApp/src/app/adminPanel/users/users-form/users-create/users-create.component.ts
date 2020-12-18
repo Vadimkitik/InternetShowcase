@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 import { User } from 'src/app/shared/models/user.model';
-import { UserValidateService } from '../userValidate.service';
+import { UserValidateService } from '../../../../shared/services/userValidate.service';
 import { UsersService } from 'src/app/shared/services/users.service';
 import { UserRoles } from 'src/app/shared/models/userRoles.model';
 import { RolesService } from 'src/app/shared/services/roles.service';

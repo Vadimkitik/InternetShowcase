@@ -19,7 +19,10 @@
       type="password"
       required
       >
-      <mat-error *ngIf="form.get('passwords').invalid && form.get('passwords').get('password').touched">{{getErrorMessagePassv()}}</mat-error>
+      <mat-error *ngIf="form.get('passwords').invalid
+                        && form.get('passwords').get('password').touched"
+        >{{getErrorMessagePassw()}}
+      </mat-error>
     </mat-form-field>
   </div>
 
@@ -34,7 +37,8 @@
       required
       >
       <mat-error 
-      *ngIf="form.get('passwords').hasError('notSame') && form.get('passwords').get('confpassword').touched"
+      *ngIf="form.get('passwords').hasError('notSame') 
+             && form.get('passwords').get('confpassword').touched"
       >Пароли должны совпадать</mat-error>
     </mat-form-field>
   </div>
