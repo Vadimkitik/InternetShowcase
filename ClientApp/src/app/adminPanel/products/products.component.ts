@@ -9,7 +9,7 @@ import { ProductService } from 'src/app/shared/services/product.service';
 import { UploadService } from 'src/app/shared/services/upload.service';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/shared/services/auth.service';
-import { User } from 'src/app/shared/models/user.model';
+import { User } from 'src/app/shared/models/user-role/user.model';
 
 @Component({
   selector: 'products',

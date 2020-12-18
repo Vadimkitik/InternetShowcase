@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { ResetUserPassword } from '../models/resetUserPassword.model';
-import { ForgotUserPassword } from '../models/forgotUserPassword.model';
+import { ResetUserPassword } from '../models/auth/resetUserPassword.model';
+import { ForgotUserPassword } from '../models/auth/forgotUserPassword.model';
 
 const TOKEN_KEY = 'token';
 const USER_KEY = 'user-profile';

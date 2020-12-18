@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { ForgotUserPassword } from 'src/app/shared/models/forgotUserPassword.model';
+import { ForgotUserPassword } from 'src/app/shared/models/auth/forgotUserPassword.model';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { UserValidateService } from 'src/app/shared/services/userValidate.service';
 

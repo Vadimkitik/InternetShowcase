@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
-import { UserRoles } from 'src/app/shared/models/userRoles.model';
-import { UserWithRoles } from 'src/app/shared/models/userWithRoles.model';
+import { UserRoles } from 'src/app/shared/models/user-role/userRoles.model';
+import { UserWithRoles } from 'src/app/shared/models/user-role/userWithRoles.model';
 import { RolesService } from 'src/app/shared/services/roles.service';
 
 @Component({

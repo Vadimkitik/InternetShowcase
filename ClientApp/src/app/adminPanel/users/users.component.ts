@@ -4,7 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
 import { Category } from 'src/app/shared/models/category.model';
-import { User } from 'src/app/shared/models/user.model';
+import { User } from 'src/app/shared/models/user-role/user.model';
 import { UsersService } from 'src/app/shared/services/users.service';
 
 @Component({

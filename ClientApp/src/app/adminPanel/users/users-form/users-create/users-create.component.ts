@@ -3,10 +3,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
-import { User } from 'src/app/shared/models/user.model';
+import { User } from 'src/app/shared/models/user-role/user.model';
 import { UserValidateService } from '../../../../shared/services/userValidate.service';
 import { UsersService } from 'src/app/shared/services/users.service';
-import { UserRoles } from 'src/app/shared/models/userRoles.model';
+import { UserRoles } from 'src/app/shared/models/user-role/userRoles.model';
 import { RolesService } from 'src/app/shared/services/roles.service';
 
 @Component({

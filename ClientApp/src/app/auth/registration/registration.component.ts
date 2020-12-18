@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder, FormGroupDirective, NgForm } from '@angular/forms';
 
-import { User } from 'src/app/shared/models/user.model';
+import { User } from 'src/app/shared/models/user-role/user.model';
 import { Router } from '@angular/router';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { AuthService } from 'src/app/shared/services/auth.service';

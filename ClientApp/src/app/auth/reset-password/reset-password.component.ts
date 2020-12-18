@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UserValidateService } from 'src/app/shared/services/userValidate.service';
-import { ResetUserPassword } from 'src/app/shared/models/resetUserPassword.model';
+import { ResetUserPassword } from 'src/app/shared/models/auth/resetUserPassword.model';
 import { MyErrorStateMatcher } from '../registration/registration.component';
 import { group } from '@angular/animations';
 

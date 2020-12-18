@@ -5,7 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
 
 import { Category } from 'src/app/shared/models/category.model';
-import { User } from 'src/app/shared/models/user.model';
+import { User } from 'src/app/shared/models/user-role/user.model';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { CategoryService } from 'src/app/shared/services/category.service';
 

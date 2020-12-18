@@ -3,8 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable  } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
-import { UserWithRoles } from '../models/userWithRoles.model';
-import { UserRoles } from '../models/userRoles.model';
+import { UserWithRoles } from '../models/user-role/userWithRoles.model';
+import { UserRoles } from '../models/user-role/userRoles.model';
 
 @Injectable()
 export class RolesService {
