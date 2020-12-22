@@ -117,7 +117,7 @@ namespace InternetShowcase.Features.Identity
         [HttpPost]
         [AllowAnonymous]
         [Route(nameof(ForgotPassword))]
-        public async Task<IActionResult> ForgotPassword(ForgotPasswordRequestModel model)
+        public async Task<ActionResult<object>> ForgotPassword(ForgotPasswordRequestModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -139,7 +139,7 @@ namespace InternetShowcase.Features.Identity
             {
                 return BadRequest(resultSendEmail.Error);
             }
-            return Ok();
+            return Ok(new { Token = code });
         }
 
         [HttpPost]
