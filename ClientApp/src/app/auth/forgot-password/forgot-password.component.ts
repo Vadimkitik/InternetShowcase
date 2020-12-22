@@ -32,8 +32,10 @@ export class ForgotPasswordComponent implements OnInit {
     this.authService.forgotPassword(this.forgotUserPassword).subscribe(data => {
       this.toastrService.success(`Для сброса пароля перейдите по ссылке в письме,
          отправленном на ваш Email ${this.email.value}`);
-      //this.router.navigate(['/auth/login']);
-    }, err => this.toastrService.error(err['error']));
+      this.router.navigate(['/auth/login']);
+    }, err => {
+      this.toastrService.error(err['error'])
+    });
   }
 
   getErrorMessageEmail() {

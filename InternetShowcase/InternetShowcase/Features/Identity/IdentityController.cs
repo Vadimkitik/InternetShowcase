@@ -135,11 +135,8 @@ namespace InternetShowcase.Features.Identity
                                 new { userId = user.Id, code = code },
                                 Request.Scheme);
             var resultSendEmail = await identityService.ConfirmForgotPasswordEmail(model.Email, callbackUrl);
-            if (resultSendEmail.Failure)
-            {
-                return BadRequest(resultSendEmail.Error);
-            }
-            return Ok("Для завершения сброса пароля проверьте электронную почту и перейдите по ссылке, указанной в письме");
+
+            return Ok();
         }
 
         [HttpPost]
