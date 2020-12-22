@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 import { ProductService } from './services/product.service';
 import { UsersService } from './services/users.service';
@@ -14,13 +16,13 @@ import { TreeService} from './services/tree.service';
 import { RolesService} from './services/roles.service';
 import { TokenIntersepterService } from './services/intersepters/token-intersepter.service';
 import { ErrorIntersepterService } from './services/intersepters/error-intersepter.service';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UserValidateService } from './services/userValidate.service';
 
 @NgModule({
     imports: [
         ReactiveFormsModule,
-        FormsModule
+        FormsModule,
+        RouterModule
     ],
     providers: [
         ProductService, 
