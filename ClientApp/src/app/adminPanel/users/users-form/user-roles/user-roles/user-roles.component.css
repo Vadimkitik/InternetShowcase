@@ -6,6 +6,10 @@
   margin: 0 12px;
 }
 
+.form{
+  display: flex;
+  justify-content: center;
+}
 .form-group_notFound{
   margin: 12px 0px;
   display: flex;
@@ -17,13 +21,11 @@
 }
 
 .form-group {
-  padding: 10px 0px;
+  padding: 0px 0px;
 }
 
 .product-form{
-  padding: 10px 20%;
-  width: 100%;
-  margin: auto;
+  padding: 10px 0px;
 }
 
 button {
