@@ -29,6 +29,7 @@ export class ResetPasswordComponent implements OnInit {
 
   ngOnInit() {
     this.code = this.authService.getForgotPasswordToken();
+    console.log(this.code)
     this.form = new FormGroup({
       'email': new FormControl(null, [Validators.required, Validators.email]),
       'passwords': this.formBuilder.group(
@@ -51,8 +52,8 @@ export class ResetPasswordComponent implements OnInit {
     this.authService.resetPassword(this.resetUserPassword).subscribe(data => {
       console.log(this.resetUserPassword)
       this.toastrService.success(`Ваш пароль сброшен.`);
-      //this.router.navigate(['/auth/login']);
-    }, err => console.log(err));
+      this.router.navigate(['/auth/login']);
+    }, err => this.toastrService.error(err.error.title));
   }
 
   getErrorMessageEmail() {

@@ -6,10 +6,8 @@ using InternetShowcase.Data.Models;
 using InternetShowcase.Features.Identity.Models;
 using InternetShowcase.Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
-using System.Collections.Generic;
-using System.Security.Claims;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
+using InternetShowcase.Infrastructure.Extensions;
 
 namespace InternetShowcase.Features.Identity
 {
@@ -18,17 +16,20 @@ namespace InternetShowcase.Features.Identity
         private readonly UserManager<User> userManager;
         private readonly AppSettings appSettings;
         private readonly IIdentityService identityService;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
         public IdentityController(
             UserManager<User> userManager,
             IOptions<AppSettings> appSettings,
             IIdentityService identityService,
-            IEmailService emailService, 
-            RoleManager<IdentityRole> roleManager)
+            IEmailService emailService,
+            RoleManager<IdentityRole> roleManager,
+            IHttpContextAccessor httpContextAccessor)
         {
             this.userManager = userManager;
             this.appSettings = appSettings.Value;
             this.identityService = identityService;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         [Route(nameof(Login))]
@@ -129,11 +130,10 @@ namespace InternetShowcase.Features.Identity
                 return BadRequest("Пользователь с таким Email не найден или Email не подтвержден");
             }
             var code = await userManager.GeneratePasswordResetTokenAsync(user);
-            var callbackUrl = Url.Action(
-                                "ResetPassword",
-                                "Identity",
-                                new { userId = user.Id, code = code },
-                                Request.Scheme);
+            var relativeUrl = "/auth/resetpassword";
+            var callbackUrl = _httpContextAccessor.AbsoluteUrl(relativeUrl,
+                                                               new { userId = user.Id, code = code });
+
             var resultSendEmail = await identityService.ConfirmForgotPasswordEmail(model.Email, callbackUrl);
             if (resultSendEmail.Failure)
             {
