@@ -1,5 +1,6 @@
 ﻿using InternetShowcase.Data.Models;
 using InternetShowcase.Features.Users.Models;
+using InternetShowcase.Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,7 @@ namespace InternetShowcase.Features.Users
         public Task<User> GetByEmail(string email)
             => _userManager.FindByEmailAsync(email);
 
-        public async Task<IdentityResult> Create(CreateUserRequestModel model)
+        public async Task<Result> Create(CreateUserRequestModel model)
         {
             User user = new User 
             {
@@ -37,10 +38,6 @@ namespace InternetShowcase.Features.Users
             if (result.Succeeded)
             {
                 var userRoles = await _userManager.GetRolesAsync(user);
-                if (userRoles == null)
-                {
-                    return result;
-                }
                 // получаем все роли
                 var allRoles = _roleManager.Roles.ToList();
                 foreach (var role in model.Roles)
@@ -48,15 +45,11 @@ namespace InternetShowcase.Features.Users
                     var checkRole = await _roleManager.FindByNameAsync(role);
                     if (checkRole == null)
                     {
-                        return result;
+                        return $"Роль {role} не найдена";
                     }
                 }
                 // получаем список ролей, которые были добавлены
                 var addedRoles = model.Roles.Except(userRoles);
-                if (addedRoles == null)
-                {
-                    return result;
-                }
                 // получаем роли, которые были удалены
                 var removedRoles = userRoles.Except(model.Roles);
 
@@ -68,13 +61,13 @@ namespace InternetShowcase.Features.Users
                 var resultConfirmEmail = await _userManager.ConfirmEmailAsync(user, token);
                 if (resultConfirmEmail.Succeeded)
                 {
-                    return resultConfirmEmail;
+                    return true;
                 }
             }
-            return result;
+            return "Bad Request";
 
         }
-        public async Task<IdentityResult> Edit(UpdateUserRequestModel model)
+        public async Task<Result> Edit(UpdateUserRequestModel model)
         {
             User user = await _userManager.FindByIdAsync(model.Id);
             if (user != null)
@@ -83,21 +76,16 @@ namespace InternetShowcase.Features.Users
                 user.UserName = model.UserName;
 
                 var result = await _userManager.UpdateAsync(user);
-                return result;
+                if (result.Succeeded)
+                {
+                    return true;
+                }
+                return "Bad Request";
             }
-            var error = new IdentityError
-            {
-                Description = "Not Found User"
-            };
-            return IdentityResult.Failed(error);
+            return "Not Found User";
         }
 
-        public Task<bool> Delete(string id)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public async Task<IdentityResult> ChangePassword(
+        public async Task<Result> ChangePassword(
             ChangePasswordRequestModel model, 
             IPasswordValidator<User> _passwordValidator, 
             IPasswordHasher<User> _passwordHasher)
@@ -111,15 +99,11 @@ namespace InternetShowcase.Features.Users
                 {
                     user.PasswordHash = _passwordHasher.HashPassword(user, model.NewPassword);
                     await _userManager.UpdateAsync(user);
-                    
+                    return true;
                 }
-                return result;                
+                return "Bad Request";                
             }
-            var error = new IdentityError
-            {
-                Description = "Not Found User"
-            };
-            return IdentityResult.Failed(error); ;
+            return "Not Found User";
         }        
     }
 }

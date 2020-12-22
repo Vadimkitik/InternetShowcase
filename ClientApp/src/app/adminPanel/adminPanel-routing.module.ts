@@ -16,6 +16,7 @@ import { UserRolesComponent } from './users/users-form/user-roles/user-roles/use
 import { UsersCreateComponent } from './users/users-form/users-create/users-create.component';
 import { UsersEditComponent } from './users/users-form/users-edit/users-edit.component';
 import { UsersComponent } from './users/users.component';
+import { UserResetpasswordComponent } from './users/users-form/user-resetpassword/user-resetpassword.component';
 
 const adminRoutes: Routes = [
     
@@ -24,6 +25,7 @@ const adminRoutes: Routes = [
         { path: 'products/create', component: ProductCreateComponent, canActivate: [ManagerGuard] },
         { path: 'products/edit/:productLine', component: ProductEditComponent, canActivate: [ManagerGuard] },
         { path: 'users', component: UsersComponent  }, // , canActivate: [AdminGuard]
+        { path: 'users/resetpassword/:email', component: UserResetpasswordComponent }, // , canActivate: [AdminGuard]
         { path: 'users/roles/:userId', component: UserRolesComponent }, // , canActivate: [AdminGuard]
         { path: 'users/create', component: UsersCreateComponent }, // , canActivate: [AdminGuard]
         { path: 'users/edit/:email', component: UsersEditComponent }, // , canActivate: [AdminGuard]

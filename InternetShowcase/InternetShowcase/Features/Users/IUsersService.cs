@@ -1,5 +1,6 @@
 ﻿using InternetShowcase.Data.Models;
 using InternetShowcase.Features.Users.Models;
+using InternetShowcase.Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -10,10 +11,9 @@ namespace InternetShowcase.Features.Users
     {
         IEnumerable<User> GetAll();
         Task<User> GetByEmail(string email);
-        Task<IdentityResult> Create(CreateUserRequestModel user);
-        Task<IdentityResult> Edit(UpdateUserRequestModel model);
-        Task<bool> Delete(string id); 
-        Task<IdentityResult> ChangePassword(
+        Task<Result> Create(CreateUserRequestModel user);
+        Task<Result> Edit(UpdateUserRequestModel model);
+        Task<Result> ChangePassword(
             ChangePasswordRequestModel model,
             IPasswordValidator<User> _passwordValidator,
             IPasswordHasher<User> _passwordHasher);

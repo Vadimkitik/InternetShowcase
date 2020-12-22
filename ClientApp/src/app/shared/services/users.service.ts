@@ -23,6 +23,10 @@ export class UsersService {
             catchError(this.handleError));
     }
     
+    changePassword(user) : Observable<any> {
+        return this.http.post(this.url + '/changePassword', user).pipe(
+            catchError(this.handleError));
+    }
 
     getUsers() {
         return this.http.get(this.url).pipe(

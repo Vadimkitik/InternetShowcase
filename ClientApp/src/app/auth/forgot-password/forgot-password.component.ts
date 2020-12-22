@@ -28,7 +28,6 @@ export class ForgotPasswordComponent implements OnInit {
     this.forgotUserPassword = {
       email: this.email.value
     };
-
     this.authService.forgotPassword(this.forgotUserPassword).subscribe(data => {
       this.authService.saveForgotPasswordToken(data["token"]);
       this.toastrService.success(`Для сброса пароля перейдите по ссылке в письме,

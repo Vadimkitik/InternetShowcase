@@ -18,6 +18,7 @@ import { CategoriesFormComponent } from './categories/categories-form/categories
 import { CategoriesCreateComponent } from './categories/categories-form/categories-create/categories-create.component';
 import { CategoriesEditComponent } from './categories/categories-form/categories-edit/categories-edit.component';
 import { UserRolesComponent } from './users/users-form/user-roles/user-roles/user-roles.component';
+import { UserResetpasswordComponent } from './users/users-form/user-resetpassword/user-resetpassword.component';
 
 @NgModule({
     declarations: [
@@ -35,7 +36,8 @@ import { UserRolesComponent } from './users/users-form/user-roles/user-roles/use
         CategoriesFormComponent,
         CategoriesCreateComponent,
         CategoriesEditComponent,
-        UserRolesComponent
+        UserRolesComponent,
+        UserResetpasswordComponent        
     ],
     imports: [
         CommonModule,

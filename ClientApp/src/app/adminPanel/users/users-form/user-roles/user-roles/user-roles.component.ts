@@ -58,7 +58,7 @@ onToggle(event) {
 save() {
   this.rolesService.EditUserRoles(this.userRoles).subscribe(res => {
     this.toastrService.success(`Roles for ${this.userWithRoles.userEmail} changed successfully!`);
-    this.router.navigate(["//admin-panel/users"]);
+    this.router.navigate(["/admin-panel/users"]);
   })
 }
 }

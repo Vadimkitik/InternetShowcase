@@ -55,13 +55,13 @@ namespace InternetShowcase.Features.Users
             if (ModelState.IsValid)
             {
                 var result = await _usersService.Create(model);
-                if (result.Succeeded)
+                if (result.Failure)
                 {
-                    return Ok(model);
+                    return BadRequest(result.Error);
                 }
-                return BadRequest(result.Errors);                
+                return Ok();                
             }
-             return BadRequest();
+            return BadRequest();
         }
 
         [HttpPut]
@@ -69,16 +69,12 @@ namespace InternetShowcase.Features.Users
         {
             if (ModelState.IsValid)
             {
-
                 var result = await _usersService.Edit(model);
-                if (result.Succeeded)
+                if (result.Failure)
                 {
-                    return Ok(result.Succeeded);
+                    return BadRequest(result.Error);
                 }
-                else
-                {
-                    return BadRequest(result.Errors);
-                }
+                return Ok();
             }
             return BadRequest();
         }
@@ -92,12 +88,9 @@ namespace InternetShowcase.Features.Users
                 var result = await _userManager.DeleteAsync(user);
                 if (result.Succeeded)
                 {
-                    return Ok(result.Succeeded);
+                    return Ok();
                 }
-                else
-                {
-                    return BadRequest(result.Errors);
-                }
+                return BadRequest(result.Errors);                
             }
             return NotFound($"NotFound User with id: {id}");
         }
@@ -116,14 +109,11 @@ namespace InternetShowcase.Features.Users
                                         .GetService(typeof(IPasswordHasher<User>))
                                         as IPasswordHasher<User>;
                 var result = await _usersService.ChangePassword(model, passwordValidator, passwordHasher);
-                if (result.Succeeded)
+                if (result.Failure)
                 {
-                    return Ok(result.Succeeded);
+                    return BadRequest(result.Error); 
                 }
-                else
-                {
-                    return BadRequest(result.Errors);
-                }
+                return Ok();
             }
             return BadRequest(model);
         }

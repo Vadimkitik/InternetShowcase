@@ -25,9 +25,8 @@
                     mat-menu-item 
                     >Права доступа
                 </button>
-                <button [routerLink]="['/admin-panel/users/']"
+                <button [routerLink]="['/admin-panel/users/resetpassword', user.email]"
                     mat-menu-item 
-                    disabled
                     >Сменить пароль
                 </button>
                 <button (click)="delete(user.id)" 
