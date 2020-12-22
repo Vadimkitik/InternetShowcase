@@ -6,6 +6,7 @@ import { ResetUserPassword } from '../models/auth/resetUserPassword.model';
 import { ForgotUserPassword } from '../models/auth/forgotUserPassword.model';
 
 const TOKEN_KEY = 'token';
+const TOKEN_FORGOTPASSWORD = 'token-forgotpassword';
 const USER_KEY = 'user-profile';
 
 @Injectable()
@@ -37,6 +38,10 @@ export class AuthService {
     public saveToken(token: string) {
         window.localStorage.removeItem(TOKEN_KEY);
         window.localStorage.setItem(TOKEN_KEY, token);
+    }
+    public saveForgotPasswordToken(token: string) {
+        window.localStorage.removeItem(TOKEN_FORGOTPASSWORD);
+        window.localStorage.setItem(TOKEN_FORGOTPASSWORD, token);
     }
 
     public getToken(): string {

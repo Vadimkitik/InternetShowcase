@@ -135,7 +135,10 @@ namespace InternetShowcase.Features.Identity
                                 new { userId = user.Id, code = code },
                                 Request.Scheme);
             var resultSendEmail = await identityService.ConfirmForgotPasswordEmail(model.Email, callbackUrl);
-
+            if (resultSendEmail.Failure)
+            {
+                return BadRequest(resultSendEmail.Error);
+            }
             return Ok();
         }
 
