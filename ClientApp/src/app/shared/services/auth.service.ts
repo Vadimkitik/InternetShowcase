@@ -48,6 +48,10 @@ export class AuthService {
         return localStorage.getItem(TOKEN_KEY);
     }
 
+    public getForgotPasswordToken(): string {
+        return localStorage.getItem(TOKEN_FORGOTPASSWORD);
+    }
+
     public saveUser(userName: string, email: string, roles: Array<string>) {
         let profile = {
             "userName": userName,
