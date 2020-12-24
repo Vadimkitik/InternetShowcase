@@ -42,28 +42,21 @@ namespace InternetShowcase.Infrastructure.Services
 
         private string designMail(string message)
         {
-            var mailContainerSyle = "font-family: 'Lora', serif;" +
-                                    "font-weight: 300;" +
-                                    "margin: 10px;" +
-                                    "text-align: center;" +
-                                    "box-shadow: 0px 5px 30px 0px rgba(31, 35, 37, 0.15); background-color: #fcecfa;padding - bottom: 10px;border: 1px solid #ddd;border - radius: 10px;";
+            //var mailContainerSyle = "font-family: 'Lora', serif;" +
+            //                        "font-weight: 300;" +
+            //                        "margin: 10px;" +
+            //                        "text-align: center;" +
+            //                        "box-shadow: 0px 5px 30px 0px rgba(31, 35, 37, 0.15); background-color: #fcecfa;padding - bottom: 10px;border: 1px solid #ddd;border - radius: 10px;";
 
-            var mailCardSyle = "display: flex;" +
-                               "justify-content:center;" +
-                               "flex-direction:column;" +
-                               "margin: 5px";
+            //var mailCardSyle = "display: flex;" +
+            //                   "justify-content:center;" +
+            //                   "flex-direction:column;" +
+            //                   "margin: 5px";
 
-            var mailMainSyle = "margin: 10px; font-size: 14px;";
+            //var mailMainSyle = "margin: 10px; font-size: 14px;";
 
-            message = $"<div style=\"{mailContainerSyle}\">" +
-                           $"<div style=\"{mailCardSyle}\">" +
-                               $"<div>" +
-                                     $"<h2>Вас приветствует Alleutina Shop!</h2>" +
-                               $"</div>" +
-                               $"<div style=\"{mailMainSyle}\">{message}</div>" +
-                           $"</div>" +
-                      $"</div>";
-
+            message = $"<h2>Вас приветствует Alleutina Shop!</h2>" +
+                      $"<p>{message}</p>";
             return message;
         }
     }
