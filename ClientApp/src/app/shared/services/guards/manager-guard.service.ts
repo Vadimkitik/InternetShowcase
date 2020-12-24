@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../auth.service';
 
 
@@ -8,7 +9,8 @@ export class ManagerGuard implements CanActivate {
 
   constructor(
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private toastrService: ToastrService
     ) { }
 
     canActivate() {
@@ -17,7 +19,7 @@ export class ManagerGuard implements CanActivate {
         if ((user.roles.includes('manager') || user.roles.includes('admin'))){
           return true;
         }
-        this.router.navigate(["auth/login"]);
+        this.toastrService.warning("Нужны права менеджера или администратора");
         return false;
     }
     

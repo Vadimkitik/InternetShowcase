@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../auth.service';
 
 
@@ -10,7 +11,8 @@ export class AuthGuard implements CanActivate {
   constructor(
     private jwtHelper: JwtHelperService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private toastrService: ToastrService
     ) { }
 
   canActivate() {
@@ -19,6 +21,7 @@ export class AuthGuard implements CanActivate {
     if (token && !this.jwtHelper.isTokenExpired(token)){
       return true;
     }
+    this.toastrService.warning("Нужно войти в систему");
     this.router.navigate(["auth/login"]);
     return false;
   }

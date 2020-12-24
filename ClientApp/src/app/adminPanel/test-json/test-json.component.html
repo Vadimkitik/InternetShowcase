@@ -1,0 +1,32 @@
+<p class="text-xs-center">Войдите для работы</p>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="example-container">
+    <mat-form-field appearance="fill">
+      <mat-label>Введите email</mat-label>
+      <input matInput placeholder="pat@example.com" formControlName="email" required>
+      <mat-error *ngIf="form.get('email').invalid">{{getErrorMessageEmail()}}</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="example-container">
+    <mat-form-field appearance="fill">
+      <mat-label>Введите пароль</mat-label>
+      <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
+      <mat-error *ngIf="form.get('password').invalid">{{getErrorMessagePassw()}}</mat-error>
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? "visibility_off" : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+
+  <div class="form-group">
+    <a [routerLink]="'/auth/forgotpassword'" style="margin-right: 10px;">Забыли пароль?</a>
+    <button type="submit" class="submit_button" mat-raised-button color="primary" [disabled]="form.invalid">Войти</button>
+  </div>
+  <div class="form-group">
+    <p class="text-muted text-xs-center">
+      Нет аккаунта? <button [routerLink]="'/auth/registration'" mat-flat-button color="accent">Зарегистрироваться!</button>
+    </p>
+  </div>
+</form>
