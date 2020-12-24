@@ -132,7 +132,7 @@ namespace InternetShowcase.Features.Identity
             var code = await userManager.GeneratePasswordResetTokenAsync(user);
             var relativeUrl = "/auth/resetpassword";
             var callbackUrl = _httpContextAccessor.AbsoluteUrl(relativeUrl,
-                                                               new { userId = user.Id, code = code });
+                                                               new { code = code });
 
             var resultSendEmail = await identityService.ConfirmForgotPasswordEmail(model.Email, callbackUrl);
             if (resultSendEmail.Failure)

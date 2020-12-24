@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UserValidateService } from 'src/app/shared/services/userValidate.service';
 import { ResetUserPassword } from 'src/app/shared/models/auth/resetUserPassword.model';
@@ -24,12 +24,21 @@ export class ResetPasswordComponent implements OnInit {
     private formBuilder: FormBuilder,
     private toastrService: ToastrService,
     private userValidate: UserValidateService,
-    private authService: AuthService
-    ) { }
+    private authService: AuthService,
+    private activatedRoute: ActivatedRoute
+    ) { 
+      activatedRoute.queryParams.subscribe(
+        (queryParam: any) => {
+          if(queryParam['code'] == null){
+            this.toastrService.warning("Code is null")
+            this.router.navigate(['/auth/login'])
+          }
+            this.code = queryParam['code'];
+        }
+    );
+    }
 
   ngOnInit() {
-    this.code = this.authService.getForgotPasswordToken();
-    console.log(this.code)
     this.form = new FormGroup({
       'email': new FormControl(null, [Validators.required, Validators.email]),
       'passwords': this.formBuilder.group(
@@ -50,7 +59,6 @@ export class ResetPasswordComponent implements OnInit {
     };
     
     this.authService.resetPassword(this.resetUserPassword).subscribe(data => {
-      console.log(this.resetUserPassword)
       this.toastrService.success(`Ваш пароль сброшен.`);
       this.router.navigate(['/auth/login']);
     }, err => this.toastrService.error(err.error.title));
