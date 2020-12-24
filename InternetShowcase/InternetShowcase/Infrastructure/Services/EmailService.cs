@@ -14,7 +14,7 @@ namespace InternetShowcase.Infrastructure.Services
             try
             {
                 MimeMessage emailMessage = new MimeMessage();
-
+                message = $"<p style=\"color: blue; \">{message}</p>";
                 emailMessage.From.Add(new MailboxAddress("Администрация сайта Alleutina Shop", "alleutina.shop@gmail.com"));
                 emailMessage.To.Add(new MailboxAddress("", email));
                 emailMessage.Subject = subject;

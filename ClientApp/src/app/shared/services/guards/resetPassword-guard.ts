@@ -8,7 +8,6 @@ import { AuthService } from '../auth.service';
 export class ResetPasswordGuard implements CanActivate {
 
   constructor(
-    private jwtHelper: JwtHelperService,
     private router: Router,
     private authService: AuthService
     ) { }
@@ -16,7 +15,7 @@ export class ResetPasswordGuard implements CanActivate {
     canActivate() {
         let token = this.authService.getForgotPasswordToken();
        
-        if (token && !this.jwtHelper.isTokenExpired(token)){
+        if (token){
           return true;
         }
         this.router.navigate(["auth/login"]);
