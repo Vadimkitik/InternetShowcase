@@ -10,6 +10,7 @@ import { AuthComponent } from './auth.component';
 import { AuthRoutingModule } from './auth-routing.module';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ConfirmEmailComponent } from './confirm-email/confirm-email.component';
 
 @NgModule({
     declarations: [
@@ -17,7 +18,8 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
         RegistrationComponent,
         AuthComponent,
         ForgotPasswordComponent,
-        ResetPasswordComponent
+        ResetPasswordComponent,
+        ConfirmEmailComponent
     ],
     imports: [
         CommonModule,

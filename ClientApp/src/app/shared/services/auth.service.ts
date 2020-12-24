@@ -15,8 +15,9 @@ export class AuthService {
     constructor(private http: HttpClient) { }
     private urlLogin = environment.apiUrl + "identity/login";
     private urlRegister = environment.apiUrl + "identity/register";
-    private urlForgotPassword = environment.apiUrl + "identity/forgotpassword"
-    private urlResetPassword = environment.apiUrl + "identity/resetpassword"
+    private urlForgotPassword = environment.apiUrl + "identity/forgotpassword";
+    private urlResetPassword = environment.apiUrl + "identity/resetpassword";
+    private urlconfirmEmail = environment.apiUrl + "identity/confirmEmail";
 
     login(data): Observable<any> {
 
@@ -25,6 +26,10 @@ export class AuthService {
 
     register(data): Observable<any> {
         return this.http.post(this.urlRegister, data);
+    }
+
+    confirmEmail(data): Observable<any> {
+        return this.http.post(this.urlconfirmEmail, data);
     }
 
     forgotPassword(forgotUserPassword: ForgotUserPassword): Observable<any> {

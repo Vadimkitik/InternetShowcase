@@ -88,11 +88,14 @@ namespace InternetShowcase.Features.Identity
             {
                 await userManager.AddToRoleAsync(user, "user");
                 var code = await userManager.GenerateEmailConfirmationTokenAsync(user);
-                var callbackUrl = Url.Action(
-                                   "ConfirmEmail",
-                                   "Identity",
-                                   new { userId = user.Id, code = code },
-                                   Request.Scheme);
+                var relativeUrl = "/auth/confirmemail";
+                var callbackUrl = _httpContextAccessor.AbsoluteUrl(relativeUrl,
+                                                               new { userId = user.Id, code = code });
+                //var callbackUrl = Url.Action(
+                //                   "confirmemail",
+                //                   "Identity",
+                //                   new { userId = user.Id, code = code },
+                //                   Request.Scheme);
                 var resultSendEmail = await identityService.ConfirmRegisterEmail(model.Email, callbackUrl);
                 if (resultSendEmail.Failure)
                 {
@@ -103,11 +106,12 @@ namespace InternetShowcase.Features.Identity
             return BadRequest(result.Errors);
         }
 
-        [HttpGet]
+        [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> ConfirmEmail(string userId, string code)
+        [Route(nameof(ConfirmEmail))]
+        public async Task<IActionResult> ConfirmEmail(ConfirmEmailRequestModel model)
         {
-            var result = await identityService.ConfirmEmail(userId, code);
+            var result = await identityService.ConfirmEmail(model.userId, model.code);
             if (result.Failure)
             {
                 return BadRequest(result.Error);

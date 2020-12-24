@@ -1,0 +1,6 @@
+<div class="form-group" *ngIf="load">
+    <p class="text-muted text-xs-center">
+        {{ message }} <button [routerLink]="'/auth/login'" mat-flat-button
+            color="{{buttonColor}}">Войти!</button>
+    </p>
+</div>
