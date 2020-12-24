@@ -14,7 +14,7 @@ namespace InternetShowcase.Infrastructure.Services
             try
             {
                 MimeMessage emailMessage = new MimeMessage();
-                message = $"<p style=\"color: blue; \">{message}</p>";
+                message = designMail(message);
                 emailMessage.From.Add(new MailboxAddress("Администрация сайта Alleutina Shop", "alleutina.shop@gmail.com"));
                 emailMessage.To.Add(new MailboxAddress("", email));
                 emailMessage.Subject = subject;
@@ -38,6 +38,45 @@ namespace InternetShowcase.Infrastructure.Services
                 return e.GetBaseException().Message;
             }
             
+        }
+
+        private string designMail(string message)
+        {
+            var mainContentStyle = "display: flex; " +
+                                   "justify-content: center;";
+
+            var mailContainerSyle = "font-family: 'Lora', serif; " +
+                                    "font-weight: 600; " +
+                                    "text-align: center; " +
+                                    "margin-bottom: 50px; " +
+                                    "border: 1px solid #ddd; " +
+                                    "border-radius: 4px; " +
+                                    "padding: 10px; " +
+                                    "box-shadow: 0px 5px 30px 0px rgba(31, 35, 37, 0.15); " +
+                                    "width: min-content; " +
+                                    "display: flex; " +
+                                    "flex-direction: column; " +
+                                    "align-items: center;";
+
+            var mailCardSyle = "display: flex; " +
+                               "justify-content: center;";
+
+            var mailMainSyle = "margin: 10px;";
+
+            message = $"<div style=\"{mainContentStyle}\">" +
+                      $"<div style=\"{mailContainerSyle}\">" +
+                           $"<div style=\"{mailCardSyle}\">" +
+                               $"<div>" +
+                                     $"<h2>Вас приветствует Alleutina Shop!</h2>" +
+                               $"</div>" +
+                               $"<div style=\"{mailMainSyle}\">" +
+                                     $"{message}" +
+                               $"</div>" +
+                           $"</div>" +
+                      $"</div>" +
+                      $"</div>";
+
+            return message;
         }
     }
 }
