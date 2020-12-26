@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 
 import { Product } from 'src/app/shared/models/product.model';
+import { FeedbackForm } from 'src/app/shared/models/feedbackForm.model';
 import { ProductService } from 'src/app/shared/services/product.service';
 import { DialogOverviewformComponent } from '../dialog-overviewform/dialog-overviewform.component';
 
@@ -25,6 +26,7 @@ export class ProductViewComponent implements OnInit {
   public errorMsg;
   animal: string;
   name: string;
+  feedbackForm: FeedbackForm;
 
   constructor(
     public productService: ProductService,
@@ -36,7 +38,7 @@ export class ProductViewComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogOverviewformComponent, {
-      width: '250px',
+      width: '350px',
       data: {name: this.name, animal: this.animal}
     });
 
