@@ -319,7 +319,7 @@ MAIN
     text-transform: uppercase;
     color: #777676;
     line-height: 1;
-    padding-top: 12px;
+    padding: 10px;
     text-align: center;
     display: block;
     margin-left: auto;
@@ -424,7 +424,7 @@ CARD
 }
 .card__button_nal {
     margin: 10px 6%;
-    padding-top: 12px;
+    padding-top: 14px;
     width: 200px;
     display: block;
 }
@@ -506,7 +506,6 @@ PRODUCT DESCRIPTION
     text-transform: none;
     font-weight: 500;
     font-size: 15px;
-    padding-top: 10px;
 }
 
 .product-info-price{
