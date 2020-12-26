@@ -35,10 +35,10 @@ export class ProductViewComponent implements OnInit {
   ) { 
     this.productLine = activeRoute.snapshot.params["productLine"];
   }
-
+  
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogOverviewformComponent, {
-      width: '350px',
+      width: '780px',
       data: {name: this.name, animal: this.animal}
     });
 

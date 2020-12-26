@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { FeedbackForm } from 'src/app/shared/models/feedbackForm.model';
 
 export interface DialogData {
   animal: string;
@@ -13,6 +14,7 @@ export interface DialogData {
 })
 export class DialogOverviewformComponent {
 
+  feedbackForm: FeedbackForm;
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewformComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {}

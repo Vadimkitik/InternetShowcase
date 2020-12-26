@@ -21,21 +21,7 @@
                                     <span>{{ product.price }}</span> BYN
                                 </span>
                             </p>
-                            <button (click)="openDialog()" class="button-outline">Уточнить цену</button>
-                            <ol style="margin: 20px 0px;">
-                                <li>
-                                  <mat-form-field>
-                                    <mat-label>What's your name?</mat-label>
-                                    <input matInput [(ngModel)]="name">
-                                  </mat-form-field>
-                                </li>
-                                <li>
-                                  <button mat-raised-button (click)="openDialog()">Pick one</button>
-                                </li>
-                                <li *ngIf="animal">
-                                  You chose: <i>{{animal}}</i>
-                                </li>
-                              </ol>
+                            <button (click)="openDialog()" class="button-outline">Уточнить наличие</button>
                             <div class="product-description">
                                 <div class="column">{{ product.description }} 
                                 </div>

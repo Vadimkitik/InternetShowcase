@@ -3,6 +3,8 @@ export class FeedbackForm {
         public name?: string,
         public telephone?: string,
         public email?: string,
+        public imageUrl?: string,
+        public productName?: string,
         public message?: string,
         public checkAvailability?: boolean,
         public checkPrice?: boolean        
