@@ -55,7 +55,7 @@ namespace InternetShowcase.Infrastructure.Services
 
             //var mailMainSyle = "margin: 10px; font-size: 14px;";
 
-            message = $"<h2>Вас приветствует Alleutina Shop!</h2>" +
+            message = $"<h2>Вас приветствует Alleutina Shop.</h2>" +
                       $"<p>{message}</p>";
             return message;
         }

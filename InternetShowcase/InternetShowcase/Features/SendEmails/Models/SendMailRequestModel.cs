@@ -13,7 +13,7 @@ namespace InternetShowcase.Features.SendEmails.Models
         public string Subject { get; set; }
 
         [Required]
-        [MaxLength(300)]
+        [MaxLength(200)]
         public string Message { get; set; }
     }
 }

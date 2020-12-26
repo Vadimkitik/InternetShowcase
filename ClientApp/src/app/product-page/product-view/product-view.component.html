@@ -21,11 +21,23 @@
                                     <span>{{ product.price }}</span> BYN
                                 </span>
                             </p>
-                            <a [routerLink]="'/'" class="button-outline">Уточнить наличие</a>
+                            <button (click)="openDialog()" class="button-outline">Уточнить цену</button>
+                            <ol>
+                                <li>
+                                  <mat-form-field>
+                                    <mat-label>What's your name?</mat-label>
+                                    <input matInput [(ngModel)]="name">
+                                  </mat-form-field>
+                                </li>
+                                <li>
+                                  <button mat-raised-button (click)="openDialog()">Pick one</button>
+                                </li>
+                                <li *ngIf="animal">
+                                  You chose: <i>{{animal}}</i>
+                                </li>
+                              </ol>
                             <div class="product-description">
                                 <div class="column">{{ product.description }} 
-                                </div>
-                                <div class="column">{{ product.categoryId }} 
                                 </div>
                             </div>
                         </div>

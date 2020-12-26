@@ -1,8 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 
 import { Product } from 'src/app/shared/models/product.model';
 import { ProductService } from 'src/app/shared/services/product.service';
+import { DialogOverviewformComponent } from '../dialog-overviewform/dialog-overviewform.component';
+
+export interface DialogData {
+  animal: string;
+  name: string;
+}
 
 @Component({
   selector: 'product-view',
@@ -16,12 +23,27 @@ export class ProductViewComponent implements OnInit {
   loaded: boolean = false;
   oldPrice: boolean = false;
   public errorMsg;
+  animal: string;
+  name: string;
 
   constructor(
     public productService: ProductService,
-    activeRoute: ActivatedRoute
+    activeRoute: ActivatedRoute,
+    public dialog: MatDialog
   ) { 
     this.productLine = activeRoute.snapshot.params["productLine"];
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogOverviewformComponent, {
+      width: '250px',
+      data: {name: this.name, animal: this.animal}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.animal = result;
+    });
   }
 
   ngOnInit() {

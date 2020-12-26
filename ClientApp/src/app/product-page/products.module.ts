@@ -6,12 +6,14 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { ProductViewComponent } from './product-view/product-view.component';
 import { ProductsRoutingModule } from './products-routing.module';
 import { SharedModule } from '../shared/shared.module';
+import { DialogOverviewformComponent } from './dialog-overviewform/dialog-overviewform.component';
 
 
 @NgModule({
     declarations: [
         ProductViewComponent,
-        ProductListComponent
+        ProductListComponent,
+        DialogOverviewformComponent
     ],
     imports: [
         CommonModule,

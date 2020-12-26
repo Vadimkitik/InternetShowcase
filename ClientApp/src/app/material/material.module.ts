@@ -12,6 +12,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatIconModule } from '@angular/material/icon';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatDialogModule} from '@angular/material/dialog';
 
 const MaterialComponents =[
   MatIconModule,
@@ -25,7 +26,8 @@ const MaterialComponents =[
   MatRadioModule,
   TextFieldModule,
   MatCheckboxModule,
-  MatMenuModule
+  MatMenuModule,
+  MatDialogModule
 ];
 
 @NgModule({
