@@ -5,15 +5,24 @@ namespace InternetShowcase.Features.SendEmails.Models
     public class FeedbackFormRequestModel
     {
         [Required]
+        public string Name { get; set; }
+
+        [Required]
+        public string Telephone { get; set; }
+
         [EmailAddress]
         public string Email { get; set; }
 
-        [Required]
-        [MaxLength(30)]
-        public string Subject { get; set; }
+        public string ProductName { get; set; }
 
-        [Required]
-        [MaxLength(200)]
+        public string ProductPrice { get; set; }
+
         public string Message { get; set; }
+
+        public string ImageUrl { get; set; }
+
+        public bool CheckAvailability { get; set; }
+
+        public bool CheckPrice { get; set; }
     }
 }

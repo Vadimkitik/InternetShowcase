@@ -1,8 +1,6 @@
-﻿using MailKit.Net.Proxy;
-using MailKit.Net.Smtp;
+﻿using MailKit.Net.Smtp;
 using MimeKit;
 using System;
-using System.Net;
 using System.Threading.Tasks;
 
 namespace InternetShowcase.Infrastructure.Services
@@ -14,7 +12,6 @@ namespace InternetShowcase.Infrastructure.Services
             try
             {
                 MimeMessage emailMessage = new MimeMessage();
-                message = designMail(message);
                 emailMessage.From.Add(new MailboxAddress("Администрация сайта Alleutina Shop", "alleutina.shop@gmail.com"));
                 emailMessage.To.Add(new MailboxAddress("", email));
                 emailMessage.Subject = subject;
@@ -38,26 +35,6 @@ namespace InternetShowcase.Infrastructure.Services
                 return e.GetBaseException().Message;
             }
             
-        }
-
-        private string designMail(string message)
-        {
-            //var mailContainerSyle = "font-family: 'Lora', serif;" +
-            //                        "font-weight: 300;" +
-            //                        "margin: 10px;" +
-            //                        "text-align: center;" +
-            //                        "box-shadow: 0px 5px 30px 0px rgba(31, 35, 37, 0.15); background-color: #fcecfa;padding - bottom: 10px;border: 1px solid #ddd;border - radius: 10px;";
-
-            //var mailCardSyle = "display: flex;" +
-            //                   "justify-content:center;" +
-            //                   "flex-direction:column;" +
-            //                   "margin: 5px";
-
-            //var mailMainSyle = "margin: 10px; font-size: 14px;";
-
-            message = $"<h2>Вас приветствует Alleutina Shop.</h2>" +
-                      $"<p>{message}</p>";
-            return message;
-        }
+        }  
     }
 }

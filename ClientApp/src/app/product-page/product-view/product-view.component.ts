@@ -46,16 +46,21 @@ export class ProductViewComponent implements OnInit {
       data: {
         productName: this.product.name,
         imageUrl: this.product.imageUrl,
+        productPrice: this.product.price,
         checkAvailability: false,
-        checkPrice: false
+        checkPrice: false,
+        name: "",
+        telephone: "",
+        email: ""
       }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-      if(result != null) {        
-        this.emailService
-        this.toastrService.success("Email sent!");
+      if(result != null) {  
+        this.feedbackForm = result;
+        this.emailService.SendYourselfEmail(this.feedbackForm).subscribe(res => {
+          this.toastrService.success("Email sent!");
+        }, error => this.toastrService.error(error.error.title));        
       }
     });
   }

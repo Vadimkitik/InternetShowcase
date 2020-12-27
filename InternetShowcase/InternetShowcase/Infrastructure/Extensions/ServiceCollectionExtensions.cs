@@ -17,6 +17,7 @@ using InternetShowcase.Features.Roles;
 using InternetShowcase.Infrastructure.Services;
 using InternetShowcase.Infrastructure.MappingProfiles;
 using InternetShowcase.Features.Categories;
+using InternetShowcase.Features.SendEmails;
 
 namespace InternetShowcase.Infrastructure.Extensions
 {
@@ -93,7 +94,8 @@ namespace InternetShowcase.Infrastructure.Extensions
                 .AddScoped<ICurrentUserService, CurrentUserService>()
                 .AddTransient<IUsersService, UsersService>()
                 .AddTransient<IRolesService, RolesService>()
-                .AddTransient<IEmailService, EmailService>();  
+                .AddTransient<IEmailService, EmailService>()
+                .AddTransient<ISendEmailsService, SendEmailsService>(); 
 
         public static IServiceCollection AddConfigure(this IServiceCollection services)
         {

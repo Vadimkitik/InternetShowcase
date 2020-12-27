@@ -8,11 +8,11 @@ import { FeedbackForm } from '../models/feedbackForm.model';
 @Injectable()
 export class EmailService {
 
-    private url = environment.apiUrl + 'sendEmail';
+    private sendYourselfUrl = environment.apiUrl + 'SendEmails/SendYourselfEmail';
 
     constructor(private http: HttpClient) {}
     
     public SendYourselfEmail(feedbackForm: FeedbackForm): Observable<any>{
-        return this.http.post(this.url, feedbackForm);
+        return this.http.post(this.sendYourselfUrl, feedbackForm);
     }
 }

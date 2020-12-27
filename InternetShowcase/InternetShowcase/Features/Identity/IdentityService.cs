@@ -46,7 +46,7 @@ namespace InternetShowcase.Features.Identity
         public async Task<Result> ConfirmForgotPasswordEmail(string email, string callbackUrl)
         {
             var result = await emailService.SendEmailAsync(email, "Reset Password",
-                    $"Для сброса пароля пройдите по ссылке: <a href='{callbackUrl}'>{callbackUrl}</a>");
+                    $"<h2>Вас приветствует Alleutina Shop.</h2><p>Для сброса пароля пройдите по ссылке: <a href='{callbackUrl}'>{callbackUrl}</a></p>");
             if (result.Failure)
             {
                 return result.Error;
@@ -57,7 +57,7 @@ namespace InternetShowcase.Features.Identity
         public async Task<Result> ConfirmRegisterEmail(string email, string callbackUrl)
         {
             var result = await emailService.SendEmailAsync(email, "Confirm your account",
-                    $"Подтвердите регистрацию, перейдя по ссылке: <a href='{callbackUrl}'>{callbackUrl}</a>");
+                    $"<h2>Вас приветствует Alleutina Shop.</h2><p>Подтвердите регистрацию, перейдя по ссылке: <a href='{callbackUrl}'>{callbackUrl}</a></p>");
             if (result.Failure)
             {
                 return result.Error;

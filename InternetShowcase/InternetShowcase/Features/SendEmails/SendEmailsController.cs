@@ -1,5 +1,4 @@
 ﻿using InternetShowcase.Features.SendEmails.Models;
-using InternetShowcase.Infrastructure.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -7,26 +6,27 @@ namespace InternetShowcase.Features.SendEmails
 {
     public class SendEmailsController : ApiController
     {
-        private readonly IEmailService _emailService;
+        private readonly ISendEmailsService _sendEmailsService;
 
-        public SendEmailsController(IEmailService emailService)
+        public SendEmailsController(ISendEmailsService sendEmailsService)
         {
-            _emailService = emailService;
+            _sendEmailsService = sendEmailsService;
         }
 
         [HttpPost]
-        public async Task<IActionResult> SendEmail(FeedbackFormRequestModel model)
+        [Route(nameof(SendYourselfEmail))]
+        public async Task<IActionResult> SendYourselfEmail(FeedbackFormRequestModel model)
         {
             if (ModelState.IsValid)
             {
-                var result = await _emailService.SendEmailAsync(model.Email, model.Subject, model.Message);
+                var result = await _sendEmailsService.SendYourselfEmail(model);
                 if (result.Failure)
                 {
                     return BadRequest(result.Error);
                 }
                 return Ok(result.Succeeded);
             }
-            return BadRequest();
+            return BadRequest("Вы не заполнили обязательные поля");
         }
     }
 }
