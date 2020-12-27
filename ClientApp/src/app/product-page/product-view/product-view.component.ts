@@ -21,6 +21,7 @@ export interface DialogData {
 })
 export class ProductViewComponent implements OnInit {
 
+  
   productLine: string;
   product: Product;
   loaded: boolean = false;
@@ -39,6 +40,7 @@ export class ProductViewComponent implements OnInit {
   }
   
   openDialog(): void {
+    
     const dialogRef = this.dialog.open(DialogOverviewformComponent, {
       width: '780px',
       data: {

@@ -2,7 +2,7 @@
 
 namespace InternetShowcase.Features.SendEmails.Models
 {
-    public class SendMailRequestModel
+    public class FeedbackFormRequestModel
     {
         [Required]
         [EmailAddress]

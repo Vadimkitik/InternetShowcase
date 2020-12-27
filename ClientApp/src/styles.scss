@@ -877,6 +877,20 @@ FOOTER
     #sub-menu>li>ul {
         top: 24px;
     }
+
+    .button-outline{
+        width: 256px;
+        font-size: 14px;
+    }
+    
+  .modal-text-cont {
+    display: none;
+  }   
+  .info-form {
+    width: 100%;
+    padding-right: 20px;
+    margin-left: 0px;
+  } 
 }
 
 @media (max-width: 780px) {
@@ -891,9 +905,6 @@ FOOTER
     height: 185px;
     font-size: 16px;
     top: 94px;
-  }
-  .modal-text-cont {
-    display: none;
   }
 }
 

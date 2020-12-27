@@ -15,7 +15,7 @@ namespace InternetShowcase.Features.SendEmails
         }
 
         [HttpPost]
-        public async Task<IActionResult> SendEmail(SendMailRequestModel model)
+        public async Task<IActionResult> SendEmail(FeedbackFormRequestModel model)
         {
             if (ModelState.IsValid)
             {
