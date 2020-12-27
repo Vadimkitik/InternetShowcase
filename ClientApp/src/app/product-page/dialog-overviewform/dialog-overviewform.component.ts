@@ -14,13 +14,11 @@ export interface DialogData {
 })
 export class DialogOverviewformComponent {
 
-  feedbackForm: FeedbackForm;
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewformComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+    @Inject(MAT_DIALOG_DATA) public feedbackForm: FeedbackForm) {}
 
   onNoClick(): void {
     this.dialogRef.close();
   }
-
 }

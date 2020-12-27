@@ -1,10 +1,10 @@
 <div class="modal-text-cont">
   <div class="cover-collection">
     <div class="cover-img">
-      <img src="https://localhost:5001/Resources/images/photo5390848147858763709.jpg">
+      <img src="{{feedbackForm.imageUrl}}">
     </div>
     <h2 class="cover-title">
-      Product Name
+      {{ feedbackForm.productName }}
     </h2>
   </div>
 </div>
@@ -13,25 +13,26 @@
   <div mat-dialog-content>
     <mat-form-field>
       <mat-label>Имя</mat-label>
-      <input matInput [(ngModel)]="data.animal">
+      <input matInput [(ngModel)]="feedbackForm.name">
     </mat-form-field>
     <mat-form-field>
       <mat-label>Телефон</mat-label>
-      <input matInput required [(ngModel)]="data.animal">
+      <input matInput required [(ngModel)]="feedbackForm.telephone">
     </mat-form-field>
     <mat-form-field>
       <mat-label>Email</mat-label>
-      <input matInput [(ngModel)]="data.animal">
+      <input matInput [(ngModel)]="feedbackForm.email">
     </mat-form-field>
     <section class="example-section">
-      <mat-checkbox class="example-margin" #roleCheck>Запросить наличие</mat-checkbox>
+      <mat-checkbox class="example-margin" [(ngModel)]="feedbackForm.checkAvailability" #roleCheck>Запросить наличие</mat-checkbox>
     </section>
     <section class="example-section">
-      <mat-checkbox class="example-margin" #roleCheck>Запросить цену</mat-checkbox>
+      <mat-checkbox class="example-margin" [(ngModel)]="feedbackForm.checkPrice" #roleCheck>Запросить цену</mat-checkbox>
     </section>
     <mat-form-field [style.fontSize]="16" class="">
       <mat-label>Поле для примичания, вы можете задать вопрос</mat-label>
       <textarea matInput
+                [(ngModel)]="feedbackForm.message"
                 cdkTextareaAutosize
                 #autosize="cdkTextareaAutosize"
                 cdkAutosizeMinRows="1"
@@ -40,6 +41,6 @@
   </div>
   <div mat-dialog-actions>
     <button mat-stroked-button (click)="onNoClick()" color="warn">Закрыть</button>
-    <button mat-stroked-button [mat-dialog-close]="data.animal" color="primary" cdkFocusInitial>Отправить</button>
+    <button mat-stroked-button [mat-dialog-close]="feedbackForm" color="primary" cdkFocusInitial>Отправить</button>
   </div>
 </div>

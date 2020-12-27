@@ -17,6 +17,7 @@ import { RolesService} from './services/roles.service';
 import { TokenIntersepterService } from './services/intersepters/token-intersepter.service';
 import { ErrorIntersepterService } from './services/intersepters/error-intersepter.service';
 import { UserValidateService } from './services/userValidate.service';
+import { EmailService } from './services/email.service';
 
 @NgModule({
     imports: [
@@ -28,6 +29,7 @@ import { UserValidateService } from './services/userValidate.service';
         ProductService, 
         UsersService,
         AuthService,
+        EmailService,
         AuthGuard,
         AdminGuard,
         ManagerGuard,

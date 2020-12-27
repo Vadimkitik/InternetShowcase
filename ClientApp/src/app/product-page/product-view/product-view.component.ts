@@ -6,6 +6,8 @@ import { Product } from 'src/app/shared/models/product.model';
 import { FeedbackForm } from 'src/app/shared/models/feedbackForm.model';
 import { ProductService } from 'src/app/shared/services/product.service';
 import { DialogOverviewformComponent } from '../dialog-overviewform/dialog-overviewform.component';
+import { EmailService } from 'src/app/shared/services/email.service';
+import { ToastrService } from 'ngx-toastr';
 
 export interface DialogData {
   animal: string;
@@ -24,14 +26,14 @@ export class ProductViewComponent implements OnInit {
   loaded: boolean = false;
   oldPrice: boolean = false;
   public errorMsg;
-  animal: string;
-  name: string;
   feedbackForm: FeedbackForm;
 
   constructor(
-    public productService: ProductService,
-    activeRoute: ActivatedRoute,
-    public dialog: MatDialog
+    private productService: ProductService,
+    private activeRoute: ActivatedRoute,
+    private dialog: MatDialog,
+    private emailService: EmailService,
+    private toastrService: ToastrService
   ) { 
     this.productLine = activeRoute.snapshot.params["productLine"];
   }
@@ -39,12 +41,20 @@ export class ProductViewComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogOverviewformComponent, {
       width: '780px',
-      data: {name: this.name, animal: this.animal}
+      data: {
+        productName: this.product.name,
+        imageUrl: this.product.imageUrl,
+        checkAvailability: false,
+        checkPrice: false
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.animal = result;
+      console.log(result);
+      if(result != null) {        
+        this.emailService
+        this.toastrService.success("Email sent!");
+      }
     });
   }
 
