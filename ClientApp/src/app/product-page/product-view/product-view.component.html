@@ -3,7 +3,7 @@
     <div class="container">
         <div class="errorOrNot" *ngIf="errorMsg">
             <h1>{{ errorMsg }}</h1>
-            <a [routerLink]="'/'" class="button-outline">продолжить</a>
+            <button [routerLink]="'/'" class="button-outline">продолжить</button>
         </div>
         <div class="row" *ngIf="loaded">
             <div class="col-md-12">

@@ -1,7 +1,7 @@
 ﻿<h1 class="h1-line" *ngIf="categoryName"><span>{{categoryName}}</span></h1>
 <div class="errorOrNot" *ngIf="errorMsg">
     <h1>{{ errorMsg }}</h1>
-    <a [routerLink]="'/'" class="button-outline">продолжить</a>
+    <button [routerLink]="'/'" class="button-outline">продолжить</button>
 </div>
 <div class="section" *ngIf="loaded">
     <div class="container">
