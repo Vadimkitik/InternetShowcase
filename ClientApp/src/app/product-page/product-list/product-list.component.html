@@ -25,8 +25,12 @@
                         <span *ngIf="product.oldPrice">{{ product.oldPrice}} BYN</span>
                         {{ product.price}} BYN
                     </div>
-                    <a [routerLink]="['/product', product.productLine]" class="card__button card__button_nal">Уточнить
-                        цену</a>
+                    <div class="card__button-discription">
+                        <a [routerLink]="['/product', product.productLine]"
+                           class="card__button card__button_nal"
+                           >Подробнее
+                        </a>
+                    </div>                    
                 </div>
             </div>
             <!--//col-md-3-->
