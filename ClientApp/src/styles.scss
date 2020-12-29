@@ -913,6 +913,24 @@ FOOTER
     font-size: 16px;
     top: 94px;
   }
+  .card__title {
+    font-size: 20px;
+  }
+  .card__price {
+    font-size: 17px;
+  }
+  .card__button_nal {
+    font-family: "Lora", sans-serif;
+    width: 221px;
+    height: 31px;
+    font-size: 17px;
+    letter-spacing: 8px;
+    padding: 7px;
+    font-weight: 600;
+    }
+    .card__image img {
+        width: 100%;
+    }
 }
 
 @media (max-width: 480px) {
