@@ -480,7 +480,7 @@ PRODUCT DESCRIPTION
 }
 
 .product__info-price {
-    margin-bottom: 18px
+    margin-bottom: 6px
 }
 
 .button-outline {
@@ -851,7 +851,7 @@ FOOTER
         margin-right: 0px;
         font-weight: 400;
         padding: 0px 0 0px;
-        border-bottom: 0px;
+        border: 0px;
     }
     .card__button {
         font-size: 13px;
@@ -913,29 +913,41 @@ FOOTER
     font-size: 16px;
     top: 94px;
   }
-  .card__title {
-    font-size: 20px;
-  }
-  .card__price {
-    font-size: 17px;
-  }
-  .card__button_nal {
-    font-family: "Lora", sans-serif;
-    width: 221px;
-    height: 31px;
-    font-size: 17px;
-    letter-spacing: 8px;
-    padding: 7px;
-    font-weight: 600;
-   }
-   .card__image img {
-       width: 100%;
-   }
+  
 
+}
+@media (max-width: 550px)
+{
+   .product__image {
+       width: 350px;
+   }
 }
 
 @media (max-width: 480px) {
-    
+    .card__title {
+        font-size: 20px;
+      }
+      .card__price {
+        font-size: 17px;
+      }
+      .card__button_nal {
+        font-family: "Lora", sans-serif;
+        width: 221px;
+        height: 31px;
+        font-size: 17px;
+        letter-spacing: 8px;
+        padding: 7px;
+        font-weight: 600;
+       }
+       .card__image img {
+           width: 100%;
+       }
+       .product__image {
+        width: 300px;
+       }
+       .product__info-block {
+        width: 300px;
+       }
 }
 
 @media (max-width: 320px) {
