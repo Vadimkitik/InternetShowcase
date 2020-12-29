@@ -30,7 +30,6 @@ export class ProductsComponent implements OnInit {
   dataSource: MatTableDataSource<Product>;
   columnsToDisplay = [ 
     'name', 
-    'productLine', 
     'price', 
     'oldPrice', 
     'isFavourite',

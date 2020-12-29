@@ -58,8 +58,9 @@ table, .mat-form-field, mat-paginator {
     padding: 16px;
     word-break: break-word;
     width: 70%;
+    font-weight: 600;
   }
   
   .example-element-description-attribution {
-    opacity: 0.5;
+    opacity: 0.8;
   }
