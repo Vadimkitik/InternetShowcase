@@ -165,6 +165,10 @@ HEADER
     justify-content: space-between;
     margin-bottom: 3px;
 }
+.header-social {
+    display: flex;
+}
+
 .header-social h6 { 
     font-family: 'Lora', serif;   
     font-size: 16px;
@@ -800,6 +804,9 @@ FOOTER
         font-family: 'Lora', serif;
         font-size: 14px;
     }
+    .header-social_address {
+        max-width: 253px;
+    }
     .header-phone .header-phonei-item {
         margin: 6px 0;
         line-height: 26px;
@@ -904,18 +911,34 @@ FOOTER
 }
 
 @media (max-width: 780px) {
-  .header {
-    height: 315px;
-    overflow: hidden;
-    margin-bottom: 15px;
-    position: relative;
-  }
-  .logo {
-    width: 185px;
+    .container {
+        width: 85%;
+    }
+
+   .header {
+     height: 315px;
+     overflow: hidden;
+     margin-bottom: 15px;
+     position: relative;
+   }
+
+   .clearfix, .header-social {
+     flex-direction: column;
+   }
+ 
+   .logo {
+     width: 185px;
     height: 185px;
     font-size: 16px;
     top: 94px;
-  }
+   }
+
+   .blog__title {
+     max-width: 350px;
+   }
+   .blog img {
+     width: 350px;
+   }
   .contact-address-cont {
     flex-direction: column;
    }
@@ -928,9 +951,21 @@ FOOTER
   }
   .under-footer-address-text {
     font-size: 20px;
-  }
-  
+  }  
 }
+
+@media (max-width: 767px){
+    .card__button_nal {
+        font-family: "Lora", sans-serif;
+        width: 221px;
+        height: 31px;
+        font-size: 17px;
+        letter-spacing: 8px;
+        padding: 7px;
+        font-weight: 600;
+    }
+}
+
 @media (max-width: 550px)
 {
    .product__image {
@@ -948,15 +983,7 @@ FOOTER
       .card__price {
         font-size: 17px;
       }
-      .card__button_nal {
-        font-family: "Lora", sans-serif;
-        width: 221px;
-        height: 31px;
-        font-size: 17px;
-        letter-spacing: 8px;
-        padding: 7px;
-        font-weight: 600;
-       }
+      
        .card__image img {
            width: 100%;
        }
