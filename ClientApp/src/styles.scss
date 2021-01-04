@@ -967,6 +967,18 @@ FOOTER
     }
 }
 
+@media (max-width: 605px)
+{
+    .header-social_networks h6{
+        display: none;
+    }    
+    .header-social_networks {
+        padding-top: 5px;
+   }
+   .header-social a:last-child {
+        margin-right: 0px;
+   }
+}
 @media (max-width: 550px)
 {
    .product__image {
@@ -975,6 +987,7 @@ FOOTER
    .contact-address-item__map iframe {
     width: 350px;
    }
+   
 }
 
 @media (max-width: 480px) {
@@ -993,9 +1006,13 @@ FOOTER
        }
        .product__info-block {
         width: 300px;
-       }
-       
-      
+       }   
+}
+
+@media (max-width: 390px) {
+    .header-phone {
+        display: none;
+    }
 }
 
 @media (max-width: 320px) {
