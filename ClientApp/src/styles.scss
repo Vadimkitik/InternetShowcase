@@ -918,9 +918,13 @@ FOOTER
      margin-bottom: 15px;
      position: relative;
    }
-
-   .clearfix, .header-social {
-     flex-direction: column;
+   
+   .navbar {
+    display: none;
+   }
+   
+   .header_img {
+    top: 0px;
    }
  
    .logo {
