@@ -892,12 +892,15 @@ FOOTER
     
   .modal-text-cont {
     display: none;
-  }   
+  }  
+
   .info-form {
     width: 100%;
     padding-right: 20px;
     margin-left: 0px;
-  } 
+  }
+   
+  
 }
 
 @media (max-width: 780px) {
@@ -913,8 +916,19 @@ FOOTER
     font-size: 16px;
     top: 94px;
   }
-  
-
+  .contact-address-cont {
+    flex-direction: column;
+   }
+   .page-header p {
+    font-size: 14px;
+   } 
+   .contact-address-item {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+  .under-footer-address-text {
+    font-size: 20px;
+  }
 }
 @media (max-width: 550px)
 {
@@ -948,6 +962,7 @@ FOOTER
        .product__info-block {
         width: 300px;
        }
+      
 }
 
 @media (max-width: 320px) {
