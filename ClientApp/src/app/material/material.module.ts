@@ -13,6 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 const MaterialComponents =[
   MatIconModule,
@@ -27,7 +28,8 @@ const MaterialComponents =[
   TextFieldModule,
   MatCheckboxModule,
   MatMenuModule,
-  MatDialogModule
+  MatDialogModule,
+  MatSidenavModule
 ];
 
 @NgModule({
