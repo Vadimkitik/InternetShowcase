@@ -929,11 +929,15 @@ FOOTER
   .under-footer-address-text {
     font-size: 20px;
   }
+  
 }
 @media (max-width: 550px)
 {
    .product__image {
        width: 350px;
+   }
+   .contact-address-item__map iframe {
+    width: 350px;
    }
 }
 
@@ -962,9 +966,12 @@ FOOTER
        .product__info-block {
         width: 300px;
        }
+       
       
 }
 
 @media (max-width: 320px) {
-    
+    .contact-address-item__map iframe {
+        width: 289px;
+    }
 }
