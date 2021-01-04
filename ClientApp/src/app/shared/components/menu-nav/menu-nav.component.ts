@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'menu-nav',
   templateUrl: './menu-nav.component.html',
   styleUrls: ['./menu-nav.component.css']
 })
-export class MenuNavComponent implements OnInit {
+export class MenuNavComponent{
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  showFiller = false;
 
 }

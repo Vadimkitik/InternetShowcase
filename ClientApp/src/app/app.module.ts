@@ -11,6 +11,7 @@ import { SharedModule } from './shared/shared.module';
 import { ShopComponent } from './shop/shop.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
+import { MenuNavComponent } from './shared/components/menu-nav/menu-nav.component';
 import { ProductsModule } from './product-page/products.module';
 import { MainPageComponent } from './main-page/main-page.component';
 import { ToastrModule } from 'ngx-toastr/';;
@@ -23,9 +24,9 @@ export function tokenGetter(){
 @NgModule({
     imports: [
         BrowserModule,
+        MaterialModule,
         BrowserAnimationsModule,
         ToastrModule.forRoot(),
-        MaterialModule,
         SharedModule,
         ProductsModule,
         HttpClientModule,
@@ -42,9 +43,10 @@ export function tokenGetter(){
         [
             AppComponent,
             ShopComponent,
+            MenuNavComponent,
             HeaderComponent,
             FooterComponent,
-            MainPageComponent,
+            MainPageComponent,
             TestPageComponent
         ],
     

@@ -18,7 +18,7 @@ import { TokenIntersepterService } from './services/intersepters/token-intersept
 import { ErrorIntersepterService } from './services/intersepters/error-intersepter.service';
 import { UserValidateService } from './services/userValidate.service';
 import { EmailService } from './services/email.service';
-import { MenuNavComponent } from './components/menu-nav/menu-nav.component';
+
 
 @NgModule({
     imports: [
@@ -50,7 +50,7 @@ import { MenuNavComponent } from './components/menu-nav/menu-nav.component';
             multi: true
         }        
     ],
-    declarations: [NotFoundComponent, MenuNavComponent],
+    declarations: [NotFoundComponent],
     exports: [ReactiveFormsModule, FormsModule]
 })
 export class SharedModule {}
