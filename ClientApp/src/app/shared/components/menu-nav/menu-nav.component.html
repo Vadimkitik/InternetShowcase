@@ -1,23 +1,22 @@
 <mat-drawer-container class="example-container" autosize>
     <mat-drawer #drawer class="example-sidenav" mode="over">
-      <a [routerLink]="[ '/' ]" (click)="drawer.toggle()">Главная</a>
-      <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
+      <!-- <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
       <button (click)="showFiller = !showFiller" mat-raised-button>
         Toggle extra text
-      </button>
-      <ul class="nav" id="sub-menu">
-        <li><span><a [routerLink]="'/'">Главная</a></span></li>
+      </button> -->
+      <ul class="navbar-menu">
+        <li><span><a [routerLink]="'/'" (click)="drawer.toggle()">Главная</a></span></li>
         <li *ngFor="let category of categories">
-            <span><a [routerLink]="['products/', category.line]"
-                    >{{category.name}}</a></span>
-            <ul class="nav">
+            <span><a [routerLink]="['products/', category.line]" 
+                     (click)="drawer.toggle()">{{category.name}}</a></span>
+            <ul class="navbar-menu">
                 <li *ngFor="let subCategory of category.children">
                     <span><a [routerLink]="['products/', subCategory.line]"
-                            >{{subCategory.name}}</a></span>
-                    <ul class="nav">
+                             (click)="drawer.toggle()">{{subCategory.name}}</a></span>
+                    <ul class="navbar-menu">
                         <li *ngFor="let underSubCategory of subCategory.children">
                             <span><a [routerLink]="['products/', underSubCategory.line]"
-                                    >{{underSubCategory.name}}
+                                     (click)="drawer.toggle()">{{underSubCategory.name}}
                                 </a>
                             </span>
                         </li>
@@ -25,9 +24,8 @@
                 </li>
             </ul>
         </li>
-        <li><span><a [routerLink]="'/shop'">Магазин</a></span></li>
+        <li><span><a [routerLink]="'/shop'" (click)="drawer.toggle()">Магазин</a></span></li>
     </ul>
-      <a [routerLink]="[ '/shop' ]" (click)="drawer.toggle()">О магазине</a>
     </mat-drawer>
     <!--SOCIAL-->
     <div class="social">
