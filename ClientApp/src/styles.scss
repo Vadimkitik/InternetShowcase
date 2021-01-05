@@ -825,6 +825,9 @@ FOOTER
     .card__title {
         font-size: 16px;
     }
+    .card__hover{
+        font-size: 21px;
+    }
     img {
         max-width: 100%;
     }
@@ -953,6 +956,9 @@ FOOTER
   .under-footer-address-text {
     font-size: 20px;
   }  
+  .card__hover{
+    font-size: 18px;
+  }
 }
 
 @media (max-width: 767px){
@@ -964,6 +970,9 @@ FOOTER
         letter-spacing: 8px;
         padding: 7px;
         font-weight: 600;
+    }
+    .card__hover{
+        font-size: 60px;
     }
 }
 
@@ -986,6 +995,10 @@ FOOTER
    }
    .contact-address-item__map iframe {
     width: 350px;
+   }
+
+   .card__hover {
+      font-size: 45px;
    }
    
 }
@@ -1013,10 +1026,14 @@ FOOTER
     .header-phone {
         display: none;
     }
+    .card__hover {
+        font-size: 30px;
+    }
 }
 
 @media (max-width: 320px) {
     .contact-address-item__map iframe {
         width: 289px;
     }
+    
 }
