@@ -1,0 +1,16 @@
+.headerTitle {
+    overflow-wrap: break-word;
+    overflow: auto;
+    width: 100%;
+}
+.acc-body {
+    min-height: 30px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    line-height: 1.5rem;
+}
+.arrow {
+    font-size: 18px;
+}
+

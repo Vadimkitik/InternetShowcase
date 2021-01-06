@@ -16,13 +16,11 @@
             <a mat-list-item (click)="drawer.close()" [routerLink]="['/']">
                 Главная
             </a>
-
-
-            <mat-list-item >
-                <app-accordion>
-                    <app-accordion-item>dwadawdadwdaw</app-accordion-item>
-                </app-accordion>
-            </mat-list-item>            
+            
+            <app-accordion>
+                <app-accordion-item title="Accordion">dwadawdadwdaw</app-accordion-item>
+            </app-accordion>
+                       
 
             <a mat-list-item 
                *ngFor="let category of categories"

@@ -1,0 +1,11 @@
+<mat-list-item (click)="toggle()">
+    <div class="headerTitle">
+        {{ title}}
+    </div>
+    <div class="arrow"><mat-icon class="menu-caret">arrow_drop_down</mat-icon></div>
+</mat-list-item>
+<mat-list-item *ngIf="showBody">
+    <div class="acc-body">
+        <ng-content></ng-content>        
+    </div>
+</mat-list-item>
