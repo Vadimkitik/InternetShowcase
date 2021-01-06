@@ -1,17 +1,17 @@
 <mat-list-item>
-    <div class="headerTitle" [routerLink]="['products/', data.line]">
-        {{ data.name }}
+    <div class="headerTitle" >
+        <a [routerLink]="['products/', data.line]">{{ data.name }}</a>
     </div>
     <div class="arrow">
         <mat-icon class="menu-caret" (click)="toggle()">arrow_drop_down</mat-icon>
     </div>
 </mat-list-item>
 <mat-nav-list *ngIf="showBody">
-    <mat-list-item *ngFor="let subCategory of data.children">
+    <a mat-list-item
+       *ngFor="let subCategory of data.children"
+       [routerLink]="['products/', subCategory.line]">
         <div class="acc-body">
-            <div class="headerTitle" [routerLink]="['products/', subCategory.line]">
-                {{ subCategory.name }}
-            </div>
+            {{ subCategory.name }}
         </div>
-    </mat-list-item>
+    </a>
 </mat-nav-list>

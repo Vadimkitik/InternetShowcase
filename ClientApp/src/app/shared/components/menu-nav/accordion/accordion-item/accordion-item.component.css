@@ -3,7 +3,9 @@
     overflow: auto;
     width: 100%;
 }
-
+.headerTitle:active {
+    border: 0px;
+}
 .acc-body {
     min-height: 30px;
     padding: 10px;
@@ -11,10 +13,3 @@
     align-items: center;
     line-height: 1.5rem;
 }
-
-.example-sidenav {
-    display: flex;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
-  }
