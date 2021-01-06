@@ -4,59 +4,86 @@
       <button (click)="showFiller = !showFiller" mat-raised-button>
         Toggle extra text
       </button> -->
-        <ul class="navbar-menu">
-            <li><span><a [routerLink]="'/'" (click)="drawer.toggle()">Главная</a></span></li>
-            <li *ngFor="let category of categories">
-                <span><a [routerLink]="['products/', category.line]"
-                        (click)="drawer.toggle()">{{category.name}}</a></span>
-                <ul class="navbar-menu">
-                    <li *ngFor="let subCategory of category.children">
-                        <span><a [routerLink]="['products/', subCategory.line]"
-                                (click)="drawer.toggle()">{{subCategory.name}}</a></span>
-                        <ul class="navbar-menu">
-                            <li *ngFor="let underSubCategory of subCategory.children">
-                                <span><a [routerLink]="['products/', underSubCategory.line]"
-                                        (click)="drawer.toggle()">{{underSubCategory.name}}
-                                    </a>
-                                </span>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-            <li><span><a [routerLink]="'/shop'" (click)="drawer.toggle()">Магазин</a></span></li>
-        </ul>
+
+        <mat-toolbar>
+            <mat-toolbar-row>
+                <h2> Alleutina Shop </h2>
+            </mat-toolbar-row>
+        </mat-toolbar>
+
+        <mat-nav-list>
+
+            <a mat-list-item (click)="drawer.close()" [routerLink]="['/']">
+                Главная
+            </a>
+
+            <a mat-list-item 
+               *ngFor="let category of categories"
+               (click)="drawer.close()" 
+               [routerLink]="['products/', category.line]"
+               >
+                {{ category.name }}
+            </a>
+
+            <a mat-list-item (click)="drawer.close()" [routerLink]="['/shop']">
+                Магазин
+            </a>
+
+        </mat-nav-list>
     </mat-drawer>
     <!--SOCIAL-->
     <div class="page">
-    <div class="social">
-        <div class="container">
-            <div class="row clearfix">
-                <button type="button" mat-button (click)="drawer.toggle()" class="menu-navbar-mobile">
-                    <span class="material-icons">menu</span>
-                </button>
-                <div class="header-phone">
-                    <div class="header-phone-cont">
-                        <a class="header-phone-item mts" href="tel:+375 29 893 72 41">+375(29)-893-72-41</a>
-                        <button [routerLink]="'auth/login'" mat-flat-button color="accent"
-                            style="margin-right: 10px;display: none;">Login</button>
-                        <button [routerLink]="'/admin-panel'" mat-flat-button color="accent"
-                            style="display: none;">Admin-panel</button>
+        <div class="social">
+            <div class="container">
+                <div class="row clearfix">
+                    <button type="button" mat-button (click)="drawer.toggle()" class="menu-navbar-mobile">
+                        <span class="material-icons">menu</span>
+                    </button>
+                    <div class="header-phone">
+                        <div class="header-phone-cont">
+                            <a class="header-phone-item mts" href="tel:+375 29 893 72 41">+375(29)-893-72-41</a>
+                            <button [routerLink]="'auth/login'" mat-flat-button color="accent"
+                                style="margin-right: 10px;display: none;">Login</button>
+                            <button [routerLink]="'/admin-panel'" mat-flat-button color="accent"
+                                style="display: none;">Admin-panel</button>
+                        </div>
                     </div>
-                </div>
-                <div class="header-social">
-                    <div class="header-social_networks">
-                        <h6>Мы в соц сетях:</h6>
-                        <a href="https://www.instagram.com/alleutina_shop/" target="_blank"><i
-                                class="fab fa-instagram"></i></a>
-                        <a href="viber://chat?number=%2B375291233211" target="_blank"
-                            title="Должен быть установлен Viber для ПК"><i class="fab fa-viber"></i></a>
-                        <a href="https://t.me/NickName" target="_blank"><i class="fab fa-telegram"></i></a>
+                    <div class="header-social">
+                        <div class="header-social_networks">
+                            <h6>Мы в соц сетях:</h6>
+                            <a href="https://www.instagram.com/alleutina_shop/" target="_blank"><i
+                                    class="fab fa-instagram"></i></a>
+                            <a href="viber://chat?number=%2B375291233211" target="_blank"
+                                title="Должен быть установлен Viber для ПК"><i class="fab fa-viber"></i></a>
+                            <a href="https://t.me/NickName" target="_blank"><i class="fab fa-telegram"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <ng-content></ng-content>
+        <ng-content></ng-content>
     </div>
 </mat-drawer-container>
+
+
+<!-- <ul class="navbar-menu">
+    <li><span><a [routerLink]="'/'" (click)="drawer.toggle()">Главная</a></span></li>
+    <li *ngFor="let category of categories">
+        <span><a [routerLink]="['products/', category.line]" (click)="drawer.toggle()">{{category.name}}</a></span>
+        <ul class="navbar-menu">
+            <li *ngFor="let subCategory of category.children">
+                <span><a [routerLink]="['products/', subCategory.line]"
+                        (click)="drawer.toggle()">{{subCategory.name}}</a></span>
+                <ul class="navbar-menu">
+                    <li *ngFor="let underSubCategory of subCategory.children">
+                        <span><a [routerLink]="['products/', underSubCategory.line]"
+                                (click)="drawer.toggle()">{{underSubCategory.name}}
+                            </a>
+                        </span>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li><span><a [routerLink]="'/shop'" (click)="drawer.toggle()">Магазин</a></span></li>
+</ul> -->
