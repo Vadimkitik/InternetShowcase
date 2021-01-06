@@ -16,6 +16,8 @@ import { ProductsModule } from './product-page/products.module';
 import { MainPageComponent } from './main-page/main-page.component';
 import { ToastrModule } from 'ngx-toastr/';;
 import { TestPageComponent } from './test-page/test-page.component'
+import { AccordionComponent } from './shared/components/accordion/accordion.component';
+import { AccordionItemComponent } from './shared/components/accordion/accordion-item/accordion-item.component';
 
 export function tokenGetter(){
     return localStorage.getItem("jwt");
@@ -47,7 +49,9 @@ export function tokenGetter(){
             HeaderComponent,
             FooterComponent,
             MainPageComponent,
-            TestPageComponent
+            TestPageComponent,
+            AccordionComponent, 
+            AccordionItemComponent
         ],
     
     bootstrap: [AppComponent]

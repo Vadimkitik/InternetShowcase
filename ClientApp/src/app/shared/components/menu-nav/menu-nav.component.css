@@ -8,9 +8,9 @@
     justify-content: center;
   }
   
-  .menu-navbar-mobile {
+  /* .menu-navbar-mobile {
     display: none;
-  }
+  } */
 
   @media (max-width: 780px) {
     .menu-navbar-mobile {

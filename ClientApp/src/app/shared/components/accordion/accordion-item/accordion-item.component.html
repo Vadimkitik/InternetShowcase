@@ -1,0 +1,11 @@
+<div (click)="toggle()">
+    <div class="headerTitle">
+        {{ title}}
+    </div>
+    <mat-icon class="menu-caret">arrow_drop_down</mat-icon>
+</div>
+<div *ngIf="showBody">
+    <div class="acc-body">
+        <ng-content></ng-content>        
+    </div>
+</div>

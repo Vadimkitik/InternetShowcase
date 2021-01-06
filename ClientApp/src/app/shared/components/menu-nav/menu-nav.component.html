@@ -17,12 +17,19 @@
                 Главная
             </a>
 
+
+            <mat-list-item >
+                <app-accordion>
+                    <app-accordion-item>dwadawdadwdaw</app-accordion-item>
+                </app-accordion>
+            </mat-list-item>            
+
             <a mat-list-item 
                *ngFor="let category of categories"
                (click)="drawer.close()" 
                [routerLink]="['products/', category.line]"
                >
-                {{ category.name }}
+                {{ category.name }}<mat-icon class="menu-caret">arrow_drop_down</mat-icon>
             </a>
 
             <a mat-list-item (click)="drawer.close()" [routerLink]="['/shop']">
