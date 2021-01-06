@@ -7,16 +7,18 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class AccordionItemComponent implements OnInit {
 
-  @Input() title: string;
+  @Input() data: 
+  { name: string, 
+    line: string, 
+    children: []
+  };
   showBody = false;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   toggle() {
     this.showBody = !this.showBody;
   }
-
 }

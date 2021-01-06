@@ -1,40 +1,31 @@
 <mat-drawer-container class="example-container" autosize>
     <mat-drawer #drawer class="example-sidenav" mode="over">
-        <!-- <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
-      <button (click)="showFiller = !showFiller" mat-raised-button>
-        Toggle extra text
-      </button> -->
 
         <mat-toolbar>
             <mat-toolbar-row>
                 <h2> Alleutina Shop </h2>
             </mat-toolbar-row>
         </mat-toolbar>
-
+        
         <mat-nav-list>
-
-            <a mat-list-item (click)="drawer.close()" [routerLink]="['/']">
-                Главная
-            </a>
-            
-            <app-accordion>
-                <app-accordion-item title="Accordion">dwadawdadwdaw</app-accordion-item>
+            <a mat-list-item
+              (click)="drawer.close()"
+              [routerLink]="['/']"
+              >Главная
+            </a>            
+            <app-accordion *ngFor="let category of categories">
+                <app-accordion-item 
+                    [data]="{name:category.name, line:category.line, children:category.children}"
+                    >
+                </app-accordion-item>
             </app-accordion>
-                       
-
             <a mat-list-item 
-               *ngFor="let category of categories"
                (click)="drawer.close()" 
-               [routerLink]="['products/', category.line]"
-               >
-                {{ category.name }}<mat-icon class="menu-caret">arrow_drop_down</mat-icon>
+               [routerLink]="['/shop']"
+               >Магазин
             </a>
-
-            <a mat-list-item (click)="drawer.close()" [routerLink]="['/shop']">
-                Магазин
-            </a>
-
         </mat-nav-list>
+
     </mat-drawer>
     <!--SOCIAL-->
     <div class="page">
@@ -69,26 +60,3 @@
         <ng-content></ng-content>
     </div>
 </mat-drawer-container>
-
-
-<!-- <ul class="navbar-menu">
-    <li><span><a [routerLink]="'/'" (click)="drawer.toggle()">Главная</a></span></li>
-    <li *ngFor="let category of categories">
-        <span><a [routerLink]="['products/', category.line]" (click)="drawer.toggle()">{{category.name}}</a></span>
-        <ul class="navbar-menu">
-            <li *ngFor="let subCategory of category.children">
-                <span><a [routerLink]="['products/', subCategory.line]"
-                        (click)="drawer.toggle()">{{subCategory.name}}</a></span>
-                <ul class="navbar-menu">
-                    <li *ngFor="let underSubCategory of subCategory.children">
-                        <span><a [routerLink]="['products/', underSubCategory.line]"
-                                (click)="drawer.toggle()">{{underSubCategory.name}}
-                            </a>
-                        </span>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </li>
-    <li><span><a [routerLink]="'/shop'" (click)="drawer.toggle()">Магазин</a></span></li>
-</ul> -->

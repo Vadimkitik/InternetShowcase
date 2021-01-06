@@ -3,6 +3,7 @@
     overflow: auto;
     width: 100%;
 }
+
 .acc-body {
     min-height: 30px;
     padding: 10px;
@@ -10,7 +11,10 @@
     align-items: center;
     line-height: 1.5rem;
 }
-.arrow {
-    font-size: 18px;
-}
 
+.example-sidenav {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+  }
