@@ -2,11 +2,11 @@
     <div class="headerTitle" (click)="closeDrawer(true, data.line)">
         <a>{{ data.name }}</a>
     </div>
-    <div class="arrow">
+    <div class="arrow" [@rotatedState]="!showBody? 'default' : 'rotated'">
         <mat-icon class="menu-caret" (click)="toggle()">arrow_drop_down</mat-icon>
     </div>
 </mat-list-item>
-<mat-nav-list *ngIf="showBody">
+<mat-nav-list [@smoothCollapse]="!showBody? 'initial' : 'final'">
     <a mat-list-item
        *ngFor="let subCategory of data.children"
        (click)="closeDrawer(true, subCategory.line)">
