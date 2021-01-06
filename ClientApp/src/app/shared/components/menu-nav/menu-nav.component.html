@@ -13,8 +13,8 @@
               [routerLink]="['/']"
               >Главная
             </a>            
-            <app-accordion *ngFor="let category of categories">
-                <app-accordion-item 
+            <app-accordion *ngFor="let category of categories" >
+                <app-accordion-item  (closeDrawerEvent)="$event? drawer.close(): ''"
                     [data]="{name:category.name, line:category.line, children:category.children}"
                     >
                 </app-accordion-item>

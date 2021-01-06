@@ -23,5 +23,5 @@ export class MenuNavComponent implements OnInit{
       this.categories = this.treeService.list_to_tree(data);
       console.log(this.categories);
     })
-   } 
+   }
 }
