@@ -1007,7 +1007,20 @@ FOOTER
    }
 
    .card__hover {
-      font-size: 45px;
+        font-size: 45px;
+   }
+
+   .header {
+        height: 200px;
+    }
+   .logo {
+        width: 140px;
+        height: 140px;
+        font-size: 10px;
+        top: 34px;
+   }
+   .logo h2 {
+        font-size: 16px;
    }
    
 }
