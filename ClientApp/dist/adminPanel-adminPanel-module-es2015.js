@@ -12,7 +12,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AdminPanelRoutingModule", function() { return AdminPanelRoutingModule; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
-/* harmony import */ var _shared_services_guards_auth_guard_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../shared/services/guards/auth-guard.service */ "./src/app/shared/services/guards/auth-guard.service.ts");
+/* harmony import */ var _shared_services_guards_admin_guard_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../shared/services/guards/admin-guard.service */ "./src/app/shared/services/guards/admin-guard.service.ts");
 /* harmony import */ var _shared_services_guards_manager_guard_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../shared/services/guards/manager-guard.service */ "./src/app/shared/services/guards/manager-guard.service.ts");
 /* harmony import */ var _adminPanel_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./adminPanel.component */ "./src/app/adminPanel/adminPanel.component.ts");
 /* harmony import */ var _categories_categories_form_categories_create_categories_create_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./categories/categories-form/categories-create/categories-create.component */ "./src/app/adminPanel/categories/categories-form/categories-create/categories-create.component.ts");
@@ -51,15 +51,15 @@ const adminRoutes = [
             { path: 'products', component: _products_products_component__WEBPACK_IMPORTED_MODULE_8__["ProductsComponent"] },
             { path: 'products/create', component: _products_product_form_product_create_product_create_component__WEBPACK_IMPORTED_MODULE_9__["ProductCreateComponent"], canActivate: [_shared_services_guards_manager_guard_service__WEBPACK_IMPORTED_MODULE_3__["ManagerGuard"]] },
             { path: 'products/edit/:productLine', component: _products_product_form_product_edit_product_edit_component__WEBPACK_IMPORTED_MODULE_10__["ProductEditComponent"], canActivate: [_shared_services_guards_manager_guard_service__WEBPACK_IMPORTED_MODULE_3__["ManagerGuard"]] },
-            { path: 'users', component: _users_users_component__WEBPACK_IMPORTED_MODULE_15__["UsersComponent"] },
-            { path: 'users/resetpassword/:email', component: _users_users_form_user_resetpassword_user_resetpassword_component__WEBPACK_IMPORTED_MODULE_16__["UserResetpasswordComponent"] },
-            { path: 'users/roles/:userId', component: _users_users_form_user_roles_user_roles_user_roles_component__WEBPACK_IMPORTED_MODULE_12__["UserRolesComponent"] },
-            { path: 'users/create', component: _users_users_form_users_create_users_create_component__WEBPACK_IMPORTED_MODULE_13__["UsersCreateComponent"] },
-            { path: 'users/edit/:email', component: _users_users_form_users_edit_users_edit_component__WEBPACK_IMPORTED_MODULE_14__["UsersEditComponent"] },
+            { path: 'users', component: _users_users_component__WEBPACK_IMPORTED_MODULE_15__["UsersComponent"], canActivate: [_shared_services_guards_admin_guard_service__WEBPACK_IMPORTED_MODULE_2__["AdminGuard"]] },
+            { path: 'users/resetpassword/:email', component: _users_users_form_user_resetpassword_user_resetpassword_component__WEBPACK_IMPORTED_MODULE_16__["UserResetpasswordComponent"], canActivate: [_shared_services_guards_admin_guard_service__WEBPACK_IMPORTED_MODULE_2__["AdminGuard"]] },
+            { path: 'users/roles/:userId', component: _users_users_form_user_roles_user_roles_user_roles_component__WEBPACK_IMPORTED_MODULE_12__["UserRolesComponent"], canActivate: [_shared_services_guards_admin_guard_service__WEBPACK_IMPORTED_MODULE_2__["AdminGuard"]] },
+            { path: 'users/create', component: _users_users_form_users_create_users_create_component__WEBPACK_IMPORTED_MODULE_13__["UsersCreateComponent"], canActivate: [_shared_services_guards_admin_guard_service__WEBPACK_IMPORTED_MODULE_2__["AdminGuard"]] },
+            { path: 'users/edit/:email', component: _users_users_form_users_edit_users_edit_component__WEBPACK_IMPORTED_MODULE_14__["UsersEditComponent"], canActivate: [_shared_services_guards_admin_guard_service__WEBPACK_IMPORTED_MODULE_2__["AdminGuard"]] },
             { path: 'categories', component: _categories_categories_component__WEBPACK_IMPORTED_MODULE_7__["CategoriesComponent"] },
             { path: 'categories/create', component: _categories_categories_form_categories_create_categories_create_component__WEBPACK_IMPORTED_MODULE_5__["CategoriesCreateComponent"], canActivate: [_shared_services_guards_manager_guard_service__WEBPACK_IMPORTED_MODULE_3__["ManagerGuard"]] },
             { path: 'categories/edit/:categoryLine', component: _categories_categories_form_categories_edit_categories_edit_component__WEBPACK_IMPORTED_MODULE_6__["CategoriesEditComponent"], canActivate: [_shared_services_guards_manager_guard_service__WEBPACK_IMPORTED_MODULE_3__["ManagerGuard"]] }
-        ], canActivate: [_shared_services_guards_auth_guard_service__WEBPACK_IMPORTED_MODULE_2__["AuthGuard"]] },
+        ] },
     { path: 'test', component: _test_json_test_json_component__WEBPACK_IMPORTED_MODULE_11__["TestJsonComponent"] }
 ];
 class AdminPanelRoutingModule {

@@ -39,9 +39,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony import */
 
 
-    var _shared_services_guards_auth_guard_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-    /*! ../shared/services/guards/auth-guard.service */
-    "./src/app/shared/services/guards/auth-guard.service.ts");
+    var _shared_services_guards_admin_guard_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! ../shared/services/guards/admin-guard.service */
+    "./src/app/shared/services/guards/admin-guard.service.ts");
     /* harmony import */
 
 
@@ -143,19 +143,24 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         canActivate: [_shared_services_guards_manager_guard_service__WEBPACK_IMPORTED_MODULE_3__["ManagerGuard"]]
       }, {
         path: 'users',
-        component: _users_users_component__WEBPACK_IMPORTED_MODULE_15__["UsersComponent"]
+        component: _users_users_component__WEBPACK_IMPORTED_MODULE_15__["UsersComponent"],
+        canActivate: [_shared_services_guards_admin_guard_service__WEBPACK_IMPORTED_MODULE_2__["AdminGuard"]]
       }, {
         path: 'users/resetpassword/:email',
-        component: _users_users_form_user_resetpassword_user_resetpassword_component__WEBPACK_IMPORTED_MODULE_16__["UserResetpasswordComponent"]
+        component: _users_users_form_user_resetpassword_user_resetpassword_component__WEBPACK_IMPORTED_MODULE_16__["UserResetpasswordComponent"],
+        canActivate: [_shared_services_guards_admin_guard_service__WEBPACK_IMPORTED_MODULE_2__["AdminGuard"]]
       }, {
         path: 'users/roles/:userId',
-        component: _users_users_form_user_roles_user_roles_user_roles_component__WEBPACK_IMPORTED_MODULE_12__["UserRolesComponent"]
+        component: _users_users_form_user_roles_user_roles_user_roles_component__WEBPACK_IMPORTED_MODULE_12__["UserRolesComponent"],
+        canActivate: [_shared_services_guards_admin_guard_service__WEBPACK_IMPORTED_MODULE_2__["AdminGuard"]]
       }, {
         path: 'users/create',
-        component: _users_users_form_users_create_users_create_component__WEBPACK_IMPORTED_MODULE_13__["UsersCreateComponent"]
+        component: _users_users_form_users_create_users_create_component__WEBPACK_IMPORTED_MODULE_13__["UsersCreateComponent"],
+        canActivate: [_shared_services_guards_admin_guard_service__WEBPACK_IMPORTED_MODULE_2__["AdminGuard"]]
       }, {
         path: 'users/edit/:email',
-        component: _users_users_form_users_edit_users_edit_component__WEBPACK_IMPORTED_MODULE_14__["UsersEditComponent"]
+        component: _users_users_form_users_edit_users_edit_component__WEBPACK_IMPORTED_MODULE_14__["UsersEditComponent"],
+        canActivate: [_shared_services_guards_admin_guard_service__WEBPACK_IMPORTED_MODULE_2__["AdminGuard"]]
       }, {
         path: 'categories',
         component: _categories_categories_component__WEBPACK_IMPORTED_MODULE_7__["CategoriesComponent"]
@@ -167,8 +172,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         path: 'categories/edit/:categoryLine',
         component: _categories_categories_form_categories_edit_categories_edit_component__WEBPACK_IMPORTED_MODULE_6__["CategoriesEditComponent"],
         canActivate: [_shared_services_guards_manager_guard_service__WEBPACK_IMPORTED_MODULE_3__["ManagerGuard"]]
-      }],
-      canActivate: [_shared_services_guards_auth_guard_service__WEBPACK_IMPORTED_MODULE_2__["AuthGuard"]]
+      }]
     }, {
       path: 'test',
       component: _test_json_test_json_component__WEBPACK_IMPORTED_MODULE_11__["TestJsonComponent"]

@@ -1543,7 +1543,7 @@ const _c0 = function (a0, a1, a2) { return { name: a0, line: a1, children: a2 };
 function MenuNavComponent_app_accordion_12_Template(rf, ctx) { if (rf & 1) {
     const _r155 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "app-accordion");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "app-accordion-item", 27);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "app-accordion-item", 26);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("closeDrawerEvent", function MenuNavComponent_app_accordion_12_Template_app_accordion_item_closeDrawerEvent_1_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r155); _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](); const _r151 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](2); return $event ? _r151.close() : ""; });
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -1569,7 +1569,7 @@ class MenuNavComponent {
     }
 }
 MenuNavComponent.ɵfac = function MenuNavComponent_Factory(t) { return new (t || MenuNavComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_category_service__WEBPACK_IMPORTED_MODULE_1__["CategoryService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_tree_service__WEBPACK_IMPORTED_MODULE_2__["TreeService"])); };
-MenuNavComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: MenuNavComponent, selectors: [["menu-nav"]], ngContentSelectors: _c3, decls: 42, vars: 7, consts: [["autosize", "", 1, "example-container"], ["mode", "over", 1, "example-sidenav"], ["drawer", ""], [1, "drawer-toolbar-header"], [1, "material-icons", 3, "click"], ["mat-list-item", "", 3, "routerLink", "click"], [4, "ngFor", "ngForOf"], [1, "page"], [1, "social"], [1, "container"], [1, "row", "clearfix"], [1, "header-social-left"], ["type", "button", "mat-button", "", 1, "menu-navbar-mobile", 3, "click"], [1, "material-icons"], [1, "header-phone"], [1, "header-phone-cont"], ["href", "tel:+375 29 893 72 41", 1, "header-phone-item", "mts"], ["mat-flat-button", "", "color", "accent", 2, "margin-right", "10px", "display", "none", 3, "routerLink"], ["mat-flat-button", "", "color", "accent", 2, "display", "none", 3, "routerLink"], [1, "header-social"], [1, "header-social_networks"], ["href", "https://www.instagram.com/alleutina_shop/", "target", "_blank"], [1, "fab", "fa-instagram"], ["href", "viber://chat?number=%2B375291233211", "target", "_blank", "title", "\u0414\u043E\u043B\u0436\u0435\u043D \u0431\u044B\u0442\u044C \u0443\u0441\u0442\u0430\u043D\u043E\u0432\u043B\u0435\u043D Viber \u0434\u043B\u044F \u041F\u041A"], [1, "fab", "fa-viber"], ["href", "https://t.me/NickName", "target", "_blank"], [1, "fab", "fa-telegram"], [3, "data", "closeDrawerEvent"]], template: function MenuNavComponent_Template(rf, ctx) { if (rf & 1) {
+MenuNavComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: MenuNavComponent, selectors: [["menu-nav"]], ngContentSelectors: _c3, decls: 42, vars: 7, consts: [["autosize", "", 1, "example-container"], ["mode", "over", 1, "example-sidenav"], ["drawer", ""], [1, "drawer-toolbar-header"], [1, "material-icons", 3, "click"], ["mat-list-item", "", 3, "routerLink", "click"], [4, "ngFor", "ngForOf"], [1, "page"], [1, "social"], [1, "container"], [1, "row", "clearfix"], [1, "header-social-left"], ["type", "button", "mat-button", "", 1, "menu-navbar-mobile", 3, "click"], [1, "material-icons"], [1, "header-phone"], [1, "header-phone-cont"], ["href", "tel:+375 29 893 72 41", 1, "header-phone-item", "mts"], ["mat-flat-button", "", "color", "accent", 3, "routerLink"], [1, "header-social"], [1, "header-social_networks"], ["href", "https://www.instagram.com/alleutina_shop/", "target", "_blank"], [1, "fab", "fa-instagram"], ["href", "viber://chat?number=%2B375291233211", "target", "_blank", "title", "\u0414\u043E\u043B\u0436\u0435\u043D \u0431\u044B\u0442\u044C \u0443\u0441\u0442\u0430\u043D\u043E\u0432\u043B\u0435\u043D Viber \u0434\u043B\u044F \u041F\u041A"], [1, "fab", "fa-viber"], ["href", "https://t.me/NickName", "target", "_blank"], [1, "fab", "fa-telegram"], [3, "data", "closeDrawerEvent"]], template: function MenuNavComponent_Template(rf, ctx) { if (rf & 1) {
         const _r156 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵprojectionDef"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "mat-drawer-container", 0);
@@ -1616,25 +1616,25 @@ MenuNavComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineC
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](27, "button", 17);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](28, "Login");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](29, "button", 18);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](29, "button", 17);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](30, "Admin-panel");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](31, "div", 19);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](32, "div", 20);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](31, "div", 18);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](32, "div", 19);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](33, "h6");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](34, "\u041C\u044B \u0432 \u0441\u043E\u0446 \u0441\u0435\u0442\u044F\u0445:");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](35, "a", 21);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](36, "i", 22);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](35, "a", 20);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](36, "i", 21);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](37, "a", 23);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](38, "i", 24);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](37, "a", 22);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](38, "i", 23);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](39, "a", 25);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](40, "i", 26);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](39, "a", 24);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](40, "i", 25);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
