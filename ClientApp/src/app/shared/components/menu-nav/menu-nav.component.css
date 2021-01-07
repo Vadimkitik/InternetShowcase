@@ -8,10 +8,13 @@
     justify-content: center;
   }
   
+  .header-social-left {
+    display: flex;
+  }
 
-  /* .menu-navbar-mobile {
+  .menu-navbar-mobile {
     display: none;
-  } */
+  }
 
   @media (max-width: 780px) {
     .menu-navbar-mobile {
