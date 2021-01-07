@@ -21,6 +21,7 @@ body{
     text-align: center;
     margin-top: 60px;
 }
+
 .errorOrNot button {
     margin-bottom: 15px;
     margin-top: 10px;
@@ -983,6 +984,10 @@ FOOTER
     .card__hover{
         font-size: 60px;
     }
+    .errorOrNot h1 {
+        font-size: 20px;
+        margin: 10px;
+    }
 }
 
 @media (max-width: 605px)
@@ -1042,6 +1047,9 @@ FOOTER
        .product__info-block {
         width: 300px;
        }   
+       .errorOrNot h1 {
+        font-size: 16px;
+    }
 }
 
 @media (max-width: 390px) {
@@ -1056,6 +1064,9 @@ FOOTER
 @media (max-width: 320px) {
     .contact-address-item__map iframe {
         width: 289px;
+    }
+    .errorOrNot h1 {
+        font-size: 15px;
     }
     
 }
