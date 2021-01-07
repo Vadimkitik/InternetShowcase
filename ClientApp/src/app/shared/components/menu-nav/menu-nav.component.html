@@ -2,8 +2,11 @@
     <mat-drawer #drawer class="example-sidenav" mode="over">
 
         <mat-toolbar>
-            <mat-toolbar-row>
+            <mat-toolbar-row class="drawer-toolbar-header">
                 <h2> Alleutina Shop </h2>
+                <span class="material-icons" (click)="drawer.close()">
+                    clear
+                </span>
             </mat-toolbar-row>
         </mat-toolbar>
         

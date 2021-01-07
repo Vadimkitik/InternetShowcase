@@ -1,6 +1,11 @@
 .mat-drawer-container {
   background-color: #fcecfa;
 }
+
+.drawer-toolbar-header {
+  display: flex;
+  justify-content: space-between;
+}
   .example-sidenav-content {
     display: flex;
     height: 100%;
