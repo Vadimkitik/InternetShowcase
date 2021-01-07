@@ -24,15 +24,15 @@ const adminRoutes: Routes = [
         { path: 'products', component: ProductsComponent },
         { path: 'products/create', component: ProductCreateComponent, canActivate: [ManagerGuard] },
         { path: 'products/edit/:productLine', component: ProductEditComponent, canActivate: [ManagerGuard] },
-        { path: 'users', component: UsersComponent  }, // , canActivate: [AdminGuard]
-        { path: 'users/resetpassword/:email', component: UserResetpasswordComponent }, // , canActivate: [AdminGuard]
-        { path: 'users/roles/:userId', component: UserRolesComponent }, // , canActivate: [AdminGuard]
-        { path: 'users/create', component: UsersCreateComponent }, // , canActivate: [AdminGuard]
-        { path: 'users/edit/:email', component: UsersEditComponent }, // , canActivate: [AdminGuard]
+        { path: 'users', component: UsersComponent, canActivate: [AdminGuard]  }, 
+        { path: 'users/resetpassword/:email', component: UserResetpasswordComponent, canActivate: [AdminGuard] }, 
+        { path: 'users/roles/:userId', component: UserRolesComponent, canActivate: [AdminGuard] }, 
+        { path: 'users/create', component: UsersCreateComponent, canActivate: [AdminGuard] }, 
+        { path: 'users/edit/:email', component: UsersEditComponent, canActivate: [AdminGuard] }, 
         { path: 'categories', component: CategoriesComponent },
         { path: 'categories/create', component: CategoriesCreateComponent, canActivate: [ManagerGuard] },
         { path: 'categories/edit/:categoryLine', component: CategoriesEditComponent, canActivate: [ManagerGuard] }
-    ] , canActivate: [AuthGuard] },
+    ]  }, // , canActivate: [AuthGuard]
     
     { path: 'test', component: TestJsonComponent }
 ];
