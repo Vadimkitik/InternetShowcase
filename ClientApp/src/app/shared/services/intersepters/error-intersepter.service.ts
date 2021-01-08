@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent} from '@angular/common/http';
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpResponse, HttpErrorResponse} from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { retry, catchError } from 'rxjs/operators';
+import { retry, catchError, tap } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
+import { SpinnerService } from 'src/app/spinner/spinner.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,36 +11,30 @@ import { ToastrService } from 'ngx-toastr';
 export class ErrorIntersepterService implements HttpInterceptor {
 
   constructor(
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private spinnerService: SpinnerService
   ) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    
-    return next.handle(request).pipe(
-      retry(0),
-      catchError((err) => {
-        let message = "";
-        if(err.status === 401) {
-          message = "Unauthorized";
-        }
-        else if (err.status === 403) {
-          message = "Forbidden";
-        }
-        else if (err.status === 404) {
-          message = "Not Found";
-        }
-        else if (err.status === 400) {
-          message = "Bad Request";
-        }
-        else if (err.status === 500) {
-          message = "Internal Server Error ";
-        }
-        else {
-          message = "Unexpected error";
-        }
-        this.toastrService.error(`${message} ${err.status}`);
-        return throwError(err);
-      })
-    )
+    this.spinnerService.requestStarted();
+    return this.handler(next, request);
+  }
+
+  handler(next, request) {
+    return next.handle(request)
+           .pipe(
+              retry(0),
+              tap(
+                (event) => {
+                  if(event instanceof HttpResponse) {
+                    this.spinnerService.requestEnded();
+                  }
+                },
+                (error: HttpErrorResponse) => {
+                  this.spinnerService.resetSpinner();
+                  this.toastrService.error(error.message);
+                }
+              ),
+           );
   }
 }
