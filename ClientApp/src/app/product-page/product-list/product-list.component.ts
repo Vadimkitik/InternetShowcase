@@ -27,32 +27,38 @@ export class ProductListComponent implements OnInit {
     ) { }
 
     ngOnInit() {
+        this.loadProducts();
+    }
+
+    loadProducts() {
         this.route.params.subscribe((params: Params) => {
             this.categoryLine = this.route.snapshot.params['categoryLine'];
             this.categoryService.getCategory(this.categoryLine).subscribe((category: Category) => {
-
                 this.categoryName = category.name;
-                
-                if (category.products.length != 0) {
-                    this.loaderAndMessage(true, "");
-                    this.products = category.products;
-                }
-                else {
-                    this.products = this.treeService.getProducts(category.children);
-                    if(this.products.length == 0) {
-                        this.loaderAndMessage(false, "В этой категории нет товаров.");
-                    }
-                    else {
-                        this.loaderAndMessage(true, "");
-                    }                    
-                }
+                this.productsInspection(category);
             }, error => {
                 this.categoryName = "Error";
                 this.loaderAndMessage(false, error);
             });
         });
     }
-
+    
+    private productsInspection(category: Category) {
+        if (category.products.length != 0) {
+            this.loaderAndMessage(true, "");
+            this.products = category.products;
+        }
+        else {
+            this.products = this.treeService.getProducts(category.children);
+            if(this.products.length == 0) {
+                this.loaderAndMessage(false, "В этой категории нет товаров.");
+            }
+            else {
+                this.loaderAndMessage(true, "");
+            }                    
+        }
+    }
+    
     private loaderAndMessage(load: boolean, mess: string){
         this.loaded = load;
         this.errorMsg = mess;

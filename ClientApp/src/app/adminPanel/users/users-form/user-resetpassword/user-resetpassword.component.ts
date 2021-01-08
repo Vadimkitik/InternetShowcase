@@ -52,8 +52,6 @@ export class UserResetpasswordComponent implements OnInit {
     this.userService.changePassword(userWithNewPassword).subscribe(data => {
       this.toastrService.success(`Пароль изменен`);
       this.router.navigate(['/admin-panel/users']);
-    }, err => {
-      this.toastrService.error(err['error'])
     });
   }
 

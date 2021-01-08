@@ -45,7 +45,6 @@ export class ConfirmEmailComponent implements OnInit {
     }, error =>{
       console.log(error)
       this.message = "При подтверждении пароля вознилка ошибка.";
-      this.toastrService.error(error.error);
       this.buttonColor = "warn";
       this.load = true;
     });

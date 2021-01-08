@@ -32,7 +32,7 @@ const adminRoutes: Routes = [
         { path: 'categories', component: CategoriesComponent },
         { path: 'categories/create', component: CategoriesCreateComponent, canActivate: [ManagerGuard] },
         { path: 'categories/edit/:categoryLine', component: CategoriesEditComponent, canActivate: [ManagerGuard] }
-    ]  }, // , canActivate: [AuthGuard]
+    ] , canActivate: [AuthGuard]  }, 
     
     { path: 'test', component: TestJsonComponent }
 ];

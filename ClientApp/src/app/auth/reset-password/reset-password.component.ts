@@ -61,7 +61,7 @@ export class ResetPasswordComponent implements OnInit {
     this.authService.resetPassword(this.resetUserPassword).subscribe(data => {
       this.toastrService.success(`Ваш пароль сброшен.`);
       this.router.navigate(['/auth/login']);
-    }, err => this.toastrService.error(err.error.title));
+    });
   }
 
   getErrorMessageEmail() {

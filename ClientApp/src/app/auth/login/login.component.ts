@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
         this.authService.saveToken(data["token"]);
         this.authService.saveUser(data["userName"], data["email"], data['userRoles']);
         this.router.navigate(['/admin-panel/products']);
-      }, err => this.toastrService.error(err['error']));
+      });
   }
 
   getErrorMessageEmail() {

@@ -21,7 +21,7 @@ export interface DialogData {
 })
 export class ProductViewComponent implements OnInit {
 
-  
+
   productLine: string;
   product: Product;
   loaded: boolean = false;
@@ -35,12 +35,12 @@ export class ProductViewComponent implements OnInit {
     private dialog: MatDialog,
     private emailService: EmailService,
     private toastrService: ToastrService
-  ) { 
+  ) {
     this.productLine = activeRoute.snapshot.params["productLine"];
   }
-  
+
   openDialog(): void {
-    
+
     const dialogRef = this.dialog.open(DialogOverviewformComponent, {
       width: '780px',
       data: {
@@ -56,21 +56,25 @@ export class ProductViewComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result != null) {  
+      if (result != null) {
         this.feedbackForm = result;
         this.emailService.SendYourselfEmail(this.feedbackForm).subscribe(res => {
           this.toastrService.success("Email sent!");
-        }, error => this.toastrService.error(error.error.title));        
+        });
       }
     });
   }
 
   ngOnInit() {
-      this.productService.getProduct(this.productLine)
-          .subscribe((data: Product) => {
-            this.product = data;
-            if(this.product.oldPrice != null) this.oldPrice = true;
-            this.loaded = true;
-          }, error => this.errorMsg = error);
+    this.loadProduct();
+  }
+
+  loadProduct() {
+    this.productService.getProduct(this.productLine)
+      .subscribe((data: Product) => {
+        this.product = data;
+        if (this.product.oldPrice != null) this.oldPrice = true;
+        this.loaded = true;
+      }, error => this.errorMsg = error);
   }
 }
