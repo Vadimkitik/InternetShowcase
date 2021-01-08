@@ -17,7 +17,9 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { ToastrModule } from 'ngx-toastr/';;
 import { TestPageComponent } from './test-page/test-page.component'
 import { AccordionComponent } from './shared/components/menu-nav/accordion/accordion.component';
-import { AccordionItemComponent } from './shared/components/menu-nav/accordion/accordion-item/accordion-item.component';
+import { AccordionItemComponent } from './shared/components/menu-nav/accordion/accordion-item/accordion-item.component';;
+import { SpinnerComponent } from './spinner/spinner.component';
+import { SpinnerService } from './spinner/spinner.service';
 
 export function tokenGetter(){
     return localStorage.getItem("jwt");
@@ -41,6 +43,9 @@ export function tokenGetter(){
            } 
         })
         ],
+        providers: [
+            SpinnerService
+        ],
     declarations:
         [
             AppComponent,
@@ -51,7 +56,8 @@ export function tokenGetter(){
             MainPageComponent,
             TestPageComponent,
             AccordionComponent, 
-            AccordionItemComponent
+            AccordionItemComponent, 
+            SpinnerComponent
         ],
     
     bootstrap: [AppComponent]

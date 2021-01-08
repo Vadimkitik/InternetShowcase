@@ -16,6 +16,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 const MaterialComponents =[
   MatIconModule,
@@ -33,7 +34,8 @@ const MaterialComponents =[
   MatDialogModule,
   MatSidenavModule,
   MatListModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatProgressSpinnerModule
 ];
 
 @NgModule({
