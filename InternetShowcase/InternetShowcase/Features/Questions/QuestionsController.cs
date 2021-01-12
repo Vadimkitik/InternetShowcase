@@ -23,7 +23,6 @@ namespace InternetShowcase.Features.Questions
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Question>>> GetQuestions()
         {
-            foreach (Question u in _context.Questions.Include(q => q.Product)) ;
             var questions = await _context.Questions.ToListAsync();
 
             if (questions == null)

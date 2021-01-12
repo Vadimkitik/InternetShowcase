@@ -47,6 +47,7 @@ export class ProductViewComponent implements OnInit {
         productName: this.product.name,
         imageUrl: this.product.imageUrl,
         productPrice: this.product.price,
+        productOldPrice: this.product.oldPrice,
         checkAvailability: false,
         checkPrice: false,
         name: "",

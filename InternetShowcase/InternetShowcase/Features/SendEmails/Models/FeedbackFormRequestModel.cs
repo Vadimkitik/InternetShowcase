@@ -11,11 +11,14 @@ namespace InternetShowcase.Features.SendEmails.Models
         public string Telephone { get; set; }
 
         [EmailAddress]
+        [Required]
         public string Email { get; set; }
 
         public string ProductName { get; set; }
 
         public string ProductPrice { get; set; }
+
+        public string ProductOldPrice { get; set; }
 
         public string Message { get; set; }
 

@@ -12,13 +12,13 @@ namespace InternetShowcase.Data
 {
     public class ShowcaseDbContext : IdentityDbContext<User>
     {
-        private readonly ICurrentUserService currentUser;
+        private readonly ICurrentUserService _currentUser;
 
         public ShowcaseDbContext(
             DbContextOptions<ShowcaseDbContext> options,
             ICurrentUserService currentUser)
             : base(options)
-            => this.currentUser = currentUser;
+            => _currentUser = currentUser;
 
         public DbSet<Product> Products { get; set; }        
         public DbSet<Category> Categories { get; set; }
@@ -54,7 +54,7 @@ namespace InternetShowcase.Data
             .ToList()
             .ForEach(entry =>
             {
-                var userName = this.currentUser.GetUserName();
+                var userName = _currentUser.GetUserName();
 
                 if (entry.Entity is IDeletableEntity deletableEntity)
                 {
@@ -69,7 +69,7 @@ namespace InternetShowcase.Data
                         return;
                     }
                 }
-                else if (entry.Entity is IEntity entity)
+                if (entry.Entity is IEntity entity)
                 {
                     if (entry.State == EntityState.Added)
                     {

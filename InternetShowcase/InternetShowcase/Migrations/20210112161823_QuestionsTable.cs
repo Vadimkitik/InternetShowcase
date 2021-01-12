@@ -31,34 +31,22 @@ namespace InternetShowcase.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Subject = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: false),
-                    ClientName = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: false),
-                    ClientEmail = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
-                    ClientTelephone = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: false),
-                    ClientMessage = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
-                    ProductID = table.Column<int>(type: "int", nullable: false),
-                    CreatedOn = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    CreatedBy = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
-                    ModifiedOn = table.Column<DateTime>(type: "datetime(6)", nullable: true),
-                    ModifiedBy = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
-                    DeletedOn = table.Column<DateTime>(type: "datetime(6)", nullable: true),
-                    DeletedBy = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "tinyint(1)", nullable: false)
+                    SentOn = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    Name = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: false),
+                    Telephone = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: false),
+                    Email = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: false),
+                    ProductName = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    ProductPrice = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    ProductOldPrice = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    Message = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    ImageUrl = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    CheckAvailability = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    CheckPrice = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Questions", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Questions_Products_ProductID",
-                        column: x => x.ProductID,
-                        principalTable: "Products",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Questions_ProductID",
-                table: "Questions",
-                column: "ProductID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

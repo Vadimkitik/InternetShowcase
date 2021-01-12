@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using InternetShowcase.Infrastructure.Services;
 using System.Threading.Tasks;
 using InternetShowcase.Data.Models;
+using System;
 
 namespace InternetShowcase.Features.SendEmails
 {
@@ -31,19 +32,23 @@ namespace InternetShowcase.Features.SendEmails
                           $"<p>Просит узнать наличие товара: {model.CheckAvailability}</p>" +
                           $"<p>Вопрос от клиента: {model.Message}</p>" +
                           $"<p>Название товара: {model.ProductName}</p>" +
-                          $"<p>Цена товара на сайте: {model.ProductPrice} р.</p>" +
+                          $"<p>Цена товара на сайте: {model.ProductPrice} р., Старая цена: {model.ProductOldPrice}</p>" +
                           $"<img src=\"{model.ImageUrl}\"/>";
 
-            var product = await _context.Products.FirstOrDefaultAsync(p => p.Name == model.ProductName);
-
-            Question question = new Question
+            var question = new Question
             {
-                ClientName = model.Name,
-                ClientEmail = model.Email,
-                ClientTelephone = model.Telephone,
-                ClientMessage = model.Message,
-                ProductID = product.Id,
-                Subject = subject
+                Subject = subject,
+                Name = model.Name,
+                Email = model.Email,
+                Telephone = model.Telephone,
+                Message = model.Message,
+                ProductName = model.ProductName,
+                ProductPrice = model.ProductPrice,
+                ProductOldPrice = model.ProductOldPrice,
+                ImageUrl = model.ImageUrl,
+                CheckAvailability = model.CheckAvailability,
+                CheckPrice = model.CheckPrice,
+                SentOn = DateTime.Now
             }; 
 
             _context.Questions.Add(question);
