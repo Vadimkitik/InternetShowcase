@@ -1,5 +1,6 @@
 ﻿using InternetShowcase.Data;
 using InternetShowcase.Data.Models;
+using InternetShowcase.Features.Products.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,19 +37,30 @@ namespace InternetShowcase.Features.Products
             return product;
         }
 
-        public async Task<bool> Update(Product product)
+        public async Task<bool> Update(UpdateProductRequestModel productModel)
         {
-            _context.Entry(product).State = EntityState.Modified;
+            var product = await _context
+                .Products.Where(p => p.Id == productModel.Id)
+                .FirstOrDefaultAsync();
 
-            try
-            {
-                await _context.SaveChangesAsync();
-                return true;
-            }
-            catch (DbUpdateConcurrencyException)
+            if (product == null)
             {
                 return false;
             }
+
+            product.ProductLine = productModel.ProductLine;
+            product.Name = productModel.Name;
+            product.Description = productModel.Description;
+            product.ImageUrl = productModel.ImageUrl;
+            product.OldPrice = productModel.OldPrice;
+            product.Price = productModel.Price;
+            product.IsFavourite = productModel.IsFavourite;
+            product.Available = productModel.Available;
+            product.CategoryID = productModel.CategoryID;
+
+            await _context.SaveChangesAsync();
+
+            return true;
         }
 
         public async Task<bool> Delete(int id)

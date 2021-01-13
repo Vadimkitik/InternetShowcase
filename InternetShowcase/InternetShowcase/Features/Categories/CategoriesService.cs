@@ -1,5 +1,6 @@
 ﻿using InternetShowcase.Data;
 using InternetShowcase.Data.Models;
+using InternetShowcase.Features.Categories.Models;
 using InternetShowcase.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -72,19 +73,24 @@ namespace InternetShowcase.Features.Categories
             return true;
         }       
 
-        public async Task<Result> Update(Category category)
+        public async Task<Result> Update(UpdateCategoryRequestModel model)
         {
-            _context.Entry(category).State = EntityState.Modified;
+            var category = await _context
+                .Categories.Where(c => c.Id == model.Id)
+                .FirstOrDefaultAsync();
 
-            try
+            if (category == null)
             {
-                await _context.SaveChangesAsync();
-                return true;
+                return false;
             }
-            catch (DbUpdateConcurrencyException)
-            {
-                return "Bad Request";
-            }
+
+            category.Name = model.Name;
+            category.Line = model.Line;
+            category.Parent_Id = model.Parent_Id;
+
+            await _context.SaveChangesAsync();
+
+            return true;
         }
     }
 }

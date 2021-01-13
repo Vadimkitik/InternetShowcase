@@ -63,9 +63,9 @@ namespace InternetShowcase.Features.Products
 
         [HttpPut]
         [Authorize(Roles = "admin, manager")]
-        public async Task<bool> EditProduct(Product product)
+        public async Task<bool> EditProduct(UpdateProductRequestModel productModel)
         {
-            return await _allProducts.Update(product);
+            return await _allProducts.Update(productModel);
         }
     }
 }
