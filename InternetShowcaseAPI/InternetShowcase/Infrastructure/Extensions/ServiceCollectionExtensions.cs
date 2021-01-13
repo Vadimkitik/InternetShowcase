@@ -114,7 +114,7 @@ namespace InternetShowcase.Infrastructure.Extensions
             {
                 options.AddPolicy(MyAllowSpecificOrigins, builder =>
                 {
-                    builder.WithOrigins("http://localhost:4200")
+                    builder.AllowAnyOrigin()
                            .AllowAnyHeader()
                            .AllowAnyMethod()
                            .AllowCredentials();

@@ -42,6 +42,8 @@ namespace InternetShowcase
             app.UseRouting()
                .UseCors(MyAllowSpecificOrigins)
                .UseAppStaticFiles()
+               .UseDefaultFiles()
+               .UseStaticFiles()
                .UseAuthentication()
                .UseAuthorization()
                .UseEndpoints(endpoints =>
