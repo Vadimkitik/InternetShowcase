@@ -72,6 +72,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _confirm_email_confirm_email_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
     /*! ./confirm-email/confirm-email.component */
     "./src/app/auth/confirm-email/confirm-email.component.ts");
+    /* harmony import */
+
+
+    var _shared_services_guards_loggedIn_guard_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+    /*! ../shared/services/guards/loggedIn-guard.service */
+    "./src/app/shared/services/guards/loggedIn-guard.service.ts");
 
     var authRoutes = [{
       path: '',
@@ -91,7 +97,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         path: 'confirmemail',
         component: _confirm_email_confirm_email_component__WEBPACK_IMPORTED_MODULE_7__["ConfirmEmailComponent"]
-      }]
+      }],
+      canActivate: [_shared_services_guards_loggedIn_guard_service__WEBPACK_IMPORTED_MODULE_8__["LoggedInGuard"]]
     }];
 
     var AuthRoutingModule = function AuthRoutingModule() {
@@ -165,10 +172,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var AuthComponent =
     /*#__PURE__*/
     function () {
-      function AuthComponent(router) {
+      function AuthComponent() {
         _classCallCheck(this, AuthComponent);
-
-        this.router = router;
       }
 
       _createClass(AuthComponent, [{
@@ -180,7 +185,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     }();
 
     AuthComponent.ɵfac = function AuthComponent_Factory(t) {
-      return new (t || AuthComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]));
+      return new (t || AuthComponent)();
     };
 
     AuthComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
@@ -230,9 +235,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           styleUrls: ['./auth.component.css']
         }]
       }], function () {
-        return [{
-          type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]
-        }];
+        return [];
       }, null);
     })();
     /***/
@@ -496,9 +499,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }, function (error) {
             console.log(error);
             _this2.message = "При подтверждении пароля вознилка ошибка.";
-
-            _this2.toastrService.error(error.error);
-
             _this2.buttonColor = "warn";
             _this2.load = true;
           });
@@ -685,8 +685,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             _this3.toastrService.success("\u0414\u043B\u044F \u0441\u0431\u0440\u043E\u0441\u0430 \u043F\u0430\u0440\u043E\u043B\u044F \u043F\u0435\u0440\u0435\u0439\u0434\u0438\u0442\u0435 \u043F\u043E \u0441\u0441\u044B\u043B\u043A\u0435 \u0432 \u043F\u0438\u0441\u044C\u043C\u0435,\n         \u043E\u0442\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u043D\u043E\u043C \u043D\u0430 \u0432\u0430\u0448 Email ".concat(_this3.email.value));
 
             _this3.router.navigate(['/auth/login']);
-          }, function (err) {
-            _this3.toastrService.error(err['error']);
           });
         }
       }, {
@@ -964,8 +962,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             _this4.authService.saveUser(data["userName"], data["email"], data['userRoles']);
 
             _this4.router.navigate(['/admin-panel/products']);
-          }, function (err) {
-            return _this4.toastrService.error(err['error']);
           });
         }
       }, {
@@ -1812,8 +1808,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             _this7.toastrService.success("\u0412\u0430\u0448 \u043F\u0430\u0440\u043E\u043B\u044C \u0441\u0431\u0440\u043E\u0448\u0435\u043D.");
 
             _this7.router.navigate(['/auth/login']);
-          }, function (err) {
-            return _this7.toastrService.error(err.error.title);
           });
         }
       }, {

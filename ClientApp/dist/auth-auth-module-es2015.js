@@ -18,6 +18,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _forgot_password_forgot_password_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./forgot-password/forgot-password.component */ "./src/app/auth/forgot-password/forgot-password.component.ts");
 /* harmony import */ var _reset_password_reset_password_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./reset-password/reset-password.component */ "./src/app/auth/reset-password/reset-password.component.ts");
 /* harmony import */ var _confirm_email_confirm_email_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./confirm-email/confirm-email.component */ "./src/app/auth/confirm-email/confirm-email.component.ts");
+/* harmony import */ var _shared_services_guards_loggedIn_guard_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../shared/services/guards/loggedIn-guard.service */ "./src/app/shared/services/guards/loggedIn-guard.service.ts");
+
 
 
 
@@ -35,7 +37,7 @@ const authRoutes = [
             { path: 'forgotpassword', component: _forgot_password_forgot_password_component__WEBPACK_IMPORTED_MODULE_5__["ForgotPasswordComponent"] },
             { path: 'resetpassword', component: _reset_password_reset_password_component__WEBPACK_IMPORTED_MODULE_6__["ResetPasswordComponent"] },
             { path: 'confirmemail', component: _confirm_email_confirm_email_component__WEBPACK_IMPORTED_MODULE_7__["ConfirmEmailComponent"] }
-        ] }
+        ], canActivate: [_shared_services_guards_loggedIn_guard_service__WEBPACK_IMPORTED_MODULE_8__["LoggedInGuard"]] }
 ];
 class AuthRoutingModule {
 }
@@ -70,13 +72,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 class AuthComponent {
-    constructor(router) {
-        this.router = router;
+    constructor() {
     }
     ngOnInit() {
     }
 }
-AuthComponent.ɵfac = function AuthComponent_Factory(t) { return new (t || AuthComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"])); };
+AuthComponent.ɵfac = function AuthComponent_Factory(t) { return new (t || AuthComponent)(); };
 AuthComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: AuthComponent, selectors: [["wfm-auth"]], decls: 7, vars: 0, consts: [[1, "auth-container"], [1, "auth-card"]], template: function AuthComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 1);
@@ -98,7 +99,7 @@ AuthComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComp
                 templateUrl: './auth.component.html',
                 styleUrls: ['./auth.component.css']
             }]
-    }], function () { return [{ type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"] }]; }, null); })();
+    }], function () { return []; }, null); })();
 
 
 /***/ }),
@@ -248,7 +249,6 @@ class ConfirmEmailComponent {
         }, error => {
             console.log(error);
             this.message = "При подтверждении пароля вознилка ошибка.";
-            this.toastrService.error(error.error);
             this.buttonColor = "warn";
             this.load = true;
         });
@@ -332,8 +332,6 @@ class ForgotPasswordComponent {
             this.toastrService.success(`Для сброса пароля перейдите по ссылке в письме,
          отправленном на ваш Email ${this.email.value}`);
             this.router.navigate(['/auth/login']);
-        }, err => {
-            this.toastrService.error(err['error']);
         });
     }
     getErrorMessageEmail() {
@@ -461,7 +459,7 @@ class LoginComponent {
             this.authService.saveToken(data["token"]);
             this.authService.saveUser(data["userName"], data["email"], data['userRoles']);
             this.router.navigate(['/admin-panel/products']);
-        }, err => this.toastrService.error(err['error']));
+        });
     }
     getErrorMessageEmail() {
         return this.userValidate.getErrorMessageEmail(this.form.get('email'));
@@ -875,7 +873,7 @@ class ResetPasswordComponent {
         this.authService.resetPassword(this.resetUserPassword).subscribe(data => {
             this.toastrService.success(`Ваш пароль сброшен.`);
             this.router.navigate(['/auth/login']);
-        }, err => this.toastrService.error(err.error.title));
+        });
     }
     getErrorMessageEmail() {
         return this.userValidate.getErrorMessageEmail(this.form.get('email'));

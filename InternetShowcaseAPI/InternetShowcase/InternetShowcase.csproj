@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp5.0</TargetFramework>
+    <UserSecretsId>fba89c64-8fec-4310-abd9-3d5580df4d05</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -27,7 +28,6 @@
 
   <ItemGroup>
     <Folder Include="Infrastructure\Filters\" />
-    <Folder Include="wwwroot\" />
   </ItemGroup>
 
 </Project>

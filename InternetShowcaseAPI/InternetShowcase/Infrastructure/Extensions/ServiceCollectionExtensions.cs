@@ -10,7 +10,6 @@ using System.Text;
 using InternetShowcase.Features.Products;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
-using System;
 using InternetShowcase.Features.Identity;
 using InternetShowcase.Features.Users;
 using InternetShowcase.Features.Roles;
@@ -38,7 +37,7 @@ namespace InternetShowcase.Infrastructure.Extensions
             IConfiguration configuration)
             => services
                  .AddDbContext<ShowcaseDbContext>(options => options
-                     .UseMySql(configuration.GetDefaultConnectionString(), new MySqlServerVersion(new Version(8, 0, 11))));
+                     .UseSqlServer(configuration.GetDefaultConnectionString()));
 
         public static IServiceCollection AddIdentity(this IServiceCollection services)
         {
@@ -114,7 +113,7 @@ namespace InternetShowcase.Infrastructure.Extensions
             {
                 options.AddPolicy(MyAllowSpecificOrigins, builder =>
                 {
-                    builder.AllowAnyOrigin()
+                    builder.SetIsOriginAllowed(origin => true)
                            .AllowAnyHeader()
                            .AllowAnyMethod()
                            .AllowCredentials();
