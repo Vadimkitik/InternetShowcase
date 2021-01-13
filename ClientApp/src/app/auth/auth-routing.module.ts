@@ -7,6 +7,7 @@ import { AuthComponent } from "./auth.component";
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ConfirmEmailComponent } from './confirm-email/confirm-email.component';
+import { LoggedInGuard } from '../shared/services/guards/loggedIn-guard.service';
 
 const authRoutes: Routes = [    
     { path: '', component: AuthComponent, children: [
@@ -15,7 +16,7 @@ const authRoutes: Routes = [
             { path: 'forgotpassword', component: ForgotPasswordComponent },
             { path: 'resetpassword', component: ResetPasswordComponent },
             { path: 'confirmemail', component: ConfirmEmailComponent }
-        ] }
+        ], canActivate: [LoggedInGuard] }
 ];
 
 @NgModule({

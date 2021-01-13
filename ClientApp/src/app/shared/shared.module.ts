@@ -9,6 +9,7 @@ import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/guards/auth-guard.service';
 import { AdminGuard } from './services/guards/admin-guard.service';
 import { ManagerGuard } from './services/guards/manager-guard.service';
+import { LoggedInGuard } from './services/guards/loggedIn-guard.service';
 import { CategoryService } from './services/category.service';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { UploadService } from './services/upload.service';
@@ -38,6 +39,7 @@ import { EmailService } from './services/email.service';
         UploadService,
         RolesService,
         UserValidateService,
+        LoggedInGuard,
         TreeService,
         {
             provide: HTTP_INTERCEPTORS,

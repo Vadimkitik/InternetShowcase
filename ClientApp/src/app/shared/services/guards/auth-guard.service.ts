@@ -25,15 +25,4 @@ export class AuthGuard implements CanActivate {
     this.router.navigate(["auth/login"]);
     return false;
   }
-
-  isAdminActivate() {
-    const token = this.authService.getToken();
-    let user = this.authService.getUser();
-   
-    if (token && !this.jwtHelper.isTokenExpired(token) && user.roles.includes('admin')){
-      return true;
-    }
-    this.router.navigate(["auth/login"]);
-    return false;
-  }
 }
