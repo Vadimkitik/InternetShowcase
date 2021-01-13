@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace InternetShowcase.Features.Roles
 {
-    //[Authorize(Roles = "admin")]
+    [Authorize(Roles = "admin")]
     [Authorize]
     public class RolesController : ApiController
     {
