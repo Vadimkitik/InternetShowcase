@@ -21,7 +21,6 @@ export class MenuNavComponent implements OnInit{
   ngOnInit() { 
     this.categoryService.getCategories().subscribe((data:Category[]) => {
       this.categories = this.treeService.list_to_tree(data);
-      console.log(this.categories);
     })
    }
 }

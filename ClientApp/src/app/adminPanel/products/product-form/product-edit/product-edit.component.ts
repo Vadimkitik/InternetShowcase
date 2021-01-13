@@ -42,12 +42,12 @@ export class ProductEditComponent implements OnInit {
             this.router.navigateByUrl("/admin-panel/products")
         });
     }
-    deleteFile() {
-        var imageName = this.product.imageUrl.split("\\").pop();
-        this.uploadService.DeleteFile(imageName).subscribe(event => {
-            this.toastrService.success(`File ${imageName} is Deleted!`);
-            this.product.imageUrl = '';
-        });
+    // deleteFile() {
+    //     var imageName = this.product.imageUrl.split("\\").pop();
+    //     this.uploadService.DeleteFile(imageName).subscribe(event => {
+    //         this.toastrService.success(`File ${imageName} is Deleted!`);
+    //         this.product.imageUrl = '';
+    //     });
         
-    }
+    // }
 }

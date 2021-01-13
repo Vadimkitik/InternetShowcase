@@ -6,9 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace InternetShowcase.Features.UploadFiles
 {
+    [Authorize(Roles = "admin, manager")]
     public class UploadController : ApiController
     {
-        [Authorize]
+        
         [HttpPost, DisableRequestSizeLimit]
         public IActionResult Upload()
         {
@@ -28,7 +29,6 @@ namespace InternetShowcase.Features.UploadFiles
                     {
                         file.CopyTo(stream);
                     }
-                    dbPath = Path.Combine("https://localhost:5001", dbPath);
                     return Ok(new { dbPath });
                 }
                 else
@@ -42,7 +42,6 @@ namespace InternetShowcase.Features.UploadFiles
             }
         }
 
-        [Authorize]
         [HttpDelete("{imageName}")]
         public IActionResult Delete(string imageName)
         {
