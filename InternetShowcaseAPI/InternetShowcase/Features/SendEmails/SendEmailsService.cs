@@ -33,7 +33,7 @@ namespace InternetShowcase.Features.SendEmails
                           $"<p>Вопрос от клиента: {model.Message}</p>" +
                           $"<p>Название товара: {model.ProductName}</p>" +
                           $"<p>Цена товара на сайте: {model.ProductPrice} р., Старая цена: {model.ProductOldPrice}</p>" +
-                          $"<img src=\"{model.ImageUrl}\"/>";
+                          $"<img src=\"http://52.174.48.125{model.ImageUrl}\"/>";
 
             var question = new Question
             {

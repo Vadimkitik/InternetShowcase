@@ -29,6 +29,7 @@ namespace InternetShowcase.Features.UploadFiles
                     {
                         file.CopyTo(stream);
                     }
+                    dbPath = Path.Combine("/api", dbPath);
                     return Ok(new { dbPath });
                 }
                 else

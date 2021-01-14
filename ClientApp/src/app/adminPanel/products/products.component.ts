@@ -64,11 +64,7 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  delete(id: number, imageUrl: string) {
-    var imageName = imageUrl.split("\\").pop();
-        this.uploadService.DeleteFile(imageName).subscribe(event => {
-          this.toastrService.success(`Removal image ${imageName} successful`)
-        });
+  delete(id: number) {
     this.productService.deleteProduct(id).subscribe(data => { 
       this.toastrService.success(`Removal product with id ${id} successful`)
       this.load();

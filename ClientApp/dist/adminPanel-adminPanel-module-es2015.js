@@ -1428,7 +1428,7 @@ function ProductsComponent_td_10_button_1_Template(rf, ctx) { if (rf & 1) {
 function ProductsComponent_td_10_button_2_Template(rf, ctx) { if (rf & 1) {
     const _r49 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "button", 25);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function ProductsComponent_td_10_button_2_Template_button_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r49); const product_r43 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]().$implicit; const ctx_r47 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](); return ctx_r47.delete(product_r43.id, product_r43.imageUrl); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function ProductsComponent_td_10_button_2_Template_button_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r49); const product_r43 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]().$implicit; const ctx_r47 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](); return ctx_r47.delete(product_r43.id); });
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1, "\u0423\u0434\u0430\u043B\u0438\u0442\u044C ");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } }
@@ -1542,11 +1542,7 @@ class ProductsComponent {
             this.dataSource.sort = this.sort;
         });
     }
-    delete(id, imageUrl) {
-        var imageName = imageUrl.split("\\").pop();
-        this.uploadService.DeleteFile(imageName).subscribe(event => {
-            this.toastrService.success(`Removal image ${imageName} successful`);
-        });
+    delete(id) {
         this.productService.deleteProduct(id).subscribe(data => {
             this.toastrService.success(`Removal product with id ${id} successful`);
             this.load();

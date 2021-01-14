@@ -3172,7 +3172,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           var ctx_r47 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
-          return ctx_r47["delete"](product_r43.id, product_r43.imageUrl);
+          return ctx_r47["delete"](product_r43.id);
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1, "\u0423\u0434\u0430\u043B\u0438\u0442\u044C ");
@@ -3389,13 +3389,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }
       }, {
         key: "delete",
-        value: function _delete(id, imageUrl) {
+        value: function _delete(id) {
           var _this14 = this;
 
-          var imageName = imageUrl.split("\\").pop();
-          this.uploadService.DeleteFile(imageName).subscribe(function (event) {
-            _this14.toastrService.success("Removal image ".concat(imageName, " successful"));
-          });
           this.productService.deleteProduct(id).subscribe(function (data) {
             _this14.toastrService.success("Removal product with id ".concat(id, " successful"));
 
