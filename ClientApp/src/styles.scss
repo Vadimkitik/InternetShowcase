@@ -478,7 +478,6 @@ PRODUCT DESCRIPTION
 
 .product__info-block {
     width: 400px;
-    height: 568px;
     padding-top: 10px;
     float: left;
     margin-left: 24px;
@@ -848,7 +847,6 @@ FOOTER
     
     .product__info-block {
         width: 420px;
-        height: 290px;
         font-size: 13px;
     }
     .product__info-block h1 {
@@ -1027,7 +1025,11 @@ FOOTER
    .logo h2 {
         font-size: 16px;
    }
-   
+   .product__info-block {
+        width: auto;
+        height: auto;
+        margin-left: 0px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1043,10 +1045,8 @@ FOOTER
        }
        .product__image {
         width: 300px;
-       }
-       .product__info-block {
-        width: 300px;
-       }   
+        margin: 10px 5px;
+       }  
        .errorOrNot h1 {
         font-size: 16px;
     }
