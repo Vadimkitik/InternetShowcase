@@ -42,12 +42,13 @@
                         <div class="header-phone">
                             <div class="header-phone-cont">
                                 <a class="header-phone-item mts" href="tel:+375 29 893 72 41">+375(29)-893-72-41</a>
-                                <button [routerLink]="'auth/login'" mat-flat-button color="accent"
-                                    >Login</button>
-                                <button [routerLink]="'/admin-panel'" mat-flat-button color="accent"
-                                    >Admin-panel</button>
-                            </div>
+                            </div>                            
                         </div>
+                        <button [routerLink]="'auth/login'"
+                            mat-flat-button color="accent" 
+                            class="header-login-button"
+                            >Login
+                        </button>
                     </div>
                     <div class="header-social">
                         <div class="header-social_networks">

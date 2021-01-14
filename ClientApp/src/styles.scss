@@ -1050,12 +1050,13 @@ FOOTER
        .errorOrNot h1 {
         font-size: 16px;
     }
-}
-
-@media (max-width: 390px) {
     .header-phone {
         display: none;
     }
+}
+
+@media (max-width: 390px) {
+    
     .card__hover {
         font-size: 30px;
     }

@@ -16,6 +16,9 @@
   .header-social-left {
     display: flex;
   }
+  .header-login-button {
+    margin-left: 10px;
+  }
 
   .menu-navbar-mobile {
     display: none;
@@ -24,5 +27,10 @@
   @media (max-width: 780px) {
     .menu-navbar-mobile {
       display: initial;
+    }
+
+    .header-login-button{
+      font-size: 14px;
+      height: 34px;
     }
   }
