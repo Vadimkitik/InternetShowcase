@@ -32,12 +32,7 @@ export class ErrorIntersepterService implements HttpInterceptor {
                 },
                 (error: HttpErrorResponse) => {
                   this.spinnerService.resetSpinner();
-                  if(typeof(error.error) === 'string') {
-                    this.toastrService.error(error.error.toString());
-                  }
-                  else {
-                    this.toastrService.error(error.message);
-                  }                  
+                  this.toastrService.error(error.message);                 
                 }
               ),
            );
