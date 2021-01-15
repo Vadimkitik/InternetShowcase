@@ -1,3 +1,5 @@
+import { Injectable } from "@angular/core";
+@Injectable()
 export class TreeService {
     
     public list_to_tree(list) {
