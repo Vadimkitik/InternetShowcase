@@ -11,7 +11,6 @@ import  {AppRoutingModule} from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { ProductsModule } from './product-page/products.module';
 import { MainPageComponent } from './main-page/main-page.component';
-import { TestPageComponent } from './test-page/test-page.component';
 
 export function tokenGetter(){
     return localStorage.getItem("jwt");
@@ -38,8 +37,7 @@ export function tokenGetter(){
     declarations:
         [
             AppComponent,
-            MainPageComponent,
-            TestPageComponent
+            MainPageComponent
         ],
     
     bootstrap: [AppComponent]
