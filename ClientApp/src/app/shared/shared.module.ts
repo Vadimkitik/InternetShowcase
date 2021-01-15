@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
@@ -19,13 +20,24 @@ import { TokenIntersepterService } from './services/intersepters/token-intersept
 import { ErrorIntersepterService } from './services/intersepters/error-intersepter.service';
 import { UserValidateService } from './services/userValidate.service';
 import { EmailService } from './services/email.service';
+import { MenuNavComponent } from './components/menu-nav/menu-nav.component';
+import { MaterialModule } from '../material/material.module';
+import { ShopComponent } from '../shop/shop.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { HeaderComponent } from './components/header/header.component';
+import { AccordionItemComponent } from './components/menu-nav/accordion/accordion-item/accordion-item.component';
+import { AccordionComponent } from './components/menu-nav/accordion/accordion.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { SpinnerService } from './components/spinner/spinner.service';
 
 
 @NgModule({
     imports: [
         ReactiveFormsModule,
         FormsModule,
-        RouterModule
+        RouterModule,
+        MaterialModule,
+        CommonModule
     ],
     providers: [
         ProductService, 
@@ -40,6 +52,7 @@ import { EmailService } from './services/email.service';
         RolesService,
         UserValidateService,
         LoggedInGuard,
+        SpinnerService,
         TreeService,
         {
             provide: HTTP_INTERCEPTORS,
@@ -52,7 +65,23 @@ import { EmailService } from './services/email.service';
             multi: true
         }        
     ],
-    declarations: [NotFoundComponent],
-    exports: [ReactiveFormsModule, FormsModule]
+    declarations: [
+        NotFoundComponent,
+        MenuNavComponent,
+        HeaderComponent,
+        FooterComponent,
+        ShopComponent,
+        AccordionComponent, 
+        AccordionItemComponent, 
+        SpinnerComponent
+    ],
+    exports: [
+        ReactiveFormsModule, 
+        FormsModule,
+        HeaderComponent,
+        FooterComponent,
+        MenuNavComponent, 
+        SpinnerComponent
+    ]
 })
 export class SharedModule {}

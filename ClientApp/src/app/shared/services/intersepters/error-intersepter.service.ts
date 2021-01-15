@@ -3,7 +3,7 @@ import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpResponse, Htt
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError, tap } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
-import { SpinnerService } from 'src/app/spinner/spinner.service';
+import { SpinnerService } from 'src/app/shared/components/spinner/spinner.service';
 
 @Injectable({
   providedIn: 'root'
