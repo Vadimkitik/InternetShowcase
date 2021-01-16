@@ -1,7 +1,11 @@
-import { async, TestBed } from "@angular/core/testing";
+import { async, getTestBed, inject, TestBed } from "@angular/core/testing";
 
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { MockBackend, MockConnection } from '@angular/';
+import {
+    BaseRequestOptions, Http, XHRBackend, HttpModule,
+    Response, ResponseOptions, RequestMethod
+  } from '@angular/http';
+import { MockBackend, MockConnection } from '@angular/http/testing';
 import { CategoryService } from "./category.service";
 import { Category } from "../models/category.model";
 import  dataJson  from '../../jsonFiles/dataJson.json';
@@ -15,7 +19,15 @@ describe('CategoryService', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [ HttpClientTestingModule ],
-            providers: [CategoryService]
+            providers: [CategoryService, MockBackend, 
+                {
+                    provide: Http,
+                    deps: [MockBackend, BaseRequestOptions],
+                    useFactory:
+                      (backend: XHRBackend, defaultOptions: BaseRequestOptions) => {
+                        return new Http(backend, defaultOptions);
+                      }
+                  }]
         });
         categoryService = TestBed.inject(CategoryService);
         httpTestingController = TestBed.inject(HttpTestingController);
@@ -53,7 +65,7 @@ describe('CategoryService', () => {
     });
 
     it('should create a new categoryTest', () => {
-        async(inject([PostService], (service: CategoryService) => {
+        async(inject([CategoryService], (service: CategoryService) => {
             mockBackend.connections.subscribe((connection: MockConnection) => {
               expect(connection.request.method).toBe(RequestMethod.Post);
               connection.mockRespond(new Response(new ResponseOptions({})));
