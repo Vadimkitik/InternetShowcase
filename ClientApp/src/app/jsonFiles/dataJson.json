@@ -1,56 +1,402 @@
 [
     {
-        "id" : 1,
-        "name" : "Belarus", 
-        "parentId" : 0,
-        "children": null
+        "id": 1,
+        "line": "cveti",
+        "name": "Цветы",
+        "parent_Id": "0",
+        "children": [],
+        "products": []
     },
     {
-        "id" : 2,
-        "name" : "Russia", 
-        "parentId" : 0,
-        "children": null
+        "id": 2,
+        "line": "buketi",
+        "name": "Букеты",
+        "parent_Id": "0",
+        "children": [],
+        "products": []
     },
     {
-        "id" : 3,
-        "name" : "Hrondo", 
-        "parentId" : 1,
-        "children": null
+        "id": 3,
+        "line": "shari",
+        "name": "Шары",
+        "parent_Id": "0",
+        "children": [],
+        "products": []
     },
     {
-        "id" : 4,
-        "name" : "Moscow", 
-        "parentId" : 2,
-        "children": null
+        "id": 4,
+        "line": "udobrenie",
+        "name": "Удобрения",
+        "parent_Id": "0",
+        "children": [],
+        "products": []
     },
     {
-        "id" : 5,
-        "name" : "Minsk", 
-        "parentId" : 1,
-        "children": null
+        "id": 5,
+        "line": "gorshki",
+        "name": "Горшки",
+        "parent_Id": "0",
+        "children": [],
+        "products": []
     },
     {
-        "id" : 6,
-        "name" : "Mosti", 
-        "parentId" : 3,
-        "children": null
+        "id": 6,
+        "line": "izdelia_iz_dereva",
+        "name": "Изделия из дерева",
+        "parent_Id": "0",
+        "children": [],
+        "products": []
     },
     {
-        "id" : 7,
-        "name" : "Lida", 
-        "parentId" : 3,
-        "children": null
+        "id": 7,
+        "line": "shari_folgirovanie",
+        "name": "Фольгированные шары",
+        "parent_Id": "3",
+        "children": [],
+        "products": []
     },
     {
-        "id" : 8,
-        "name" : "Himki", 
-        "parentId" : 4,
-        "children": null
+        "id": 8,
+        "line": "shari_lateks",
+        "name": "Шары из латекса",
+        "parent_Id": "3",
+        "children": [],
+        "products": []
     },
     {
-        "id" : 9,
-        "name" : "XXXXXXX", 
-        "parentId" : 6,
-        "children": null
+        "id": 9,
+        "line": "gorshki_keramik",
+        "name": "Горшки для цветов керамические",
+        "parent_Id": "5",
+        "children": [],
+        "products": []
+    },
+    {
+        "id": 10,
+        "line": "gorshki_plastikovie",
+        "name": "Горшки для цветов пластиковые",
+        "parent_Id": "5",
+        "children": [],
+        "products": []
+    },
+    {
+        "id": 11,
+        "line": "jivie_cveti",
+        "name": "Живые цветы",
+        "parent_Id": "1",
+        "children": [],
+        "products": []
+    },
+    {
+        "id": 12,
+        "line": "iskusstvennie_cveti",
+        "name": "Искусственные цветы",
+        "parent_Id": "1",
+        "children": [],
+        "products": []
+    },
+    {
+        "id": 13,
+        "line": "buketi_iz_cvetov",
+        "name": "Букеты из цветов",
+        "parent_Id": "2",
+        "children": [],
+        "products": []
+    },
+    {
+        "id": 14,
+        "line": "buketi_iz_roz",
+        "name": "Букеты из Роз",
+        "parent_Id": "2",
+        "children": [],
+        "products": []
+    },
+    {
+        "id": 15,
+        "line": "sredstva_zaschiti_rasteniy",
+        "name": "Средства защиты растений",
+        "parent_Id": "4",
+        "children": [],
+        "products": []
+    },
+    {
+        "id": 16,
+        "line": "grunt",
+        "name": "Грунт",
+        "parent_Id": "4",
+        "children": [],
+        "products": []
+    },
+    {
+        "id": 17,
+        "line": "yaschiki",
+        "name": "Ящики",
+        "parent_Id": "6",
+        "children": [],
+        "products": []
+    },
+    {
+        "id": 18,
+        "line": "dekorativnie_izdeliya",
+        "name": "Декоративные изделия",
+        "parent_Id": "6",
+        "children": [],
+        "products": []
+    },
+    {
+        "id": 19,
+        "line": "buketi_romashki",
+        "name": "Букеты из Ромашек",
+        "parent_Id": "13",
+        "children": [],
+        "products": []
+    },
+    {
+        "id": 20,
+        "line": "ukrasheniya",
+        "name": "Украшения",
+        "parent_Id": "18",
+        "children": [],
+        "products": []
+    },
+    {
+        "id": 21,
+        "line": "yaschiki_dlya_cvetov",
+        "name": "Ящики для цветов",
+        "parent_Id": "17",
+        "children": [],
+        "products": []
+    },
+    {
+        "id": 22,
+        "line": "grunt_flora",
+        "name": "Грунт флора",
+        "parent_Id": "16",
+        "children": [],
+        "products": []
+    },
+    {
+        "id": 23,
+        "line": "kuriniy_pomet",
+        "name": "Куриный помет",
+        "parent_Id": "16",
+        "children": [],
+        "products": []
+    },
+    {
+        "id": 24,
+        "line": "zaschita_ot_vrediteley",
+        "name": "Защита от вредителей",
+        "parent_Id": "15",
+        "children": [],
+        "products": []
+    },
+    {
+        "id": 25,
+        "line": "udobreniya_dlya_arhidet",
+        "name": "Удобрения для архидей",
+        "parent_Id": "15",
+        "children": [],
+        "products": []
+    },
+    {
+        "id": 26,
+        "line": "kruglie_keramik_gorshki",
+        "name": "Круглые керамические горшки для цветов",
+        "parent_Id": "9",
+        "children": [],
+        "products": []
+    },
+    {
+        "id": 27,
+        "line": "kvadrat_keramik_gorshki",
+        "name": "Квадратные керамические горшки для цветов",
+        "parent_Id": "9",
+        "children": [],
+        "products": []
+    },
+    {
+        "id": 28,
+        "line": "bolshie_keramik_gorshki",
+        "name": "Большие керамические горшки для цветов",
+        "parent_Id": "9",
+        "children": [],
+        "products": []
+    },
+    {
+        "id": 29,
+        "line": "podvesnie_plastik_gorshki",
+        "name": "Подвесные пластиковые горшки для цветов",
+        "parent_Id": "10",
+        "children": [],
+        "products": []
+    },
+    {
+        "id": 30,
+        "line": "balkonie_plastik_gorshki",
+        "name": "Балконные пластиковые горшки для цветов",
+        "parent_Id": "10",
+        "children": [],
+        "products": []
+    },
+    {
+        "id": 31,
+        "line": "bolshie_plastik_gorshki",
+        "name": "Большие пластиковые горшки для цветов",
+        "parent_Id": "10",
+        "children": [],
+        "products": []
+    },
+    {
+        "id": 32,
+        "line": "buketi_roz_101",
+        "name": "101 Роза",
+        "parent_Id": "14",
+        "children": [],
+        "products": []
+    },
+    {
+        "id": 33,
+        "line": "buketi_roz_11",
+        "name": "11 Роз",
+        "parent_Id": "14",
+        "children": [],
+        "products": []
+    },
+    {
+        "id": 34,
+        "line": "buketi_miks",
+        "name": "Микс букеты",
+        "parent_Id": "13",
+        "children": [],
+        "products": []
+    },
+    {
+        "id": 35,
+        "line": "buketi_tulpani",
+        "name": "Букеты из Тюльпанов",
+        "parent_Id": "13",
+        "children": [],
+        "products": []
+    },
+    {
+        "id": 36,
+        "line": "buketi_suhocvetov",
+        "name": "Букеты из Сухоцветов",
+        "parent_Id": "13",
+        "children": [],
+        "products": []
+    },
+    {
+        "id": 37,
+        "line": "buketi_hrizantem",
+        "name": "Букеты из Хризантем",
+        "parent_Id": "13",
+        "children": [],
+        "products": []
+    },
+    {
+        "id": 38,
+        "line": "rozi",
+        "name": "Розы",
+        "parent_Id": "11",
+        "children": [],
+        "products": []
+    },
+    {
+        "id": 39,
+        "line": "tulpani",
+        "name": "Тюльпаны",
+        "parent_Id": "11",
+        "children": [],
+        "products": []
+    },
+    {
+        "id": 40,
+        "line": "hrizantemi",
+        "name": "Хризантемы",
+        "parent_Id": "11",
+        "children": [],
+        "products": []
+    },
+    {
+        "id": 41,
+        "line": "venki_isk",
+        "name": "Венки искусственные",
+        "parent_Id": "12",
+        "children": [],
+        "products": []
+    },
+    {
+        "id": 42,
+        "line": "rozi_isk",
+        "name": "Розы искусственные",
+        "parent_Id": "12",
+        "children": [],
+        "products": []
+    },
+    {
+        "id": 43,
+        "line": "shari_lateks_bez_obr",
+        "name": "Шары латексные без обработки",
+        "parent_Id": "8",
+        "children": [],
+        "products": []
+    },
+    {
+        "id": 44,
+        "line": "shari_lateks_happy_birthday",
+        "name": "С днем рождения!",
+        "parent_Id": "8",
+        "children": [],
+        "products": []
+    },
+    {
+        "id": 45,
+        "line": "shari_lateks_prikol",
+        "name": "Прикольные",
+        "parent_Id": "8",
+        "children": [],
+        "products": []
+    },
+    {
+        "id": 46,
+        "line": "shari_folgirovanie_cifri",
+        "name": "Шары цифры",
+        "parent_Id": "7",
+        "children": [],
+        "products": []
+    },
+    {
+        "id": 47,
+        "line": "shari_folgirovanie_hearts",
+        "name": "Шары в форме сердца",
+        "parent_Id": "7",
+        "children": [],
+        "products": []
+    },
+    {
+        "id": 48,
+        "line": "shari_folgirovanie_stars",
+        "name": "Шары в форме звезды",
+        "parent_Id": "7",
+        "children": [],
+        "products": []
+    },
+    {
+        "id": 49,
+        "line": "dekor_telega",
+        "name": "Декоративые телеги",
+        "parent_Id": "18",
+        "children": [],
+        "products": []
+    },
+    {
+        "id": 50,
+        "line": "dekor_kolodec",
+        "name": "Декоративный колодец",
+        "parent_Id": "18",
+        "children": [],
+        "products": []
     }
 ]
