@@ -6,7 +6,9 @@ describe('ErrorIntersepterService', () => {
   let service: ErrorIntersepterService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [ErrorIntersepterService]
+    });
     service = TestBed.inject(ErrorIntersepterService);
   });
 

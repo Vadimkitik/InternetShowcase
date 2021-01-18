@@ -4,7 +4,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { ProductService } from "./product.service";
 import { Product } from "../models/product.model";
 
-describe('CategoryService', () => {
+describe('ProductServise', () => {
 
 
     let apiProductsUrl = 'http://52.174.48.125/api/products';
@@ -102,7 +102,6 @@ describe('CategoryService', () => {
         const result = productService.createProduct(PRODUCT);
         result.subscribe(
             (successResult) => {
-                console.log(successResult)
                 expect(successResult).toBeDefined();
                 expect(successResult).toEqual(PRODUCT, 'Product is created');
             });
@@ -129,7 +128,6 @@ describe('CategoryService', () => {
         const result = productService.deleteProduct(PRODUCT.id);
         result.subscribe(
             (successResult) => {
-                console.log(successResult)
                 expect(successResult).toBeDefined();
                 expect(successResult).toEqual(PRODUCT, 'Product is deleted');
             });
@@ -156,7 +154,6 @@ describe('CategoryService', () => {
         const result = productService.updateProduct(PRODUCT);
         result.subscribe(
             (successResult) => {
-                console.log(successResult)
                 expect(successResult).toBeDefined();
                 expect(successResult).toEqual(PRODUCT, 'Product is updated');
             });

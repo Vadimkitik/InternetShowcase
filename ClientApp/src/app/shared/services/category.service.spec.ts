@@ -72,10 +72,8 @@ describe('CategoryService', () => {
         }
 
         const result = categoryService.createCategory(category);
-        console.log()
         result.subscribe(
             (successResult) => {
-                console.log(successResult)
                 expect(successResult).toBeDefined();
                 expect(successResult).toEqual(category, 'Category is created');
             });
@@ -95,10 +93,8 @@ describe('CategoryService', () => {
         }
 
         const result = categoryService.deleteCategory(category.id);
-        console.log()
         result.subscribe(
             (successResult) => {
-                console.log(successResult)
                 expect(successResult).toBeDefined();
                 expect(successResult).toEqual(category, 'Category is deleted');
             });
@@ -119,10 +115,8 @@ describe('CategoryService', () => {
         }
 
         const result = categoryService.updateCategory(category);
-        console.log()
         result.subscribe(
             (successResult) => {
-                console.log(successResult)
                 expect(successResult).toBeDefined();
                 expect(successResult).toEqual(category, 'Category is updated');
             });
