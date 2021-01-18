@@ -33,7 +33,7 @@ describe('TokenIntersepterService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should add an Authorization token header', () => {
+  it('should add an Authorization header', () => {
     const TEST_CATEGORY: Category = {
       id: 1,
       line: 'testLine',
