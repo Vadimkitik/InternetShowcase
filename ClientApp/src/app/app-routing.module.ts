@@ -4,12 +4,10 @@ import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { ShopComponent } from './shop/shop.component';
 import { NotFoundComponent } from './shared/components/not-found/not-found.component';
 import { MainPageComponent } from './main-page/main-page.component';
-import { TestPageComponent } from './test-page/test-page.component';
 
 
 const appRoutes: Routes = [
     { path: '', component: MainPageComponent },
-    { path: 'testpage', component: TestPageComponent },
     { 
         path: 'admin-panel',
         loadChildren: () => import('./adminPanel/adminPanel.module').then(m => m.AdminPanelModule)
