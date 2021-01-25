@@ -9,38 +9,58 @@
   </div>
 </div>
 <div class="info-form">
-  <h2 mat-dialog-title>Уточнить наличие</h2>
-  <div mat-dialog-content>
-    <mat-form-field>
-      <mat-label>Имя</mat-label>
-      <input matInput [(ngModel)]="feedbackForm.name">
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Телефон</mat-label>
-      <input matInput required [(ngModel)]="feedbackForm.telephone">
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Email</mat-label>
-      <input matInput [(ngModel)]="feedbackForm.email">
-    </mat-form-field>
-    <section class="example-section">
-      <mat-checkbox class="example-margin" [(ngModel)]="feedbackForm.checkAvailability" #roleCheck>Запросить наличие</mat-checkbox>
-    </section>
-    <section class="example-section">
-      <mat-checkbox class="example-margin" [(ngModel)]="feedbackForm.checkPrice" #roleCheck>Запросить цену</mat-checkbox>
-    </section>
-    <mat-form-field [style.fontSize]="16" class="feedbackForm-questions">
-      <mat-label>Поле для примичания, вы можете задать вопрос</mat-label>
-      <textarea matInput
-                [(ngModel)]="feedbackForm.message"
-                cdkTextareaAutosize
-                #autosize="cdkTextareaAutosize"
-                cdkAutosizeMinRows="1"
-                cdkAutosizeMaxRows="5"></textarea>
-    </mat-form-field>
-  </div>
-  <div mat-dialog-actions>
-    <button mat-stroked-button (click)="onNoClick()" color="warn">Закрыть</button>
-    <button mat-stroked-button [mat-dialog-close]="feedbackForm" color="primary" cdkFocusInitial>Отправить</button>
-  </div>
+  <form [formGroup]="form">
+    <h2 mat-dialog-title>Уточнить наличие</h2>
+    <div mat-dialog-content>
+      <mat-form-field>
+        <mat-label>Имя</mat-label>
+        <input matInput required formControlName="userName" [(ngModel)]="feedbackForm.name">
+        <mat-error *ngIf="form.get('userName').invalid">{{getErrorMessageName()}}</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Номер телефона</mat-label>
+        <input 
+              matInput 
+              required 
+              ngDefaultControl 
+              placeholder="33/29/44 xxxxxxx"
+              [(ngModel)]="feedbackForm.telephone"
+              formControlName="tel"
+              maxlength="9">
+        <mat-error *ngIf="form.get('tel').invalid">{{getErrorMessageTel()}}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input 
+              matInput 
+              required 
+              [(ngModel)]="feedbackForm.email"
+              placeholder="pat@example.com" 
+              formControlName="email">
+        <mat-error *ngIf="form.get('email').invalid">{{getErrorMessageEmail()}}</mat-error>
+      </mat-form-field>
+      <section class="example-section">
+        <mat-checkbox class="example-margin" [(ngModel)]="feedbackForm.checkAvailability" #roleCheck>Запросить наличие
+        </mat-checkbox>
+      </section>
+      <section class="example-section">
+        <mat-checkbox class="example-margin" [(ngModel)]="feedbackForm.checkPrice" #roleCheck>Запросить цену
+        </mat-checkbox>
+      </section>
+      <mat-form-field [style.fontSize]="16" class="feedbackForm-questions">
+        <mat-label>Поле для примичания, вы можете задать вопрос</mat-label>
+        <textarea matInput [(ngModel)]="feedbackForm.message" cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+          cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"></textarea>
+      </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-stroked-button (click)="onNoClick()" color="warn">Закрыть</button>
+      <button mat-stroked-button 
+              [mat-dialog-close]="feedbackForm"
+              color="primary"
+              cdkFocusInitial
+              [disabled]="form.invalid">Отправить</button>
+    </div>
+  </form>
 </div>

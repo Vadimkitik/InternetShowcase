@@ -546,7 +546,7 @@ PRODUCT DESCRIPTION
 
 .product-description {
     padding-top: 50px;
-    font-size: 14px;
+    font-size: 16px;
     color: #000;
 }
 /*...................
@@ -860,7 +860,7 @@ FOOTER
     }
     .product-description {
         padding-top: 22px;
-        font-size: 13px;
+        font-size: 15px;
     }
     .product-info-price {
         margin-right: 0px;
@@ -967,6 +967,10 @@ FOOTER
   .card__hover{
     font-size: 18px;
   }
+  .product-description {
+    padding-top: 22px;
+    font-size: 14px;
+}
 }
 
 @media (max-width: 767px){

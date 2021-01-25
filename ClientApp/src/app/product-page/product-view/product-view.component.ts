@@ -59,8 +59,9 @@ export class ProductViewComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result != null) {
         this.feedbackForm = result;
+        this.feedbackForm.telephone = "+375"+ this.feedbackForm.telephone;
         this.emailService.SendYourselfEmail(this.feedbackForm).subscribe(res => {
-          this.toastrService.success("Email sent!");
+          this.toastrService.success("Email sented!");
         });
       }
     });

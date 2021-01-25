@@ -4,15 +4,15 @@ export class UserValidateService {
     
     getErrorMessageName(userName) {
         if (userName.hasError('required')) {
-          return 'You must enter a value';
+          return 'Не оставлять пустым!';
         }
       }
     
       getErrorMessageEmail(email) {
         if (email.hasError('required')) {
-          return 'You must enter a value';
+          return 'Не оставлять пустым!';
         }
-        return email.hasError('email') ? 'Not a valid email' : '';
+        return email.hasError('email') ? 'Неверный формат Email' : '';
       }
       getErrorMessagePassw(password) {
         if (password.hasError('required')) {
@@ -20,4 +20,13 @@ export class UserValidateService {
         }
         return password.hasError('minlength') ? 'Пароль должен быть больше 5 символов' : '';
       }
+
+      getErrorMessageTel(telephone) {
+        if (telephone.hasError('required')) {
+          return 'Не оставлять пустым!';
+        }
+        return telephone.hasError('pattern') ? 'Номер телефона должен состоять из кода и номера' : '';
+      }
+
+      
 }
