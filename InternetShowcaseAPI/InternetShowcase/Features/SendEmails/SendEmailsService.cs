@@ -23,6 +23,7 @@ namespace InternetShowcase.Features.SendEmails
 
         public async Task<Result> SendYourselfEmail(FeedbackFormRequestModel model)
         {
+
             var email = "alleutina.shop@gmail.com";
             var subject = $"Форма вопроса о товаре от {model.Name}";
             var message = $"<p>Имя клиента: {model.Name}</p>" +
@@ -33,7 +34,7 @@ namespace InternetShowcase.Features.SendEmails
                           $"<p>Вопрос от клиента: {model.Message}</p>" +
                           $"<p>Название товара: {model.ProductName}</p>" +
                           $"<p>Цена товара на сайте: {model.ProductPrice} р., Старая цена: {model.ProductOldPrice}</p>" +
-                          $"<img src=\"http://52.174.48.125{model.ImageUrl}\"/>";
+                          $"<p>http://52.174.48.125{model.ImageUrl.Replace("\\", "/")}</p>";
 
             var question = new Question
             {
