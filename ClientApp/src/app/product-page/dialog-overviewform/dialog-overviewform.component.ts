@@ -20,14 +20,19 @@ export class DialogOverviewformComponent implements OnInit{
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewformComponent>,
     @Inject(MAT_DIALOG_DATA) public feedbackForm: FeedbackForm,
-    private userValidate: UserValidateService) {}
-
-    ngOnInit() {
+    private userValidate: UserValidateService) {
       this.form = new FormGroup({
         'userName': new FormControl('', [Validators.required]),
         'email': new FormControl('', [Validators.required, Validators.email]),
-        'tel': new FormControl('', [Validators.required]) // ^33|\d
+        'tel': new FormControl('', [Validators.required]),
+        'message': new FormControl(''),
+        'checkAvailability': new FormControl(''),
+        'checkPrice': new FormControl('')
       })
+    }
+
+    ngOnInit() {
+      
     }
 
   onNoClick(): void {

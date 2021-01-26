@@ -52,7 +52,8 @@ export class ProductViewComponent implements OnInit {
         checkPrice: false,
         name: "",
         telephone: "",
-        email: ""
+        email: "",
+        message: ""
       }
     });
 
