@@ -1,13 +1,18 @@
 <div class="admin-container">
+  <div class="admin-nav">
+    <button mat-raised-button [matMenuTriggerFor]="menu">
+      <span class="material-icons">menu</span>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item [routerLink]="['/admin-panel/products']">Товары</button>
+      <button mat-menu-item [routerLink]="['/admin-panel/categories']">Категории</button>
+      <button mat-menu-item [routerLink]="['/admin-panel/users']">Пользователи</button>
+    </mat-menu>
+  </div>
+
   <div class="admin-time">
     {{ date | date:'dd.MM.yyyy'}}
   </div>
-  <div class="admin-nav">
-    <button [routerLink]="['/admin-panel/products']" class="createButton" mat-raised-button>Товары</button>
-    <button [routerLink]="['/admin-panel/categories']" class="createButton" mat-raised-button>Категории</button>
-    <button [routerLink]="['/admin-panel/users']"  class="createButton" mat-raised-button>Пользователи</button>
-  </div> 
-  <!-- *ngIf="isAdmin" -->
 
   <div class="admin-menu">
     <button mat-button [matMenuTriggerFor]="menu">Hello, {{ user.userName }}</button>
