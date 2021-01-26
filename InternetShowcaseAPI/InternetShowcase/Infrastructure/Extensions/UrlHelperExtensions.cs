@@ -12,7 +12,7 @@ namespace InternetShowcase.Infrastructure.Extensions
             object parameters = null)
         {
             var request = httpContextAccessor.HttpContext.Request;
-            var hostUrl = "localhost:4200";
+            var hostUrl = request.Host;
 
             var url = new Uri(new Uri($"{request.Scheme}://{hostUrl}"), relativeUrl).ToString();
 

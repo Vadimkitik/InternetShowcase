@@ -34,7 +34,7 @@ namespace InternetShowcase.Features.SendEmails
                           $"<p>Вопрос от клиента: {model.Message}</p>" +
                           $"<p>Название товара: {model.ProductName}</p>" +
                           $"<p>Цена товара на сайте: {model.ProductPrice} р., Старая цена: {model.ProductOldPrice}</p>" +
-                          $"<p>http://52.174.48.125{model.ImageUrl.Replace("\\", "/")}</p>";
+                          $"<p>{model.ImageUrl}</p>";
 
             var question = new Question
             {
@@ -50,7 +50,7 @@ namespace InternetShowcase.Features.SendEmails
                 CheckAvailability = model.CheckAvailability,
                 CheckPrice = model.CheckPrice,
                 SentOn = DateTime.Now
-            }; 
+            };
 
             _context.Questions.Add(question);
             await _context.SaveChangesAsync();
