@@ -1,5 +1,5 @@
-<menu-nav>
-    <wfm-header></wfm-header>
+<menu-nav [categories]="categories">
+    <wfm-header [categories]="categories"></wfm-header>
     <app-spinner></app-spinner>
     <div class="content">
         <router-outlet></router-outlet>
@@ -7,5 +7,4 @@
     <div class="footer">
         <wfm-footer></wfm-footer>
     </div>
-    
 </menu-nav>

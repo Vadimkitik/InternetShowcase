@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Category } from '../../models/category.model';
 import { CategoryService } from '../../services/category.service';
 import { TreeService } from '../../services/tree.service';
@@ -8,19 +8,10 @@ import { TreeService } from '../../services/tree.service';
   templateUrl: './menu-nav.component.html',
   styleUrls: ['./menu-nav.component.css']
 })
-export class MenuNavComponent implements OnInit{
+export class MenuNavComponent {
 
   showFiller = false;
-  categories: Category[];
+  @Input() categories: Category[];
+  constructor() {}
 
-  constructor(
-    private categoryService: CategoryService,
-    private treeService: TreeService
-  ) {}
-
-  ngOnInit() { 
-    this.categoryService.getCategories().subscribe((data:Category[]) => {
-      this.categories = this.treeService.list_to_tree(data);
-    })
-   }
 }
