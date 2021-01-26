@@ -993,6 +993,9 @@ FOOTER
     .header-social_networks h6{
         display: none;
     }
+    .header-social_networks {
+        padding-top: 5px;
+    }
 }
 
 @media (max-width: 605px)
