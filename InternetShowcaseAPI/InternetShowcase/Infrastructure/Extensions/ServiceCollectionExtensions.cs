@@ -50,6 +50,7 @@ namespace InternetShowcase.Infrastructure.Extensions
                     options.Password.RequireUppercase = false;
                     options.Password.RequireNonAlphanumeric = false;
                     options.User.RequireUniqueEmail = true;
+                    options.User.AllowedUserNameCharacters = null;
                 })
                 .AddEntityFrameworkStores<ShowcaseDbContext>()
                 .AddDefaultTokenProviders();
