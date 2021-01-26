@@ -990,13 +990,13 @@ FOOTER
         font-size: 20px;
         margin: 10px;
     }
+    .header-social_networks h6{
+        display: none;
+    }
 }
 
 @media (max-width: 605px)
-{
-    .header-social_networks h6{
-        display: none;
-    }    
+{   
     .header-social_networks {
         padding-top: 5px;
    }
