@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpResponse, HttpErrorResponse} from '@angular/common/http';
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError, tap } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
@@ -22,19 +22,37 @@ export class ErrorIntersepterService implements HttpInterceptor {
 
   handler(next, request) {
     return next.handle(request)
-           .pipe(
-              retry(0),
-              tap(
-                (event) => {
-                  if(event instanceof HttpResponse) {
-                    this.spinnerService.requestEnded();
-                  }
-                },
-                (error: HttpErrorResponse) => {
-                  this.spinnerService.resetSpinner();
-                  this.toastrService.error(error.message);                 
-                }
-              ),
-           );
+      .pipe(
+        retry(0),
+        tap(
+          (event) => {
+            if (event instanceof HttpResponse) {
+              this.spinnerService.requestEnded();
+            }
+          },
+          (error: HttpErrorResponse) => {
+            this.spinnerService.resetSpinner();
+            var messageError = "";
+            if (error.status === 0 || error.status === 500) {
+              messageError = "Internal Server Error"
+              this.toastrService.error(messageError);
+            }
+            else if (error.error != null) {
+              if (typeof error.error === 'string') {
+                this.toastrService.error(error.error);
+              }
+              else if (error.error[0].description != null) {
+                error.error.forEach(element => {
+                  messageError += element.description + " ";
+                });
+                this.toastrService.error(messageError);
+              }
+            }
+            else {
+              this.toastrService.error(error.message);
+            }
+          }
+        ),
+      );
   }
 }
