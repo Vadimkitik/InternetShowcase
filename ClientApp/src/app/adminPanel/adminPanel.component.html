@@ -15,8 +15,8 @@
   </div>
 
   <div class="admin-menu">
-    <button mat-button [matMenuTriggerFor]="menu">Hello, {{ user.userName }}</button>
-    <mat-menu #menu="matMenu">
+    <button mat-button [matMenuTriggerFor]="menuLogout">Hello, {{ user.userName }}</button>
+    <mat-menu #menuLogout="matMenu">
       <button mat-menu-item>{{ user.email }}</button>
       <button mat-menu-item (click)="onLogout()">Выйти</button>
     </mat-menu>
