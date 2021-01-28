@@ -1,5 +1,6 @@
 ﻿using InternetShowcase.Data.Models;
 using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,6 +18,8 @@ namespace InternetShowcase.Data
                 await context.Categories.AddRangeAsync(SubCategoies.Select(c => c.Value));
                 await context.SaveChangesAsync();
                 await context.Categories.AddRangeAsync(UnderSubCategoies.Select(c => c.Value));
+                await context.SaveChangesAsync();
+                await context.Products.AddRangeAsync(Products.Select(p => p.Value));
                 await context.SaveChangesAsync();
             }
         }
@@ -394,6 +397,58 @@ namespace InternetShowcase.Data
                     pushElement(listUnderSub, underSubCategory);
                 }
                 return underSubCategory;
+            }
+        }
+
+        private static Dictionary<string, Product> product;
+        private static Dictionary<string, Product> Products
+        {
+            get
+            {
+                if (product == null)
+                {
+                    var rnd = new Random();
+                    var listProducts = new List<Product>();
+
+                    var listCategoryID = new List<int>();
+                    foreach(var el in underSubCategory)
+                    {
+                        listCategoryID.Add(el.Value.Id);
+                    }
+                    
+                    for (int i = 0; i < 30; i++)
+                    {
+                        var priceRnd = rnd.Next(5, 10);
+                        var oldPriceRnd = rnd.Next(10, 15);
+                        var imageUlrRnd = rnd.Next(1, 12);
+                        var underSubCatRnd = rnd.Next(listCategoryID[0], listCategoryID[listCategoryID.Count-1]+1);
+
+                        if ( i%3 == 0)
+                        {
+                            oldPriceRnd = 0;
+                        }
+
+                        var product = new Product
+                        {
+                            ProductLine = "test_product_" + i,
+                            Name = "Test Product " + i,
+                            Description = "Хризантемы, как и розы, считаются универсальными цветами, сочетающимися с другими представителями растительного мира. Дарить их можно в честь любого торжественного повода. Выбирая в качестве презента композицию из роз и хризантем, вы сможете передать всю глубину ваших чувств и непременно доставить удовольствие и радость тому, кто получит ваш искренний подарок.",
+                            Price = priceRnd,
+                            OldPrice = oldPriceRnd,
+                            ImageUrl = $"api/Resources/images/product-{imageUlrRnd}.jpg",
+                            IsFavourite = "true",
+                            Available = "true",
+                            CategoryID = underSubCatRnd
+                        };
+                        listProducts.Add(product);
+                    }
+                    product = new Dictionary<string, Product>();
+                    foreach (Product el in listProducts)
+                    {
+                        product.Add(el.Name, el);
+                    }
+                }                
+                return product;
             }
         }
 
