@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using InternetShowcase.Data.Models;
 using InternetShowcase.Features.Categories.Models;
-using InternetShowcase.Infrastructure.Services;
+using InternetShowcase.Features.Products.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -41,6 +41,18 @@ namespace InternetShowcase.Features.Categories
                 return _mapper.Map<Category, CategoryView>(category);
             }
             return NotFound();
+        }
+
+        [HttpPost]
+        [Route(nameof(GetProductsOfCategory))]
+        public async Task<ActionResult<IEnumerable<ProductView>>> GetProductsOfCategory(CategoriesIdRequestModel categories_id)
+        {
+            var products = await _categories.GetProductsOfCategory(categories_id.ListID);
+            if (products == null)
+            {
+                return BadRequest();
+            }
+            return _mapper.Map<List<Product>, List<ProductView>>((List<Product>)products);
         }
 
         [HttpPost]

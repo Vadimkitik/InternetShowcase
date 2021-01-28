@@ -34,6 +34,14 @@ namespace InternetShowcase.Features.Categories
             _category.Children = await GetChildrenCategory(_category.Id); 
             return _category;
         }
+
+        public async Task<IEnumerable<Product>> GetProductsOfCategory(List<int> categories_id)
+        {
+            IEnumerable<Product> products = await _context.Products.Where(p => categories_id.Contains(p.CategoryID))
+                                                                   .ToListAsync();
+            return products;
+        }
+
         private async Task<ICollection<Category>> GetChildrenCategory(int id)
         {
             ICollection<Category> categories;
