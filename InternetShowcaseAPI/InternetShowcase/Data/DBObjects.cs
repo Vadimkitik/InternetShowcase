@@ -419,13 +419,13 @@ namespace InternetShowcase.Data
                     for (int i = 0; i < 30; i++)
                     {
                         var priceRnd = rnd.Next(5, 10);
-                        var oldPriceRnd = rnd.Next(10, 15);
+                        int? oldPriceRnd = rnd.Next(10, 15);
                         var imageUlrRnd = rnd.Next(1, 12);
                         var underSubCatRnd = rnd.Next(listCategoryID[0], listCategoryID[listCategoryID.Count-1]+1);
 
                         if ( i%3 == 0)
                         {
-                            oldPriceRnd = 0;
+                            oldPriceRnd = null;
                         }
 
                         var product = new Product
