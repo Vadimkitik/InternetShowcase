@@ -43,7 +43,6 @@ export class ConfirmEmailComponent implements OnInit {
       this.buttonColor = "primary";
       this.load = true;
     }, error =>{
-      console.log(error)
       this.message = "При подтверждении пароля вознилка ошибка.";
       this.buttonColor = "warn";
       this.load = true;

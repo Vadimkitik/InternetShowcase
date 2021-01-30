@@ -23,7 +23,6 @@ export class CategoriesFormComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.categories)
     this.categoryService.getCategories().subscribe((data: Category[]) => {
       this.categories = data;
       this.categories.push({

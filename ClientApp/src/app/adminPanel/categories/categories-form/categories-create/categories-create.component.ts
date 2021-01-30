@@ -18,7 +18,6 @@ export class CategoriesCreateComponent {
         private toastrService: ToastrService) { }
 
     save() {
-        console.log(this.category);
         this.categoryService.createCategory(this.category).subscribe(() => {
           this.toastrService.success(`Category ${this.category.name} is Created`);
           this.router.navigateByUrl("/admin-panel/categories")

@@ -56,7 +56,6 @@ export class UsersCreateComponent implements OnInit {
 
   onSubmit() {
     this.user.roles = this.userRoles;
-    console.log(this.user)
     this.usersService.createUser(this.user).subscribe(() => {
       this.toastrService.success(`User ${this.user.userName} is Created`);
       this.router.navigateByUrl("/admin-panel/users")

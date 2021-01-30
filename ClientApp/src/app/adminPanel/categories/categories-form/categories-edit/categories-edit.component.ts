@@ -35,7 +35,6 @@ export class CategoriesEditComponent implements OnInit {
     }
 
     save() {
-       console.log(this.category);
         this.categoryService.updateCategory(this.category).subscribe(() => { 
             this.toastrService.success(`Category changed`);
             this.router.navigateByUrl("/admin-panel/categories")
