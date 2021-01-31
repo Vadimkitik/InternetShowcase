@@ -803,6 +803,17 @@ FOOTER
         margin: 10px 6%;
         width: 160px;
     }
+    .navbar {
+        display: none;
+       }
+       
+       .header_img {
+        top: 0px;
+       }
+       
+   .logo {
+    top: 80px;
+   }
 }
 @media (max-width: 995px) {
     .header .container .row {
@@ -931,19 +942,12 @@ FOOTER
      position: relative;
    }
    
-   .navbar {
-    display: none;
-   }
-   
-   .header_img {
-    top: 0px;
-   }
  
    .logo {
      width: 185px;
     height: 185px;
     font-size: 16px;
-    top: 94px;
+    top: 60px;
    }
 
    .blog__title {
@@ -1030,6 +1034,7 @@ FOOTER
         font-size: 10px;
         top: 34px;
    }
+   
    .logo h2 {
         font-size: 16px;
    }

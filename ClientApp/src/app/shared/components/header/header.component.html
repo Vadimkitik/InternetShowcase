@@ -8,7 +8,6 @@
                 <div class="navbar">
                     <nav>
                         <ul class="nav" id="sub-menu">
-                            <li><span><a [routerLink]="'/'">Главная</a></span></li>
                             <li *ngFor="let category of categories">
                                 <span><a [routerLink]="['products/', category.line]"
                                         >{{category.name}}</a></span>
