@@ -45,9 +45,9 @@ namespace InternetShowcase.Features.Categories
 
         [HttpPost]
         [Route(nameof(GetProductsOfCategory))]
-        public async Task<ActionResult<IEnumerable<ProductView>>> GetProductsOfCategory(CategoriesIdRequestModel categories_id)
+        public async Task<ActionResult<IEnumerable<ProductView>>> GetProductsOfCategory(List<int> categories_id)
         {
-            var products = await _categories.GetProductsOfCategory(categories_id.ListID);
+            var products = await _categories.GetProductsOfCategory(categories_id);
             if (products == null)
             {
                 return BadRequest();

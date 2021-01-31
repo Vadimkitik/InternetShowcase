@@ -4,7 +4,6 @@ import { Product } from '../../shared/models/product.model';
 import { CategoryService } from '../../shared/services/category.service';
 import { Category } from 'src/app/shared/models/category.model';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { TreeService } from 'src/app/shared/services/tree.service';
 
 @Component({
     templateUrl: './product-list.component.html',
@@ -18,48 +17,71 @@ export class ProductListComponent implements OnInit {
     loaded: boolean = false;
     isAuth: boolean = false;
     public errorMsg;
-    cata: string;
+
+    categories: Category[];
+    category: Category;
+    listID: Array<number> = [];
+    productsTEST: Product[];
 
     constructor(
         private categoryService: CategoryService,
-        private route: ActivatedRoute,
-        private treeService: TreeService
+        private route: ActivatedRoute
     ) { }
 
+
     ngOnInit() {
-        this.loadProducts();
+        this.route.params.subscribe((params: Params) => {
+            this.categoryLine = this.route.snapshot.params['categoryLine'];
+            this.loadProducts();
+        });
     }
 
     loadProducts() {
-        this.route.params.subscribe((params: Params) => {
-            this.categoryLine = this.route.snapshot.params['categoryLine'];
-            this.categoryService.getCategory(this.categoryLine).subscribe((category: Category) => {
-                this.categoryName = category.name;
-                this.productsInspection(category);
-            }, error => {
-                this.categoryName = "Error";
-                this.loaderAndMessage(false, error);
-            });
+        this.categoryService.getCategories().subscribe((categories: Category[]) => {
+            this.categories = categories;
+            console.log(categories);
+            if (this.categories != null) {
+                this.category = this.categories.find(c => c.line == this.categoryLine);
+                this.listID = this.getCategoriesID(this.categories, this.category.id);
+
+                if (this.listID.length == 0) {
+                    this.listID.push(this.category.id);
+                }
+                console.log(this.listID);
+                this.categoryService.getProductsOfCategory(this.listID).subscribe((products: Product[]) => {
+                    this.categoryName = this.category.name;
+                    this.productsInspection(products);
+                }, error => {
+                    this.categoryName = "Error";
+                    this.loaderAndMessage(false, error);
+                });
+            }
         });
     }
-    
-    private productsInspection(category: Category) {
-        if (category.products.length != 0) {
-            this.loaderAndMessage(true, "");
-            this.products = category.products;
-        }
-        else {
-            this.products = this.treeService.getProducts(category.children);
-            if(this.products.length == 0) {
-                this.loaderAndMessage(false, "В этой категории нет товаров.");
+
+    private getCategoriesID(array: Category[], id: number) {
+        var data: Array<number> = [];
+        array.forEach(element => {
+            if (element.parent_Id == id) {
+                data.push(element.id);
+                data = data.concat(this.getCategoriesID(array, element.id));
             }
-            else {
-                this.loaderAndMessage(true, "");
-            }                    
+        });
+        return data;
+    }
+
+    private productsInspection(products: Product[]) {
+        if (products.length != 0) {
+            this.products = products;
+            this.loaderAndMessage(true, "");
+        }
+        else if (products.length == 0) {
+            this.loaderAndMessage(false, "В этой категории нет товаров.");
         }
     }
-    
-    private loaderAndMessage(load: boolean, mess: string){
+
+
+    private loaderAndMessage(load: boolean, mess: string) {
         this.loaded = load;
         this.errorMsg = mess;
     }

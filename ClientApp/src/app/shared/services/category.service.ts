@@ -24,6 +24,11 @@ export class CategoryService {
             catchError(this.handleError));
     }
 
+    getProductsOfCategory(listID: Array<number>) {
+        return this.http.post(this.url + '/GetProductsOfCategory', listID).pipe(
+            catchError(this.handleError));
+    }
+
     createCategory(category: Category) {
         return this.http.post(this.url, category).pipe(
             catchError(this.handleError));
