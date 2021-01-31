@@ -1,61 +1,50 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import { Component, Input, OnChanges } from '@angular/core';
 
 import { Product } from '../../shared/models/product.model';
 import { CategoryService } from '../../shared/services/category.service';
 import { Category } from 'src/app/shared/models/category.model';
-import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
+    selector: 'app-productslist',
     templateUrl: './product-list.component.html',
     styleUrls: ['product-list.component.scss']
 })
-export class ProductListComponent implements OnInit {
+export class ProductListComponent implements OnChanges {
+
+    @Input() categoriesTest: Category[];
+    @Input() categoryLine: string;
 
     products: Product[];
-    categoryLine: string;
     categoryName: string;
     loaded: boolean = false;
     isAuth: boolean = false;
     public errorMsg;
-
-    categories: Category[];
-    category: Category;
     listID: Array<number> = [];
-    productsTEST: Product[];
 
     constructor(
-        private categoryService: CategoryService,
-        private route: ActivatedRoute
+        private categoryService: CategoryService
     ) { }
 
 
-    ngOnInit() {
-        this.route.params.subscribe((params: Params) => {
-            this.categoryLine = this.route.snapshot.params['categoryLine'];
+    ngOnChanges() {
+        if (this.categoriesTest.length) {
             this.loadProducts();
-        });
+        }
     }
 
     loadProducts() {
-        this.categoryService.getCategories().subscribe((categories: Category[]) => {
-            this.categories = categories;
-            console.log(categories);
-            if (this.categories != null) {
-                this.category = this.categories.find(c => c.line == this.categoryLine);
-                this.listID = this.getCategoriesID(this.categories, this.category.id);
+        var category: Category = this.categoriesTest.find(c => c.line == this.categoryLine);
+        this.listID = this.getCategoriesID(this.categoriesTest, category.id);
 
-                if (this.listID.length == 0) {
-                    this.listID.push(this.category.id);
-                }
-                console.log(this.listID);
-                this.categoryService.getProductsOfCategory(this.listID).subscribe((products: Product[]) => {
-                    this.categoryName = this.category.name;
-                    this.productsInspection(products);
-                }, error => {
-                    this.categoryName = "Error";
-                    this.loaderAndMessage(false, error);
-                });
-            }
+        if (this.listID.length == 0) {
+            this.listID.push(category.id);
+        }
+        this.categoryService.getProductsOfCategory(this.listID).subscribe((products: Product[]) => {
+            this.categoryName = category.name;
+            this.productsInspection(products);
+        }, error => {
+            this.categoryName = "Error";
+            this.loaderAndMessage(false, error);
         });
     }
 
@@ -79,7 +68,6 @@ export class ProductListComponent implements OnInit {
             this.loaderAndMessage(false, "В этой категории нет товаров.");
         }
     }
-
 
     private loaderAndMessage(load: boolean, mess: string) {
         this.loaded = load;

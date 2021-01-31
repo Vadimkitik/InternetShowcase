@@ -26,12 +26,11 @@ namespace InternetShowcase.Features.Categories
 
         public async Task<Category> GetByLine(string categoryLine)
         {            
-            Category _category = await _context.Categories.Include(p => p.Products).SingleOrDefaultAsync(s => s.Line == categoryLine);
+            Category _category = await _context.Categories.SingleOrDefaultAsync(s => s.Line == categoryLine);
             if(_category == null)
             {
                 return null;
             }
-            _category.Children = await GetChildrenCategory(_category.Id); 
             return _category;
         }
 
@@ -40,24 +39,6 @@ namespace InternetShowcase.Features.Categories
             IEnumerable<Product> products = await _context.Products.Where(p => categories_id.Contains(p.CategoryID))
                                                                    .ToListAsync();
             return products;
-        }
-
-        private async Task<ICollection<Category>> GetChildrenCategory(int id)
-        {
-            ICollection<Category> categories;
-            if (!_context.Categories.Any(c => id == c.Parent_Id))
-            {
-                return null;
-            }
-            else
-            {
-                categories = await _context.Categories.Where(c => id == c.Parent_Id).Include(p => p.Products).ToListAsync();
-                foreach(var category in categories)
-                {
-                    category.Children = await GetChildrenCategory(category.Id);
-                }         
-            }
-            return categories;
         }
 
         public async Task<Category> Create(Category category)

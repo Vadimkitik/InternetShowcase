@@ -7,13 +7,15 @@ import { ProductViewComponent } from './product-view/product-view.component';
 import { ProductsRoutingModule } from './products-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { DialogOverviewformComponent } from './dialog-overviewform/dialog-overviewform.component';
+import { ProductsComponent } from './products.component';
 
 
 @NgModule({
     declarations: [
         ProductViewComponent,
         ProductListComponent,
-        DialogOverviewformComponent
+        DialogOverviewformComponent,
+        ProductsComponent
     ],
     imports: [
         CommonModule,
