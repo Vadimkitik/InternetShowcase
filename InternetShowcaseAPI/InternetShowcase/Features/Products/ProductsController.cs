@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using InternetShowcase.Data.Models;
 using Microsoft.AspNetCore.Authorization;
 using InternetShowcase.Features.Products.Models;
+using InternetShowcase.Infrastructure.Services;
 
 namespace InternetShowcase.Features.Products
 {
@@ -56,12 +57,26 @@ namespace InternetShowcase.Features.Products
 
         [HttpDelete("{id}")]
         [Authorize(Roles = "admin, manager")]
-        public async Task<bool> DeleteProduct(int id)
-            => await _allProducts.Delete(id);
+        public async Task<IActionResult> DeleteProduct(int id)
+        {
+            var result = await _allProducts.Delete(id);
+            if (result.Failure)
+            {
+                return BadRequest(result.Error);
+            }
+            return Ok();
+        }
 
         [HttpPut]
         [Authorize(Roles = "admin, manager")]
-        public async Task<bool> EditProduct(UpdateProductRequestModel productModel) 
-            => await _allProducts.Update(_mapper.Map<UpdateProductRequestModel, Product>(productModel));
+        public async Task<IActionResult> EditProduct(UpdateProductRequestModel productModel)
+        {
+            var result = await _allProducts.Update(_mapper.Map<UpdateProductRequestModel, Product>(productModel));
+            if(result.Failure)
+            {
+                return BadRequest(result.Error);
+            }
+            return Ok();
+        }
     }
 }

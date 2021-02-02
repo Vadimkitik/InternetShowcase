@@ -1,6 +1,7 @@
 ﻿using InternetShowcase.Data;
 using InternetShowcase.Data.Models;
 using InternetShowcase.Features.Products.Models;
+using InternetShowcase.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,29 +38,35 @@ namespace InternetShowcase.Features.Products
             return product;
         }
 
-        public async Task<bool> Update(Product product)
+        public async Task<Result> Update(Product newProduct)
         {
-            _context.Products.Update(product);
+            var product = await _context.Products.FirstOrDefaultAsync(p => p.Id == newProduct.Id);
+            if (product == null)
+            {
+                return "Product is not Founded";
+            }
+            _context.Products.Update(newProduct);
             await _context.SaveChangesAsync();
-
             return true;
         }
 
-        public async Task<bool> Delete(int id)
+        public async Task<Result> Delete(int id)
         {
             var product = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
-            if (product != null)
+            if (product == null)
             {
-                _context.Products.Remove(product);
-                await _context.SaveChangesAsync();
-                return true;
+                return "Product is not Founded";
             }
-            return false;
+            _context.Products.Remove(product);
+            await _context.SaveChangesAsync();
+            return true;
+
         }
 
 
-        public IEnumerable<Product> getFavProducts 
-            => _context.Products.Where(p => p.IsFavourite == "true").Include(c => c.Category);
+        public IEnumerable<Product> getFavProducts => _context.Products.Where(p => p.IsFavourite == "true").Include(c => c.Category);
+
+        public Product getObjproduct(int productId) => _context.Products.FirstOrDefault(p => p.Id == productId);
     }
 
 }
