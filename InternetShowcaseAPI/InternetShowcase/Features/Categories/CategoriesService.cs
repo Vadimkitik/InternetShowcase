@@ -53,7 +53,7 @@ namespace InternetShowcase.Features.Categories
             var category = await _context.Categories.FindAsync(id);
             if (category == null)
             {
-                return "Category not Founded";
+                return "Category is not Founded";
             }
 
             _context.Categories.Remove(category);
@@ -62,14 +62,13 @@ namespace InternetShowcase.Features.Categories
             return true;
         }       
 
-        public async Task<Result> Update(Category newCategory)
+        public async Task<Result> Update(Category category)
         {
-            var category = await _context.Categories.FindAsync(newCategory.Id);
-            if (category == null)
+            if (!_context.Categories.Any(x => x.Id == category.Id))
             {
-                return "Category not Founded";
+                return "Category is not Founded";
             }
-            _context.Categories.Update(newCategory);
+            _context.Categories.Update(category);
             await _context.SaveChangesAsync();
             return true;
         }

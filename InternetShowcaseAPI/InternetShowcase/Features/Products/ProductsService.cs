@@ -38,14 +38,13 @@ namespace InternetShowcase.Features.Products
             return product;
         }
 
-        public async Task<Result> Update(Product newProduct)
+        public async Task<Result> Update(Product product)
         {
-            var product = await _context.Products.FirstOrDefaultAsync(p => p.Id == newProduct.Id);
-            if (product == null)
+            if (!_context.Products.Any(x => x.Id == product.Id))
             {
                 return "Product is not Founded";
             }
-            _context.Products.Update(newProduct);
+            _context.Products.Update(product);
             await _context.SaveChangesAsync();
             return true;
         }

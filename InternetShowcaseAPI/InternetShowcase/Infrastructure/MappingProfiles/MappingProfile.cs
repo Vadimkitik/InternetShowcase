@@ -24,8 +24,14 @@ namespace InternetShowcase.Infrastructure.MappingProfiles
 
             CreateMap<ProductView, Product>();
             CreateMap<CategoryView, Category>();
-            CreateMap<UpdateProductRequestModel, Product>();
-            CreateMap<UpdateCategoryRequestModel, Category>();
+
+            CreateMap<UpdateProductRequestModel, Product>()
+                .ForMember(s => s.CreatedOn, opt => { opt.Ignore(); })
+                .ForMember(s => s.CreatedBy, opt => { opt.Ignore(); });
+
+            CreateMap<UpdateCategoryRequestModel, Category>()
+                .ForMember(s => s.CreatedOn, opt => opt.Ignore())
+                .ForMember(s => s.CreatedBy, opt => opt.Ignore());
         }
     }
 }

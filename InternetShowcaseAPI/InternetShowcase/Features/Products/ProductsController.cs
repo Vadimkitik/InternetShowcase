@@ -76,7 +76,7 @@ namespace InternetShowcase.Features.Products
             {
                 return BadRequest(result.Error);
             }
-            return Ok();
+            return Ok(result.Succeeded);
         }
     }
 }
