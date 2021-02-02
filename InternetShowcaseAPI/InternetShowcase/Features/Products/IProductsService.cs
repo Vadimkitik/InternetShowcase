@@ -13,6 +13,5 @@ namespace InternetShowcase.Features.Products
         Task<bool> Update(Product product);
         Task<bool> Delete(int id);
         IEnumerable<Product> getFavProducts { get; }
-        Product getObjproduct(int productId);
     }
 }
