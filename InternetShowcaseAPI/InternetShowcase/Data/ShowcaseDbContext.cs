@@ -75,7 +75,6 @@ namespace InternetShowcase.Data
                     {
                         entity.CreatedOn = DateTime.UtcNow;
                         entity.CreatedBy = userName;
-
                         return;
                     }
                     else if (entry.State == EntityState.Modified)
