@@ -69,9 +69,9 @@ namespace InternetShowcase.Features.Categories
 
         [HttpPut]
         [Authorize(Roles = "admin, manager")]
-        public async Task<IActionResult> PutCategory(UpdateCategoryRequestModel model)
+        public async Task<IActionResult> EditCategory(UpdateCategoryRequestModel model)
         {
-            var result = await _categories.Update(model);
+            var result = await _categories.Update(_mapper.Map<UpdateCategoryRequestModel, Category>(model));
             if (result.Failure)
             {
                 return BadRequest(result.Error);

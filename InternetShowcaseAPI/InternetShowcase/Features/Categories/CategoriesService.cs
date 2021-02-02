@@ -62,23 +62,15 @@ namespace InternetShowcase.Features.Categories
             return true;
         }       
 
-        public async Task<Result> Update(UpdateCategoryRequestModel model)
+        public async Task<Result> Update(Category newCategory)
         {
-            var category = await _context
-                .Categories.Where(c => c.Id == model.Id)
-                .FirstOrDefaultAsync();
-
+            var category = await _context.Categories.FindAsync(newCategory.Id);
             if (category == null)
             {
-                return false;
+                return "Category not Founded";
             }
-
-            category.Name = model.Name;
-            category.Line = model.Line;
-            category.Parent_Id = model.Parent_Id;
-
+            _context.Categories.Update(newCategory);
             await _context.SaveChangesAsync();
-
             return true;
         }
     }

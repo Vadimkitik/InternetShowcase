@@ -13,7 +13,6 @@ namespace InternetShowcase.Infrastructure.MappingProfiles
        public MappingProfile()
         {
             CreateMap<Product, ProductView>();
-            CreateMap<UpdateProductRequestModel, Product>();
             CreateMap<Product, ProductListingModel>()
                 .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.Category.Name));
 
@@ -25,6 +24,8 @@ namespace InternetShowcase.Infrastructure.MappingProfiles
 
             CreateMap<ProductView, Product>();
             CreateMap<CategoryView, Category>();
+            CreateMap<UpdateProductRequestModel, Product>();
+            CreateMap<UpdateCategoryRequestModel, Category>();
         }
     }
 }
