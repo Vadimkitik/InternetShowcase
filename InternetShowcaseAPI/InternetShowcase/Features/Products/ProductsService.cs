@@ -37,27 +37,9 @@ namespace InternetShowcase.Features.Products
             return product;
         }
 
-        public async Task<bool> Update(UpdateProductRequestModel productModel)
+        public async Task<bool> Update(Product product)
         {
-            var product = await _context
-                .Products.Where(p => p.Id == productModel.Id)
-                .FirstOrDefaultAsync();
-
-            if (product == null)
-            {
-                return false;
-            }
-
-            product.ProductLine = productModel.ProductLine;
-            product.Name = productModel.Name;
-            product.Description = productModel.Description;
-            product.ImageUrl = productModel.ImageUrl;
-            product.OldPrice = productModel.OldPrice;
-            product.Price = productModel.Price;
-            product.IsFavourite = productModel.IsFavourite;
-            product.Available = productModel.Available;
-            product.CategoryID = productModel.CategoryID;
-
+            _context.Products.Update(product);
             await _context.SaveChangesAsync();
 
             return true;
@@ -76,9 +58,8 @@ namespace InternetShowcase.Features.Products
         }
 
 
-        public IEnumerable<Product> getFavProducts => _context.Products.Where(p => p.IsFavourite == "true").Include(c => c.Category);
-
-        public Product getObjproduct(int productId) => _context.Products.FirstOrDefault(p => p.Id == productId);
+        public IEnumerable<Product> getFavProducts 
+            => _context.Products.Where(p => p.IsFavourite == "true").Include(c => c.Category);
     }
 
 }

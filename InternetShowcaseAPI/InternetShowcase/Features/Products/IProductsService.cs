@@ -10,7 +10,7 @@ namespace InternetShowcase.Features.Products
         Task<IEnumerable<Product>> GetAll();
         Task<Product> GetByLine(string productLine);
         Task<Product> Create(Product product);
-        Task<bool> Update(UpdateProductRequestModel productModel);
+        Task<bool> Update(Product product);
         Task<bool> Delete(int id);
         IEnumerable<Product> getFavProducts { get; }
         Product getObjproduct(int productId);

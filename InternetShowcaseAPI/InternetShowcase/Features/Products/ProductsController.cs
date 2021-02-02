@@ -57,15 +57,11 @@ namespace InternetShowcase.Features.Products
         [HttpDelete("{id}")]
         [Authorize(Roles = "admin, manager")]
         public async Task<bool> DeleteProduct(int id)
-        {
-            return await _allProducts.Delete(id);
-        }
+            => await _allProducts.Delete(id);
 
         [HttpPut]
         [Authorize(Roles = "admin, manager")]
-        public async Task<bool> EditProduct(UpdateProductRequestModel productModel)
-        {
-            return await _allProducts.Update(productModel);
-        }
+        public async Task<bool> EditProduct(UpdateProductRequestModel productModel) 
+            => await _allProducts.Update(_mapper.Map<UpdateProductRequestModel, Product>(productModel));
     }
 }
