@@ -2,6 +2,8 @@
 {
     public class UpdateProductRequestModel
     {
+        public int Id { get; set; }
+
         public string ProductLine { get; set; }
 
         public string Name { get; set; }
